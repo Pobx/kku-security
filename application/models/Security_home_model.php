@@ -31,6 +31,16 @@ class Security_home_model extends CI_Model {
     return $results;
   }
 
+  public function find($id) {
+    $query = $this->db->select($this->items)->from($this->table)->where('id', $id)->get();
+
+    $results['rows'] = $query->num_rows();
+    $results['results'] = $query->first_row();
+    $results['fields'] = $query->list_fields();
+    
+    return $results;
+  }
+
   public function store($inptus)
 	{
     // echo "<pre>", print_r($inptus); exit();

@@ -31,12 +31,16 @@ class Security_homes extends CI_Controller
     }
 
     public function form_add_new() {
+      $id = $this->uri->segment(3);
+
+      $data = $this->find($id);
       $data['head_topic_label'] = $this->head_topic_label;
       $data['head_sub_topic_label'] = $this->head_sub_topic_label_form;
       $data['link_back_to_table'] = site_url('security_homes');
       $data['form_submit_data_url'] = site_url('security_homes/store');
       $data['content'] = 'security_homes_form_add_new';
 
+      echo "<pre>", print_r($data); exit();
       $this->load->view('template_layout', $data);
     }
 
@@ -47,5 +51,25 @@ class Security_homes extends CI_Controller
       $results = $this->Security_home_model->store($inptus);
 
       redirect('security_homes');
+    }
+
+    private function find($id = 0) {
+      $results = $this->Security_home_model->find($id);
+      $values = $results['results'];
+      $fields = $results['fields'];
+      $rows = $results['rows'];
+      $data = array();
+      
+      foreach ($fields as $key => $value) {
+        if ($rows <= 0) {
+          $data[$value] = '';
+        } else {
+          $data[$value] = $values->$value;
+        }
+      }
+
+      return $data;
+      // echo $values->owner_home_name;
+      // echo "<pre>", print_r($data); exit();
     }
 }
