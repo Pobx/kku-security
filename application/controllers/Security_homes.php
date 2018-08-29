@@ -69,7 +69,6 @@ class Security_homes extends CI_Controller
       }
 
       return $data;
-      // echo $values->owner_home_name;
-      // echo "<pre>", print_r($data); exit();
+     
     }
 }
