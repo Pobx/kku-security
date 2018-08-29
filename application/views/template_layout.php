@@ -15,6 +15,11 @@
 	<link rel="stylesheet" href="<?php echo base_url('bower_components/Ionicons/css/ionicons.min.css'); ?>">
 	<!-- DataTables -->
 	<link rel="stylesheet" href="<?php echo base_url('bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css'); ?>">
+	<!-- iCheck for checkboxes and radio inputs -->
+	<link rel="stylesheet" href="<?php echo base_url('plugins/iCheck/all.css');?>">
+	<!-- bootstrap datepicker -->
+	<link rel="stylesheet" href="<?php echo base_url('bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css');?>">
+
 	<!-- Theme style -->
 	<link rel="stylesheet" href="<?php echo base_url('dist/css/AdminLTE.min.css'); ?>">
 	<!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -207,11 +212,18 @@ else
 	<!-- DataTables -->
 	<script src="<?php echo base_url('bower_components/datatables.net/js/jquery.dataTables.min.js'); ?>"></script>
 	<script src="<?php echo base_url('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js'); ?>"></script>
+
+	<!-- iCheck 1.0.1 -->
+	<script src="<?php echo base_url('plugins/iCheck/icheck.min.js');?>"></script>
+
+	<!-- bootstrap datepicker -->
+	<script src="<?php echo base_url('bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js');?>"></script>
+
 	<!-- AdminLTE App -->
 	<script src="<?php echo base_url('dist/js/adminlte.min.js'); ?>"></script>
 	<script>
 		$(function () {
-			$('.mydataTable').DataTable()
+			$('.mydataTable').DataTable();
 			// $('#example2').DataTable({
 			//   'paging'      : true,
 			//   'lengthChange': false,
@@ -220,14 +232,25 @@ else
 			//   'info'        : true,
 			//   'autoWidth'   : false
 			// })
-		});
 
+			$(".form_submit_data").submit(function () {
+				if (confirm('คุณต้องการบันทึกข้อมูลใช่หรือไม่ ?') == true) {
+					return true;
+				}
+				return false;
+			});
 
-		$(".form_submit_data").submit(function () {
-			if (confirm('คุณต้องการบันทึกข้อมูลใช่หรือไม่ ?') == true) {
-				return true;
-			}
-			return false;
+			//Flat red color scheme for iCheck
+			$('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+				checkboxClass: 'icheckbox_flat-blue',
+				radioClass: 'iradio_flat-blue'
+			})
+
+			//Date picker
+			$('.datepicker').datepicker({
+				autoclose: true
+			})
+
 		});
 
 	</script>
