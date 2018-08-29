@@ -23,7 +23,8 @@ class Security_homes extends CI_Controller
       $data['link_go_to_remove'] = site_url('security_homes/remove');
       $data['header_columns'] = $this->header_columns;
       
-      $results = $this->Security_home_model->all();
+      $qstr = array('status !='=>'disabled');
+      $results = $this->Security_home_model->all($qstr);
       $data['results'] = $results['results'];
       $data['content'] = 'security_homes_table';
 
