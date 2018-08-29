@@ -14,13 +14,13 @@ class Security_homes extends CI_Controller
       $data['link_add_new'] = site_url('security_homes/form_add_new');
       $data['content'] = 'security_homes_table';
       
-      
       $this->load->view('template_layout', $data);
     }
 
     public function form_add_new() {
       $data['head_topic_label'] = $this->head_topic_label;
       $data['head_sub_topic_label'] = $this->head_sub_topic_label_form;
+      // $data['link_back_to_table'] = site_url('security_homes');
       $data['content'] = 'security_homes_form_add_new';
 
       $this->load->view('template_layout', $data);
