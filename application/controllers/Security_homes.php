@@ -19,8 +19,12 @@ class Security_homes extends CI_Controller
       $data['head_topic_label'] = $this->head_topic_label;
       $data['head_sub_topic_label'] = $this->head_sub_topic_label_table;
       $data['link_add_new'] = site_url('security_homes/form_add_new');
+      
+      $results = $this->Security_home_model->all();
+      $data['results'] = $results['results'];
       $data['content'] = 'security_homes_table';
       
+      echo "<pre>", print_r($data['results']); exit();
       $this->load->view('template_layout', $data);
     }
 

@@ -5,9 +5,19 @@ class Security_home_model extends CI_Model {
 
 	private $table='security_homes';
 	private $id='id';
-  private $items = 'id, start_date, end_date, owner_home_name, owner_home_position_name, owner_home_department_name, owner_home_office_name, address, status';
+  private $items = '
+    id, 
+    DATE_FORMAT(DATE_ADD(start_date, INTERVAL 543 YEAR),"%d/%m/%Y") as start_date, 
+    DATE_FORMAT(DATE_ADD(end_date, INTERVAL 543 YEAR),"%d/%m/%Y") as end_date,
+    owner_home_name, 
+    owner_home_position_name, 
+    owner_home_department_name, 
+    owner_home_office_name, 
+    address, 
+    status
+    ';
 
-  public function all($qstr) {
+  public function all($qstr = '') {
     if (isset($qstr) && !empty($qstr)) {
 			$this->db->where($qstr);
     }
@@ -16,7 +26,7 @@ class Security_home_model extends CI_Model {
 
     $results['results'] = $query->result_array();
     $results['rows'] = $query->num_rows();
-    $results['fields'] = $query->list_fields();
+    // $results['fields'] = $query->list_fields();
 
     return $results;
   }
