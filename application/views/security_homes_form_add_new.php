@@ -83,6 +83,7 @@
 			</div>
 
 			<div class="box-footer">
+				<input type="text" name="txt_id" value="">
 				<?php $this->load->view('button_save_and_back_page_in_form');?>
 			</div>
 			</form>

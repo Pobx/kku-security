@@ -1,5 +1,5 @@
 <?php
-	$form_url=(isset($form_url))? $form_url : site_url('page_not_found');
+	$form_submit_data_url=(isset($form_submit_data_url))? $form_submit_data_url : site_url('page_not_found');
 	$attr = array(
 				'id'=>'my_form_submit'
     			, 'class'=>'form-horizontal form_submit_data'
@@ -7,5 +7,5 @@
                 , 'autocomplete'=>'off'
 			);
 
-    echo form_open($form_url, $attr);
+    echo form_open($form_submit_data_url, $attr);
 ?>
