@@ -8,9 +8,9 @@
 
 		<div class="box-body">
 
-			<form class="form-horizontal">
+			<form class="form-horizontal form_submit_data">
 				<div class="box-header">
-					xxx
+					<?php $this->load->view('button_save_and_back_page_in_form');?>
 				</div>
 				<div class="box-body">
 					<div class="form-group">

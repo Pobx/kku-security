@@ -220,7 +220,15 @@ else
 			//   'info'        : true,
 			//   'autoWidth'   : false
 			// })
-		})
+		});
+
+
+		$(".form_submit_data").submit(function () {
+			if (confirm('คุณต้องการบันทึกข้อมูลใช่หรือไม่ ?') == true) {
+				return true;
+			}
+			return false;
+		});
 
 	</script>
 </body>
