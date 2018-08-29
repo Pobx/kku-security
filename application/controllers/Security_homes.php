@@ -7,7 +7,9 @@ class Security_homes extends CI_Controller
     parent::__construct();
 
     $this->load->model('Security_home_model');
+    $this->load->library('Date_libs');
   }
+
   private $head_topic_label = 'โครงการฝากบ้าน';
   private $head_sub_topic_label_table = 'รายการ โครงการฝากบ้าน';
   private $head_sub_topic_label_form = 'ฟอร์มบันทึกข้อมูล โครงการฝากบ้าน';
@@ -34,8 +36,10 @@ class Security_homes extends CI_Controller
 
     public function store() {
       $inptus = $this->input->post();
+      $inptus['start_date'] = $this->date_libs->set_date_th($inptus['start_date']);
+      $inptus['end_date'] = $this->date_libs->set_date_th($inptus['end_date']);
       $results = $this->Security_home_model->store($inptus);
-      
+
       redirect('security_homes');
     }
 }
