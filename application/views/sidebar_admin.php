@@ -7,7 +7,7 @@
 </li>
 
 <li>
-	<a href="<?php echo site_url();?>"><i class="fa fa-home"></i> <span>โครงการฝากบ้าน</span></a>
+	<a href="<?php echo site_url('security_homes');?>"><i class="fa fa-home"></i> <span>โครงการฝากบ้าน</span></a>
 </li>
 
 <li>
