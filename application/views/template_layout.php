@@ -264,6 +264,9 @@ else
 		function removeItem(id, url) {
 			console.log(id)
 			console.log(url)
+			if (confirm('คุณต้องการลบข้อมูลใช่หรือไม่ ?') == true) {
+				window.location.href = url + '/' + id;
+			}
 		}
 
 	</script>

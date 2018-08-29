@@ -71,6 +71,11 @@ class Security_homes extends CI_Controller
       }
 
       return $data;
-     
+    }
+
+    public function remove() {
+      $id = $this->uri->segment(3);
+      $results = $this->Security_home_model->remove($id);
+      redirect('security_homes');
     }
 }
