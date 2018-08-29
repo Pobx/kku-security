@@ -32,7 +32,7 @@
 					<?php foreach ($results as $key => $value) {?>
 					<tr>
 						<td class="text-center">
-							<?php if ($value['start_date'] !='' && $value['end_date'] != '') { echo $value['start_date'].' - '.$value['end_date']; }?>
+							<?php if ($value['start_date'] !='' && $value['end_date'] != '') { echo $value['home_date']; }?>
 						</td>
 						<td class="text-center">
 							<?php echo $value['owner_home_name'];?>

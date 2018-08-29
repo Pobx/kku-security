@@ -26,6 +26,7 @@ class Security_homes extends CI_Controller
       $qstr = array('status !='=>'disabled');
       $results = $this->Security_home_model->all($qstr);
       $data['results'] = $results['results'];
+      $data['fields'] = $results['fields'];
       $data['content'] = 'security_homes_table';
 
       // echo "<pre>", print_r($data['results']); exit();

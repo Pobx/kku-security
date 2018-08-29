@@ -9,6 +9,7 @@ class Security_home_model extends CI_Model {
     id, 
     DATE_FORMAT(DATE_ADD(start_date, INTERVAL 543 YEAR),"%d/%m/%Y") as start_date, 
     DATE_FORMAT(DATE_ADD(end_date, INTERVAL 543 YEAR),"%d/%m/%Y") as end_date,
+    CONCAT(DATE_FORMAT(DATE_ADD(start_date, INTERVAL 543 YEAR),"%d/%m/%Y"), " - ", DATE_FORMAT(DATE_ADD(end_date, INTERVAL 543 YEAR),"%d/%m/%Y")) as home_date,
     owner_home_name, 
     owner_home_position_name, 
     owner_home_department_name, 
@@ -26,7 +27,7 @@ class Security_home_model extends CI_Model {
 
     $results['results'] = $query->result_array();
     $results['rows'] = $query->num_rows();
-    // $results['fields'] = $query->list_fields();
+    $results['fields'] = $query->list_fields();
 
     return $results;
   }
