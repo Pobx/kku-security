@@ -40,7 +40,7 @@ class Security_homes extends CI_Controller
       $data['form_submit_data_url'] = site_url('security_homes/store');
       $data['content'] = 'security_homes_form_add_new';
 
-      echo "<pre>", print_r($data); exit();
+      // echo "<pre>", print_r($data); exit();
       $this->load->view('template_layout', $data);
     }
 
