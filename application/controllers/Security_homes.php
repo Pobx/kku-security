@@ -19,7 +19,7 @@ class Security_homes extends CI_Controller
     {
       $data['head_topic_label'] = $this->head_topic_label;
       $data['head_sub_topic_label'] = $this->head_sub_topic_label_table;
-      $data['link_go_to_form'] = site_url('security_homes/form_add_new');
+      $data['link_go_to_form'] = site_url('security_homes/form_store');
       $data['link_go_to_remove'] = site_url('security_homes/remove');
       $data['header_columns'] = $this->header_columns;
       
@@ -32,7 +32,7 @@ class Security_homes extends CI_Controller
       $this->load->view('template_layout', $data);
     }
 
-    public function form_add_new() {
+    public function form_store() {
       $id = $this->uri->segment(3);
 
       $data = $this->find($id);
@@ -41,7 +41,7 @@ class Security_homes extends CI_Controller
       $data['link_back_to_table'] = site_url('security_homes');
       $data['form_submit_data_url'] = site_url('security_homes/store');
       
-      $data['content'] = 'security_homes_form_add_new';
+      $data['content'] = 'security_homes_form_store';
 
       // echo "<pre>", print_r($data); exit();
       $this->load->view('template_layout', $data);
