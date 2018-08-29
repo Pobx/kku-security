@@ -8,13 +8,13 @@ class Security_home_model extends CI_Model {
 
   public function store($inptus)
 	{
-    echo "<pre>", print_r($inptus); exit();
+    // echo "<pre>", print_r($inptus); exit();
     if ($inptus['id'] != '') {
-      $inptus['created'] = date('Y-m-d H:i:s');
+      $inptus['updated'] = date('Y-m-d H:i:s');
       $results['query']=$this->db->where($this->id, $inptus['id'])->update($this->table, $inptus);
 		  $results['lastID']=$inptus['id'];
     }else {
-      $inptus['updated'] = date('Y-m-d H:i:s');
+      $inptus['created'] = date('Y-m-d H:i:s');
       $results['query']=$this->db->insert($this->table, $inptus);
 		  $results['lastID']=$this->db->insert_id();
     }

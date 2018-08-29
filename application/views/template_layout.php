@@ -17,6 +17,8 @@
 	<link rel="stylesheet" href="<?php echo base_url('bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css'); ?>">
 	<!-- iCheck for checkboxes and radio inputs -->
 	<link rel="stylesheet" href="<?php echo base_url('plugins/iCheck/all.css');?>">
+	<!-- bootstrap datepicker -->
+	<link rel="stylesheet" href="<?php //echo base_url('bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css');?>">
 
 	<!-- bootstrap datepicker-thai -->
 	<link rel="stylesheet" href="<?php echo base_url('plugins/bootstrap-datepicker-thai/css/datepicker.css');?>">
@@ -30,7 +32,10 @@
 	<link rel="stylesheet" href="<?php echo base_url('bower_components/morris.js/morris.css'); ?>">
 	<!-- jvectormap -->
 	<link rel="stylesheet" href="<?php echo base_url('bower_components/jvectormap/jquery-jvectormap.css'); ?>">
-
+	<!-- Date Picker -->
+	<link rel="stylesheet" href="<?php echo base_url('bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css'); ?>">
+	<!-- Daterange picker -->
+	<link rel="stylesheet" href="<?php echo base_url('bower_components/bootstrap-daterangepicker/daterangepicker.css'); ?>">
 	<!-- bootstrap wysihtml5 - text editor -->
 	<link rel="stylesheet" href="<?php echo base_url('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css'); ?>">
 
@@ -214,6 +219,9 @@ else
 	<!-- iCheck 1.0.1 -->
 	<script src="<?php echo base_url('plugins/iCheck/icheck.min.js');?>"></script>
 
+	<!-- bootstrap datepicker -->
+	<script src="<?php //echo base_url('bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js');?>"></script>
+
 	<!-- bootstrap datepicker-thai -->
 	<script src="<?php echo base_url('plugins/bootstrap-datepicker-thai/js/bootstrap-datepicker.js');?>"></script>
 	<script src="<?php echo base_url('plugins/bootstrap-datepicker-thai/js/bootstrap-datepicker-thai.js');?>"></script>
@@ -250,11 +258,6 @@ else
 			$('.datepicker').datepicker({
 				autoclose: true
 			})
-
-			// $('.datepicker').datepicker({
-			// 	language: 'th-th',
-			// 	format: 'dd/mm/yyyy'
-			// });
 
 		});
 

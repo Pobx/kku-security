@@ -35,5 +35,7 @@ class Security_homes extends CI_Controller
     public function store() {
       $inptus = $this->input->post();
       $results = $this->Security_home_model->store($inptus);
+      
+      redirect('security_homes');
     }
 }
