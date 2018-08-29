@@ -20,5 +20,6 @@
       "html",
       "php"
     ]
-  }
+  },
+  "git.ignoreLimitWarning": true
 }

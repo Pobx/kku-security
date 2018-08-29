@@ -1,25 +1,25 @@
 <li>
-	<a href="#"><i class="fa fa-book"></i> <span>สถิติอุบัติเหตุ</span></a>
+	<a href="#"><i class="fa fa-warning"></i> <span>สถิติอุบัติเหตุ</span></a>
 </li>
 
 <li>
-	<a href="#"><i class="fa fa-book"></i> <span>โครงการฝากบ้าน</span></a>
+	<a href="#"><i class="fa fa-home"></i> <span>โครงการฝากบ้าน</span></a>
 </li>
 
 <li>
-	<a href="#"><i class="fa fa-book"></i> <span>สถิติการลืมกุญแจ</span></a>
+	<a href="#"><i class="fa fa-key"></i> <span>สถิติการลืมกุญแจ</span></a>
 </li>
 
 <li>
-	<a href="#"><i class="fa fa-book"></i> <span>สถิติเหตุทรัพย์งัดที่พักอาศัย</span></a>
+	<a href="#"><i class="fa fa-home"></i> <span>สถิติเหตุทรัพย์งัดที่พักอาศัย</span></a>
 </li>
 
 <li>
-	<a href="#"><i class="fa fa-book"></i> <span>สถิติงัดเบาะรถจักยานยนต์</span></a>
+	<a href="#"><i class="fa fa-motorcycle"></i> <span>สถิติงัดเบาะรถจักยานยนต์</span></a>
 </li>
 
 <li>
-	<a href="#"><i class="fa fa-book"></i> <span>สถิติไม่สวมหมวกนิรภัย</span></a>
+	<a href="#"><i class="fa fa-motorcycle"></i> <span>สถิติไม่สวมหมวกนิรภัย</span></a>
 </li>
 
 <li class="treeview">
