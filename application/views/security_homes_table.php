@@ -22,7 +22,7 @@
 				<thead>
 					<tr>
 						<?php foreach ($header_columns as $key => $value) {?>
-						<th>
+						<th class="text-center">
 							<?php echo $value;?>
 						</th>
 						<?php }?>
@@ -46,7 +46,7 @@
 						<td class="text-center">
 							<?php echo $value['owner_home_office_name'];?>
 						</td>
-						<td class="text-center">
+						<td>
 							<?php echo $value['address'];?>
 						</td>
 						<td class="text-center">
@@ -58,7 +58,7 @@
 							</a>
 						</td>
 						<td class="text-center">
-							<a href="#" class="btn btn-danger">
+							<a href="javascript:removeItem('<?php echo $value['id'];?>', '<?php echo $link_go_to_remove;?>')" class="btn btn-danger">
 								<i class="fa fa-trash-o"></i>
 							</a>
 						</td>
@@ -68,7 +68,7 @@
 				</tbody>
 				<tfoot>
 					<?php foreach ($header_columns as $key => $value) {?>
-					<th>
+					<th class="text-center">
 						<?php echo $value;?>
 					</th>
 					<?php }?>

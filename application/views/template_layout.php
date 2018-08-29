@@ -261,6 +261,11 @@ else
 
 		});
 
+		function removeItem(id, url) {
+			console.log(id)
+			console.log(url)
+		}
+
 	</script>
 </body>
 

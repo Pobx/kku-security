@@ -90,7 +90,7 @@
 			</div>
 
 			<div class="box-footer">
-				<input type="text" name="id" value="<?php echo $id;?>">
+				<input type="hidden" name="id" value="<?php echo $id;?>">
 				<?php $this->load->view('button_save_and_back_page_in_form');?>
 			</div>
 			</form>
