@@ -152,6 +152,14 @@
 
 			<!-- Main content -->
 			<section class="content">
+				<?php if ($this->session->flashdata('alert_type') !='') {?>
+				<div class="alert alert-<?php echo $this->session->flashdata('alert_type');?> alert-dismissible">
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+					<h4><i class="icon fa fa-<?php echo $this->session->flashdata('alert_type');?>"></i> ระบบแจ้งเตือน</h4>
+					<?php echo $this->session->flashdata('alert_message');?>
+				</div>
+				<?php }?>
+
 				<?php
 if (isset($content))
 {
