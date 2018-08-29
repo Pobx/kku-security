@@ -18,7 +18,10 @@
 	<!-- iCheck for checkboxes and radio inputs -->
 	<link rel="stylesheet" href="<?php echo base_url('plugins/iCheck/all.css');?>">
 	<!-- bootstrap datepicker -->
-	<link rel="stylesheet" href="<?php echo base_url('bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css');?>">
+	<link rel="stylesheet" href="<?php //echo base_url('bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css');?>">
+
+	<!-- bootstrap datepicker-thai -->
+	<link rel="stylesheet" href="<?php echo base_url('plugins/bootstrap-datepicker-thai/css/datepicker.css');?>">
 
 	<!-- Theme style -->
 	<link rel="stylesheet" href="<?php echo base_url('dist/css/AdminLTE.min.css'); ?>">
@@ -217,7 +220,12 @@ else
 	<script src="<?php echo base_url('plugins/iCheck/icheck.min.js');?>"></script>
 
 	<!-- bootstrap datepicker -->
-	<script src="<?php echo base_url('bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js');?>"></script>
+	<script src="<?php //echo base_url('bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js');?>"></script>
+
+	<!-- bootstrap datepicker-thai -->
+	<script src="<?php echo base_url('plugins/bootstrap-datepicker-thai/js/bootstrap-datepicker.js');?>"></script>
+	<script src="<?php echo base_url('plugins/bootstrap-datepicker-thai/js/bootstrap-datepicker-thai.js');?>"></script>
+	<script src="<?php echo base_url('plugins/bootstrap-datepicker-thai/js/locales/bootstrap-datepicker.th.js');?>"></script>
 
 	<!-- AdminLTE App -->
 	<script src="<?php echo base_url('dist/js/adminlte.min.js'); ?>"></script>

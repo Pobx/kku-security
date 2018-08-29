@@ -18,13 +18,15 @@
 					<label for="start_date" class="col-sm-2 control-label">วันที่</label>
 
 					<div class="col-sm-4">
-						<input type="text" class="form-control datepicker" id="start_date" name="start_date" placeholder="วันที่">
+						<input type="text" class="form-control datepicker" id="start_date" name="start_date" data-provide="datepicker"
+						data-date-language="th-th" placeholder="วันที่">
 					</div>
 
 					<label for="end_date" class="col-sm-1 control-label">ถึง</label>
 
 					<div class="col-sm-4">
-						<input type="text" class="form-control datepicker" id="end_date" name="end_date" placeholder="ถึง">
+						<input type="text" class="form-control datepicker" id="end_date" name="end_date" data-provide="datepicker"
+						data-date-language="th-th" placeholder="ถึง">
 					</div>
 				</div>
 
@@ -83,7 +85,7 @@
 			</div>
 
 			<div class="box-footer">
-				<input type="text" name="txt_id" value="">
+				<input type="text" name="id" value="">
 				<?php $this->load->view('button_save_and_back_page_in_form');?>
 			</div>
 			</form>
