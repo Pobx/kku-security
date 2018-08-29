@@ -5,6 +5,21 @@ class Security_home_model extends CI_Model {
 
 	private $table='security_homes';
 	private $id='id';
+  private $items = 'id, start_date, end_date, owner_home_name, owner_home_position_name, owner_home_department_name, owner_home_office_name, address, status';
+
+  public function all($qstr) {
+    if (isset($qstr) && !empty($qstr)) {
+			$this->db->where($qstr);
+    }
+    
+    $query = $this->db->select($this->items)->from($this->table)->get();
+
+    $results['results'] = $query->result_array();
+    $results['rows'] = $query->num_rows();
+    $results['fields'] = $query->list_fields();
+
+    return $results;
+  }
 
   public function store($inptus)
 	{
