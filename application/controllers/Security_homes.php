@@ -59,8 +59,10 @@ class Security_homes extends CI_Controller
       $results = $this->Security_home_model->store($inptus);
 
       $alert_type = ($results['query']? 'success' : 'warning');
+      $alert_icon = ($results['query']? 'check' : 'warning');
       $alert_message = ($results['query']? $this->success_message : $this->warning_message);
       $this->session->set_flashdata('alert_type', $alert_type);
+      $this->session->set_flashdata('alert_icon', $alert_icon);
       $this->session->set_flashdata('alert_message', $alert_message);
 
       redirect('security_homes');
@@ -89,8 +91,10 @@ class Security_homes extends CI_Controller
       $results = $this->Security_home_model->remove($id);
 
       $alert_type = ($results['query']? 'danger' : 'warning');
+      $alert_icon = ($results['query']? 'trash' : 'warning');
       $alert_message = ($results['query']? $this->danger_message : $this->warning_message);
       $this->session->set_flashdata('alert_type', $alert_type);
+      $this->session->set_flashdata('alert_icon', $alert_icon);
       $this->session->set_flashdata('alert_message', $alert_message);
 
       redirect('security_homes');
