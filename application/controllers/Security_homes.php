@@ -24,7 +24,7 @@ class Security_homes extends CI_Controller
       $data['results'] = $results['results'];
       $data['content'] = 'security_homes_table';
       
-      echo "<pre>", print_r($data['results']); exit();
+      // echo "<pre>", print_r($data['results']); exit();
       $this->load->view('template_layout', $data);
     }
 
