@@ -16,7 +16,9 @@
 			<div class="box-body">
 				<?php
           $this->load->view('accidents_information');
-          $this->load->view('accidents_vehicles_table_information');
+          if ($id !='') {
+            $this->load->view('accidents_vehicles_table_information');
+          }
         ?>
 
 			</div>
