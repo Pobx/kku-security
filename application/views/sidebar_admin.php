@@ -23,7 +23,7 @@
 </li>
 
 <li>
-	<a href="#"><i class="fa fa-motorcycle"></i> <span>สถิติไม่สวมหมวกนิรภัย</span></a>
+	<a href="<?php echo site_url('student_do_not_wear_helmet');?>"><i class="fa fa-motorcycle"></i> <span>สถิติไม่สวมหมวกนิรภัย</span></a>
 </li>
 
 <li class="treeview">

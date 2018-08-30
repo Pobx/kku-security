@@ -14,8 +14,8 @@
 	<label for="detective_department_name" class="col-sm-2 control-label">สังกัดหน่วยงาน</label>
 
 	<div class="col-sm-4">
-		<input type="text" class="form-control datepicker" id="detective_department_name" name="detective_department_name"
-		placeholder="สังกัดหน่วยงาน" value="<?php echo $detective_department_name; ?>">
+		<input type="text" class="form-control" id="detective_department_name" name="detective_department_name" placeholder="สังกัดหน่วยงาน"
+		value="<?php echo $detective_department_name; ?>">
 	</div>
 </div>
 
