@@ -16,7 +16,7 @@
 			<div class="box-body">
 				<?php
           $this->load->view('accidents_information');
-          // $this->load->view('student_do_not_wear_helmet_vehicles_information');
+          $this->load->view('accidents_vehicles_table_information');
         ?>
 
 			</div>
