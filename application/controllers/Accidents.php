@@ -9,6 +9,7 @@ class Accidents extends CI_Controller
 
         $this->load->model('Accidents_model');
         $this->load->model('Accidents_vehicles_model');
+        $this->load->model('Accidents_peoples_model');
         
         $this->load->library('Date_libs');
     }
@@ -18,6 +19,7 @@ class Accidents extends CI_Controller
     private $head_sub_topic_label_form  = 'ฟอร์มบันทึกข้อมูล สถิติอุบัติเหตุ';
     private $header_columns             = array('วันที่', 'ช่วงเวลา', 'สถานที่เกิดเหตุ', 'รถยนต์', 'รถจักรยานยนต์', 'รถที่เกิดเหตุ', 'สาเหตุ', 'บาดเจ็บ', 'เสียชีวิต', 'ผู้ประสบเหตุ / คู่กรณี', 'หน่วยงาน', 'บุคลากร', 'นักศึกษา', 'บุคคลภายใน', 'แก้ไข', 'ลบ');
     private $header_columns_vehicles    = array('ประเภท', 'ทะเบียนรถ', 'สี', 'ยี่ห้อ', 'รุ่น', 'แก้ไข', 'ลบ');
+    private $header_columns_peoples    = array('ผู้ประสบเหตุ / คู่กรณี', 'ประเภทบุคลากร', 'บาดเจ็บ / เสียชีวิต', 'ชื่อ - สกุล', 'หน่วยงาน', 'รุ่น', 'แก้ไข', 'ลบ');
     
     private $success_message            = 'บันทึกข้อมูลสำเร็จ';
     private $warning_message            = 'ไม่สามารถทำรายการ กรุณลองใหม่อีกครั้ง';
@@ -61,9 +63,14 @@ class Accidents extends CI_Controller
           'accident_id'=>$id,
           'status !='=>'disabled'
         );
+
         $vehicles_results = $this->Accidents_vehicles_model->all($qstr);
         $data['vehicles_results'] = $vehicles_results['results'];
         
+        $data['header_columns_peoples'] = $this->header_columns_peoples;
+        $peoples_results = $this->Accidents_peoples_model->all($qstr);
+        $data['peoples_results'] = $peoples_results['results'];
+
         $data['content'] = 'accidents_form_store';
 
         // echo "<pre>", print_r($data); exit();

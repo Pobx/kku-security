@@ -4,16 +4,16 @@ defined('BASEPATH') || exit('No direct script access allowed');
 class Accidents_peoples_model extends CI_Model
 {
 
-    private $table = 'accident_vehicles';
+    private $table = 'accident_peoples';
     private $id    = 'id';
     private $items = '
     id,
     accident_id,
-    car_type,
-    model,
-    brand,
-    color,
-    license_plate,
+    injury_type,
+    victim_type,
+    people_type,
+    people_name,
+    people_department_name,
     status
     ';
 
