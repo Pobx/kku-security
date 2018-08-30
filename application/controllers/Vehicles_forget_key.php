@@ -56,8 +56,7 @@ class Vehicles_forget_key extends CI_Controller
     public function store()
     {
         $inptus = $this->input->post();
-        $inptus['start_date'] = $this->date_libs->set_date_th($inptus['start_date']);
-        $inptus['end_date'] = $this->date_libs->set_date_th($inptus['end_date']);
+        $inptus['date_forget_key'] = $this->date_libs->set_date_th($inptus['date_forget_key']);
         $results = $this->Vehicles_forget_key_model->store($inptus);
 
         $alert_type = ($results['query'] ? 'success' : 'warning');
