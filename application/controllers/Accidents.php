@@ -56,7 +56,7 @@ class Accidents extends CI_Controller
     public function store()
     {
         $inptus = $this->input->post();
-        $inptus['inspect_date'] = $this->date_libs->set_date_th($inptus['inspect_date']);
+        $inptus['accident_date'] = $this->date_libs->set_date_th($inptus['accident_date']);
         $results = $this->accidents_model->store($inptus);
 
         $alert_type = ($results['query'] ? 'success' : 'warning');
@@ -66,7 +66,8 @@ class Accidents extends CI_Controller
         $this->session->set_flashdata('alert_icon', $alert_icon);
         $this->session->set_flashdata('alert_message', $alert_message);
 
-        redirect('accidents');
+        // redirect('accidents');
+        redirect('accidents/form_store/'.$results['lastID']);
     }
 
     private function find($id = 0)

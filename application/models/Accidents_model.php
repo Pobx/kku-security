@@ -11,6 +11,7 @@ class Accidents_model extends CI_Model
     DATE_FORMAT(DATE_ADD(accident_date, INTERVAL 543 YEAR),"%d/%m/%Y") as accident_date,
     period_time,
     place,
+    accident_cause,
     status
     ';
 

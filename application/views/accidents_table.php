@@ -44,12 +44,20 @@
 						<td class="text-center">
 							<?php echo $value['place']; ?>
 						</td>
+						<td class="text-center">XXX</td>
+						<td class="text-center">XXX</td>
+						<td class="text-center">XXX</td>
 						<td class="text-center">
 							<?php echo $value['accident_cause']; ?>
 						</td>
-						<td class="text-center">
-							<?php echo $value['status']; ?>
-						</td>
+						<td class="text-center">XXX</td>
+						<td class="text-center">XXX</td>
+						<td class="text-center">XXX</td>
+						<td class="text-center">XXX</td>
+						<td class="text-center">XXX</td>
+						<td class="text-center">XXX</td>
+						<td class="text-center">XXX</td>
+
 						<td class="text-center">
 							<a href="<?php echo $link_go_to_form . '/' . $value['id']; ?>" class="btn btn-warning">
 								<i class="fa fa-pencil"></i>
