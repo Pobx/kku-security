@@ -3,7 +3,7 @@
 </li>
 
 <li>
-	<a href="#"><i class="fa fa-warning"></i> <span>สถิติอุบัติเหตุ</span></a>
+	<a href="<?php echo site_url('accidents');?>"><i class="fa fa-warning"></i> <span>สถิติอุบัติเหตุ</span></a>
 </li>
 
 <li>
