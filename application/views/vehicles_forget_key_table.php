@@ -36,24 +36,22 @@
     ?>
 					<tr>
 						<td class="text-center">
-							<?php if ($value['start_date'] != '' && $value['end_date'] != '')
-{
-    echo $value['home_date'];}?>
+							<?php echo $value['date_forget_key'];?>
 						</td>
 						<td class="text-center">
-							<?php echo $value['owner_home_name']; ?>
+							<?php echo $value['owner_assets_name']; ?>
 						</td>
 						<td class="text-center">
-							<?php echo $value['owner_home_position_name']; ?>
+							<?php echo $value['owner_assets_department']; ?>
 						</td>
 						<td class="text-center">
-							<?php echo $value['owner_home_department_name']; ?>
+							<?php echo $value['owner_assets_age']; ?>
 						</td>
 						<td class="text-center">
-							<?php echo $value['owner_home_office_name']; ?>
+							<?php echo $value['owner_assets_phone']; ?>
 						</td>
 						<td>
-							<?php echo $value['address']; ?>
+							<?php echo $value['owner_assets_forget_key_place']; ?>
 						</td>
 						<td class="text-center">
 							<?php echo $value['status']; ?>
