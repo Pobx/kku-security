@@ -11,7 +11,7 @@
 </li>
 
 <li>
-	<a href="#"><i class="fa fa-key"></i> <span>สถิติการลืมกุญแจ</span></a>
+	<a href="<?php echo site_url('vehicles_forget_key');?>"><i class="fa fa-key"></i> <span>สถิติการลืมกุญแจ</span></a>
 </li>
 
 <li>
