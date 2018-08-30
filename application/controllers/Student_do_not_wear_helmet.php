@@ -56,7 +56,7 @@ class Student_do_not_wear_helmet extends CI_Controller
     public function store()
     {
         $inptus = $this->input->post();
-        $inptus['date_forget_key'] = $this->date_libs->set_date_th($inptus['date_forget_key']);
+        $inptus['inspect_date'] = $this->date_libs->set_date_th($inptus['inspect_date']);
         $results = $this->Student_do_not_wear_helmet_model->store($inptus);
 
         $alert_type = ($results['query'] ? 'success' : 'warning');
