@@ -3,41 +3,55 @@
 
 	<div class="col-sm-4">
 		<label>
-			<input type="radio" name="car_type" class="flat-red" value="car" <?php if ($car_type=='car' ) { echo 'checked' ;}?>>&nbsp;รถยนต์
-			<input type="radio" name="car_type" class="flat-red" value="motorcycle" <?php if ($car_type=='motorcycle' ) { echo
-			'checked' ;}?>>&nbsp;รถจักรยานยนต์
+			<input type="radio" name="victim_type" class="flat-red" value="victim" <?php if ($victim_type=='victim' ) { echo
+			'checked' ;}?>>&nbsp;ผู้ประสบเหตุ
+			<input type="radio" name="victim_type" class="flat-red" value="parties" <?php if ($victim_type=='parties' ) { echo
+			'checked' ;}?>>&nbsp;คู่กรณี
 		</label>
 	</div>
 </div>
 
 <div class="form-group">
-	<label for="license_plate" class="col-sm-2 control-label">ทะเบียน</label>
+	<label class="col-sm-2 control-label">ประเภทบุคลากร</label>
 
 	<div class="col-sm-4">
-		<input type="text" class="form-control" id="license_plate" name="license_plate" placeholder="ทะเบียน" value="<?php echo $license_plate; ?>">
+		<label>
+			<input type="radio" name="people_type" class="flat-red" value="officer" <?php if ($people_type=='officer' ) { echo
+			'checked' ;}?>>&nbsp;บุคลากร
+			<input type="radio" name="people_type" class="flat-red" value="student" <?php if ($people_type=='student' ) { echo
+			'checked' ;}?>>&nbsp;นักศึกษา
+			<input type="radio" name="people_type" class="flat-red" value="people_inside" <?php if ($people_type=='people_inside'
+			) { echo 'checked' ;}?>>&nbsp;บุคลคลภายใน
+		</label>
 	</div>
 </div>
 
 <div class="form-group">
-	<label for="brand" class="col-sm-2 control-label">ยี่ห้อ</label>
+	<label class="col-sm-2 control-label">ประเภทยานพาหนะ</label>
 
 	<div class="col-sm-4">
-		<input type="text" class="form-control" id="brand" name="brand" placeholder="ยี่ห้อ" value="<?php echo $brand; ?>">
+		<label>
+			<input type="radio" name="injury_type" class="flat-red" value="injury" <?php if ($injury_type=='injury' ) { echo
+			'checked' ;}?>>&nbsp;บาดเจ็บ
+			<input type="radio" name="injury_type" class="flat-red" value="dead" <?php if ($injury_type=='dead' ) { echo
+			'checked' ;}?>>&nbsp;เสียชีวิต
+		</label>
 	</div>
 </div>
 
 <div class="form-group">
-	<label for="model" class="col-sm-2 control-label">รุ่น</label>
+	<label for="people_name" class="col-sm-2 control-label">ชื่อ - สกุล</label>
 
 	<div class="col-sm-4">
-		<input type="text" class="form-control" id="model" name="model" placeholder="รุ่น" value="<?php echo $model; ?>">
+		<input type="text" class="form-control" id="people_name" name="people_name" placeholder="ชื่อ - สกุล" value="<?php echo $people_name; ?>">
 	</div>
 </div>
 
 <div class="form-group">
-	<label for="color" class="col-sm-2 control-label">สี</label>
+	<label for="people_department_name" class="col-sm-2 control-label">หน่วยงาน</label>
 
 	<div class="col-sm-4">
-		<input type="text" class="form-control" id="color" name="color" placeholder="สี" value="<?php echo $color; ?>">
+		<input type="text" class="form-control" id="people_department_name" name="people_department_name" placeholder="หน่วยงาน"
+		value="<?php echo $people_department_name; ?>">
 	</div>
 </div>

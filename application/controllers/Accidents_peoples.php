@@ -15,7 +15,7 @@ class Accidents_peoples extends CI_Controller
     private $head_topic_label           = 'สถิติอุบัติเหตุ';
     private $head_sub_topic_label_table = 'รายการ สถิติอุบัติเหตุ';
     private $head_sub_topic_label_form  = 'ฟอร์มบันทึกข้อมูล สถิติอุบัติเหตุ';
-    private $header_columns             = array('ผู้ประสบเหตุ / คู่กรณี', 'ประเภทบุคลากร', 'บาดเจ็บ / เสียชีวิต', 'ชื่อ - สกุล', 'หน่วยงาน', 'รุ่น', 'แก้ไข', 'ลบ');
+    private $header_columns             = array('ผู้ประสบเหตุ / คู่กรณี', 'ประเภทบุคลากร', 'บาดเจ็บ / เสียชีวิต', 'ชื่อ - สกุล', 'หน่วยงาน', 'แก้ไข', 'ลบ');
 
     private $success_message = 'บันทึกข้อมูลสำเร็จ';
     private $warning_message = 'ไม่สามารถทำรายการ กรุณลองใหม่อีกครั้ง';
