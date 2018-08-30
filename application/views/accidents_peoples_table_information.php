@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col-md-12 text-right">
-		<a href="<?php echo $link_go_to_vehicles_form; ?>" class="btn btn-primary">
+		<a href="<?php echo $link_go_to_peoples_form; ?>" class="btn btn-primary">
 			<i class="fa fa-plus-circle"></i>
 			เพิ่มข้อมูลใหม่
 		</a>
@@ -47,7 +47,7 @@
 			</td>
 
 			<td class="text-center">
-				<a href="<?php echo $link_go_to_vehicles_form . '/' . $value['id']; ?>" class="btn btn-warning">
+				<a href="<?php echo $link_go_to_peoples_remove . '/' . $value['id']; ?>" class="btn btn-warning">
 					<i class="fa fa-pencil"></i>
 				</a>
 			</td>

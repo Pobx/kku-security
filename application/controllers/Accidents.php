@@ -19,7 +19,7 @@ class Accidents extends CI_Controller
     private $head_sub_topic_label_form  = 'ฟอร์มบันทึกข้อมูล สถิติอุบัติเหตุ';
     private $header_columns             = array('วันที่', 'ช่วงเวลา', 'สถานที่เกิดเหตุ', 'รถยนต์', 'รถจักรยานยนต์', 'รถที่เกิดเหตุ', 'สาเหตุ', 'บาดเจ็บ', 'เสียชีวิต', 'ผู้ประสบเหตุ / คู่กรณี', 'หน่วยงาน', 'บุคลากร', 'นักศึกษา', 'บุคคลภายใน', 'แก้ไข', 'ลบ');
     private $header_columns_vehicles    = array('ประเภท', 'ทะเบียนรถ', 'สี', 'ยี่ห้อ', 'รุ่น', 'แก้ไข', 'ลบ');
-    private $header_columns_peoples    = array('ผู้ประสบเหตุ / คู่กรณี', 'ประเภทบุคลากร', 'บาดเจ็บ / เสียชีวิต', 'ชื่อ - สกุล', 'หน่วยงาน', 'รุ่น', 'แก้ไข', 'ลบ');
+    private $header_columns_peoples     = array('ผู้ประสบเหตุ / คู่กรณี', 'ประเภทบุคลากร', 'บาดเจ็บ / เสียชีวิต', 'ชื่อ - สกุล', 'หน่วยงาน', 'รุ่น', 'แก้ไข', 'ลบ');
     
     private $success_message            = 'บันทึกข้อมูลสำเร็จ';
     private $warning_message            = 'ไม่สามารถทำรายการ กรุณลองใหม่อีกครั้ง';
@@ -53,8 +53,8 @@ class Accidents extends CI_Controller
         $data['link_go_to_vehicles_form'] = site_url('accidents_vehicles/form_store/'.$id);
         $data['link_go_to_vehicles_remove'] = site_url('accidents_vehicles/remove/'.$id);
 
-        $data['link_go_to_peoples_form'] = site_url('accidents_peoples/form_store');
-        
+        $data['link_go_to_peoples_form'] = site_url('accidents_peoples/form_store/'.$id);
+        $data['link_go_to_peoples_remove'] = site_url('accidents_peoples/remove/'.$id);
         $data['link_back_to_table'] = site_url('accidents');
         $data['form_submit_data_url'] = site_url('accidents/store');
 

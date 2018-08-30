@@ -15,23 +15,21 @@
 			</div>
 			<div class="box-body">
 				<?php
-          $this->load->view('accidents_information');
-          if ($id !='') {
-            $this->load->view('accidents_vehicles_table_information');
-            echo "<br />";
-            $this->load->view('accidents_peoples_table_information');
-          }
+          $this->load->view('accidents_peoples_information_form_store');
         ?>
 
 			</div>
 
 			<div class="box-footer">
 				<input type="hidden" name="id" value="<?php echo $id; ?>">
+				<input type="hidden" name="accident_id" value="<?php echo $accident_id; ?>">
+
 				<input type="hidden" name="status" value="active">
 				<?php $this->load->view('button_save_and_back_page_in_form');?>
 			</div>
 			</form>
 
+			<?php $this->load->view('accidents_vehicles_table_in_form_store');?>
 		</div>
 
 	</div>
