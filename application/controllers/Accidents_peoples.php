@@ -51,16 +51,16 @@ class Accidents_peoples extends CI_Controller
 
         $data['link_back_to_table'] = site_url('accidents/form_store/' . $accident_id);
         $data['form_submit_data_url'] = site_url('accidents_peoples/store');
-        $data['link_go_to_vehicles_form'] = site_url('accidents_peoples/form_store');
-        $data['link_go_to_vehicles_remove'] = site_url('accidents_peoples/remove/' . $accident_id);
+        $data['link_go_to_peoples_form'] = site_url('accidents_peoples/form_store');
+        $data['link_go_to_peoples_remove'] = site_url('accidents_peoples/remove/' . $accident_id);
 
         $data['header_columns'] = $this->header_columns;
         $qstr = array(
             'accident_id' => $accident_id,
             'status !='   => 'disabled',
         );
-        $vehicles_results = $this->Accidents_peoples_model->all($qstr);
-        $data['vehicles_results'] = $vehicles_results['results'];
+        $peoples_results = $this->Accidents_peoples_model->all($qstr);
+        $data['peoples_results'] = $peoples_results['results'];
 
         $data['content'] = 'accidents_peoples_form_store';
 

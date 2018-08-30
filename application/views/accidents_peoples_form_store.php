@@ -29,7 +29,7 @@
 			</div>
 			</form>
 
-			<?php $this->load->view('accidents_vehicles_table_in_form_store');?>
+			<?php $this->load->view('accidents_peoples_table_in_form_store');?>
 		</div>
 
 	</div>
