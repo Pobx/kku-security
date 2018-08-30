@@ -1,21 +1,28 @@
 <?php
 defined('BASEPATH') || exit('No direct script access allowed');
 
-class Security_home_model extends CI_Model
+class Vehicles_forget_key_model extends CI_Model
 {
 
-    private $table = 'security_homes';
+    private $table = 'vehicles_forget_key';
     private $id    = 'id';
     private $items = '
     id,
-    DATE_FORMAT(DATE_ADD(start_date, INTERVAL 543 YEAR),"%d/%m/%Y") as start_date,
-    DATE_FORMAT(DATE_ADD(end_date, INTERVAL 543 YEAR),"%d/%m/%Y") as end_date,
-    CONCAT(DATE_FORMAT(DATE_ADD(start_date, INTERVAL 543 YEAR),"%d/%m/%Y"), " - ", DATE_FORMAT(DATE_ADD(end_date, INTERVAL 543 YEAR),"%d/%m/%Y")) as home_date,
-    owner_home_name,
-    owner_home_position_name,
-    owner_home_department_name,
-    owner_home_office_name,
-    address,
+    DATE_FORMAT(DATE_ADD(date_forget_key, INTERVAL 543 YEAR),"%d/%m/%Y") as date_forget_key,
+    owner_assets_name,
+    owner_assets_department,
+    owner_assets_age,
+    owner_assets_phone,
+    owner_assets_forget_key_place,
+    car_type,
+    model,
+    brand,
+    color,
+    license_plate,
+    car_state,
+    detective_name,
+    detective_department_name,
+    remark,
     status
     ';
 
