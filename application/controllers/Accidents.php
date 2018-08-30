@@ -57,7 +57,10 @@ class Accidents extends CI_Controller
         $data['form_submit_data_url'] = site_url('accidents/store');
 
         $data['header_columns_vehicles'] = $this->header_columns_vehicles;
-        $qstr = array('accident_id'=>$id);
+        $qstr = array(
+          'accident_id'=>$id,
+          'status !='=>'disabled'
+        );
         $vehicles_results = $this->Accidents_vehicles_model->all($qstr);
         $data['vehicles_results'] = $vehicles_results['results'];
         
