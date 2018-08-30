@@ -14,87 +14,16 @@
 				<?php $this->load->view('button_save_and_back_page_in_form');?>
 			</div>
 			<div class="box-body">
-				<div class="form-group">
-					<label for="start_date" class="col-sm-2 control-label">วันที่</label>
-
-					<div class="col-sm-4">
-						<input type="text" class="form-control datepicker" id="start_date" name="start_date" data-provide="datepicker"
-						data-date-language="th-th" placeholder="วันที่" value="<?php echo $start_date; ?>">
-					</div>
-
-					<label for="end_date" class="col-sm-1 control-label">ถึง</label>
-
-					<div class="col-sm-4">
-						<input type="text" class="form-control datepicker" id="end_date" name="end_date" data-provide="datepicker"
-						data-date-language="th-th" placeholder="ถึง" value="<?php echo $end_date; ?>">
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label for="owner_home_name" class="col-sm-2 control-label">ชื่อ&nbsp;-&nbsp;สกุล</label>
-
-					<div class="col-sm-4">
-						<input type="text" class="form-control" id="owner_home_name" name="owner_home_name" placeholder="ชื่อ - สกุล"
-						value="<?php echo $owner_home_name; ?>">
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label for="owner_home_position_name" class="col-sm-2 control-label">ตำแหน่ง</label>
-
-					<div class="col-sm-4">
-						<input type="text" class="form-control" id="owner_home_position_name" name="owner_home_position_name" placeholder="ตำแหน่ง"
-						value="<?php echo $owner_home_position_name; ?>">
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label for="owner_home_department_name" class="col-sm-2 control-label">สังกัดหน่วยงาน</label>
-
-					<div class="col-sm-4">
-						<input type="text" class="form-control" id="owner_home_department_name" name="owner_home_department_name"
-						placeholder="สังกัดหน่วยงาน" value="<?php echo $owner_home_department_name; ?>">
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label for="owner_home_office_name" class="col-sm-2 control-label">สำนักงาน&nbsp;/&nbsp;ศูนย์</label>
-
-					<div class="col-sm-4">
-						<input type="text" class="form-control" id="owner_home_office_name" name="owner_home_office_name" placeholder="สำนักงาน / ศูนย์"
-						value="<?php echo $owner_home_office_name; ?>">
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label for="address" class="col-sm-2 control-label">ที่อยู่&nbsp;/&nbsp;หมู่บ้าน</label>
-
-					<div class="col-sm-4">
-						<textarea class="form-control" rows="3" id="address" name="address" placeholder="ที่อยู่ / หมู่บ้าน"><?php echo $address; ?></textarea>
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label class="col-sm-2 control-label">การส่งมอบ</label>
-
-					<div class="col-sm-4">
-						<label>
-							<input type="radio" name="status" class="flat-red" value="stable" <?php if ($status == 'stable')
-{
-    echo 'checked'
-    ;}?>>&nbsp;ปกติ
-							<input type="radio" name="status" class="flat-red" value="not-stable" <?php if ($status == 'not-stable')
-{
-    echo
-        'checked';}?>>&nbsp;ไม่ปกติ
-						</label>
-					</div>
-				</div>
+				<?php 
+          $this->load->view('vehicles_forget_key_owner_assets_information');
+          $this->load->view('vehicles_forget_key_detective_information');
+        ?>
 
 			</div>
 
 			<div class="box-footer">
 				<input type="hidden" name="id" value="<?php echo $id; ?>">
+				<input type="hidden" name="status" value="active">
 				<?php $this->load->view('button_save_and_back_page_in_form');?>
 			</div>
 			</form>

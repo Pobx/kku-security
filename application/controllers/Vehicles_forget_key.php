@@ -31,7 +31,7 @@ class Vehicles_forget_key extends CI_Controller
         $results = $this->Vehicles_forget_key_model->all($qstr);
         $data['results'] = $results['results'];
         $data['fields'] = $results['fields'];
-        $data['content'] = 'security_homes_table';
+        $data['content'] = 'vehicles_forget_key_table';
 
         // echo "<pre>", print_r($data['results']); exit();
         $this->load->view('template_layout', $data);
@@ -44,8 +44,8 @@ class Vehicles_forget_key extends CI_Controller
         $data = $this->find($id);
         $data['head_topic_label'] = $this->head_topic_label;
         $data['head_sub_topic_label'] = $this->head_sub_topic_label_form;
-        $data['link_back_to_table'] = site_url('security_homes');
-        $data['form_submit_data_url'] = site_url('security_homes/store');
+        $data['link_back_to_table'] = site_url('vehicles_forget_key');
+        $data['form_submit_data_url'] = site_url('vehicles_forget_key/store');
 
         $data['content'] = 'vehicles_forget_key_form_store';
 
@@ -67,7 +67,7 @@ class Vehicles_forget_key extends CI_Controller
         $this->session->set_flashdata('alert_icon', $alert_icon);
         $this->session->set_flashdata('alert_message', $alert_message);
 
-        redirect('security_homes');
+        redirect('vehicles_forget_key');
     }
 
     private function find($id = 0)
@@ -105,6 +105,6 @@ class Vehicles_forget_key extends CI_Controller
         $this->session->set_flashdata('alert_icon', $alert_icon);
         $this->session->set_flashdata('alert_message', $alert_message);
 
-        redirect('security_homes');
+        redirect('vehicles_forget_key');
     }
 }
