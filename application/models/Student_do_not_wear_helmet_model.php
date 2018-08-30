@@ -8,21 +8,17 @@ class Student_do_not_wear_helmet_model extends CI_Model
     private $id    = 'id';
     private $items = '
     id,
-    DATE_FORMAT(DATE_ADD(date_forget_key, INTERVAL 543 YEAR),"%d/%m/%Y") as date_forget_key,
-    owner_assets_name,
-    owner_assets_department,
-    owner_assets_age,
-    owner_assets_phone,
-    owner_assets_forget_key_place,
-    car_type,
+    DATE_FORMAT(DATE_ADD(inspect_date, INTERVAL 543 YEAR),"%d/%m/%Y") as inspect_date,
+    CONCAT(license_plate, " ", color, " ", brand, " ", model) as car_body,
+    place,
+    student_name,
+    student_code,
+    id_card,
+    department_name,
     model,
     brand,
     color,
     license_plate,
-    car_state,
-    detective_name,
-    detective_department_name,
-    remark,
     status
     ';
 
