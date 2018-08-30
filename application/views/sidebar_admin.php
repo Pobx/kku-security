@@ -11,7 +11,7 @@
 </li>
 
 <li>
-	<a href="#"><i class="fa fa-key"></i> <span>สถิติการลืมกุญแจ</span></a>
+	<a href="<?php echo site_url('vehicles_forget_key');?>"><i class="fa fa-key"></i> <span>สถิติการลืมกุญแจ</span></a>
 </li>
 
 <li>
@@ -19,7 +19,7 @@
 </li>
 
 <li>
-	<a href="#"><i class="fa fa-motorcycle"></i> <span>สถิติงัดเบาะรถจักยานยนต์</span></a>
+	<a href="<?php echo site_url('break_motorcycle_pad');?>"><i class="fa fa-motorcycle"></i> <span>สถิติงัดเบาะรถจักยานยนต์</span></a>
 </li>
 
 <li>

@@ -20,7 +20,6 @@ class Security_homes extends CI_Controller
 
     public function index()
     {
-      // $data['alert_type'] = $this->session->flashdata('alert_type');
       $data['head_topic_label'] = $this->head_topic_label;
       $data['head_sub_topic_label'] = $this->head_sub_topic_label_table;
       $data['link_go_to_form'] = site_url('security_homes/form_store');
