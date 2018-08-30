@@ -51,8 +51,9 @@ class Accidents_vehicles extends CI_Controller
         
         $data['link_back_to_table'] = site_url('accidents/form_store/'.$accident_id);
         $data['form_submit_data_url'] = site_url('accidents_vehicles/store');
-        $data['link_go_to_vehicles_form'] = site_url('accidents_vehicles/store');
+        $data['link_go_to_vehicles_form'] = site_url('accidents_vehicles/form_store');
         $data['link_go_to_vehicles_remove'] = site_url('accidents_vehicles/remove/'.$accident_id);
+
         $data['header_columns'] = $this->header_columns;
         $qstr = array('accident_id' => $accident_id);
         $vehicles_results = $this->Accidents_vehicles_model->all($qstr);
