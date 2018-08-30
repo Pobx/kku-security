@@ -55,7 +55,10 @@ class Accidents_vehicles extends CI_Controller
         $data['link_go_to_vehicles_remove'] = site_url('accidents_vehicles/remove/'.$accident_id);
 
         $data['header_columns'] = $this->header_columns;
-        $qstr = array('accident_id' => $accident_id);
+        $qstr = array(
+          'accident_id' => $accident_id,
+          'status !=' => 'disabled'
+        );
         $vehicles_results = $this->Accidents_vehicles_model->all($qstr);
         $data['vehicles_results'] = $vehicles_results['results'];
 
@@ -108,6 +111,7 @@ class Accidents_vehicles extends CI_Controller
     {
         $accident_id = $this->uri->segment(3);
         $id = $this->uri->segment(4);
+        // echo $id; exit();
         $results = $this->Accidents_vehicles_model->remove($id);
 
         $alert_type = ($results['query'] ? 'danger' : 'warning');
