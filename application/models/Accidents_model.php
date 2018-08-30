@@ -1,10 +1,10 @@
 <?php
 defined('BASEPATH') || exit('No direct script access allowed');
 
-class Student_do_not_wear_helmet_model extends CI_Model
+class Accidents_model extends CI_Model
 {
 
-    private $table = 'student_do_not_wear_helmet';
+    private $table = 'accidents';
     private $id    = 'id';
     private $items = '
     id,
