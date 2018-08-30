@@ -111,7 +111,8 @@ class Accidents_vehicles extends CI_Controller
     {
         $accident_id = $this->uri->segment(3);
         $id = $this->uri->segment(4);
-        // echo $id; exit();
+        $flag = $this->uri->segment(5);
+        
         $results = $this->Accidents_vehicles_model->remove($id);
 
         $alert_type = ($results['query'] ? 'danger' : 'warning');
@@ -120,7 +121,7 @@ class Accidents_vehicles extends CI_Controller
         $this->session->set_flashdata('alert_type', $alert_type);
         $this->session->set_flashdata('alert_icon', $alert_icon);
         $this->session->set_flashdata('alert_message', $alert_message);
-
-        redirect('accidents_vehicles/form_store/'.$accident_id);
+        $redirect_page = ($flag == 'main_form'? 'accidents/form_store/' : 'accidents_vehicles/form_store/');
+        redirect($redirect_page.$accident_id);
     }
 }

@@ -48,7 +48,8 @@
 				</a>
 			</td>
 			<td class="text-center">
-				<a href="javascript:removeItem('<?php echo $value['id']; ?>', '<?php echo $link_go_to_vehicles_remove; ?>')" class="btn btn-danger">
+				<a href="javascript:removeItem('<?php echo $value['id']; ?>', '<?php echo $link_go_to_vehicles_remove; ?>', 'main_form')"
+				class="btn btn-danger">
 					<i class="fa fa-trash-o"></i>
 				</a>
 			</td>
