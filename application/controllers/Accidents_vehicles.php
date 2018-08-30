@@ -45,14 +45,16 @@ class Accidents_vehicles extends CI_Controller
         $id = $this->uri->segment(4);
 
         $data = $this->find($id);
+        $data['accident_id'] = $accident_id;
         $data['head_topic_label'] = $this->head_topic_label;
         $data['head_sub_topic_label'] = $this->head_sub_topic_label_form;
         
         $data['link_back_to_table'] = site_url('accidents/form_store/'.$accident_id);
         $data['form_submit_data_url'] = site_url('accidents_vehicles/store');
-
+        $data['link_go_to_vehicles_form'] = site_url('accidents_vehicles/store');
+        $data['link_go_to_vehicles_remove'] = site_url('accidents_vehicles/remove/'.$accident_id);
         $data['header_columns'] = $this->header_columns;
-        $qstr = array('accident_id' => $id);
+        $qstr = array('accident_id' => $accident_id);
         $vehicles_results = $this->Accidents_vehicles_model->all($qstr);
         $data['vehicles_results'] = $vehicles_results['results'];
 
@@ -65,7 +67,6 @@ class Accidents_vehicles extends CI_Controller
     public function store()
     {
         $inptus = $this->input->post();
-        $inptus['accident_date'] = $this->date_libs->set_date_th($inptus['accident_date']);
         $results = $this->Accidents_vehicles_model->store($inptus);
 
         $alert_type = ($results['query'] ? 'success' : 'warning');
@@ -76,7 +77,7 @@ class Accidents_vehicles extends CI_Controller
         $this->session->set_flashdata('alert_message', $alert_message);
 
         // redirect('accidents_vehicles');
-        redirect('accidents_vehicles/form_store/' . $results['lastID']);
+        redirect('accidents_vehicles/form_store/' . $inptus['accident_id']);
     }
 
     private function find($id = 0)
@@ -104,7 +105,8 @@ class Accidents_vehicles extends CI_Controller
 
     public function remove()
     {
-        $id = $this->uri->segment(3);
+        $accident_id = $this->uri->segment(3);
+        $id = $this->uri->segment(4);
         $results = $this->Accidents_vehicles_model->remove($id);
 
         $alert_type = ($results['query'] ? 'danger' : 'warning');
@@ -114,6 +116,6 @@ class Accidents_vehicles extends CI_Controller
         $this->session->set_flashdata('alert_icon', $alert_icon);
         $this->session->set_flashdata('alert_message', $alert_message);
 
-        redirect('Accidents_vehicles');
+        redirect('accidents_vehicles/form_store/'.$accident_id);
     }
 }
