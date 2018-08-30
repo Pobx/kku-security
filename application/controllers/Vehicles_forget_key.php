@@ -28,7 +28,7 @@ class Vehicles_forget_key extends CI_Controller
         $data['header_columns'] = $this->header_columns;
 
         $qstr = array('status !=' => 'disabled');
-        $results = $this->vehicles_forget_key_model->all($qstr);
+        $results = $this->Vehicles_forget_key_model->all($qstr);
         $data['results'] = $results['results'];
         $data['fields'] = $results['fields'];
         $data['content'] = 'security_homes_table';
@@ -58,7 +58,7 @@ class Vehicles_forget_key extends CI_Controller
         $inptus = $this->input->post();
         $inptus['start_date'] = $this->date_libs->set_date_th($inptus['start_date']);
         $inptus['end_date'] = $this->date_libs->set_date_th($inptus['end_date']);
-        $results = $this->vehicles_forget_key_model->store($inptus);
+        $results = $this->Vehicles_forget_key_model->store($inptus);
 
         $alert_type = ($results['query'] ? 'success' : 'warning');
         $alert_icon = ($results['query'] ? 'check' : 'warning');
@@ -72,7 +72,7 @@ class Vehicles_forget_key extends CI_Controller
 
     private function find($id = 0)
     {
-        $results = $this->vehicles_forget_key_model->find($id);
+        $results = $this->Vehicles_forget_key_model->find($id);
         $values = $results['results'];
         $fields = $results['fields'];
         $rows = $results['rows'];
@@ -96,7 +96,7 @@ class Vehicles_forget_key extends CI_Controller
     public function remove()
     {
         $id = $this->uri->segment(3);
-        $results = $this->vehicles_forget_key_model->remove($id);
+        $results = $this->Vehicles_forget_key_model->remove($id);
 
         $alert_type = ($results['query'] ? 'danger' : 'warning');
         $alert_icon = ($results['query'] ? 'trash' : 'warning');
