@@ -60,9 +60,8 @@
 
 	<div class="col-sm-4">
 		<label>
-			<input type="radio" name="car_type" class="flat-red" value="stable" <?php if ($car_type=='car' ) { echo "checked"
-			;}?>>&nbsp;รถยนต์
-			<input type="radio" name="car_type" class="flat-red" value="not-stable" <?php if ($car_type=='motorcycle' ) { echo
+			<input type="radio" name="car_type" class="flat-red" value="car" <?php if ($car_type=='car' ) { echo "checked" ;}?>>&nbsp;รถยนต์
+			<input type="radio" name="car_type" class="flat-red" value="motorcycle" <?php if ($car_type=='motorcycle' ) { echo
 			"checked" ;}?>>&nbsp;รถจักรยานยนต์
 		</label>
 	</div>
