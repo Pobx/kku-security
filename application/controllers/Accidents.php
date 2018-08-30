@@ -48,7 +48,7 @@ class Accidents extends CI_Controller
         $data = $this->find($id); 
         $data['head_topic_label'] = $this->head_topic_label;
         $data['head_sub_topic_label'] = $this->head_sub_topic_label_form;
-        $data['link_go_to_vehicles_form'] = site_url('accidents_vehicles/form_store');
+        $data['link_go_to_vehicles_form'] = site_url('accidents_vehicles/form_store/'.$id);
         $data['link_go_to_vehicles_remove'] = site_url('accidents_vehicles/remove');
 
         $data['link_go_to_peoples_form'] = site_url('accidents_peoples/form_store');

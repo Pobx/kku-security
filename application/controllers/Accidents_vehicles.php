@@ -30,7 +30,7 @@ class Accidents_vehicles extends CI_Controller
         $data['header_columns'] = $this->header_columns;
 
         $qstr = array('status !=' => 'disabled');
-        $results = $this->Accidents_model->all($qstr);
+        $results = $this->Accidents_vehicles_model->all($qstr);
         $data['results'] = $results['results'];
         $data['fields'] = $results['fields'];
         $data['content'] = 'accidents_vehicles_table';
@@ -48,7 +48,7 @@ class Accidents_vehicles extends CI_Controller
         $data['head_topic_label'] = $this->head_topic_label;
         $data['head_sub_topic_label'] = $this->head_sub_topic_label_form;
         
-        $data['link_back_to_table'] = site_url('accidents_vehicles');
+        $data['link_back_to_table'] = site_url('accidents/form_store/'.$accident_id);
         $data['form_submit_data_url'] = site_url('accidents_vehicles/store');
 
         $data['header_columns'] = $this->header_columns;
@@ -66,7 +66,7 @@ class Accidents_vehicles extends CI_Controller
     {
         $inptus = $this->input->post();
         $inptus['accident_date'] = $this->date_libs->set_date_th($inptus['accident_date']);
-        $results = $this->Accidents_model->store($inptus);
+        $results = $this->Accidents_vehicles_model->store($inptus);
 
         $alert_type = ($results['query'] ? 'success' : 'warning');
         $alert_icon = ($results['query'] ? 'check' : 'warning');
@@ -81,7 +81,7 @@ class Accidents_vehicles extends CI_Controller
 
     private function find($id = 0)
     {
-        $results = $this->Accidents_model->find($id);
+        $results = $this->Accidents_vehicles_model->find($id);
         $values = $results['results'];
         $fields = $results['fields'];
         $rows = $results['rows'];
@@ -105,7 +105,7 @@ class Accidents_vehicles extends CI_Controller
     public function remove()
     {
         $id = $this->uri->segment(3);
-        $results = $this->Accidents_model->remove($id);
+        $results = $this->Accidents_vehicles_model->remove($id);
 
         $alert_type = ($results['query'] ? 'danger' : 'warning');
         $alert_icon = ($results['query'] ? 'trash' : 'warning');
