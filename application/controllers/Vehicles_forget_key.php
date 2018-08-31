@@ -14,7 +14,7 @@ class Vehicles_forget_key extends CI_Controller
     private $head_topic_label           = 'สถติการลืมกุญแจ';
     private $head_sub_topic_label_table = 'รายการ สถติการลืมกุญแจ';
     private $head_sub_topic_label_form  = 'ฟอร์มบันทึกข้อมูล สถติการลืมกุญแจ';
-    private $header_columns             = array('วันที่', 'ชื่อ - สกุล', 'สังกัดหน่วยงาน', 'อายุ(ปี)', 'สถานที่ลืมกุญแจ', 'แก้ไข', 'ลบ');
+    private $header_columns             = array('วันที่', 'ชื่อ - สกุล', 'สังกัดหน่วยงาน', 'อายุ(ปี)', 'เบอร์ติดต่อ', 'สถานที่ลืมกุญแจ', 'สถานะ', 'แก้ไข', 'ลบ');
     private $success_message            = 'บันทึกข้อมูลสำเร็จ';
     private $warning_message            = 'ไม่สามารถทำรายการ กรุณลองใหม่อีกครั้ง';
     private $danger_message             = 'ลบข้อมูลสำเร็จ';
