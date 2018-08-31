@@ -28,7 +28,6 @@ class Accidents_model extends CI_Model
         ELSE ""
       END
     ) AS period_time_name,
-
     place,
     accident_cause,
     status

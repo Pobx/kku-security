@@ -10,12 +10,26 @@ class Accidents_vehicles_model extends CI_Model
     id,
     accident_id,
     car_type,
+    (
+      CASE 
+        WHEN car_type = "car" THEN "รถยนต์"
+        WHEN car_type = "motorcycle" THEN "รถจักรยานยนต์"
+        ELSE ""
+      END
+    ) AS car_type_name,
     model,
     brand,
     color,
     license_plate,
     CONCAT(license_plate, " ", color, " ", brand, " ", model) as car_body,
-    status
+    status,
+    (
+      CASE 
+        WHEN status = "active" THEN "ACTIVE"
+        WHEN status = "disabled" THEN "ลบรายการ"
+        ELSE ""
+      END
+    ) AS status_name,
     ';
 
     public function all($qstr = '')

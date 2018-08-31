@@ -10,11 +10,40 @@ class Accidents_peoples_model extends CI_Model
     id,
     accident_id,
     injury_type,
+    (
+      CASE 
+        WHEN injury_type = "injury" THEN "บาดเจ็บ"
+        WHEN injury_type = "dead" THEN "เสียชีวิต"
+        ELSE ""
+      END
+    ) AS injury_type_name,
     victim_type,
+    (
+      CASE 
+        WHEN victim_type = "victim" THEN "ผู้ประสบเหตุ"
+        WHEN victim_type = "parties" THEN "คู่กรณี"
+        ELSE ""
+      END
+    ) AS victim_type_name,
     people_type,
+    (
+      CASE 
+        WHEN people_type = "officer" THEN "บุคลากร"
+        WHEN people_type = "student" THEN "นักศึกษา"
+        WHEN people_type = "people_inside" THEN "บุคคลภายใน"
+        ELSE ""
+      END
+    ) AS people_type_name,
     people_name,
     people_department_name,
-    status
+    status,
+    (
+      CASE 
+        WHEN status = "active" THEN "ACTIVE"
+        WHEN status = "disabled" THEN "ลบรายการ"
+        ELSE ""
+      END
+    ) AS status_name,
     ';
 
     public function all($qstr = '')

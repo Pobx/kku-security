@@ -27,7 +27,7 @@
     ?>
 		<tr>
 			<td class="text-center">
-				<?php echo $value['car_type']; ?>
+				<?php echo $value['car_type_name']; ?>
 			</td>
 			<td class="text-center">
 				<?php echo $value['color']; ?>
