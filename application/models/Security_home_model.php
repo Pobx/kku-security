@@ -15,7 +15,15 @@ class Security_home_model extends CI_Model {
     owner_home_department_name, 
     owner_home_office_name, 
     address, 
-    status
+    status,
+    (
+      CASE 
+        WHEN status = "stable" THEN "ปกติ"
+        WHEN status = "disabled" THEN "ลบรายการ"
+        WHEN status = "not-stable" THEN "ไม่ปกติ"
+        ELSE ""
+      END
+    ) AS status_name,
     ';
 
   public function all($qstr = '') {
