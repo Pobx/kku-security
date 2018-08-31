@@ -244,15 +244,25 @@ else
 	<script src="<?php echo base_url('dist/js/adminlte.min.js'); ?>"></script>
 	<script>
 		$(function () {
-			$('.mydataTable').DataTable();
-			// $('#example2').DataTable({
-			//   'paging'      : true,
-			//   'lengthChange': false,
-			//   'searching'   : false,
-			//   'ordering'    : true,
-			//   'info'        : true,
-			//   'autoWidth'   : false
-			// })
+			$('.mydataTable').DataTable({
+				"language": {
+					"emptyTable": "ไม่พบรายการ",
+					"lengthMenu": "แสดง _MENU_ จำนวน",
+					"info": "แสดง _START_ to _END_ of _TOTAL_ จำนวน",
+					"infoEmpty": "รายการ 0 ถึง 0 จาก 0 รายการ",
+					"thousands": ",",
+					"loadingRecords": "กำลังโหลดข้อมูล...",
+					"processing": "กำลังดำเนินการ...",
+					"search": "ค้นหา:",
+					"zeroRecords": "ไม่พบรายการ",
+					"paginate": {
+						"first": "หน้าแรก",
+						"last": "สุดท้าย",
+						"next": "ต่อไป",
+						"previous": "ย้อนกลับ"
+					}
+				}
+			});
 
 			$(".form_submit_data").submit(function () {
 				if (confirm('คุณต้องการบันทึกข้อมูลใช่หรือไม่ ?') == true) {
