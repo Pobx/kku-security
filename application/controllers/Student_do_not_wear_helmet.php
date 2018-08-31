@@ -14,7 +14,7 @@ class Student_do_not_wear_helmet extends CI_Controller
     private $head_topic_label           = 'สถิติไม่สวมหมวกนิรภัย';
     private $head_sub_topic_label_table = 'รายการ สถิติไม่สวมหมวกนิรภัย';
     private $head_sub_topic_label_form  = 'ฟอร์มบันทึกข้อมูล สถิติไม่สวมหมวกนิรภัย';
-    private $header_columns             = array('วันที่', 'สถานที่', 'ชื่อ - สกุล', 'รหัสนักศึกษา', 'บัตรประชาชน', 'สังกัด / คณะ', 'จักยานยนต์', 'แก้ไข', 'ลบ');
+    private $header_columns             = array('วันที่', 'สถานที่', 'ชื่อ - สกุล', 'รหัสนักศึกษา', 'บัตรประชาชน', 'สังกัด / คณะ', 'จักยานยนต์', 'สถานะ', 'แก้ไข', 'ลบ');
     private $success_message            = 'บันทึกข้อมูลสำเร็จ';
     private $warning_message            = 'ไม่สามารถทำรายการ กรุณลองใหม่อีกครั้ง';
     private $danger_message             = 'ลบข้อมูลสำเร็จ';

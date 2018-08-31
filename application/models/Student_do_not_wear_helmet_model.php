@@ -19,7 +19,14 @@ class Student_do_not_wear_helmet_model extends CI_Model
     brand,
     color,
     license_plate,
-    status
+    status,
+    (
+      CASE 
+        WHEN status = "active" THEN "ACTIVE"
+        WHEN status = "disabled" THEN "ลบรายการ"
+        ELSE ""
+      END
+    ) AS status_name,
     ';
 
     public function all($qstr = '')
