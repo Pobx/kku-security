@@ -12,7 +12,14 @@ class Break_homes_model extends CI_Model {
     address,
     assets_loses,
     remark,
-    status
+    status,
+    (
+      CASE 
+        WHEN status = "active" THEN "ACTIVE"
+        WHEN status = "disabled" THEN "ลบรายการ"
+        ELSE ""
+      END
+    ) AS status_name,
     ';
 
     
