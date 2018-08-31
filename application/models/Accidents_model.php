@@ -46,13 +46,16 @@ class Accidents_model extends CI_Model
 
           $results_vehicles = $this->Accidents_vehicles_model->all($conditions);
           $results['results'][$key]['results_vehicles'] = $results_vehicles['results'];
-          $results['results'][$key]['count_motocycles'] = $this->filtervehicles->filter($results['results'][$key]['results_vehicles'], $condition ='motorcycle');
-          $results['results'][$key]['count_car'] = $this->filtervehicles->filter($results['results'][$key]['results_vehicles'], $condition ='car');
+          $results['results'][$key]['count_motocycles'] = $this->filtervehicles->filter($results['results'][$key]['results_vehicles'], 'motorcycle');
+          $results['results'][$key]['count_car'] = $this->filtervehicles->filter($results['results'][$key]['results_vehicles'], 'car');
 
           $results_peoples = $this->Accidents_peoples_model->all($conditions);
           $results['results'][$key]['results_peoples'] = $results_peoples['results'];
-          $results['results'][$key]['count_injury'] = $this->filterpeoples->filter($results['results'][$key]['results_peoples'], $condition ='injury');
-          $results['results'][$key]['count_dead'] = $this->filterpeoples->filter($results['results'][$key]['results_peoples'], $condition ='dead');
+          $results['results'][$key]['count_injury'] = $this->filterpeoples->filter($results['results'][$key]['results_peoples'], 'injury');
+          $results['results'][$key]['count_dead'] = $this->filterpeoples->filter($results['results'][$key]['results_peoples'], 'dead');
+          $results['results'][$key]['count_officer'] = $this->filterpeoples->filter($results['results'][$key]['results_peoples'], 'officer', 'people_type');
+          $results['results'][$key]['count_student'] = $this->filterpeoples->filter($results['results'][$key]['results_peoples'], 'student', 'people_type');
+          $results['results'][$key]['count_people_inside'] = $this->filterpeoples->filter($results['results'][$key]['results_peoples'], 'people_inside', 'people_type');
           
         }
 
