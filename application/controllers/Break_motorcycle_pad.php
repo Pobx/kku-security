@@ -56,8 +56,7 @@ class Break_motorcycle_pad extends CI_Controller
     public function store()
     {
         $inptus = $this->input->post();
-        // $inptus['created'] = $this->date_libs->set_date_th($inptus['created']);
-        // $inptus['updated'] = $this->date_libs->set_date_th($inptus['updated']);
+        $inptus['date_break'] = $this->date_libs->set_date_th($inptus['date_break']);
         $results = $this->Break_motorcycle_pad_model->store($inptus);
 
         $alert_type = ($results['query'] ? 'success' : 'warning');

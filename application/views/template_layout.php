@@ -227,6 +227,11 @@ else
 	<!-- iCheck 1.0.1 -->
 	<script src="<?php echo base_url('plugins/iCheck/icheck.min.js');?>"></script>
 
+	<!-- InputMask -->
+	<script src="<?php echo base_url('plugins/input-mask/jquery.inputmask.js');?>"></script>
+	<script src="<?php echo base_url('plugins/input-mask/jquery.inputmask.date.extensions.js');?>"></script>
+	<script src="<?php echo base_url('plugins/input-mask/jquery.inputmask.extensions.js');?>"></script>
+
 	<!-- bootstrap datepicker -->
 	<script src="<?php //echo base_url('bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js');?>"></script>
 
@@ -260,12 +265,15 @@ else
 			$('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
 				checkboxClass: 'icheckbox_flat-blue',
 				radioClass: 'iradio_flat-blue'
-			})
+			});
 
 			//Date picker
 			$('.datepicker').datepicker({
 				autoclose: true
-			})
+			});
+
+			// Input mask
+			$('[data-mask]').inputmask();
 
 		});
 
