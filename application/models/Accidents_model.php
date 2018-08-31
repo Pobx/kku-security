@@ -18,8 +18,17 @@ class Accidents_model extends CI_Model
     private $id    = 'id';
     private $items = '
     id,
-    DATE_FORMAT(DATE_ADD(accident_date, INTERVAL 543 YEAR),"%d/%m/%Y") as accident_date,
     period_time,
+    DATE_FORMAT(DATE_ADD(accident_date, INTERVAL 543 YEAR),"%d/%m/%Y") as accident_date,
+    (
+      CASE 
+        WHEN period_time = "morning" THEN "เช้า"
+        WHEN period_time = "afternoon" THEN "บ่าย"
+        WHEN period_time = "night" THEN "ดึก"
+        ELSE ""
+      END
+    ) AS period_time_name,
+
     place,
     accident_cause,
     status

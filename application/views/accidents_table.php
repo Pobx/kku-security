@@ -40,7 +40,7 @@
 								<?php echo $value['accident_date']; ?>
 							</td>
 							<td class="text-center">
-								<?php echo $value['period_time']; ?>
+								<?php echo $value['period_time_name']; ?>
 							</td>
 							<td class="text-center">
 								<?php echo $value['place']; ?>
