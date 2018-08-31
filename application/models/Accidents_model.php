@@ -11,8 +11,7 @@ class Accidents_model extends CI_Model
         $this->load->model('Accidents_vehicles_model');
         $this->load->model('Accidents_peoples_model');
         $this->load->library('FilterVehicles');
-        $this->load->library('FilterInjury');
-        
+        $this->load->library('FilterPeoples');
     }
 
     private $table = 'accidents';
@@ -52,6 +51,9 @@ class Accidents_model extends CI_Model
 
           $results_peoples = $this->Accidents_peoples_model->all($conditions);
           $results['results'][$key]['results_peoples'] = $results_peoples['results'];
+          $results['results'][$key]['count_injury'] = $this->filterpeoples->filter($results['results'][$key]['results_peoples'], $condition ='injury');
+          $results['results'][$key]['count_dead'] = $this->filterpeoples->filter($results['results'][$key]['results_peoples'], $condition ='dead');
+          
         }
 
         return $results;

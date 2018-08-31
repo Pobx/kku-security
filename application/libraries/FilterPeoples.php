@@ -4,7 +4,7 @@ if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 }
 
-class FilterInjury
+class FilterPeoples
 {
 
     public function filter($results, $condition = '', $index = 'injury_type')
