@@ -121,16 +121,16 @@
 					</tfoot>
 				</table>
 
-				<div class="row">
-					<div class="col-md-12 text-right">
-						<a href="<?php echo $link_excel;?>" class="btn btn-success"><i class="fa  fa-file-excel-o"></i> Excel</a>
-					</div>
-				</div>
-
 			</div>
 
 		</div>
 
 		<div class="box-footer">
+			<div class="row">
+				<div class="col-md-12 text-right">
+					<a href="<?php echo $link_excel;?>" target="_blank" class="btn btn-success"><i class="fa  fa-file-excel-o"></i>
+						Excel</a>
+				</div>
+			</div>
 		</div>
 	</div>
