@@ -10,6 +10,7 @@ class Accidents_model extends CI_Model
 
         $this->load->model('Accidents_vehicles_model');
         $this->load->model('Accidents_peoples_model');
+        $this->load->library('FilterVehicles');
     }
 
     private $table = 'accidents';
@@ -41,8 +42,11 @@ class Accidents_model extends CI_Model
             'status !=' => 'disabled',
             'accident_id'=>$value['id']
           );
+
           $results_vehicles = $this->Accidents_vehicles_model->all($conditions);
           $results['results'][$key]['results_vehicles'] = $results_vehicles['results'];
+          $results['results'][$key]['count_motocycles'] = $this->filtervehicles->filter($results['results'][$key]['results_vehicles'], $condition ='motorcycle');
+          $results['results'][$key]['count_car'] = $this->filtervehicles->filter($results['results'][$key]['results_vehicles'], $condition ='car');
 
           $results_peoples = $this->Accidents_peoples_model->all($conditions);
           $results['results'][$key]['results_peoples'] = $results_peoples['results'];
