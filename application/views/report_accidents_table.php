@@ -120,6 +120,13 @@
 						<?php }?>
 					</tfoot>
 				</table>
+
+				<div class="row">
+					<div class="col-md-12 text-right">
+						<a href="<?php echo $link_excel;?>" class="btn btn-success"><i class="fa  fa-file-excel-o"></i> Excel</a>
+					</div>
+				</div>
+
 			</div>
 
 		</div>

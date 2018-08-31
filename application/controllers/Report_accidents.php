@@ -25,13 +25,17 @@ class Report_accidents extends CI_Controller
         $data['head_sub_topic_label'] = $this->head_sub_topic_label_table;
         $data['header_columns'] = $this->header_columns;
         $data['form_search_data_url'] =  site_url('report_accidents');
+        $data['link_excel'] =  site_url('report_accidents/export_excel');
+        
 
         $qstr = array(
           'accident_date >=' => $this->date_libs->set_date_th( $data['start_date']),
           'accident_date <=' => $this->date_libs->set_date_th($data['end_date']),
           'status !=' => 'disabled'
         );
-        
+
+        $this->session->set_userdata($qstr);
+
         $results = $this->Accidents_model->all($qstr);
         $data['results'] = $results['results'];
         $data['fields'] = $results['fields'];
@@ -39,6 +43,11 @@ class Report_accidents extends CI_Controller
 
         // echo "<pre>", print_r($data['results']); exit();
         $this->load->view('template_layout', $data);
+    }
+
+    public function export_excel() {
+      $qstr = $this->session->userdata();
+      echo "<pre>", print_r($qstr);
     }
 
 }
