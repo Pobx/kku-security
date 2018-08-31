@@ -15,8 +15,8 @@
 			</div>
 			<div class="box-body">
 				<?php 
-        //   $this->load->view('break_motorcycle_pad/break_motorcycle_pad_information');
           $this->load->view('break_motorcycle_pad/break_motorcycle_pad_details_information');
+          //   $this->load->view('break_motorcycle_pad/break_motorcycle_pad_information');
         ?>
 
 			</div>

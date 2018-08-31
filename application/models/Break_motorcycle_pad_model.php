@@ -8,7 +8,9 @@ class Break_motorcycle_pad_model extends CI_Model
     private $id    = 'id';
     private $items = '
     id,	
-    DATE_FORMAT(DATE_ADD(date_break, INTERVAL 543 YEAR),"%d/%m/%Y") as date_break,
+    date_break,
+    DATE_FORMAT(DATE_ADD(DATE(date_break), INTERVAL 543 YEAR),"%d/%m/%Y") as date_break_only,
+    TIME(date_break) as date_break_time_only,
     victim_name,
     victim_address,
     place,
@@ -16,7 +18,14 @@ class Break_motorcycle_pad_model extends CI_Model
     remark,
     created,
     updated,
-    status
+    status,
+    (
+      CASE 
+        WHEN status = "active" THEN "ACTIVE"
+        WHEN status = "disabled" THEN "ลบรายการ"
+        ELSE ""
+      END
+    ) AS status_name,
     ';
 
     public function all($qstr = '')
