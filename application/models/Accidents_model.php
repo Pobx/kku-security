@@ -46,8 +46,8 @@ class Accidents_model extends CI_Model
 
           $results_vehicles = $this->Accidents_vehicles_model->all($conditions);
           $results['results'][$key]['results_vehicles'] = $results_vehicles['results'];
-          $results['results'][$key]['count_motocycles'] = $this->filtervehicles->filter($results['results'][$key]['results_vehicles'], 'motorcycle');
           $results['results'][$key]['count_car'] = $this->filtervehicles->filter($results['results'][$key]['results_vehicles'], 'car');
+          $results['results'][$key]['count_motocycles'] = $this->filtervehicles->filter($results['results'][$key]['results_vehicles'], 'motorcycle');
 
           $results_peoples = $this->Accidents_peoples_model->all($conditions);
           $results['results'][$key]['results_peoples'] = $results_peoples['results'];

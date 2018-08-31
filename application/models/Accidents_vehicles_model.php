@@ -14,6 +14,7 @@ class Accidents_vehicles_model extends CI_Model
     brand,
     color,
     license_plate,
+    CONCAT(license_plate, " ", color, " ", brand, " ", model) as car_body,
     status
     ';
 

@@ -29,7 +29,7 @@ class Report_accidents extends CI_Controller
         $data['fields'] = $results['fields'];
         $data['content'] = 'report_accidents_table';
 
-        echo "<pre>", print_r($data['results']); exit();
+        // echo "<pre>", print_r($data['results']); exit();
         $this->load->view('template_layout', $data);
     }
 
