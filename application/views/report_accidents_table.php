@@ -9,7 +9,27 @@
 		<div class="box-body">
 			<div class="row">
 				<div class="col-md-12">
-					FORM
+					<?php $this->load->view('header_form_search_data');?>
+					<div class="form-group">
+						<label for="start_date" class="col-sm-2 control-label">วันที่</label>
+
+						<div class="col-sm-2">
+							<input type="text" class="form-control datepicker" id="start_date" name="start_date" data-provide="datepicker"
+							data-date-language="th-th" placeholder="วันที่" value="<?php echo $start_date; ?>">
+						</div>
+						<label for="end_date" class="col-sm-1 control-label">ถึง</label>
+
+						<div class="col-sm-2">
+							<input type="text" class="form-control datepicker" id="end_date" name="end_date" data-provide="datepicker"
+							data-date-language="th-th" placeholder="ถึง" value="<?php echo $end_date; ?>">
+						</div>
+
+						<div class="col-sm-2">
+							<button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> ค้นหา</button>
+						</div>
+
+					</div>
+					</form>
 				</div>
 			</div>
 

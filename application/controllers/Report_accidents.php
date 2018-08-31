@@ -18,6 +18,8 @@ class Report_accidents extends CI_Controller
 
     public function index()
     {
+      $data['start_date'] ='';
+      $data['end_date'] ='';
         $data['head_topic_label'] = $this->head_topic_label;
         $data['head_sub_topic_label'] = $this->head_sub_topic_label_table;
         $data['header_columns'] = $this->header_columns;
