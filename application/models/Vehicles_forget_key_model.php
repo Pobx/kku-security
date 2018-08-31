@@ -15,6 +15,13 @@ class Vehicles_forget_key_model extends CI_Model
     owner_assets_phone,
     owner_assets_forget_key_place,
     car_type,
+    (
+      CASE 
+        WHEN car_type = "car" THEN "รถยนต์"
+        WHEN car_type = "motorcycle" THEN "รถจักรยานยนต์"
+        ELSE ""
+      END
+    ) AS car_type_name,
     model,
     brand,
     color,
@@ -23,7 +30,14 @@ class Vehicles_forget_key_model extends CI_Model
     detective_name,
     detective_department_name,
     remark,
-    status
+    status,
+    (
+      CASE 
+        WHEN status = "active" THEN "ACTIVE"
+        WHEN status = "disabled" THEN "ลบรายการ"
+        ELSE ""
+      END
+    ) AS status_name,
     ';
 
     public function all($qstr = '')
