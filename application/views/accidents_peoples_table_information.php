@@ -27,14 +27,14 @@
     ?>
 		<tr>
 			<td class="text-center">
-				<?php echo $value['victim_type']; ?>
+				<?php echo $value['victim_type_name']; ?>
 			</td>
 
 			<td class="text-center">
-				<?php echo $value['people_type']; ?>
+				<?php echo $value['people_type_name']; ?>
 			</td>
 			<td class="text-center">
-				<?php echo $value['injury_type']; ?>
+				<?php echo $value['injury_type_name']; ?>
 			</td>
 			<td class="text-center">
 				<?php echo $value['people_name']; ?>
