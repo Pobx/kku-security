@@ -8,8 +8,6 @@ class Report_accidents extends CI_Controller
         parent::__construct();
 
         $this->load->model('Accidents_model');
-        $this->load->model('Accidents_vehicles_model');
-        $this->load->model('Accidents_peoples_model');
 
         $this->load->library('Date_libs');
     }
@@ -23,7 +21,7 @@ class Report_accidents extends CI_Controller
         $data['head_topic_label'] = $this->head_topic_label;
         $data['head_sub_topic_label'] = $this->head_sub_topic_label_table;
         $data['header_columns'] = $this->header_columns;
-        $data['form_search_data_url'] =  $this->site_url('report_accidents');
+        $data['form_search_data_url'] =  site_url('report_accidents');
 
         $qstr = array('status !=' => 'disabled');
         $results = $this->Accidents_model->all($qstr);
@@ -31,7 +29,7 @@ class Report_accidents extends CI_Controller
         $data['fields'] = $results['fields'];
         $data['content'] = 'report_accidents_table';
 
-        // echo "<pre>", print_r($data['results']); exit();
+        echo "<pre>", print_r($data['results']); exit();
         $this->load->view('template_layout', $data);
     }
 

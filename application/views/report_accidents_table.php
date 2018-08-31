@@ -55,18 +55,6 @@
 							<td class="text-center">XXX</td>
 							<td class="text-center">XXX</td>
 							<td class="text-center">XXX</td>
-
-							<td class="text-center">
-								<a href="<?php echo $link_go_to_form . '/' . $value['id']; ?>" class="btn btn-warning">
-									<i class="fa fa-pencil"></i>
-								</a>
-							</td>
-							<td class="text-center">
-								<a href="javascript:removeItem('<?php echo $value['id']; ?>', '<?php echo $link_go_to_remove; ?>')" class="btn btn-danger">
-									<i class="fa fa-trash-o"></i>
-								</a>
-							</td>
-
 						</tr>
 						<?php }?>
 					</tbody>

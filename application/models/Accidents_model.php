@@ -4,6 +4,14 @@ defined('BASEPATH') || exit('No direct script access allowed');
 class Accidents_model extends CI_Model
 {
 
+  public function __construct()
+    {
+        parent::__construct();
+
+        $this->load->model('Accidents_vehicles_model');
+        $this->load->model('Accidents_peoples_model');
+    }
+
     private $table = 'accidents';
     private $id    = 'id';
     private $items = '
@@ -27,6 +35,18 @@ class Accidents_model extends CI_Model
         $results['results'] = $query->result_array();
         $results['rows'] = $query->num_rows();
         $results['fields'] = $query->list_fields();
+
+        foreach ($results['results'] as $key => $value) {
+          $conditions = array(
+            'status !=' => 'disabled',
+            'accident_id'=>$value['id']
+          );
+          $results_vehicles = $this->Accidents_vehicles_model->all($conditions);
+          $results['results'][$key]['results_vehicles'] = $results_vehicles['results'];
+
+          $results_peoples = $this->Accidents_peoples_model->all($conditions);
+          $results['results'][$key]['results_peoples'] = $results_peoples['results'];
+        }
 
         return $results;
     }
