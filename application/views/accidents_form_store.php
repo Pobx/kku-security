@@ -8,14 +8,23 @@
 
 		<div class="box-body">
 
-			<!-- <form class="form-horizontal form_submit_data"> -->
-			<?php $this->load->view('header_form_submit_data');?>
-			<div class="box-header">
-				<?php $this->load->view('button_save_and_back_page_in_form');?>
-			</div>
+			<div class="box-header"></div>
+
 			<div class="box-body">
-				<?php
+				<?php 
+          $this->load->view('header_form_submit_data');
+          $this->load->view('button_save_and_back_page_in_form');
           $this->load->view('accidents_information');
+        ?>
+
+				<input type="hidden" name="id" value="<?php echo $id; ?>">
+				<input type="hidden" name="status" value="active">
+				<?php $this->load->view('button_save_and_back_page_in_form');?>
+				</form>
+
+				<br />
+
+				<?php
           if ($id !='') {
             $this->load->view('accidents_vehicles_table_information');
             echo "<br />";
@@ -25,12 +34,8 @@
 
 			</div>
 
-			<div class="box-footer">
-				<input type="hidden" name="id" value="<?php echo $id; ?>">
-				<input type="hidden" name="status" value="active">
-				<?php $this->load->view('button_save_and_back_page_in_form');?>
-			</div>
-			</form>
+			<div class="box-footer"></div>
+
 
 		</div>
 
