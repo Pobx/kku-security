@@ -11,6 +11,8 @@ class Accidents_model extends CI_Model
         $this->load->model('Accidents_vehicles_model');
         $this->load->model('Accidents_peoples_model');
         $this->load->library('FilterVehicles');
+        $this->load->library('FilterInjury');
+        
     }
 
     private $table = 'accidents';
