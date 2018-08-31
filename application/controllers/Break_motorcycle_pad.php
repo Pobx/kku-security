@@ -14,7 +14,7 @@ class Break_motorcycle_pad extends CI_Controller
     private $head_topic_label           = 'สาเหตุงัดเบาะรถจักยานยนต์ ';
     private $head_sub_topic_label_table = 'รายการ สาเหตุงัดเบาะรถจักยานยนต์ ';
     private $head_sub_topic_label_form  = 'ฟอร์มบันทึกข้อมูล สาเหตุงัดเบาะรถจักยานยนต์ ';
-    private $header_columns             = array('วันที่', 'ชื่อ - สกุล', 'สังกัดหน่วยงาน', 'อายุ(ปี)', 'สถานที่ลืมกุญแจ', 'แก้ไข', 'ลบ');
+    private $header_columns             = array('วันที่', 'ชื่อ - สกุล', 'สังกัดหน่วยงาน', 'สถานที่เกิดเหตุ', 'รายการของที่สูญหาย', 'หมายเหตุ', 'สถานะ', 'แก้ไข', 'ลบ');
     private $success_message            = 'บันทึกข้อมูลสำเร็จ';
     private $warning_message            = 'ไม่สามารถทำรายการ กรุณลองใหม่อีกครั้ง';
     private $danger_message             = 'ลบข้อมูลสำเร็จ';
@@ -55,9 +55,12 @@ class Break_motorcycle_pad extends CI_Controller
 
     public function store()
     {
-        $inptus = $this->input->post();
-        $inptus['date_break'] = $this->date_libs->set_date_th($inptus['date_break']);
-        $results = $this->Break_motorcycle_pad_model->store($inptus);
+        $inputs = $this->input->post();
+        $inputs['date_break'] = $this->date_libs->set_date_th($inputs['date_break']);
+        $inputs['date_break'].=' '.$inputs['time_break'];
+        unset($inputs['time_break']);
+        // echo "<pre>", print_r($inputs); exit();
+        $results = $this->Break_motorcycle_pad_model->store($inputs);
 
         $alert_type = ($results['query'] ? 'success' : 'warning');
         $alert_icon = ($results['query'] ? 'check' : 'warning');
