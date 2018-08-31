@@ -269,11 +269,12 @@ else
 
 		});
 
-		function removeItem(id, url) {
-			console.log(id)
-			console.log(url)
+		function removeItem(id, url, flag = '') {
+			console.log(id);
+			console.log(url);
+			console.log('remove url => ' + url + '/' + id);
 			if (confirm('คุณต้องการลบข้อมูลใช่หรือไม่ ?') == true) {
-				window.location.href = url + '/' + id;
+				window.location.href = url + '/' + id + '/' + flag;
 			}
 		}
 
