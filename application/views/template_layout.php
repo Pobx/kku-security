@@ -250,7 +250,7 @@ else
 
 	<!-- my demo -->
 	<script src="<?php echo base_url('assets/demo/dashboard_admin_donut_chart.js');?>"></script>
-
+	<script src="<?php echo base_url('assets/demo/dashboard_admin_bar_chart_monthly.js');?>"></script>
 
 	<!-- AdminLTE App -->
 	<script src="<?php echo base_url('dist/js/adminlte.min.js'); ?>"></script>
