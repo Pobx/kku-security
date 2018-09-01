@@ -240,11 +240,17 @@ else
 
 	<!-- bootstrap datepicker -->
 	<script src="<?php //echo base_url('bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js');?>"></script>
+	<!-- ChartJS -->
+	<script src="<?php echo base_url('bower_components/chart.js/Chart.js');?>"></script>
 
 	<!-- bootstrap datepicker-thai -->
 	<script src="<?php echo base_url('plugins/bootstrap-datepicker-thai/js/bootstrap-datepicker.js');?>"></script>
 	<script src="<?php echo base_url('plugins/bootstrap-datepicker-thai/js/bootstrap-datepicker-thai.js');?>"></script>
 	<script src="<?php echo base_url('plugins/bootstrap-datepicker-thai/js/locales/bootstrap-datepicker.th.js');?>"></script>
+
+	<!-- my demo -->
+	<script src="<?php echo base_url('assets/demo/dashboard_admin_donut_chart.js');?>"></script>
+
 
 	<!-- AdminLTE App -->
 	<script src="<?php echo base_url('dist/js/adminlte.min.js'); ?>"></script>
