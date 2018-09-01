@@ -40,23 +40,23 @@
 		</li>
 
 		<li>
-			<a href="<?php echo site_url('#');?>"><i class="fa fa-home"></i> <span>โครงการฝากบ้าน</span></a>
+			<a href="<?php echo site_url('report_security_home');?>"><i class="fa fa-home"></i> <span>โครงการฝากบ้าน</span></a>
 		</li>
 
 		<li>
-			<a href="<?php echo site_url('#');?>"><i class="fa fa-key"></i> <span>สถิติการลืมกุญแจ</span></a>
+			<a href="<?php echo site_url('report_vehicles_forget_key');?>"><i class="fa fa-key"></i> <span>สถิติการลืมกุญแจ</span></a>
 		</li>
 
 		<li>
-			<a href="<?php echo site_url('#');?>"><i class="fa fa-home"></i> <span>สถิติเหตุทรัพย์งัดที่พักอาศัย</span></a>
+			<a href="<?php echo site_url('report_break_homes');?>"><i class="fa fa-home"></i> <span>สถิติเหตุทรัพย์งัดที่พักอาศัย</span></a>
 		</li>
 
 		<li>
-			<a href="<?php echo site_url('#');?>"><i class="fa fa-motorcycle"></i> <span>สถิติงัดเบาะรถจักยานยนต์</span></a>
+			<a href="<?php echo site_url('report_break_motorcycle_pad');?>"><i class="fa fa-motorcycle"></i> <span>สถิติงัดเบาะรถจักยานยนต์</span></a>
 		</li>
 
 		<li>
-			<a href="<?php echo site_url('#');?>"><i class="fa fa-motorcycle"></i> <span>สถิติไม่สวมหมวกนิรภัย</span></a>
+			<a href="<?php echo site_url('report_do_not_wear_helmet');?>"><i class="fa fa-motorcycle"></i> <span>สถิติไม่สวมหมวกนิรภัย</span></a>
 		</li>
 	</ul>
 </li>
