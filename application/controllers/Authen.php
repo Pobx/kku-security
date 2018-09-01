@@ -29,6 +29,18 @@ class Authen extends CI_Controller
 
       $results = $this->Users_model->all($inputs);
       
-      echo "<pre>", print_r($results);
+      if ($results['rows'] > 0) {
+        $results[0]['logged'] = true;
+        $this->session->set_userdata($results['results'][0]);
+        redirect('dashboard');
+      }else {
+        redirect('authen');
+      }
+      // echo "<pre>", print_r($results);
+    }
+
+    public function logout() {
+      $this->session->sess_destroy();
+      redirect('authen');
     }
 }

@@ -1,3 +1,9 @@
+<?php 
+$sess_userprofile = $this->session->userdata();
+if (!isset($sess_userprofile['logged']) && $sess_userprofile['logged'] == false) {
+  redirect('authen');
+}
+?>
 <!DOCTYPE html>
 <html>
 
@@ -76,7 +82,8 @@
 						<li class="dropdown user user-menu">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 								<img src="<?php echo base_url('dist/img/avatar04.png'); ?>" class="user-image" alt="User Image">
-								<span class="hidden-xs">Steve Jobs</span>
+								<span class="hidden-xs">
+									<?php echo $sess_userprofile['name'];?></span>
 							</a>
 							<ul class="dropdown-menu">
 								<!-- User image -->
@@ -84,8 +91,8 @@
 									<img src="<?php echo base_url('dist/img/avatar04.png'); ?>" class="img-circle" alt="User Image">
 
 									<p>
-										Steve Jobs - Web Developer
-										<small>Member since Nov. 2012</small>
+										<?php echo $sess_userprofile['name'];?>
+										<!-- <small>Member since Nov. 2012</small> -->
 									</p>
 								</li>
 								<!-- Menu Body -->
@@ -95,7 +102,7 @@
 								<!-- Menu Footer-->
 								<li class="user-footer">
 									<div class="pull-right">
-										<a href="#" class="btn btn-default btn-flat">Sign out</a>
+										<a href="<?php echo site_url('authen/logout');?>" class="btn btn-default btn-flat">ออกจากระบบ</a>
 									</div>
 								</li>
 							</ul>
