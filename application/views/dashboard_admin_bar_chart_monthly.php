@@ -1,6 +1,6 @@
 <div class="box box-primary">
 	<div class="box-header with-border">
-		<h3 class="box-title">สรุปเหตุการณ์ประจำปี
+		<h3 class="box-title">สรุปการเกิดเหตุประจำปี
 			<?php echo (date('Y') + 543);?>
 		</h3>
 
