@@ -1,3 +1,9 @@
+<?php 
+$sess_userprofile = $this->session->userdata();
+if (!isset($sess_userprofile['logged']) || $sess_userprofile['logged'] == false) {
+  redirect('authen');
+}
+?>
 <!DOCTYPE html>
 <html>
 
@@ -76,7 +82,8 @@
 						<li class="dropdown user user-menu">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 								<img src="<?php echo base_url('dist/img/avatar04.png'); ?>" class="user-image" alt="User Image">
-								<span class="hidden-xs">Steve Jobs</span>
+								<span class="hidden-xs">
+									<?php echo $sess_userprofile['name'];?></span>
 							</a>
 							<ul class="dropdown-menu">
 								<!-- User image -->
@@ -84,8 +91,8 @@
 									<img src="<?php echo base_url('dist/img/avatar04.png'); ?>" class="img-circle" alt="User Image">
 
 									<p>
-										Steve Jobs - Web Developer
-										<small>Member since Nov. 2012</small>
+										<?php echo $sess_userprofile['name'];?>
+										<!-- <small>Member since Nov. 2012</small> -->
 									</p>
 								</li>
 								<!-- Menu Body -->
@@ -95,7 +102,7 @@
 								<!-- Menu Footer-->
 								<li class="user-footer">
 									<div class="pull-right">
-										<a href="#" class="btn btn-default btn-flat">Sign out</a>
+										<a href="<?php echo site_url('authen/logout');?>" class="btn btn-default btn-flat">ออกจากระบบ</a>
 									</div>
 								</li>
 							</ul>
@@ -121,6 +128,10 @@
 				<ul class="sidebar-menu" data-widget="tree">
 					<li class="header">MAIN NAVIGATION</li>
 					<?php $this->load->view('sidebar_admin');?>
+
+					<li>
+						<a href="<?php echo site_url('authen/logout');?>"><i class="fa fa-sign-out"></i> <span class="text-red">ออกจากระบบ</span></a>
+					</li>
 				</ul>
 			</section>
 
@@ -178,8 +189,14 @@ else
 			<div class="pull-right hidden-xs">
 				<b>Version</b> 1
 			</div>
-			<strong>Copyright &copy; 2018 <a href="#">Itechs Development Team</a>.</strong> All rights
-			reserved.
+			<!-- <strong>Copyright &copy; 2018 <a href="#">Itechs Development Team</a>.</strong> All rights -->
+			<!-- <strong>ระบบ ร.ป.ภ มหาวิทยาลัยขอนแก่น.</strong> -->
+			<strong>
+				<?php 
+        $now_date = date('d/m'). '/'.(date('Y') + 543).' '.date('H:i:s');
+        echo 'ขณะนี้เวลา  '.$now_date;
+      ?>
+			</strong>
 		</footer>
 
 		<!-- Add the sidebar's background. This div must be placed
@@ -234,11 +251,19 @@ else
 
 	<!-- bootstrap datepicker -->
 	<script src="<?php //echo base_url('bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js');?>"></script>
+	<!-- ChartJS -->
+	<script src="<?php echo base_url('bower_components/chart.js/Chart.js');?>"></script>
 
 	<!-- bootstrap datepicker-thai -->
 	<script src="<?php echo base_url('plugins/bootstrap-datepicker-thai/js/bootstrap-datepicker.js');?>"></script>
 	<script src="<?php echo base_url('plugins/bootstrap-datepicker-thai/js/bootstrap-datepicker-thai.js');?>"></script>
 	<script src="<?php echo base_url('plugins/bootstrap-datepicker-thai/js/locales/bootstrap-datepicker.th.js');?>"></script>
+
+	<!-- my demo -->
+	<?php if ($content == 'dashboard_admin') {?>
+	<script src="<?php echo base_url('assets/demo/dashboard_admin_donut_chart.js');?>"></script>
+	<script src="<?php echo base_url('assets/demo/dashboard_admin_bar_chart_monthly.js');?>"></script>
+	<?php }?>
 
 	<!-- AdminLTE App -->
 	<script src="<?php echo base_url('dist/js/adminlte.min.js'); ?>"></script>
