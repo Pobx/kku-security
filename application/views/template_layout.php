@@ -1,6 +1,6 @@
 <?php 
 $sess_userprofile = $this->session->userdata();
-if (!isset($sess_userprofile['logged']) && $sess_userprofile['logged'] == false) {
+if (!isset($sess_userprofile['logged']) || $sess_userprofile['logged'] == false) {
   redirect('authen');
 }
 ?>
