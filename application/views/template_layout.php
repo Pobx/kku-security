@@ -57,7 +57,7 @@ if (!isset($sess_userprofile['logged']) || $sess_userprofile['logged'] == false)
 	<link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet">
 </head>
 
-<body class="hold-transition skin-blue sidebar-mini" style="font-family: 'Kanit', sans-serif;">
+<body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
 
 		<header class="main-header">
