@@ -178,8 +178,14 @@ else
 			<div class="pull-right hidden-xs">
 				<b>Version</b> 1
 			</div>
-			<strong>Copyright &copy; 2018 <a href="#">Itechs Development Team</a>.</strong> All rights
-			reserved.
+			<!-- <strong>Copyright &copy; 2018 <a href="#">Itechs Development Team</a>.</strong> All rights -->
+			<!-- <strong>ระบบ ร.ป.ภ มหาวิทยาลัยขอนแก่น.</strong> -->
+			<strong>
+				<?php 
+        $now_date = date('d/m'). '/'.(date('Y') + 543).' '.date('H:i:s');
+        echo 'ขณะนี้เวลา  '.$now_date;
+      ?>
+			</strong>
 		</footer>
 
 		<!-- Add the sidebar's background. This div must be placed
