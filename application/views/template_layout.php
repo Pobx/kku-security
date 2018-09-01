@@ -128,6 +128,10 @@ if (!isset($sess_userprofile['logged']) && $sess_userprofile['logged'] == false)
 				<ul class="sidebar-menu" data-widget="tree">
 					<li class="header">MAIN NAVIGATION</li>
 					<?php $this->load->view('sidebar_admin');?>
+
+					<li>
+						<a href="<?php echo site_url('authen/logout');?>"><i class="fa fa-sign-out"></i> <span class="text-red">ออกจากระบบ</span></a>
+					</li>
 				</ul>
 			</section>
 
