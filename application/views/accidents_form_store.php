@@ -21,17 +21,6 @@
 				<input type="hidden" name="status" value="active">
 				<?php $this->load->view('button_save_and_back_page_in_form');?>
 				</form>
-
-				<br />
-
-				<?php
-          if ($id !='') {
-            $this->load->view('accidents_vehicles_table_information');
-            echo "<br />";
-            $this->load->view('accidents_peoples_table_information');
-          }
-        ?>
-
 			</div>
 
 			<div class="box-footer"></div>
@@ -40,3 +29,9 @@
 		</div>
 
 	</div>
+	<?php
+    if ($id !='') {
+      $this->load->view('accidents_vehicles_table_information');
+      $this->load->view('accidents_peoples_table_information');
+    }
+  ?>

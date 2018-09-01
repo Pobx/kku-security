@@ -17,6 +17,9 @@ class Accidents extends CI_Controller
     private $head_topic_label           = 'สถิติอุบัติเหตุ';
     private $head_sub_topic_label_table = 'รายการ สถิติอุบัติเหตุ';
     private $head_sub_topic_label_form  = 'ฟอร์มบันทึกข้อมูล สถิติอุบัติเหตุ';
+    private $head_sub_topic_vehicles_label  = 'รายการ รถยนต์ / รถจักรยานยนต์';
+    private $head_sub_topic_peoples_label  = 'รายการ ผู้ประสบเหตุ / คู่กรณี';
+    
     private $header_columns             = array('วันที่', 'ช่วงเวลา', 'สถานที่เกิดเหตุ', 'รถยนต์', 'รถจักรยานยนต์', 'รถที่เกิดเหตุ', 'สาเหตุ', 'บาดเจ็บ', 'เสียชีวิต', 'ผู้ประสบเหตุ / คู่กรณี', 'หน่วยงาน', 'บุคลากร', 'นักศึกษา', 'บุคคลภายใน', 'แก้ไข', 'ลบ');
     private $header_columns_vehicles    = array('ประเภท', 'ทะเบียนรถ', 'สี', 'ยี่ห้อ', 'รุ่น', 'แก้ไข', 'ลบ');
     private $header_columns_peoples     = array('ผู้ประสบเหตุ / คู่กรณี', 'ประเภทบุคลากร', 'บาดเจ็บ / เสียชีวิต', 'ชื่อ - สกุล', 'หน่วยงาน', 'แก้ไข', 'ลบ');
@@ -50,6 +53,9 @@ class Accidents extends CI_Controller
         $data = $this->find($id); 
         $data['head_topic_label'] = $this->head_topic_label;
         $data['head_sub_topic_label'] = $this->head_sub_topic_label_form;
+        $data['head_sub_topic_vehicles_label'] = $this->head_sub_topic_vehicles_label;
+        $data['head_sub_topic_peoples_label'] = $this->head_sub_topic_peoples_label;
+        
         $data['link_go_to_vehicles_form'] = site_url('accidents_vehicles/form_store/'.$id);
         $data['link_go_to_vehicles_remove'] = site_url('accidents_vehicles/remove/'.$id);
 
