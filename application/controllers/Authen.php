@@ -3,6 +3,13 @@ defined('BASEPATH') || exit('No direct script access allowed');
 
 class Authen extends CI_Controller
 {
+  public function __construct()
+    {
+        parent::__construct();
+
+        $this->load->model('Users_model');
+    }
+
     public function index()
     {
       $data['form_submit'] = site_url('authen/login');
@@ -17,8 +24,11 @@ class Authen extends CI_Controller
 
     public function login() {
       $inputs = $this->input->post();
+      $inputs['passwords'] = md5($inputs['passwords']);
       $inputs['status'] = 'active';
+
+      $results = $this->Users_model->all($inputs);
       
-      echo "<pre>", print_r($inputs);
+      echo "<pre>", print_r($results);
     }
 }
