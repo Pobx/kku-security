@@ -62,7 +62,7 @@ class Report_break_homes extends CI_Controller
         $data['fields'] = $results['fields'];
 
         // echo "<pre>", print_r($data['results']); exit();
-        $this->load->view('excel_break_homes_table', $data);
+        $this->load->view('excel_break_homes', $data);
 
     }
 
