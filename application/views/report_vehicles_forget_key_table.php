@@ -4,6 +4,11 @@
 			<h3 class="box-title">
 				<?php echo $head_sub_topic_label; ?>
 			</h3>
+
+			<div class="box-tools pull-right">
+				<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+				</button>
+			</div>
 		</div>
 
 		<div class="box-body">
@@ -49,33 +54,33 @@
 						</tr>
 					</thead>
 					<tbody>
-					<?php foreach ($results as $key => $value)
+						<?php foreach ($results as $key => $value)
 {
     ?>
-					
-					<tr>
-						<td class="text-center">
-							<?php echo $value['date_forget_key'];?>
-						</td>
-						<td class="text-center">
-							<?php echo $value['owner_assets_name']; ?>
-						</td>
-						<td class="text-center">
-							<?php echo $value['owner_assets_department']; ?>
-						</td>
-						<td class="text-center">
-							<?php echo $value['owner_assets_age']; ?>
-						</td>
-						<td class="text-center">
-							<?php echo $value['owner_assets_phone']; ?>
-						</td>
-						<td>
-							<?php echo $value['owner_assets_forget_key_place']; ?>
-						</td>
-					</tr>	
-					<?php }?>
-					
-				</tbody>
+
+						<tr>
+							<td class="text-center">
+								<?php echo $value['date_forget_key'];?>
+							</td>
+							<td class="text-center">
+								<?php echo $value['owner_assets_name']; ?>
+							</td>
+							<td class="text-center">
+								<?php echo $value['owner_assets_department']; ?>
+							</td>
+							<td class="text-center">
+								<?php echo $value['owner_assets_age']; ?>
+							</td>
+							<td class="text-center">
+								<?php echo $value['owner_assets_phone']; ?>
+							</td>
+							<td>
+								<?php echo $value['owner_assets_forget_key_place']; ?>
+							</td>
+						</tr>
+						<?php }?>
+
+					</tbody>
 					<tfoot>
 						<?php foreach ($header_columns as $key => $value)
 {
@@ -100,4 +105,5 @@
 			</div>
 		</div>
 	</div>
-    
+
+	<?php $this->load->view('dashboard_admin_bar_chart_monthly');?>
