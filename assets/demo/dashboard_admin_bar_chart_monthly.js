@@ -15,23 +15,15 @@ var areaChartData = {
 			data: [65, 59, 80, 81, 56, 55, 40, 32, 59, 34, 90, 10],
 		},
   ],
-  options: {
-    legend: {
-      display: true,
-      labels: {
-        fontFamily: "'Kanit'"
-      }
-    }
-  }
 }
 
-// Chart.defaults.global.legend.fontFamily = "'Kanit'";
 var barChartCanvas = $('#barChart').get(0).getContext('2d')
 var barChart = new Chart(barChartCanvas)
 var barChartData = areaChartData
 var barChartOptions = {
-	scaleFontFamily: "'Kanit'",
+  scaleFontFamily: "'Kanit'",
 	pointLabelFontFamily: "'Kanit'",
+  // titleFontFamily = "'Kanit'",
 	//Boolean - Whether the scale should start at zero, or an order of magnitude down from the lowest value
 	scaleBeginAtZero: true,
 	//Boolean - Whether grid lines are shown across the chart
@@ -57,8 +49,7 @@ var barChartOptions = {
 	//Boolean - whether to make the chart responsive
 	tooltipTemplate: '<%=label%> <%=value %> ครั้ง',
 	responsive: true,
-	maintainAspectRatio: true,
-
+  maintainAspectRatio: true,
 }
 
 barChartOptions.datasetFill = false
