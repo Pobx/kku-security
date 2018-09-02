@@ -261,9 +261,9 @@ else
 
 	<!-- my demo -->
 	<?php if ($content == 'dashboard_admin') {?>
+	<?php }?>
 	<script src="<?php echo base_url('assets/demo/dashboard_admin_donut_chart.js');?>"></script>
 	<script src="<?php echo base_url('assets/demo/dashboard_admin_bar_chart_monthly.js');?>"></script>
-	<?php }?>
 
 	<!-- AdminLTE App -->
 	<script src="<?php echo base_url('dist/js/adminlte.min.js'); ?>"></script>
