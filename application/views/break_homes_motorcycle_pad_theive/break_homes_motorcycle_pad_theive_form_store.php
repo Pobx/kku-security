@@ -184,15 +184,22 @@
 				$("#content1").attr('class', 'content show')
 				$("#head_sub_topic_label").html("สถิติการงัดที่พักอาศัย")
 				$("#home").attr('class', 'show')
+				$("#motorcycle").attr('class', 'hide')
+				$("#theive").attr('class', 'hide')
 				
 			} else if (_value == 2) {
 				$("#content1").attr('class', 'content show')
 				$("#head_sub_topic_label").html("งัดเบาะรถจักรยานยนต์")
 				$("#motorcycle").attr('class', 'show')
+				$("#home").attr('class', 'hide')
+				$("#theive").attr('class', 'hide')
 			} else if (_value == 3) {
 				$("#content1").attr('class', 'content show')
 				$("#head_sub_topic_label").html(" วิ่งราวลักทรัพย์")
 				$("#theive").attr('class', 'show')
+				$("#motorcycle").attr('class', 'hide')
+				$("#home").attr('class', 'hide')
+				
 			}
 		});
 		$("#victim_area").change(function () {
