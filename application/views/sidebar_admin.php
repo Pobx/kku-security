@@ -15,7 +15,11 @@
 </li>
 
 <li>
-	<a href="<?php echo site_url('break_homes');?>"><i class="fa fa-home"></i> <span>สถิติเหตุทรัพย์งัดที่พักอาศัย</span></a>
+	<a href="<?php echo site_url('break_homes_motorcycle_pad_theive');?>"><i class="fa fa-home"></i>
+	 	<span>- ลักทรัพย์ที่พักอาศัย<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- งัดเบาะรถจักยานยนต์<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- วิ่งราวลักทรัพย์
+		</span></a>
 </li>
 
 <li>

@@ -1,4 +1,5 @@
-<div class="row">
+
+<!-- <div class="row">
 	<div class="col-lg-3 col-xs-6">
 		<div class="small-box bg-aqua">
 			<div class="inner">
@@ -54,24 +55,25 @@
 			<a href="#" class="small-box-footer">&nbsp;</a>
 		</div>
 	</div>
-</div>
+</div> -->
 
 <div class="row">
-	<div class="col-md-6">
-		<?php $this->load->view('dashboard_admin_boxes');?>
-	</div>
-	<div class="col-md-6">
+	<div class="col-md-12">
 		<?php $this->load->view('dashboard_admin_donut_chart');?>
 	</div>
+	<div class="col-md-12">
+		<?php $this->load->view('dashboard_admin_boxes');?>
+	</div>
+	
 </div>
 
 <div class="row">
 	<div class="col-md-6">
-		<?php $this->load->view('dashboard_admin_table_accidents_panel');?>
+		<!-- <php $this->load->view('dashboard_admin_table_accidents_panel');?> -->
 	</div>
-	<div class="col-md-6">
-		<?php $this->load->view('dashboard_admin_top_faculty_panel');?>
-	</div>
+	<!-- <div class="col-md-6">
+		<php $this->load->view('dashboard_admin_top_faculty_panel');?>
+	</div> -->
 </div>
 
 <div class="row">
