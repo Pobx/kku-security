@@ -23,17 +23,43 @@
 </div>
 
 <div class="form-group">
-	<label for="place" class="col-sm-2 control-label">สถานที่</label>
-
+	<label class="col-sm-2 control-label">สถานที่</label>
 	<div class="col-sm-4">
-		<textarea class="form-control" rows="3" id="place" name="place" placeholder="สถานที่"><?php echo $place;?></textarea>
+		<select class="form-control select2">
+			<option selected="selected">เลือก</option>
+			<option>หน้ามอ</option>
+			<option>หลังมอ</option>
+			<option>บ้านโนนม่วง</option>
+		</select>
 	</div>
 </div>
 
 <div class="form-group">
-	<label for="accident_cause" class="col-sm-2 control-label">สาเหตุ</label>
+	<label for="place" class="col-sm-2 control-label">สถานที่(อื่นๆ)</label>
 
 	<div class="col-sm-4">
-		<textarea class="form-control" rows="3" id="accident_cause" name="accident_cause" placeholder="สาเหตุ"><?php echo $accident_cause;?></textarea>
+		<!-- <textarea class="form-control" rows="3" id="place" name="place" placeholder="สถานที่"><?php //echo $place;?></textarea> -->
+		<input type="text" name="" id="" class="form-control">
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="col-sm-2 control-label">สาเหตุ</label>
+	<div class="col-sm-4">
+		<select class="form-control select2">
+			<option selected="selected">เลือก</option>
+			<option>รถมอไซตัดหน้า</option>
+			<option>ชนหมา</option>
+			<option>ลงข้างทาง</option>
+		</select>
+	</div>
+</div>
+
+<div class="form-group">
+	<label for="accident_cause" class="col-sm-2 control-label">สาเหตุ(อื่นๆ)</label>
+
+	<div class="col-sm-4">
+		<input type="text" name="" id="" class="form-control">
+		<!-- <textarea class="form-control" rows="3" id="accident_cause" name="accident_cause" placeholder="สาเหตุ"><?php //echo $accident_cause;?></textarea> -->
 	</div>
 </div>
