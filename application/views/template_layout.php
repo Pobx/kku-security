@@ -23,12 +23,10 @@ if (!isset($sess_userprofile['logged']) || $sess_userprofile['logged'] == false)
 	<link rel="stylesheet" href="<?php echo base_url('bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css'); ?>">
 	<!-- iCheck for checkboxes and radio inputs -->
 	<link rel="stylesheet" href="<?php echo base_url('plugins/iCheck/all.css');?>">
-	<!-- bootstrap datepicker -->
-	<link rel="stylesheet" href="<?php //echo base_url('bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css');?>">
-
 	<!-- bootstrap datepicker-thai -->
 	<link rel="stylesheet" href="<?php echo base_url('plugins/bootstrap-datepicker-thai/css/datepicker.css');?>">
-
+	<!-- Select2 -->
+	<link rel="stylesheet" href="<?php echo base_url('bower_components/select2/dist/css/select2.min.css');?>">
 	<!-- Theme style -->
 	<link rel="stylesheet" href="<?php echo base_url('dist/css/AdminLTE.min.css'); ?>">
 	<!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -259,9 +257,10 @@ else
 	<script src="<?php echo base_url('plugins/bootstrap-datepicker-thai/js/bootstrap-datepicker-thai.js');?>"></script>
 	<script src="<?php echo base_url('plugins/bootstrap-datepicker-thai/js/locales/bootstrap-datepicker.th.js');?>"></script>
 
+	<!-- Select2 -->
+	<script src="<?php echo base_url('bower_components/select2/dist/js/select2.full.min.js');?>"></script>
+
 	<!-- my demo -->
-	<?php if ($content == 'dashboard_admin') {?>
-	<?php }?>
 	<script src="<?php echo base_url('assets/demo/dashboard_admin_donut_chart.js');?>"></script>
 	<script src="<?php echo base_url('assets/demo/dashboard_admin_bar_chart_monthly.js');?>"></script>
 
@@ -310,6 +309,8 @@ else
 			// Input mask
 			$('[data-mask]').inputmask();
 
+			//Initialize Select2 Elements
+			$('.select2').select2()
 		});
 
 		function removeItem(id, url, flag = '') {
