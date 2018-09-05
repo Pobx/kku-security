@@ -31,3 +31,19 @@
 		</div>
 
 	</div>
+
+	<script>
+		$(document).ready(function () {
+
+			$('#div_owner_assets_department').hide();
+			$('input[name="people_type"]').on('ifClicked', function (event) {
+				// alert("You clicked " + this.value);
+				if (this.value == 'people_outside') {
+					$('#div_owner_assets_department').hide();
+				} else {
+					$('#div_owner_assets_department').show();
+				}
+			});
+		})
+
+	</script>

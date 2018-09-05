@@ -2,6 +2,8 @@
 	<strong>ข้อมูลเจ้าของทรัพย์สิน</strong>
 </p>
 
+<?php $this->load->view('period_times');?>
+
 <div class="form-group">
 	<label for="date_forget_key" class="col-sm-2 control-label">วันที่</label>
 
@@ -10,6 +12,8 @@
 		data-date-language="th-th" placeholder="วันที่" value="<?php echo $date_forget_key; ?>">
 	</div>
 </div>
+
+<?php $this->load->view('people_type');?>
 
 <div class="form-group">
 	<label for="owner_assets_name" class="col-sm-2 control-label">ชื่อ&nbsp;-&nbsp;สกุล</label>
@@ -20,7 +24,7 @@
 	</div>
 </div>
 
-<div class="form-group">
+<div class="form-group" id="div_owner_assets_department">
 	<label for="owner_assets_department" class="col-sm-2 control-label">สังกัดหน่วยงาน</label>
 
 	<div class="col-sm-4">

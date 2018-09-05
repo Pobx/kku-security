@@ -53,6 +53,14 @@ if (!isset($sess_userprofile['logged']) || $sess_userprofile['logged'] == false)
 	<!-- Google Font -->
 	<!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"> -->
 	<link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet">
+
+	<!-- jQuery 3 -->
+	<script src="<?php echo base_url('bower_components/jquery/dist/jquery.min.js'); ?>"></script>
+	<!-- jQuery UI 1.11.4 -->
+	<script src="<?php echo base_url('bower_components/jquery-ui/jquery-ui.min.js'); ?>"></script>
+
+	<!-- Bootstrap 3.3.7 -->
+	<script src="<?php echo base_url('bower_components/bootstrap/dist/js/bootstrap.min.js'); ?>"></script>
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -203,17 +211,12 @@ else
 	</div>
 	<!-- ./wrapper -->
 
-	<!-- jQuery 3 -->
-	<script src="<?php echo base_url('bower_components/jquery/dist/jquery.min.js'); ?>"></script>
-	<!-- jQuery UI 1.11.4 -->
-	<script src="<?php echo base_url('bower_components/jquery-ui/jquery-ui.min.js'); ?>"></script>
 	<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 	<script>
 		$.widget.bridge('uibutton', $.ui.button);
 
 	</script>
-	<!-- Bootstrap 3.3.7 -->
-	<script src="<?php echo base_url('bower_components/bootstrap/dist/js/bootstrap.min.js'); ?>"></script>
+
 	<!-- Morris.js charts -->
 	<script src="<?php //echo base_url('bower_components/raphael/raphael.min.js'); ?>"></script>
 	<script src="<?php //echo base_url('bower_components/morris.js/morris.min.js'); ?>"></script>
