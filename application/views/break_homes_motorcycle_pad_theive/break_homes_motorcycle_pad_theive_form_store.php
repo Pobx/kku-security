@@ -159,6 +159,13 @@
 						</div>
 					</div>
 					<div class="box-footer">
+						<div class="row">
+							<div class="col-md-6">
+								<label class="control-label">สถานะการจับกุม</label>
+								<input type="radio" name="status" value="0">จับกุมยังไม่ได้
+								<input type="radio" name="status" value="0">จับกุมได้แล้ว
+							</div>
+						</div>
 						<input type="hidden" name="id" value="<?php echo $id;?>">
 						<input type="hidden" name="status" value="active">
 						<?php $this->load->view('button_save_and_back_page_in_form');?>
@@ -166,7 +173,7 @@
 					</form>
 
 				</div>
-
+กกก
 			</div>
 
 

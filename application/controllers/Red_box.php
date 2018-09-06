@@ -8,7 +8,7 @@ class Red_box extends CI_Controller
         parent::__construct();
 
         $this->load->model('Break_motorcycle_pad_model');
-        $this->load->library('Date_libs');
+        // $this->load->library('Date_libs');
     }
 
     private $head_topic_label           = 'จุดตรวจตู้แดง ';
