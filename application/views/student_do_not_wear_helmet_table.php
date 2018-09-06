@@ -4,6 +4,11 @@
 			<h3 class="box-title">
 				<?php echo $head_sub_topic_label; ?>
 			</h3>
+
+			<div class="box-tools pull-right">
+				<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+				</button>
+			</div>
 		</div>
 
 		<div class="box-body">
@@ -90,3 +95,5 @@
 		<div class="box-footer">
 		</div>
 	</div>
+
+	<?php $this->load->view('dashboard_admin_bar_chart_monthly');?>

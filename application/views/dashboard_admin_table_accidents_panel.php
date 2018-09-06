@@ -1,5 +1,5 @@
-<div class="box box-primary">
-	<div class="box-header">
+<!-- <div class="box box-primary"> -->
+	<div class="box-header bg-yellow">
 		<h3 class="box-title">สรุปเหตุการณ์ในรอบสัปดาห์</h3>
 		<div class="box-tools pull-right">
 			<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -8,7 +8,7 @@
 
 	</div>
 
-	<div class="box-body table-responsive">
+	<div class="box-body table-responsive" style="background:#d2d6de">
 		<table class="table table-hover">
 			<tr>
 				<th class="text-center">เหตุการณ์</th>
@@ -67,4 +67,4 @@
 
 		</table>
 	</div>
-</div>
+<!-- </div> -->

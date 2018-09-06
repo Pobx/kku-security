@@ -19,7 +19,7 @@ class Authen extends CI_Controller
           , 'role' => 'form'
           , 'autocomplete' => 'off',
       );
-        $this->load->view('template_authen', $data);
+        $this->load->view('template_authen2', $data);
     }
 
     public function login() {

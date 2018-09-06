@@ -4,6 +4,11 @@
 			<h3 class="box-title">
 				<?php echo $head_sub_topic_label; ?>
 			</h3>
+
+			<div class="box-tools pull-right">
+				<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+				</button>
+			</div>
 		</div>
 
 		<div class="box-body">
@@ -56,7 +61,7 @@
 							<td class="text-center">
 								<?php echo $value['start_date']; ?>
 							</td>
-                            
+
 							<td class="text-center">
 								<?php echo $value['owner_home_name']; ?>
 							</td>
@@ -68,14 +73,14 @@
 							</td>
 							<td class="text-center">
 								<?php echo $value['owner_home_office_name']; ?>
-							</td>	
-                            <td class="text-center">
+							</td>
+							<td class="text-center">
 								<?php echo $value['address']; ?>
 							</td>
-                            <td class="text-center">
+							<td class="text-center">
 								<?php echo $value['status_name']; ?>
 							</td>
-							</tr>
+						</tr>
 						<?php }?>
 					</tbody>
 					<tfoot>
@@ -102,4 +107,5 @@
 			</div>
 		</div>
 	</div>
-    
+
+	<?php $this->load->view('dashboard_admin_bar_chart_monthly');?>
