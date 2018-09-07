@@ -1,3 +1,4 @@
+<?php $this->load->view('dashboard_admin_bar_chart_monthly');?>
 <section class="content">
 	<div class="box box-primary">
 		<div class="box-header with-border">
@@ -41,33 +42,42 @@
     ?>
 					<tr>
 						<td class="text-center">
-							<?php echo $value['date_break'];?>
+							<?php echo $value['rbp_id'];?>
 						</td>
 						<td class="text-center">
-							<?php echo $value['victim_name']; ?>
+							<?php echo $value['checker_name']; ?>
 						</td>
 						<td class="text-center">
-							<?php echo $value['victim_address']; ?>
+							<?php echo $value['zone']; ?>
 						</td>
 						<td class="text-center">
-							<?php echo $value['place']; ?>
+							<?php echo $value['redboxname']; ?>
 						</td>
 						<td class="text-center">
-							<?php echo $value['assets_loses']; ?>
+							<?php  
+								$date = explode(" ",$value['checked_datetime']);
+								echo $date[0];
+							 ?>
 						</td>
 						<td>
-							<?php echo $value['remark']; ?>
+							<?php  
+								echo $date[1];
+							 ?>
 						</td>
-						<td class="text-center">
-							<?php echo $value['status_name']; ?>
+						<td>
+							<?php echo $value['status']==1 ? "ปกติ" : "ไม่ปกติ"; ?>
 						</td>
+						<td>
+							<?php echo $value['comment']; ?>
+						</td>
+
 						<td class="text-center">
-							<a href="<?php echo $link_go_to_form . '/' . $value['id']; ?>" class="btn btn-warning">
+							<a href="<?php echo $link_go_to_form . '/' . $value['rbp_id']; ?>" class="btn btn-warning">
 								<i class="fa fa-pencil"></i>
 							</a>
 						</td>
 						<td class="text-center">
-							<a href="javascript:removeItem('<?php echo $value['id']; ?>', '<?php echo $link_go_to_remove; ?>')" class="btn btn-danger">
+							<a href="javascript:removeItem('<?php echo $value['rbp_id']; ?>', '<?php echo $link_go_to_remove; ?>')" class="btn btn-danger">
 								<i class="fa fa-trash-o"></i>
 							</a>
 						</td>
@@ -75,15 +85,7 @@
 					</tr>
 					<?php }?>
 				</tbody>
-				<tfoot>
-					<?php foreach ($header_columns as $key => $value)
-{
-    ?>
-					<th class="text-center">
-						<?php echo $value; ?>
-					</th>
-					<?php }?>
-				</tfoot>
+				
 			</table>
 		</div>
 
@@ -91,4 +93,4 @@
 		</div>
 	</div>
 
-	<?php $this->load->view('dashboard_admin_bar_chart_monthly');?>
+	

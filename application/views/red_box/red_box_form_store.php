@@ -10,9 +10,7 @@
 
 			<!-- <form class="form-horizontal form_submit_data"> -->
 			<?php $this->load->view('header_form_submit_data');?>
-			<div class="box-header">
-				<?php $this->load->view('button_save_and_back_page_in_form');?>
-			</div>
+			
 			<div class="box-body">
 				<?php 
           $this->load->view('red_box/red_box_details_information');
@@ -22,8 +20,7 @@
 			</div>
 
 			<div class="box-footer">
-				<input type="hidden" name="id" value="<?php echo $id; ?>">
-				<input type="hidden" name="status" value="active">
+				<input type="hidden" name="rbp_id" value="<?php echo $rbp_id; ?>">
 				<?php $this->load->view('button_save_and_back_page_in_form');?>
 			</div>
 			</form>
