@@ -31,3 +31,37 @@
 		</div>
 
 	</div>
+
+	<script>
+		$(document).ready(function () {
+
+			$('#div_owner_assets_department').hide();
+			$('#owner_assets_department').val('');
+			$('input[name="people_type"]').on('ifClicked', function (event) {
+				// alert("You clicked " + this.value);
+				if (this.value == 'people_outside') {
+					$('#owner_assets_department').val('');
+					$('#div_owner_assets_department').hide();
+				} else {
+					// $('#owner_assets_department').val('');
+					$('#div_owner_assets_department').show();
+				}
+			});
+
+			$('#div_car_state').hide();
+			$('#car_state').val('');
+			$("#ddl_car_state").change(function () {
+
+				if ($('#ddl_car_state').val() == 'other') {
+					$('#car_state').val('');
+					$('#div_car_state').show();
+				} else {
+					$('#div_car_state').hide();
+					$('#car_state').val('');
+				}
+
+				// console.log($('#ddl_car_state').val());
+			})
+		})
+
+	</script>

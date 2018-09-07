@@ -2,6 +2,8 @@
 	<strong>ข้อมูลเจ้าของทรัพย์สิน</strong>
 </p>
 
+<?php $this->load->view('period_times');?>
+
 <div class="form-group">
 	<label for="date_forget_key" class="col-sm-2 control-label">วันที่</label>
 
@@ -10,6 +12,8 @@
 		data-date-language="th-th" placeholder="วันที่" value="<?php echo $date_forget_key; ?>">
 	</div>
 </div>
+
+<?php $this->load->view('people_type');?>
 
 <div class="form-group">
 	<label for="owner_assets_name" class="col-sm-2 control-label">ชื่อ&nbsp;-&nbsp;สกุล</label>
@@ -20,7 +24,7 @@
 	</div>
 </div>
 
-<div class="form-group">
+<div class="form-group" id="div_owner_assets_department">
 	<label for="owner_assets_department" class="col-sm-2 control-label">สังกัดหน่วยงาน</label>
 
 	<div class="col-sm-4">
@@ -61,8 +65,8 @@
 	<div class="col-sm-4">
 		<label>
 			<input type="radio" name="car_type" class="flat-red" value="car" <?php if ($car_type=='car' ) { echo "checked" ;}?>>&nbsp;รถยนต์
-			<input type="radio" name="car_type" class="flat-red" value="motorcycle" <?php if ($car_type=='motorcycle' ) { echo
-			"checked" ;}?>>&nbsp;รถจักรยานยนต์
+			<input type="radio" name="car_type" class="flat-red" value="motorcycle" <?php if ($car_type=='motorcycle' ||
+			$car_type=='' ) { echo "checked" ;}?>>&nbsp;รถจักรยานยนต์
 		</label>
 	</div>
 </div>
@@ -100,7 +104,19 @@
 </div>
 
 <div class="form-group">
-	<label for="car_state" class="col-sm-2 control-label">สภาพรถ</label>
+	<label class="col-sm-2 control-label">สภาพรถ</label>
+	<div class="col-sm-4">
+		<select class="form-control select2" id="ddl_car_state">
+			<option selected="selected">เลือก</option>
+			<option value="new">ใหม่</option>
+			<option value="old">เก่า</option>
+			<option value="other">อื่นๆ</option>
+		</select>
+	</div>
+</div>
+
+<div class="form-group" id="div_car_state">
+	<label for="car_state" class="col-sm-2 control-label">สภาพรถ(อื่นๆ)</label>
 
 	<div class="col-sm-4">
 		<input type="text" class="form-control" id="car_state" name="car_state" placeholder="สภาพรถ" value="<?php echo $car_state; ?>">
