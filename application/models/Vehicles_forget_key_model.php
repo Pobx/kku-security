@@ -8,6 +8,8 @@ class Vehicles_forget_key_model extends CI_Model
     private $id    = 'id';
     private $items = '
     id,
+    period_time,
+    people_type,
     DATE_FORMAT(DATE_ADD(date_forget_key, INTERVAL 543 YEAR),"%d/%m/%Y") as date_forget_key,
     owner_assets_name,
     owner_assets_department,
