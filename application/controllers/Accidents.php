@@ -8,21 +8,20 @@ class Accidents extends CI_Controller
         parent::__construct();
 
         $this->load->model('Accidents_model');
-        $this->load->model('Accidents_vehicles_model');
-        $this->load->model('Accidents_peoples_model');
-        
+        $this->load->model('Accidents_participate_model');
+        $this->load->model('Accidents_place_model');
+        $this->load->model('Accidents_cause_model');
+
         $this->load->library('Date_libs');
     }
 
     private $head_topic_label           = 'สถิติอุบัติเหตุ';
     private $head_sub_topic_label_table = 'รายการ สถิติอุบัติเหตุ';
     private $head_sub_topic_label_form  = 'ฟอร์มบันทึกข้อมูล สถิติอุบัติเหตุ';
-    private $head_sub_topic_vehicles_label  = 'รายการ รถยนต์ / รถจักรยานยนต์';
-    private $head_sub_topic_peoples_label  = 'รายการ ผู้ประสบเหตุ / คู่กรณี';
+    private $head_topic_participate_label  = 'รายการ ผู้ประสบเหตุ / คู่กรณี';
     
     private $header_columns             = array('วันที่', 'ช่วงเวลา', 'สถานที่เกิดเหตุ', 'รถยนต์', 'รถจักรยานยนต์', 'รถที่เกิดเหตุ', 'สาเหตุ', 'บาดเจ็บ', 'เสียชีวิต', 'ผู้ประสบเหตุ / คู่กรณี', 'หน่วยงาน', 'บุคลากร', 'นักศึกษา', 'บุคคลภายใน', 'แก้ไข', 'ลบ');
-    private $header_columns_vehicles    = array('ประเภท', 'ทะเบียนรถ', 'สี', 'ยี่ห้อ', 'รุ่น', 'แก้ไข', 'ลบ');
-    private $header_columns_peoples     = array('ผู้ประสบเหตุ / คู่กรณี', 'ประเภทบุคลากร', 'บาดเจ็บ / เสียชีวิต', 'ชื่อ - สกุล', 'หน่วยงาน', 'แก้ไข', 'ลบ');
+    private $header_columns_participate = array('ผู้ประสบเหตุ / คู่กรณี', 'ประเภทบุคลากร', 'บาดเจ็บ / เสียชีวิต', 'ชื่อ - สกุล', 'หน่วยงาน', 'ประเภท', 'ทะเบียนรถ', 'สี', 'ยี่ห้อ', 'รุ่น', 'ลบ');
     
     private $success_message            = 'บันทึกข้อมูลสำเร็จ';
     private $warning_message            = 'ไม่สามารถทำรายการ กรุณลองใหม่อีกครั้ง';
@@ -49,34 +48,30 @@ class Accidents extends CI_Controller
     public function form_store()
     {
         $id = $this->uri->segment(3);
-
         $data = $this->find($id); 
+        $data['accident_id'] = $id;
         $data['head_topic_label'] = $this->head_topic_label;
         $data['head_sub_topic_label'] = $this->head_sub_topic_label_form;
-        $data['head_sub_topic_vehicles_label'] = $this->head_sub_topic_vehicles_label;
-        $data['head_sub_topic_peoples_label'] = $this->head_sub_topic_peoples_label;
-        
-        $data['link_go_to_vehicles_form'] = site_url('accidents_vehicles/form_store/'.$id);
-        $data['link_go_to_vehicles_remove'] = site_url('accidents_vehicles/remove/'.$id);
-
-        $data['link_go_to_peoples_form'] = site_url('accidents_peoples/form_store/'.$id);
-        $data['link_go_to_peoples_remove'] = site_url('accidents_peoples/remove/'.$id);
+        $data['head_topic_participate_label'] = $this->head_topic_participate_label;
+        $data['header_columns_participate'] = $this->header_columns_participate;
         $data['link_back_to_table'] = site_url('accidents');
         $data['form_submit_data_url'] = site_url('accidents/store');
-
-        $data['header_columns_vehicles'] = $this->header_columns_vehicles;
+        $data['form_submit_data_url_modal'] = site_url('accidents/store_participate');
+        $data['link_go_to_participate_remove'] = site_url('accidents/remove_participate/'.$id);
         $qstr = array(
-          'accident_id'=>$id,
-          'status !='=>'disabled'
+          'status ='=>'active'
         );
 
-        $vehicles_results = $this->Accidents_vehicles_model->all($qstr);
-        $data['vehicles_results'] = $vehicles_results['results'];
-        
-        $data['header_columns_peoples'] = $this->header_columns_peoples;
-        $peoples_results = $this->Accidents_peoples_model->all($qstr);
-        $data['peoples_results'] = $peoples_results['results'];
+        $accident_place = $this->Accidents_place_model->all($qstr);
+        $data['accident_place'] = $accident_place['results'];
 
+        $accident_causes = $this->Accidents_cause_model->all($qstr);
+        $data['accident_causes'] = $accident_causes['results'];
+
+        $qstr['accident_id'] = $id;
+        $accident_participate = $this->Accidents_participate_model->all($qstr);
+        $data['accident_participate'] = $accident_participate['results'];
+        
         $data['content'] = 'accidents_form_store';
 
         // echo "<pre>", print_r($data); exit();
@@ -85,9 +80,19 @@ class Accidents extends CI_Controller
 
     public function store()
     {
-        $inptus = $this->input->post();
-        $inptus['accident_date'] = $this->date_libs->set_date_th($inptus['accident_date']);
-        $results = $this->Accidents_model->store($inptus);
+        $inputs = $this->input->post();
+
+        $inputs['accident_date'] = $this->date_libs->set_date_th($inputs['accident_date']);
+        if (isset($inputs['chk_place']) && $inputs['chk_place'] == 'checked_new_place') {
+          $inputs['place'] = $this->create_new_place($inputs);
+        }
+
+        if (isset($inputs['chk_accident_cause']) && $inputs['chk_accident_cause'] == 'checked_new_accident_cause') {
+          $inputs['accident_cause'] = $this->create_accident_cause($inputs);
+        }
+
+        unset($inputs['chk_place'], $inputs['place_text'], $inputs['chk_accident_cause'], $inputs['accident_cause_text']);
+        $results = $this->Accidents_model->store($inputs);
 
         $alert_type = ($results['query'] ? 'success' : 'warning');
         $alert_icon = ($results['query'] ? 'check' : 'warning');
@@ -98,6 +103,42 @@ class Accidents extends CI_Controller
 
         // redirect('accidents');
         redirect('accidents/form_store/'.$results['lastID']);
+    }
+
+    public function store_participate() {
+        $inputs = $this->input->post();
+        $results = $this->Accidents_participate_model->store($inputs);
+
+        $alert_type = ($results['query'] ? 'success' : 'warning');
+        $alert_icon = ($results['query'] ? 'check' : 'warning');
+        $alert_message = ($results['query'] ? $this->success_message : $this->warning_message);
+        $this->session->set_flashdata('alert_type', $alert_type);
+        $this->session->set_flashdata('alert_icon', $alert_icon);
+        $this->session->set_flashdata('alert_message', $alert_message);
+
+        redirect('accidents/form_store/'.$inputs['accident_id']);
+    }
+
+    private function create_new_place($inputs) {
+      $data = array(
+        'id'=>'',
+        'name'=>$inputs['place_text'],
+        'status'=>'active'
+      );
+
+      $results = $this->Accidents_place_model->store($data);
+      return $results['lastID'];
+    }
+
+    private function create_accident_cause($inputs) {
+      $data = array(
+        'id'=>'',
+        'name'=>$inputs['accident_cause_text'],
+        'status'=>'active'
+      );
+
+      $results = $this->Accidents_cause_model->store($data);
+      return $results['lastID'];
     }
 
     private function find($id = 0)
@@ -136,5 +177,21 @@ class Accidents extends CI_Controller
         $this->session->set_flashdata('alert_message', $alert_message);
 
         redirect('accidents');
+    }
+
+    public function remove_participate() {
+        $accident_id = $this->uri->segment(3);
+        $id = $this->uri->segment(4);
+        
+        $results = $this->Accidents_participate_model->remove($id);
+
+        $alert_type = ($results['query'] ? 'danger' : 'warning');
+        $alert_icon = ($results['query'] ? 'trash' : 'warning');
+        $alert_message = ($results['query'] ? $this->danger_message : $this->warning_message);
+        $this->session->set_flashdata('alert_type', $alert_type);
+        $this->session->set_flashdata('alert_icon', $alert_icon);
+        $this->session->set_flashdata('alert_message', $alert_message);
+        $redirect_page = 'accidents/form_store/';
+        redirect($redirect_page.$accident_id);
     }
 }

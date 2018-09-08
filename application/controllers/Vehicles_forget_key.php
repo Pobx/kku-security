@@ -42,9 +42,7 @@ class Vehicles_forget_key extends CI_Controller
         $id = $this->uri->segment(3);
 
         $data = $this->find($id);
-        $data['period_time'] = '';
-        $data['people_type'] = '';
-        
+       
         $data['head_topic_label'] = $this->head_topic_label;
         $data['head_sub_topic_label'] = $this->head_sub_topic_label_form;
         $data['link_back_to_table'] = site_url('vehicles_forget_key');
