@@ -14,11 +14,19 @@
           $this->load->view('accidents_peoples_information_form_store');
           $this->load->view('accidents_vehicles_information_form_store');
         ?>
+
+				<div class="row">
+					<div class="col-md-6 text-left">
+						<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"></i> ปิด</button>
+					</div>
+
+					<div class="col-md-6 text-right">
+						<button type="submit" class="btn btn-success"><i class="fa fa-save"></i> บันทึกข้อมูล</button>
+					</div>
+				</div>
 				</form>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary">Save changes</button>
 			</div>
 		</div>
 
