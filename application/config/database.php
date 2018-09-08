@@ -75,7 +75,7 @@ $query_builder = true;
 
 $db['default'] = array(
     'dsn'          => '',
-    // 'hostname'     => 'my-mariadb',
+    //'hostname'     => 'my-mariadb',
     'hostname'     => 'localhost',
     'username'     => 'root',
     'password'     => '',
