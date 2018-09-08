@@ -3,7 +3,7 @@ defined('BASEPATH') || exit('No direct script access allowed');
 
 class Accidents_cause_model extends CI_Model
 {
-    private $table = 'accident_place';
+    private $table = 'accident_cause';
     private $id    = 'id';
     private $items = '
     id,

@@ -80,8 +80,8 @@ class Accidents extends CI_Controller
         $accident_place = $this->Accidents_place_model->all($qstr);
         $data['accident_place'] = $accident_place['results'];
 
-        $accident_cause = $this->Accidents_cause_model->all($qstr);
-        $data['accident_cause'] = $accident_cause['results'];
+        $accident_causes = $this->Accidents_cause_model->all($qstr);
+        $data['accident_causes'] = $accident_causes['results'];
 
         
         $data['content'] = 'accidents_form_store';
@@ -92,9 +92,19 @@ class Accidents extends CI_Controller
 
     public function store()
     {
-        $inptus = $this->input->post();
-        $inptus['accident_date'] = $this->date_libs->set_date_th($inptus['accident_date']);
-        $results = $this->Accidents_model->store($inptus);
+        $inputs = $this->input->post();
+
+        $inputs['accident_date'] = $this->date_libs->set_date_th($inputs['accident_date']);
+        if ($inputs['chk_place'] == 'checked_new_place') {
+          $inputs['place'] = $this->create_new_place($inputs);
+        }
+
+        if ($inputs['chk_accident_cause'] == 'checked_new_accident_cause') {
+          $inputs['accident_cause'] = $this->create_accident_cause($inputs);
+        }
+
+        unset($inputs['chk_place'], $inputs['place_text'], $inputs['chk_accident_cause'], $inputs['accident_cause_text']);
+        $results = $this->Accidents_model->store($inputs);
 
         $alert_type = ($results['query'] ? 'success' : 'warning');
         $alert_icon = ($results['query'] ? 'check' : 'warning');
@@ -105,6 +115,28 @@ class Accidents extends CI_Controller
 
         // redirect('accidents');
         redirect('accidents/form_store/'.$results['lastID']);
+    }
+
+    private function create_new_place($inputs) {
+      $data = array(
+        'id'=>'',
+        'name'=>$inputs['place_text'],
+        'status'=>'active'
+      );
+
+      $results = $this->Accidents_place_model->store($data);
+      return $results['lastID'];
+    }
+
+    private function create_accident_cause($inputs) {
+      $data = array(
+        'id'=>'',
+        'name'=>$inputs['accident_cause_text'],
+        'status'=>'active'
+      );
+
+      $results = $this->Accidents_cause_model->store($data);
+      return $results['lastID'];
     }
 
     private function find($id = 0)

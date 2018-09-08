@@ -28,7 +28,7 @@
 		<select class="form-control select2" name="place" id="place">
 			<option>เลือก</option>
 			<?php foreach ($accident_place as $key => $value) {?>
-			<option value="<?php echo $value['id'];?>">
+			<option value="<?php echo $value['id'];?>" <?php if ($place==$value['id']) { echo 'selected' ;}?>>
 				<?php echo $value['name'];?>
 			</option>
 			<?php }?>
@@ -47,8 +47,8 @@
 	<div class="col-sm-4">
 		<select class="form-control select2" name="accident_cause" id="accident_cause">
 			<option>เลือก</option>
-			<?php foreach ($accident_cause as $key => $value) {?>
-			<option value="<?php echo $value['id'];?>">
+			<?php foreach ($accident_causes as $key => $value) {?>
+			<option value="<?php echo $value['id'];?>" <?php if ($accident_cause==$value['id']) { echo 'selected' ;}?>>
 				<?php echo $value['name'];?>
 			</option>
 			<?php }?>
