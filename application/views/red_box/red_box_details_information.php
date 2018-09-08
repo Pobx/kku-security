@@ -1,7 +1,4 @@
-<style>
-  optgroup { color: #33A; font-weight:normal; font-style:normal; }
-option { color: #000; }
-</style>
+
 
 <div class="form-group">
 	<label for="victim_name" class="col-sm-2 control-label">ตำแหน่งตู้แดง</label>

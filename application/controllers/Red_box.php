@@ -28,7 +28,7 @@ class Red_box extends CI_Controller
         $data['link_go_to_remove'] = site_url('red_box/remove');
         $data['header_columns'] = $this->header_columns;
 
-        $qstr = '';//array('status !=' => 'disabled');
+        $qstr = array('redbox_positions.status !=' => 0);
         $results = $this->Redbox_model->all($qstr);
         $data['results'] = $results['results'];
         $data['fields'] = $results['fields'];
