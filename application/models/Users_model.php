@@ -10,13 +10,12 @@ class Users_model extends CI_Model
     id,
     username,
     name,
-    permission
+    permission,
     status,
     (
       CASE
-        WHEN status = "stable" THEN "ปกติ"
+        WHEN status = "active" THEN "ACTIVE"
         WHEN status = "disabled" THEN "ลบรายการ"
-        WHEN status = "not-stable" THEN "ไม่ปกติ"
         ELSE ""
       END
     ) AS status_name,
