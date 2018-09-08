@@ -25,11 +25,13 @@
 <div class="form-group">
 	<label class="col-sm-2 control-label">สถานที่</label>
 	<div class="col-sm-4">
-		<select class="form-control select2">
-			<option selected="selected">เลือก</option>
-			<option>หน้ามอ</option>
-			<option>หลังมอ</option>
-			<option>บ้านโนนม่วง</option>
+		<select class="form-control select2" name="place" id="place">
+			<option value="">เลือก</option>
+			<?php foreach ($accident_place as $key => $value) {?>
+			<option value="<?php echo $value['id'];?>">
+				<?php echo $value['name'];?>
+			</option>
+			<?php }?>
 		</select>
 	</div>
 </div>
@@ -39,18 +41,20 @@
 
 	<div class="col-sm-4">
 		<!-- <textarea class="form-control" rows="3" id="place" name="place" placeholder="สถานที่"><?php //echo $place;?></textarea> -->
-		<input type="text" name="" id="" class="form-control">
+		<input type="text" name="place_text" id="place_text" class="form-control">
 	</div>
 </div>
 
 <div class="form-group">
 	<label class="col-sm-2 control-label">สาเหตุ</label>
 	<div class="col-sm-4">
-		<select class="form-control select2">
-			<option selected="selected">เลือก</option>
-			<option>รถมอไซตัดหน้า</option>
-			<option>ชนหมา</option>
-			<option>ลงข้างทาง</option>
+		<select class="form-control select2" name="accident_cause" id="accident_cause">
+			<option value="">เลือก</option>
+			<?php foreach ($accident_cause as $key => $value) {?>
+			<option value="<?php echo $value['id'];?>">
+				<?php echo $value['name'];?>
+			</option>
+			<?php }?>
 		</select>
 	</div>
 </div>
@@ -59,7 +63,7 @@
 	<label for="accident_cause" class="col-sm-2 control-label">สาเหตุ(อื่นๆ)</label>
 
 	<div class="col-sm-4">
-		<input type="text" name="" id="" class="form-control">
+		<input type="text" name="accident_cause_text" id="accident_cause_text" class="form-control">
 		<!-- <textarea class="form-control" rows="3" id="accident_cause" name="accident_cause" placeholder="สาเหตุ"><?php //echo $accident_cause;?></textarea> -->
 	</div>
 </div>

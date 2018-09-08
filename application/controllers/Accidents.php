@@ -11,6 +11,7 @@ class Accidents extends CI_Controller
         // $this->load->model('Accidents_vehicles_model');
         // $this->load->model('Accidents_peoples_model');
         $this->load->model('Accidents_place_model');
+        $this->load->model('Accidents_cause_model');
 
         $this->load->library('Date_libs');
     }
@@ -66,10 +67,9 @@ class Accidents extends CI_Controller
         $data['form_submit_data_url'] = site_url('accidents/store');
 
         // $data['header_columns_vehicles'] = $this->header_columns_vehicles;
-        // $qstr = array(
-        //   'accident_id'=>$id,
-        //   'status !='=>'disabled'
-        // );
+        $qstr = array(
+          'status ='=>'active'
+        );
 
         // $vehicles_results = $this->Accidents_vehicles_model->all($qstr);
         // $data['vehicles_results'] = $vehicles_results['results'];
@@ -77,7 +77,13 @@ class Accidents extends CI_Controller
         // $data['header_columns_peoples'] = $this->header_columns_peoples;
         // $peoples_results = $this->Accidents_peoples_model->all($qstr);
         // $data['peoples_results'] = $peoples_results['results'];
+        $accident_place = $this->Accidents_place_model->all($qstr);
+        $data['accident_place'] = $accident_place['results'];
 
+        $accident_cause = $this->Accidents_cause_model->all($qstr);
+        $data['accident_cause'] = $accident_cause['results'];
+
+        
         $data['content'] = 'accidents_form_store';
 
         // echo "<pre>", print_r($data); exit();
