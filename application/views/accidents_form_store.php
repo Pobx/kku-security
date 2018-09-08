@@ -36,7 +36,7 @@ $this->load->view('accidents_information');
 if ($id != '')
 {
     $this->load->view('accidents_participate_table_information');
-    // $this->load->view('accidents_peoples_table_information');
+    $this->load->view('accidents_form_store_modal');
 }
 ?>
 

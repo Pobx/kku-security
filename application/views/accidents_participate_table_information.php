@@ -15,10 +15,10 @@
 		<div class="box-body">
 			<div class="row">
 				<div class="col-md-12 text-right">
-					<a href="#" class="btn btn-primary">
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-default">
 						<i class="fa fa-plus-circle"></i>
 						เพิ่มข้อมูลใหม่
-					</a>
+					</button>
 				</div>
 			</div>
 

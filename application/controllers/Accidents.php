@@ -57,7 +57,8 @@ class Accidents extends CI_Controller
         $data['header_columns_participate'] = $this->header_columns_participate;
         $data['link_back_to_table'] = site_url('accidents');
         $data['form_submit_data_url'] = site_url('accidents/store');
-
+        $data['form_submit_data_url_modal'] = site_url('accidents/store_participate');
+        
         $qstr = array(
           'status ='=>'active'
         );
@@ -93,6 +94,21 @@ class Accidents extends CI_Controller
 
         unset($inputs['chk_place'], $inputs['place_text'], $inputs['chk_accident_cause'], $inputs['accident_cause_text']);
         $results = $this->Accidents_model->store($inputs);
+
+        $alert_type = ($results['query'] ? 'success' : 'warning');
+        $alert_icon = ($results['query'] ? 'check' : 'warning');
+        $alert_message = ($results['query'] ? $this->success_message : $this->warning_message);
+        $this->session->set_flashdata('alert_type', $alert_type);
+        $this->session->set_flashdata('alert_icon', $alert_icon);
+        $this->session->set_flashdata('alert_message', $alert_message);
+
+        // redirect('accidents');
+        redirect('accidents/form_store/'.$results['lastID']);
+    }
+
+    public function store_participate() {
+        $inputs = $this->input->post();
+        $results = $this->Accidents_participate_model->store($inputs);
 
         $alert_type = ($results['query'] ? 'success' : 'warning');
         $alert_icon = ($results['query'] ? 'check' : 'warning');
