@@ -58,7 +58,7 @@
 							</td>
 							<td class="text-center">
 								<?php 
-                  foreach ($value['results_vehicles'] as $car) {
+                  foreach ($value['results_participate'] as $car) {
                     echo $car['car_body']."<hr />";
                   }
                 ?>
@@ -74,14 +74,14 @@
 							</td>
 							<td class="text-center">
 								<?php 
-                  foreach ($value['results_peoples'] as $people) {
+                  foreach ($value['results_participate'] as $people) {
                     echo $people['people_name']."<hr />";
                   }
                 ?>
 							</td>
 							<td class="text-center">
 								<?php 
-                  foreach ($value['results_peoples'] as $people) {
+                  foreach ($value['results_participate'] as $people) {
                     echo $people['people_department_name']."<hr />";
                   }
                 ?>
