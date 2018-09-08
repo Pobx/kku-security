@@ -95,11 +95,11 @@ class Accidents extends CI_Controller
         $inputs = $this->input->post();
 
         $inputs['accident_date'] = $this->date_libs->set_date_th($inputs['accident_date']);
-        if ($inputs['chk_place'] == 'checked_new_place') {
+        if (isset($inputs['chk_place']) && $inputs['chk_place'] == 'checked_new_place') {
           $inputs['place'] = $this->create_new_place($inputs);
         }
 
-        if ($inputs['chk_accident_cause'] == 'checked_new_accident_cause') {
+        if (isset($inputs['chk_accident_cause']) && $inputs['chk_accident_cause'] == 'checked_new_accident_cause') {
           $inputs['accident_cause'] = $this->create_accident_cause($inputs);
         }
 
