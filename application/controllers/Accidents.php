@@ -8,7 +8,6 @@ class Accidents extends CI_Controller
         parent::__construct();
 
         $this->load->model('Accidents_model');
-        // $this->load->model('Accidents_vehicles_model');
         $this->load->model('Accidents_participate_model');
         $this->load->model('Accidents_place_model');
         $this->load->model('Accidents_cause_model');
@@ -22,7 +21,7 @@ class Accidents extends CI_Controller
     private $head_topic_participate_label  = 'รายการ ผู้ประสบเหตุ / คู่กรณี';
     
     private $header_columns             = array('วันที่', 'ช่วงเวลา', 'สถานที่เกิดเหตุ', 'รถยนต์', 'รถจักรยานยนต์', 'รถที่เกิดเหตุ', 'สาเหตุ', 'บาดเจ็บ', 'เสียชีวิต', 'ผู้ประสบเหตุ / คู่กรณี', 'หน่วยงาน', 'บุคลากร', 'นักศึกษา', 'บุคคลภายใน', 'แก้ไข', 'ลบ');
-    private $header_columns_participate = array('ผู้ประสบเหตุ / คู่กรณี', 'ประเภทบุคลากร', 'บาดเจ็บ / เสียชีวิต', 'ชื่อ - สกุล', 'หน่วยงาน', 'ประเภท', 'ทะเบียนรถ', 'สี', 'ยี่ห้อ', 'รุ่น', 'แก้ไข', 'ลบ');
+    private $header_columns_participate = array('ผู้ประสบเหตุ / คู่กรณี', 'ประเภทบุคลากร', 'บาดเจ็บ / เสียชีวิต', 'ชื่อ - สกุล', 'หน่วยงาน', 'ประเภท', 'ทะเบียนรถ', 'สี', 'ยี่ห้อ', 'รุ่น', 'ลบ');
     
     private $success_message            = 'บันทึกข้อมูลสำเร็จ';
     private $warning_message            = 'ไม่สามารถทำรายการ กรุณลองใหม่อีกครั้ง';
@@ -58,7 +57,7 @@ class Accidents extends CI_Controller
         $data['link_back_to_table'] = site_url('accidents');
         $data['form_submit_data_url'] = site_url('accidents/store');
         $data['form_submit_data_url_modal'] = site_url('accidents/store_participate');
-        
+        $data['link_go_to_participate_remove'] = site_url('accidents/remove_participate/'.$id);
         $qstr = array(
           'status ='=>'active'
         );
@@ -179,5 +178,21 @@ class Accidents extends CI_Controller
         $this->session->set_flashdata('alert_message', $alert_message);
 
         redirect('accidents');
+    }
+
+    public function remove_participate() {
+        $accident_id = $this->uri->segment(3);
+        $id = $this->uri->segment(4);
+        
+        $results = $this->Accidents_participate_model->remove($id);
+
+        $alert_type = ($results['query'] ? 'danger' : 'warning');
+        $alert_icon = ($results['query'] ? 'trash' : 'warning');
+        $alert_message = ($results['query'] ? $this->danger_message : $this->warning_message);
+        $this->session->set_flashdata('alert_type', $alert_type);
+        $this->session->set_flashdata('alert_icon', $alert_icon);
+        $this->session->set_flashdata('alert_message', $alert_message);
+        $redirect_page = 'accidents/form_store/';
+        redirect($redirect_page.$accident_id);
     }
 }

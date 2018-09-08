@@ -8,6 +8,8 @@ class Accidents_participate_model extends CI_Model
     private $items = '
     id,
     accident_id,
+    people_name,
+    people_department_name,
     car_type,
     (
       CASE 

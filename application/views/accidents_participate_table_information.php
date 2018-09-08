@@ -74,12 +74,7 @@
 						</td>
 
 						<td class="text-center">
-							<a href="<?php echo $link_go_to_vehicles_form . '/' . $value['id']; ?>" class="btn btn-warning">
-								<i class="fa fa-pencil"></i>
-							</a>
-						</td>
-						<td class="text-center">
-							<a href="javascript:removeItem('<?php echo $value['id']; ?>', '<?php echo $link_go_to_vehicles_remove; ?>', 'main_form')"
+							<a href="javascript:removeItem('<?php echo $value['id']; ?>', '<?php echo $link_go_to_participate_remove; ?>', 'main_form')"
 							class="btn btn-danger">
 								<i class="fa fa-trash-o"></i>
 							</a>

@@ -21,6 +21,7 @@
 					</div>
 
 					<div class="col-md-6 text-right">
+						<input type="hidden" name="id" id="id" value="">
 						<button type="submit" class="btn btn-success"><i class="fa fa-save"></i> บันทึกข้อมูล</button>
 					</div>
 				</div>
