@@ -22,6 +22,7 @@
 
 					<div class="col-md-6 text-right">
 						<input type="hidden" name="id" id="id" value="">
+						<input type="hidden" name="accident_id" id="accident_id" value="<?php echo $accident_id;?>">
 						<button type="submit" class="btn btn-success"><i class="fa fa-save"></i> บันทึกข้อมูล</button>
 					</div>
 				</div>

@@ -48,8 +48,8 @@ class Accidents extends CI_Controller
     public function form_store()
     {
         $id = $this->uri->segment(3);
-
         $data = $this->find($id); 
+        $data['accident_id'] = $id;
         $data['head_topic_label'] = $this->head_topic_label;
         $data['head_sub_topic_label'] = $this->head_sub_topic_label_form;
         $data['head_topic_participate_label'] = $this->head_topic_participate_label;
@@ -116,8 +116,7 @@ class Accidents extends CI_Controller
         $this->session->set_flashdata('alert_icon', $alert_icon);
         $this->session->set_flashdata('alert_message', $alert_message);
 
-        // redirect('accidents');
-        redirect('accidents/form_store/'.$results['lastID']);
+        redirect('accidents/form_store/'.$inputs['accident_id']);
     }
 
     private function create_new_place($inputs) {
