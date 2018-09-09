@@ -17,20 +17,21 @@ class Evaluation extends CI_Controller
   private $head_topic_label = 'แบบประเมินความพึงพอใจ';
   private $head_sub_topic_label_table = 'ผลสรุปแบบประเมินความพึงพอใจ กองป้องกันและรักษาความปลอดภัย มหาวิทยาลัยขอนแก่น';
   private $head_sub_topic_label_form = 'แบบประเมินความพึงพอใจ กองป้องกันและรักษาความปลอดภัย มหาวิทยาลัยขอนแก่น ';
-  private $header_columns = array('วันที่',  'เพศ', 'อายุ','สถานะ','สังกัด', 'ข้อเสอแนะ', 'สถานะ', 'แก้ไข','ลบ');
+  private $header_columns = array('วันที่',  'เพศ', 'อายุ','สถานะ','สังกัด', 'ข้อเสอแนะ', 'แก้ไข','ลบ');
   private $success_message = 'บันทึกข้อมูลสำเร็จ';
   private $warning_message = 'ไม่สามารถทำรายการ กรุณลองใหม่อีกครั้ง';
   private $danger_message = 'ลบข้อมูลสำเร็จ';
 
     public function index()
     {
+      $data['form_submit_data_url_modal'] =site_url('evaluation/store');
       $data['head_topic_label'] = $this->head_topic_label;
       $data['head_sub_topic_label'] = $this->head_sub_topic_label_table;
       $data['link_go_to_form'] = site_url('evaluation/form_store');
       $data['link_go_to_remove'] = site_url('evaluation/remove');
       $data['header_columns'] = $this->header_columns;
       
-      $qstr = array('status !='=>'disabled');
+      $qstr = array('faculty.status !='=>'disabled');
       $results = $this->Evaluation_model->all($qstr);
       $data['results'] = $results['results'];
       $data['fields'] = $results['fields'];
@@ -42,8 +43,8 @@ class Evaluation extends CI_Controller
     }
 
     public function form_store() {
-      $id = $this->uri->segment(3);
 
+      $id = $this->uri->segment(3);
       $data = $this->find($id);
       $data['head_topic_label'] = $this->head_topic_label;
       $data['head_sub_topic_label'] = $this->head_sub_topic_label_form;
@@ -68,7 +69,7 @@ class Evaluation extends CI_Controller
     public function store() {
       $inptus = $this->input->post();
     //  $inptus['eval_date'] = $this->date_libs->set_date_th($inptus['eval_date']);
-    // echo "<pre>", print_r($inptus); exit();
+     echo "<pre>", print_r($inptus); exit();
       $results = $this->Evaluation_model->store($inptus);
 
       $alert_type = ($results['query']? 'success' : 'warning');

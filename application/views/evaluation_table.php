@@ -46,18 +46,16 @@
 							<?php echo $value['age'];?>
 						</td>
 						<td class="text-center">
-							<?php echo $value['posonal_id'];?>
+							<?php echo $value['personalname'];?>
 						</td>
 						<td class="text-center">
-							<?php echo $value['department_id'];?>
+							<?php echo $value['facultyname'];?>
 						</td>
 						<td class="text-center">
 							<?php echo $value['comment'];?>
 						</td>
 						
-						<td class="text-center">
-							<?php echo $value['status_name'];?>
-						</td>
+					
 						<td class="text-center">
 							<a href="<?php echo $link_go_to_form.'/'.$value['id'];?>" class="btn btn-warning">
 								<i class="fa fa-pencil"></i>
@@ -75,7 +73,7 @@
 				<tfoot>
 					<?php foreach ($header_columns as $key => $value) {?>
 					<th class="text-center">
-						<?php echo $value;?>
+						
 					</th>
 					<?php }?>
 				</tfoot>

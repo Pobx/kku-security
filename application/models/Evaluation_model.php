@@ -8,7 +8,8 @@ class Evaluation_model extends CI_Model {
 
         $this->load->model('Services_model');
         $this->load->model('Faculty_model');
-        $this->load->model('Personals_model');
+        $this->load->model('Personals_model'); 
+        $this->load->model('Eval_service_model');
      // $this->load->library('FilterVehicles');
        // $this->load->library('FilterPeoples');
     }
@@ -17,9 +18,10 @@ class Evaluation_model extends CI_Model {
   private $table2='eval_service';
   private $table3='faculty';
   private $table4='personals';
+  private $table5='eval_service';
 	private $id='id';
   private $items = '
-    id, 
+  evaluations.id as ev_id, 
     DATE_FORMAT(DATE_ADD(eval_date, INTERVAL 543 YEAR),"%d/%m/%Y") as eval_date, 
     gender,
     (
@@ -42,15 +44,7 @@ class Evaluation_model extends CI_Model {
     knowlage,
     questions,
     followup,
-    comment,
-    status,
-    (
-      CASE 
-        WHEN status = "active" THEN "ACTIVE"
-        WHEN status = "disabled" THEN "ลบรายการ"
-        ELSE ""
-      END
-    ) AS status_name,
+    comment
     ';
 
     
@@ -60,11 +54,13 @@ class Evaluation_model extends CI_Model {
 			$this->db->where($qstr);
     }
     
-    $query = $this->db->select($this->items)
+    $query = $this->db->select("faculty.name as facultyname,personals.name as personalname,evaluations.*")
                       ->from($this->table)
-                    //  ->join($this->table3, $this->table.'.department_id = '.$this->table3.'.id')
-                      ->get();
+                      ->join($this->table3, $this->table.'.department_id = '.$this->table3.'.id')
+                      ->join($this->table4, $this->table.'.	posonal_id = '.$this->table4.'.id')
 
+                      ->get();
+     //print_r($query->result_array());die();
     $results['results'] = $query->result_array();
     $results['rows'] = $query->num_rows();
     $results['fields'] = $query->list_fields();
@@ -73,13 +69,23 @@ class Evaluation_model extends CI_Model {
   }
 
   public function find($id) {
-    $query = $this->db->select($this->items)
+    $query = $this->db->select("evaluations.* ,eval_service.service_id")
                       ->from($this->table)
-                      ->where('id', $id)->get();
+                      ->join($this->table5,$this->table.'.id='.$this->table5.'.eval_id', 'left')
+                      ->where($this->table.'.id', $id)->get();
 
+    $query2 = $this->db->select($this->table5.'.service_id')
+                      ->from($this->table5)
+                      ->where($this->table5.'.eval_id', $id)->get();
+                      
     $results['rows'] = $query->num_rows();
-    $results['results'] = $query->first_row();
+    $results['results'] = $query->result_array();
     $results['fields'] = $query->list_fields();
+    $results['service'] = $query2->result_array();
+    echo "<pre>";
+     print_r($query);
+     
+     die();
 
     return $results;
   }
