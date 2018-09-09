@@ -86,17 +86,17 @@ class Cctv_request_log extends CI_Controller
         if ($inputs['link_copy_other_gov_doc'] =='not-file') {
           unset($inputs['link_copy_other_gov_doc']);
         }
-        
+
         $results = $this->Cctv_request_log_model->store($inputs);
 
-        // $alert_type = ($results['query'] ? 'success' : 'warning');
-        // $alert_icon = ($results['query'] ? 'check' : 'warning');
-        // $alert_message = ($results['query'] ? $this->success_message : $this->warning_message);
-        // $this->session->set_flashdata('alert_type', $alert_type);
-        // $this->session->set_flashdata('alert_icon', $alert_icon);
-        // $this->session->set_flashdata('alert_message', $alert_message);
+        $alert_type = ($results['query'] ? 'success' : 'warning');
+        $alert_icon = ($results['query'] ? 'check' : 'warning');
+        $alert_message = ($results['query'] ? $this->success_message : $this->warning_message);
+        $this->session->set_flashdata('alert_type', $alert_type);
+        $this->session->set_flashdata('alert_icon', $alert_icon);
+        $this->session->set_flashdata('alert_message', $alert_message);
 
-        // redirect('cctv_request_log');
+        redirect('cctv_request_log');
     }
 
     private function find($id = 0)
