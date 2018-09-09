@@ -29,9 +29,7 @@ class Vehicles_forget_key_model extends CI_Model
     color,
     license_plate,
     car_state,
-    detective_name,
-    detective_department_name,
-    remark,
+    state_comment,
     status,
     (
       CASE 
