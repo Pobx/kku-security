@@ -28,3 +28,11 @@
 		</div>
 
 	</div>
+
+	<script>
+		$(document).ready(function () {
+			var cctv_event_id = '<?php echo $cctv_event_id;?>';
+			$('[name=cctv_event_id]').val(cctv_event_id);
+		});
+
+	</script>

@@ -40,9 +40,9 @@
 
 	<div class="col-sm-4">
 		<label>
-			<input type="radio" name="operation_status" class="flat-red" value="student" <?php if ($operation_status=='meet_event'
+			<input type="radio" name="operation_status" class="flat-red" value="meet_event" <?php if ($operation_status=='meet_event'
 			) { echo "checked" ;}?>>&nbsp;พบเหตุการณ์
-			<input type="radio" name="operation_status" class="flat-red" value="staff" <?php if ($operation_status=='have_not_event'
+			<input type="radio" name="operation_status" class="flat-red" value="have_not_event" <?php if ($operation_status=='have_not_event'
 			) { echo "checked" ;}?>>&nbsp;ไม่พบเหตุการณ์
 		</label>
 	</div>
