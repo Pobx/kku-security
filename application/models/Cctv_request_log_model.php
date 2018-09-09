@@ -114,12 +114,13 @@ class Cctv_request_log_model extends CI_Model
 
     public function remove($id)
     {
-        $inputs = array(
-            'rbp_id' => $id,
-            'status' => 0,
-        );
+      $inputs = array(
+      'id'      => $id,
+      'updated' => date('Y-m-d H:i:s'),
+      'status'  => 'disabled',
+    );
 
-        $results['query'] = $this->db->where($this->id, $inputs['rbp_id'])->update($this->table, $inputs);
+      $results['query'] = $this->db->where($this->id, $inputs['id'])->update($this->table, $inputs);
 
         return $results;
     }
