@@ -37,6 +37,7 @@
 			var people_type = '<?php echo $people_type;?>';
 			var owner_assets_department = '<?php echo $owner_assets_department;?>';
 			var car_state = '<?php echo $car_state;?>';
+			var state_comment = '<?php echo $state_comment;?>';
 
 			if (people_type == 'student' || people_type == 'staff') {
 				$('#div_owner_assets_department').show();
@@ -58,8 +59,15 @@
 				}
 			});
 
-			$('#div_state_comment').hide();
-			$('#car_state').val('');
+
+			if (car_state == 'other') {
+				$('#div_state_comment').show();
+				$('#state_comment').val(state_comment);
+			} else {
+				$('#div_state_comment').hide();
+				$('#car_state').val('');
+			}
+
 
 			$("#car_state").change(function () {
 
