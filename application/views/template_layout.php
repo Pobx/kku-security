@@ -1,7 +1,8 @@
-<?php 
+<?php
 $sess_userprofile = $this->session->userdata();
-if (!isset($sess_userprofile['logged']) || $sess_userprofile['logged'] == false) {
-  redirect('authen');
+if (!isset($sess_userprofile['logged']) || $sess_userprofile['logged'] == false)
+{
+    redirect('authen');
 }
 ?>
 <!DOCTYPE html>
@@ -22,11 +23,11 @@ if (!isset($sess_userprofile['logged']) || $sess_userprofile['logged'] == false)
 	<!-- DataTables -->
 	<link rel="stylesheet" href="<?php echo base_url('bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css'); ?>">
 	<!-- iCheck for checkboxes and radio inputs -->
-	<link rel="stylesheet" href="<?php echo base_url('plugins/iCheck/all.css');?>">
+	<link rel="stylesheet" href="<?php echo base_url('plugins/iCheck/all.css'); ?>">
 	<!-- bootstrap datepicker-thai -->
-	<link rel="stylesheet" href="<?php echo base_url('plugins/bootstrap-datepicker-thai/css/datepicker.css');?>">
+	<link rel="stylesheet" href="<?php echo base_url('plugins/bootstrap-datepicker-thai/css/datepicker.css'); ?>">
 	<!-- Select2 -->
-	<link rel="stylesheet" href="<?php echo base_url('bower_components/select2/dist/css/select2.min.css');?>">
+	<link rel="stylesheet" href="<?php echo base_url('bower_components/select2/dist/css/select2.min.css'); ?>">
 	<!-- Theme style -->
 	<link rel="stylesheet" href="<?php echo base_url('dist/css/AdminLTE.min.css'); ?>">
 	<!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -89,7 +90,7 @@ if (!isset($sess_userprofile['logged']) || $sess_userprofile['logged'] == false)
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 								<img src="<?php echo base_url('dist/img/avatar04.png'); ?>" class="user-image" alt="User Image">
 								<span class="hidden-xs">
-									<?php echo $sess_userprofile['name'];?></span>
+									<?php echo $sess_userprofile['name']; ?></span>
 							</a>
 							<ul class="dropdown-menu">
 								<!-- User image -->
@@ -97,7 +98,7 @@ if (!isset($sess_userprofile['logged']) || $sess_userprofile['logged'] == false)
 									<img src="<?php echo base_url('dist/img/avatar04.png'); ?>" class="img-circle" alt="User Image">
 
 									<p>
-										<?php echo $sess_userprofile['name'];?>
+										<?php echo $sess_userprofile['name']; ?>
 										<!-- <small>Member since Nov. 2012</small> -->
 									</p>
 								</li>
@@ -108,7 +109,7 @@ if (!isset($sess_userprofile['logged']) || $sess_userprofile['logged'] == false)
 								<!-- Menu Footer-->
 								<li class="user-footer">
 									<div class="pull-right">
-										<a href="<?php echo site_url('authen/logout');?>" class="btn btn-default btn-flat">ออกจากระบบ</a>
+										<a href="<?php echo site_url('authen/logout'); ?>" class="btn btn-default btn-flat">ออกจากระบบ</a>
 									</div>
 								</li>
 							</ul>
@@ -123,7 +124,7 @@ if (!isset($sess_userprofile['logged']) || $sess_userprofile['logged'] == false)
 			<section class="sidebar">
 				<div class="user-panel">
 					<div class="pull-left image">
-						<img src="<?php echo base_url('dist/img/avatar04.png');?>" class="img-circle" alt="User Image">
+						<img src="<?php echo base_url('dist/img/avatar04.png'); ?>" class="img-circle" alt="User Image">
 					</div>
 					<div class="pull-left info">
 						<p>Steve Jobs</p>
@@ -133,14 +134,15 @@ if (!isset($sess_userprofile['logged']) || $sess_userprofile['logged'] == false)
 
 				<ul class="sidebar-menu" data-widget="tree">
 					<li class="header">MAIN NAVIGATION</li>
-					<?php 
-            if ($sess_userprofile['permission'] != 'security') {
-              $this->load->view('sidebar_admin');
-            }
-          ?>
+					<?php
+if ($sess_userprofile['permission'] != 'security')
+{
+    $this->load->view('sidebar_admin');
+}
+?>
 
 					<li>
-						<a href="<?php echo site_url('authen/logout');?>"><i class="fa fa-sign-out"></i> <span class="text-red">ออกจากระบบ</span></a>
+						<a href="<?php echo site_url('authen/logout'); ?>"><i class="fa fa-sign-out"></i> <span class="text-red">ออกจากระบบ</span></a>
 					</li>
 				</ul>
 			</section>
@@ -154,14 +156,14 @@ if (!isset($sess_userprofile['logged']) || $sess_userprofile['logged'] == false)
 			<section class="content-header">
 				<h1>
 					<?php
-            $head_topic_label = (isset($head_topic_label)? $head_topic_label : '');
-            echo $head_topic_label;
-          ?>
+$head_topic_label = (isset($head_topic_label) ? $head_topic_label : '');
+echo $head_topic_label;
+?>
 					<small>
 						<?php
-              $head_sub_topic_label = (isset($head_sub_topic_label)? $head_sub_topic_label : '');
-              echo $head_sub_topic_label;
-            ?>
+$head_sub_topic_label = (isset($head_sub_topic_label) ? $head_sub_topic_label : '');
+echo $head_sub_topic_label;
+?>
 					</small>
 				</h1>
 
@@ -173,11 +175,13 @@ if (!isset($sess_userprofile['logged']) || $sess_userprofile['logged'] == false)
 
 			<!-- Main content -->
 			<section class="content">
-				<?php if ($this->session->flashdata('alert_type') !='') {?>
-				<div class="alert alert-<?php echo $this->session->flashdata('alert_type');?> alert-dismissible">
+				<?php if ($this->session->flashdata('alert_type') != '')
+{
+    ?>
+				<div class="alert alert-<?php echo $this->session->flashdata('alert_type'); ?> alert-dismissible">
 					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-					<h4><i class="icon fa fa-<?php echo $this->session->flashdata('alert_icon');?>"></i> ระบบแจ้งเตือน</h4>
-					<?php echo $this->session->flashdata('alert_message');?>
+					<h4><i class="icon fa fa-<?php echo $this->session->flashdata('alert_icon'); ?>"></i> ระบบแจ้งเตือน</h4>
+					<?php echo $this->session->flashdata('alert_message'); ?>
 				</div>
 				<?php }?>
 
@@ -202,10 +206,10 @@ else
 			<!-- <strong>Copyright &copy; 2018 <a href="#">Itechs Development Team</a>.</strong> All rights -->
 			<!-- <strong>ระบบ ร.ป.ภ มหาวิทยาลัยขอนแก่น.</strong> -->
 			<strong>
-				<?php 
-        $now_date = date('d/m'). '/'.(date('Y') + 543).' '.date('H:i:s');
-        echo 'ขณะนี้เวลา  '.$now_date;
-      ?>
+				<?php
+$now_date = date('d/m') . '/' . (date('Y') + 543) . ' ' . date('H:i:s');
+echo 'ขณะนี้เวลา  ' . $now_date;
+?>
 			</strong>
 		</footer>
 
@@ -247,34 +251,36 @@ else
 	<script src="<?php echo base_url('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js'); ?>"></script>
 
 	<!-- iCheck 1.0.1 -->
-	<script src="<?php echo base_url('plugins/iCheck/icheck.min.js');?>"></script>
+	<script src="<?php echo base_url('plugins/iCheck/icheck.min.js'); ?>"></script>
 
 	<!-- InputMask -->
-	<script src="<?php echo base_url('plugins/input-mask/jquery.inputmask.js');?>"></script>
-	<script src="<?php echo base_url('plugins/input-mask/jquery.inputmask.date.extensions.js');?>"></script>
-	<script src="<?php echo base_url('plugins/input-mask/jquery.inputmask.extensions.js');?>"></script>
+	<script src="<?php echo base_url('plugins/input-mask/jquery.inputmask.js'); ?>"></script>
+	<script src="<?php echo base_url('plugins/input-mask/jquery.inputmask.date.extensions.js'); ?>"></script>
+	<script src="<?php echo base_url('plugins/input-mask/jquery.inputmask.extensions.js'); ?>"></script>
 
 	<!-- bootstrap datepicker -->
 	<script src="<?php //echo base_url('bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js');?>"></script>
 	<!-- ChartJS -->
-	<script src="<?php echo base_url('bower_components/chart.js/Chart.js');?>"></script>
+	<script src="<?php echo base_url('bower_components/chart.js/Chart.js'); ?>"></script>
 
 	<!-- bootstrap datepicker-thai -->
-	<script src="<?php echo base_url('plugins/bootstrap-datepicker-thai/js/bootstrap-datepicker.js');?>"></script>
-	<script src="<?php echo base_url('plugins/bootstrap-datepicker-thai/js/bootstrap-datepicker-thai.js');?>"></script>
-	<script src="<?php echo base_url('plugins/bootstrap-datepicker-thai/js/locales/bootstrap-datepicker.th.js');?>"></script>
+	<script src="<?php echo base_url('plugins/bootstrap-datepicker-thai/js/bootstrap-datepicker.js'); ?>"></script>
+	<script src="<?php echo base_url('plugins/bootstrap-datepicker-thai/js/bootstrap-datepicker-thai.js'); ?>"></script>
+	<script src="<?php echo base_url('plugins/bootstrap-datepicker-thai/js/locales/bootstrap-datepicker.th.js'); ?>"></script>
 
 	<!-- Select2 -->
-	<script src="<?php echo base_url('bower_components/select2/dist/js/select2.full.min.js');?>"></script>
+	<script src="<?php echo base_url('bower_components/select2/dist/js/select2.full.min.js'); ?>"></script>
 
 	<!-- my demo -->
-	<script src="<?php echo base_url('assets/demo/dashboard_admin_donut_chart.js');?>"></script>
-	<script src="<?php echo base_url('assets/demo/dashboard_admin_bar_chart_monthly.js');?>"></script>
+	<!-- <script src="<?php //echo base_url('assets/demo/dashboard_admin_donut_chart.js'); ?>"></script> -->
+	<script src="<?php echo base_url('assets/demo/dashboard_admin_bar_chart_monthly.js'); ?>"></script>
 
 	<!-- AdminLTE App -->
 	<script src="<?php echo base_url('dist/js/adminlte.min.js'); ?>"></script>
 	<script>
 		$(function () {
+			var bar_chart_data = [];
+			bar_chart_monthly(bar_chart_data);
 			// $('.mydataTable tfoot th').each(function () {
 			// 	var title = $(this).text();
 			// 	$(this).append('<br /><input type="text" class="form-control" placeholder="ค้นหา... ' + title + '" />');

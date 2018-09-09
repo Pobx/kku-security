@@ -13,6 +13,7 @@ class Accidents extends CI_Controller
         $this->load->model('Accidents_cause_model');
 
         $this->load->library('Date_libs');
+        $this->load->library('FilterBarChartData');
     }
 
     private $head_topic_label           = 'สถิติอุบัติเหตุ';
@@ -35,13 +36,22 @@ class Accidents extends CI_Controller
         $data['link_go_to_remove'] = site_url('accidents/remove');
         $data['header_columns'] = $this->header_columns;
 
-        $qstr = array('accidents.status !=' => 'disabled');
+        $qstr = array(
+          'YEAR(accidents.accident_date)'=>date('Y'),
+          'accidents.status !=' => 'disabled'
+        );
+
         $results = $this->Accidents_model->all($qstr);
+        
+        
         $data['results'] = $results['results'];
+        
+        $data_monthly = $this->filterbarchartdata->filter($results['results'], 'accident_date');
+        
         $data['fields'] = $results['fields'];
         $data['content'] = 'accidents_table';
 
-        // echo "<pre>", print_r($data['results']); exit();
+        // echo "<pre>", print_r($data_monthly); exit();
         $this->load->view('template_layout', $data);
     }
 
