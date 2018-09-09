@@ -68,10 +68,25 @@ class Cctv_request_log extends CI_Controller
         );
 
         $inputs['link_copy_polic_doc']=$this->upload($prop);
-        $prop['txt_upload'] = $inputs['link_copy_gov_doc'];
+        
+        $prop['txt_upload'] = 'link_copy_gov_doc';
         $inputs['link_copy_gov_doc']=$this->upload($prop);
-        $prop['txt_upload'] = $inputs['link_copy_other_gov_doc'];
+
+        $prop['txt_upload'] = 'link_copy_other_gov_doc';
         $inputs['link_copy_other_gov_doc']=$this->upload($prop);
+
+        if ($inputs['link_copy_polic_doc'] =='not-file') {
+          unset($inputs['link_copy_polic_doc']);
+        }
+
+        if ($inputs['link_copy_gov_doc'] =='not-file') {
+          unset($inputs['link_copy_gov_doc']);
+        }
+
+        if ($inputs['link_copy_other_gov_doc'] =='not-file') {
+          unset($inputs['link_copy_other_gov_doc']);
+        }
+        
         $results = $this->Cctv_request_log_model->store($inputs);
 
         // $alert_type = ($results['query'] ? 'success' : 'warning');
@@ -135,8 +150,8 @@ class Cctv_request_log extends CI_Controller
               $data=$this->upload->data();
               $file_name=$data['file_name'];
           }else {
-              echo $this->upload->display_errors(); exit();
-              $file_name = '';
+              // echo $this->upload->display_errors(); exit();
+              $file_name = 'not-file';
           }
           return $file_name;
     }

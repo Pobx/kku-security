@@ -52,7 +52,7 @@
 	<label for="link_copy_polic_doc" class="col-sm-2 control-label">สำเนาบันทึกแจ้งความประจำวัน</label>
 
 	<div class="col-sm-4">
-		<input class="form-control" type="file" name="link_copy_polic_doc" id="link_copy_polic_doc" value="">
+		<input class="form-control" type="file" name="link_copy_polic_doc" id="link_copy_polic_doc">
 	</div>
 </div>
 
@@ -60,7 +60,7 @@
 	<label for="link_copy_gov_doc" class="col-sm-2 control-label">สำเนาบัตรประจำตัวนักศึกษา/สำเนาบัตรประชาชน/สำเนาบัตรข้าราชการ</label>
 
 	<div class="col-sm-4">
-		<input class="form-control" type="file" name="link_copy_gov_doc" id="link_copy_gov_doc" value="">
+		<input class="form-control" type="file" name="link_copy_gov_doc" id="link_copy_gov_doc">
 	</div>
 </div>
 
@@ -68,6 +68,6 @@
 	<label for="link_copy_other_gov_doc" class="col-sm-2 control-label">สำเนาบัตรอื่นๆ ที่หน่วยงานราชการออกให้</label>
 
 	<div class="col-sm-4">
-		<input class="form-control" type="file" name="link_copy_other_gov_doc" id="link_copy_other_gov_doc" value="">
+		<input class="form-control" type="file" name="link_copy_other_gov_doc" id="link_copy_other_gov_doc">
 	</div>
 </div>
