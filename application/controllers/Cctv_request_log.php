@@ -7,7 +7,7 @@ class Cctv_request_log extends CI_Controller
     {
         parent::__construct();
 
-        $this->load->model('Cctv_request_log');
+        $this->load->model('Cctv_request_log_model');
         $this->load->library('Date_libs');
     }
 
@@ -27,13 +27,12 @@ class Cctv_request_log extends CI_Controller
         $data['link_go_to_remove'] = site_url('cctv_request_log/remove');
         $data['header_columns'] = $this->header_columns;
 
-        $qstr = array('redbox_positions.status !=' => 0);
-        $results = $this->Redbox_model->all($qstr);
+        $qstr = array('cctv_request_log.status !=' => 'disabled');
+        $results = $this->Cctv_request_log_model->all($qstr);
         $data['results'] = $results['results'];
         $data['fields'] = $results['fields'];
         $data['content'] = 'cctv_request_log_table';
 
-        // echo "<pre>", print_r($data['results']); exit();
         $this->load->view('template_layout', $data);
     }
 
@@ -41,7 +40,7 @@ class Cctv_request_log extends CI_Controller
     {
         $id = $this->uri->segment(3);
         $data = $this->find($id);
-        $data['redbox_lists'] = $this->Redbox_model->get_redbox_postion_list();
+        $data['redbox_lists'] = $this->Cctv_request_log_model->get_redbox_postion_list();
         $data['head_topic_label'] = $this->head_topic_label;
         $data['head_sub_topic_label'] = $this->head_sub_topic_label_form;
         $data['link_back_to_table'] = site_url('cctv_request_log');
@@ -60,7 +59,7 @@ class Cctv_request_log extends CI_Controller
         $inputs['checker_id'] = 'sec001';
         // unset($inputs['cheked_redbox_date']);
         // echo "<pre>", print_r($inputs); exit();
-        $results = $this->Redbox_model->store($inputs);
+        $results = $this->Cctv_request_log_model->store($inputs);
 
         $alert_type = ($results['query'] ? 'success' : 'warning');
         $alert_icon = ($results['query'] ? 'check' : 'warning');
@@ -74,7 +73,7 @@ class Cctv_request_log extends CI_Controller
 
     private function find($id = 0)
     {
-        $results = $this->Redbox_model->find($id);
+        $results = $this->Cctv_request_log_model->find($id);
         $values = $results['results'];
         $fields = $results['fields'];
         $rows = $results['rows'];
@@ -98,7 +97,7 @@ class Cctv_request_log extends CI_Controller
     public function remove()
     {
         $id = $this->uri->segment(3);
-        $results = $this->Redbox_model->remove($id);
+        $results = $this->Cctv_request_log_model->remove($id);
 
         $alert_type = ($results['query'] ? 'danger' : 'warning');
         $alert_icon = ($results['query'] ? 'trash' : 'warning');

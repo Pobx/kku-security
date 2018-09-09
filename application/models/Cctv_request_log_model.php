@@ -1,12 +1,12 @@
 <?php
 defined('BASEPATH') || exit('No direct script access allowed');
 
-class Cctv_request_log extends CI_Model
+class Cctv_request_log_model extends CI_Model
 {
     private $table        = 'cctv_request_log';
     private $id           = 'id';
     private $items        = '
-    id,
+    cctv_request_log.id,
     DATE_FORMAT(DATE_ADD(request_date, INTERVAL 543 YEAR),"%d/%m/%Y") as request_date,
     people_type,
     people_type,
@@ -20,11 +20,11 @@ class Cctv_request_log extends CI_Model
       END
     ) AS people_type_name,
     
-    status,
+    cctv_request_log.status,
     (
       CASE
-        WHEN status = "active" THEN "ACTIVE"
-        WHEN status = "disabled" THEN "ลบรายการ"
+        WHEN cctv_request_log.status = "active" THEN "ACTIVE"
+        WHEN cctv_request_log.status = "disabled" THEN "ลบรายการ"
         ELSE ""
       END
     ) AS status_name,
