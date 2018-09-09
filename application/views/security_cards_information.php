@@ -24,6 +24,14 @@
 </div>
 
 <div class="form-group">
+	<label for="people_phone" class="col-sm-2 control-label">เบอร์โทร</label>
+
+	<div class="col-sm-4">
+		<input type="text" class="form-control" id="people_phone" name="people_phone" placeholder="เบอร์โทร" value="<?php echo $people_phone; ?>">
+	</div>
+</div>
+
+<div class="form-group">
 	<label for="people_department_name" class="col-sm-2 control-label">สังกัด</label>
 
 	<div class="col-sm-4">
