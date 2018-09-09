@@ -47,7 +47,7 @@ class Vehicles_forget_key extends CI_Controller
         $id = $this->uri->segment(3);
 
         $data = $this->find($id);
-       
+        $data['vehicles_forget_key_id'] = $id;
         $data['head_topic_label'] = $this->head_topic_label;
         $data['head_sub_topic_label'] = $this->head_sub_topic_label_form;
         $data['header_sub_topic_label_owner_assets'] = $this->header_sub_topic_label_owner_assets; 
@@ -56,12 +56,14 @@ class Vehicles_forget_key extends CI_Controller
 
         $data['link_back_to_table'] = site_url('vehicles_forget_key');
         $data['form_submit_data_url'] = site_url('vehicles_forget_key/store');
-        $data['link_go_to_detective_remove'] = site_url('vehicles_forget_key/remove_detective');
+        $data['form_submit_data_url_modal'] = site_url('vehicles_forget_key/store_detective');
+        
+        $data['link_go_to_detective_remove'] = site_url('vehicles_forget_key/remove_detective/'.$id);
 
         $qstr = array('status'=>'active');
         $vehicles_forget_key_detective = $this->Vehicles_forget_key_detective_model->all($qstr);
         $data['vehicles_forget_key_detective'] = $vehicles_forget_key_detective['results'];
-        
+
         $data['content'] = 'vehicles_forget_key_form_store';
 
         // echo "<pre>", print_r($data); exit();
@@ -137,4 +139,18 @@ class Vehicles_forget_key extends CI_Controller
       $redirect_page = 'vehicles_forget_key/form_store/';
       redirect($redirect_page.$vehicles_forget_key_id);
   }
+
+  public function store_detective() {
+    $inputs = $this->input->post();
+    $results = $this->Vehicles_forget_key_detective_model->store($inputs);
+
+    $alert_type = ($results['query'] ? 'success' : 'warning');
+    $alert_icon = ($results['query'] ? 'check' : 'warning');
+    $alert_message = ($results['query'] ? $this->success_message : $this->warning_message);
+    $this->session->set_flashdata('alert_type', $alert_type);
+    $this->session->set_flashdata('alert_icon', $alert_icon);
+    $this->session->set_flashdata('alert_message', $alert_message);
+
+    redirect('vehicles_forget_key/form_store/'.$inputs['vehicles_forget_key_id']);
+}
 }
