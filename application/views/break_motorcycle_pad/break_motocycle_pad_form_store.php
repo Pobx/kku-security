@@ -33,45 +33,39 @@
 
 	<script>
 		$(document).ready(function () {
-					var people_type = '<?php echo $people_type;?>';
-					var victim_department_name = '<?php echo $victim_department_name;?>';
+			var people_type = '<?php echo $people_type;?>';
+			var victim_department_name = '<?php echo $victim_department_name;?>';
 
-					if (people_type == 'student') {
+			if (people_type == 'student') {
+				$('#div_victim_department_name').show();
+				$('#label_victim_department_name').html('คณะ');
+				$('#victim_department_name').val(victim_department_name).attr("placeholder", "คณะ");
+			} else if (people_type == 'staff') {
+				$('#div_victim_department_name').show();
+				$('#label_victim_department_name').html('สังกัดหน่วยงาน');
+				$('#victim_department_name').val(victim_department_name).attr("placeholder", "สังกัดหน่วยงาน");
+			} else {
+				$('#div_victim_department_name').hide();
+				$('#victim_department_name').val('');
+			}
+
+			$('input[name="people_type"]').on('ifClicked', function (event) {
+				if (this.value == 'people_outside') {
+					$('#victim_department_name').val('');
+					$('#div_victim_department_name').hide();
+				} else {
+					if (this.value == 'student') {
+						console.log(this.value)
+						$('#victim_department_name').val('').attr("placeholder", "คณะ");
 						$('#label_victim_department_name').html('คณะ');
-					} else if (people_type == 'staff') {
+					} else if (this.value == 'staff') {
+						$('#victim_department_name').val('').attr("placeholder", "สังกัดหน่วยงาน");
 						$('#label_victim_department_name').html('สังกัดหน่วยงาน');
 					}
+					$('#div_victim_department_name').show();
+				}
+			});
 
-					if (people_type == 'student') {
-						$('#div_victim_department_name').show();
-						$('#label_victim_department_name').html('คณะ');
-						$('#victim_department_name').val(victim_department_name).attr("placeholder", "คณะ");
-						else if (people_type == 'staff') {
-							$('#div_victim_department_name').show();
-							$('#label_victim_department_name').html('สังกัดหน่วยงาน');
-							$('#victim_department_name').val(victim_department_name).attr("placeholder", "สังกัดหน่วยงาน");
-						} else {
-							$('#div_victim_department_name').hide();
-							$('#victim_department_name').val('');
-						}
-
-						$('input[name="people_type"]').on('ifClicked', function (event) {
-							if (this.value == 'people_outside') {
-								$('#victim_department_name').val('');
-								$('#div_victim_department_name').hide();
-							} else {
-								if (this.value == 'student') {
-									console.log(this.value)
-									$('#victim_department_name').val('').attr("placeholder", "คณะ");
-									$('#label_victim_department_name').html('คณะ');
-								} else if (this.value == 'staff') {
-									$('#victim_department_name').val('').attr("placeholder", "สังกัดหน่วยงาน");
-									$('#label_victim_department_name').html('สังกัดหน่วยงาน');
-								}
-								$('#div_victim_department_name').show();
-							}
-						});
-
-					});
+		});
 
 	</script>
