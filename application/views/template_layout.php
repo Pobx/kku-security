@@ -186,7 +186,7 @@ echo $head_sub_topic_label;
 				<?php }?>
 
 				<?php
-        $bar_chart_data = (isset($bar_chart_data)? $bar_chart_data : array());
+        $bar_chart_data = (isset($bar_chart_data)? $bar_chart_data : json_encode(array()));
 if (isset($content))
 {
     $this->load->view($content);
@@ -281,9 +281,13 @@ echo 'ขณะนี้เวลา  ' . $now_date;
 	<script>
 		$(function () {
 			var bar_chart_data = '<?php echo $bar_chart_data;?>';
-			console.log(bar_chart_data);
 
-			bar_chart_monthly(bar_chart_data);
+			bar_chart_data = JSON.parse(bar_chart_data);
+			// console.log(bar_chart_data)
+			if (bar_chart_data.length > 0) {
+				bar_chart_monthly(bar_chart_data);
+			}
+
 			// $('.mydataTable tfoot th').each(function () {
 			// 	var title = $(this).text();
 			// 	$(this).append('<br /><input type="text" class="form-control" placeholder="ค้นหา... ' + title + '" />');

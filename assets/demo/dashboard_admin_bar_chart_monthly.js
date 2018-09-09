@@ -1,7 +1,7 @@
 //-------------
 //- BAR CHART -
 //-------------
-function bar_chart_monthly(data) {
+function bar_chart_monthly(bar_chart_data) {
   var areaChartData = {
     labels: ['มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน', 'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'],
     datasets: [{
@@ -13,7 +13,7 @@ function bar_chart_monthly(data) {
         pointHighlightFill: '#fff',
         pointHighlightStroke: 'rgba(220,220,220,1)',
         // data: [65, 59, 80, 81, 56, 55, 40, 32, 59, 34, 90, 10],
-        data: data,
+        data: bar_chart_data,
       },
     ],
   }

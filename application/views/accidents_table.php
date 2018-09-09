@@ -1,5 +1,4 @@
 <section class="content">
-	<?php $this->load->view('dashboard_admin_bar_chart_monthly');?>
 	<div class="box box-primary">
 		<div class="box-header with-border">
 			<h3 class="box-title">
@@ -126,3 +125,4 @@
 		<div class="box-footer">
 		</div>
 	</div>
+	<?php $this->load->view('dashboard_admin_bar_chart_monthly');?>
