@@ -16,15 +16,18 @@
 
 <li>
 	<a href="<?php echo site_url('break_homes_motorcycle_pad_theive');?>"><i class="fa fa-home"></i>
-	 	<span>- ลักทรัพย์ที่พักอาศัย<br>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- งัดเบาะรถจักยานยนต์<br>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- วิ่งราวลักทรัพย์
+		<span>- ลักทรัพย์ที่พักอาศัย<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- งัดเบาะรถจักยานยนต์<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- วิ่งราวลักทรัพย์
 		</span></a>
 </li>
 
 <!-- <li>
 	<a href="<php echo site_url('break_motorcycle_pad');?>"><i class="fa fa-motorcycle"></i> <span>สถิติงัดเบาะรถจักยานยนต์</span></a>
 </li> -->
+<li>
+	<a href="<?php echo site_url('cctv_request_log');?>"><i class="fa fa-camera"></i> <span>สถิติขอความอนุเคราะห์<br />ดูภาพเหตุการณ์</span></a>
+</li>
 <li>
 	<a href="<?php echo site_url('red_box');?>"><i class="fa fa-inbox"></i> <span>สถิติกล่องแดง</span></a>
 </li>

@@ -10,6 +10,7 @@ class Vehicles_forget_key_detective_model extends CI_Model
     id,
     vehicles_forget_key_id,
     name,
+    department_name,
     remark,
     status,
     (
