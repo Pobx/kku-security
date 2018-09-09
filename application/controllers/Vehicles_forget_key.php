@@ -14,6 +14,9 @@ class Vehicles_forget_key extends CI_Controller
     private $head_topic_label           = 'สถิติการลืมกุญแจ';
     private $head_sub_topic_label_table = 'รายการ สถิติการลืมกุญแจ';
     private $head_sub_topic_label_form  = 'ฟอร์มบันทึกข้อมูล สถิติการลืมกุญแจ';
+    private $header_sub_topic_label_owner_assets = 'ข้อมูลเจ้าของทรัพย์สิน';
+    private $header_sub_topic_label_detective = 'ข้อมูลผู้ตรวจพบ';
+    
     private $header_columns             = array('วันที่', 'ชื่อ - สกุล', 'สังกัดหน่วยงาน', 'อายุ(ปี)', 'เบอร์ติดต่อ', 'สถานที่ลืมกุญแจ', 'สถานะ', 'แก้ไข', 'ลบ');
     private $success_message            = 'บันทึกข้อมูลสำเร็จ';
     private $warning_message            = 'ไม่สามารถทำรายการ กรุณลองใหม่อีกครั้ง';
@@ -45,6 +48,9 @@ class Vehicles_forget_key extends CI_Controller
        
         $data['head_topic_label'] = $this->head_topic_label;
         $data['head_sub_topic_label'] = $this->head_sub_topic_label_form;
+        $data['header_sub_topic_label_owner_assets'] = $this->header_sub_topic_label_owner_assets; 
+        $data['header_sub_topic_label_detective'] = $this->header_sub_topic_label_detective;
+        
         $data['link_back_to_table'] = site_url('vehicles_forget_key');
         $data['form_submit_data_url'] = site_url('vehicles_forget_key/store');
 

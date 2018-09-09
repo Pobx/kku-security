@@ -1,7 +1,3 @@
-<p>
-	<strong>ข้อมูลเจ้าของทรัพย์สิน</strong>
-</p>
-
 <?php $this->load->view('period_times');?>
 
 <div class="form-group">
