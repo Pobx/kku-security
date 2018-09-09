@@ -9,42 +9,56 @@
 	</div>
 </div>
 
+<?php $this->load->view('people_type');?>
+
 <div class="form-group">
-	<label for="victim_address" class="col-sm-2 control-label">สถานะ</label>
-
+	<label class="col-sm-2 control-label">เหตุการณ์</label>
 	<div class="col-sm-4">
-		<div class="form-group">
-			<div class="radio">
-				<label>
-					<input type="radio" name="status" id="status1" class="flat-red" value="1" checked="checked">
-					ปกติ
-				</label>
-			</div>
-			<div class="radio">
-				<label>
-					<input type="radio" name="status" id="status2" class="flat-red" value="2">
-					ไม่ปกติ
-				</label>
-			</div>
+		<select class="form-control select2" name="cctv_event_id" id="cctv_event_id">
+			<option>เลือก</option>
+			<?php foreach ($results_cctv_event as $key => $value) {?>
+			<option value="<?php echo $value['id'];?>">
+				<?php echo $value['name'];?>
+			</option>
+			<?php }?>
+		</select>
 
-		</div>
 	</div>
 </div>
 
-
-
 <div class="form-group">
-	<label for="remark" class="col-sm-2 control-label">หมายเหตุ</label>
+	<label for="victim_address" class="col-sm-2 control-label">ผลการดำเนินการ</label>
 
 	<div class="col-sm-4">
-		<textarea class="form-control" id="comment" name="comment"></textarea>
+		<label>
+			<input type="radio" name="operation_status" class="flat-red" value="student" <?php if ($operation_status=='meet_event'
+			) { echo "checked" ;}?>>&nbsp;พบเหตุการณ์
+			<input type="radio" name="operation_status" class="flat-red" value="staff" <?php if ($operation_status=='have_not_event'
+			) { echo "checked" ;}?>>&nbsp;ไม่พบเหตุการณ์
+		</label>
 	</div>
 </div>
 
+<div class="form-group">
+	<label for="link_copy_polic_doc" class="col-sm-2 control-label">สำเนาบันทึกแจ้งความประจำวัน</label>
 
-<script>
-	$(document).ready(function () {
-		$("#e1").select2();
-	});
+	<div class="col-sm-4">
+		<input class="form-control" type="file" name="link_copy_polic_doc" id="link_copy_polic_doc">
+	</div>
+</div>
 
-</script>
+<div class="form-group">
+	<label for="link_copy_gov_doc" class="col-sm-2 control-label">สำเนาบัตรประจำตัวนักศึกษา/สำเนาบัตรประชาชน/สำเนาบัตรข้าราชการ</label>
+
+	<div class="col-sm-4">
+		<input class="form-control" type="file" name="link_copy_gov_doc" id="link_copy_gov_doc">
+	</div>
+</div>
+
+<div class="form-group">
+	<label for="link_copy_other_gov_doc" class="col-sm-2 control-label">สำเนาบัตรอื่นๆ ที่หน่วยงานราชการออกให้</label>
+
+	<div class="col-sm-4">
+		<input class="form-control" type="file" name="link_copy_other_gov_doc" id="link_copy_other_gov_doc">
+	</div>
+</div>

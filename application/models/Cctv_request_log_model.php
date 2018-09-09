@@ -7,6 +7,22 @@ class Cctv_request_log_model extends CI_Model
     private $id           = 'id';
     private $items        = '
     cctv_request_log.id,
+    gender,
+    (
+      CASE
+        WHEN cctv_request_log.gender = "male" THEN "ชาย"
+        WHEN cctv_request_log.gender = "female" THEN "หญิง"
+        ELSE ""
+      END
+    ) AS gender_name,
+    operation_status,
+    (
+      CASE
+        WHEN cctv_request_log.operation_status = "meet_event" THEN "พบเหตุการณ์"
+        WHEN cctv_request_log.operation_status = "have_not_event" THEN "ไม่พบเหตุการณ์"
+        ELSE ""
+      END
+    ) AS operation_status_name,
     DATE_FORMAT(DATE_ADD(request_date, INTERVAL 543 YEAR),"%d/%m/%Y") as request_date,
     link_copy_polic_doc,
     link_copy_gov_doc,
@@ -41,6 +57,8 @@ class Cctv_request_log_model extends CI_Model
     link_copy_polic_doc,
     link_copy_gov_doc,
     link_copy_other_gov_doc,
+    gender,
+    operation_status,
     ';
 
     public function all($qstr = '')
