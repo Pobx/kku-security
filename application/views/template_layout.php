@@ -186,6 +186,7 @@ echo $head_sub_topic_label;
 				<?php }?>
 
 				<?php
+        $bar_chart_data = (isset($bar_chart_data)? $bar_chart_data : array());
 if (isset($content))
 {
     $this->load->view($content);
@@ -279,7 +280,9 @@ echo 'ขณะนี้เวลา  ' . $now_date;
 	<script src="<?php echo base_url('dist/js/adminlte.min.js'); ?>"></script>
 	<script>
 		$(function () {
-			var bar_chart_data = [];
+			var bar_chart_data = '<?php echo $bar_chart_data;?>';
+			console.log(bar_chart_data);
+
 			bar_chart_monthly(bar_chart_data);
 			// $('.mydataTable tfoot th').each(function () {
 			// 	var title = $(this).text();

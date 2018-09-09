@@ -19,10 +19,10 @@ class FilterBarChartData
           }
         });
 
-        array_push($results, count($months));
+        array_push($results, (int)count($months));
       }
 
-      return $results;
+      return json_encode($results);
     }
 
 }

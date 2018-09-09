@@ -46,7 +46,7 @@ class Accidents extends CI_Controller
         
         $data['results'] = $results['results'];
         
-        $data_monthly = $this->filterbarchartdata->filter($results['results'], 'accident_date');
+        $data['bar_chart_data'] = $this->filterbarchartdata->filter($results['results'], 'accident_date');
         
         $data['fields'] = $results['fields'];
         $data['content'] = 'accidents_table';
