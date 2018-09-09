@@ -10,7 +10,7 @@
 			</div>
 			<div class="modal-body">
 				<?php 
-          $this->load->view('header_form_submit_data');
+          $this->load->view('header_form_submit_data_modal');
           $this->load->view('accidents_peoples_information_form_store');
           $this->load->view('accidents_vehicles_information_form_store');
         ?>

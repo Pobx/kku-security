@@ -16,7 +16,7 @@
 			<div class="box-body">
 				<?php 
           $this->load->view('vehicles_forget_key_owner_assets_information');
-          $this->load->view('vehicles_forget_key_detective_information');
+          //$this->load->view('vehicles_forget_key_detective_information');
         ?>
 
 			</div>
@@ -48,19 +48,18 @@
 				}
 			});
 
-			$('#div_car_state').hide();
+			$('#div_state_comment').hide();
 			$('#car_state').val('');
-			$("#ddl_car_state").change(function () {
+			$("#car_state").change(function () {
 
-				if ($('#ddl_car_state').val() == 'other') {
-					$('#car_state').val('');
-					$('#div_car_state').show();
+				if ($('#car_state').val() == 'other') {
+					$('#state_comment').val('');
+					$('#div_state_comment').show();
 				} else {
-					$('#div_car_state').hide();
-					$('#car_state').val('');
+					$('#div_state_comment').hide();
+					$('#state_comment').val('');
 				}
 
-				// console.log($('#ddl_car_state').val());
 			})
 		})
 

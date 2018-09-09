@@ -106,19 +106,19 @@
 <div class="form-group">
 	<label class="col-sm-2 control-label">สภาพรถ</label>
 	<div class="col-sm-4">
-		<select class="form-control select2" id="ddl_car_state">
+		<select class="form-control select2" id="car_state" name="car_state">
 			<option selected="selected">เลือก</option>
-			<option value="new">ใหม่</option>
-			<option value="old">เก่า</option>
-			<option value="other">อื่นๆ</option>
+			<option value="new" <?php if ($car_state=='new' ){ echo 'selected' ; }?>>ใหม่</option>
+			<option value="old" <?php if ($car_state=='old' ){ echo 'selected' ; }?>>เก่า</option>
+			<option value="other" <?php if ($car_state=='other' ){ echo 'selected' ; }?>>อื่นๆ</option>
 		</select>
 	</div>
 </div>
 
-<div class="form-group" id="div_car_state">
-	<label for="car_state" class="col-sm-2 control-label">สภาพรถ(อื่นๆ)</label>
+<div class="form-group" id="div_state_comment">
+	<label for="state_comment" class="col-sm-2 control-label">สภาพรถ(อื่นๆ)</label>
 
 	<div class="col-sm-4">
-		<input type="text" class="form-control" id="car_state" name="car_state" placeholder="สภาพรถ" value="<?php echo $car_state; ?>">
+		<input type="text" class="form-control" id="state_comment" name="state_comment" placeholder="สภาพรถ" value="<?php echo $state_comment; ?>">
 	</div>
 </div>
