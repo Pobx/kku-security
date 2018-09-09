@@ -11,12 +11,13 @@ class Security_cards_model extends CI_Model
     people_name,
     people_position,
     people_department_name,
+    people_phone,
     car_province,
     car_brand,
     car_color,
     car_license_plate,
-    issue_date,
-    expire_date
+    DATE_FORMAT(DATE_ADD(issue_date, INTERVAL 543 YEAR),"%d/%m/%Y") as issue_date,
+    DATE_FORMAT(DATE_ADD(expire_date, INTERVAL 543 YEAR),"%d/%m/%Y") as expire_date,
     status,
     (
       CASE
