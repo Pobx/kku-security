@@ -95,8 +95,8 @@ class Cctv_request_log_model extends CI_Model
 
     public function store($inputs)
     {
-        // echo "<pre>", print_r($inputs); exit();
-        if ($inputs['rbp_id'] != '')
+        echo "<pre>", print_r($inputs); exit();
+        if ($inputs['id'] != '')
         {
             $inputs['updated'] = date('Y-m-d H:i:s');
             $results['query'] = $this->db->where($this->id, $inputs['id'])->update($this->table, $inputs);

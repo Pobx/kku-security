@@ -60,21 +60,28 @@ class Cctv_request_log extends CI_Controller
     public function store()
     {
         $inputs = $this->input->post();
-        $d = strtotime('now');
-        $inputs['checked_datetime'] = date('Y-m-d H:i:s', $d);
-        $inputs['checker_id'] = 'sec001';
-        // unset($inputs['cheked_redbox_date']);
-        // echo "<pre>", print_r($inputs); exit();
+        $inputs['request_date'] = $this->date_libs->set_date_th($inputs['request_date']);
+        $prop=array(
+          'upload_path'=>'./assets/files/'
+          , 'allowed_types'=>'*'
+          , 'txt_upload'=>'link_copy_polic_doc'
+        );
+
+        $inputs['link_copy_polic_doc']=$this->upload($prop);
+        $prop['txt_upload'] = $inputs['link_copy_gov_doc'];
+        $inputs['link_copy_gov_doc']=$this->upload($prop);
+        $prop['txt_upload'] = $inputs['link_copy_other_gov_doc'];
+        $inputs['link_copy_other_gov_doc']=$this->upload($prop);
         $results = $this->Cctv_request_log_model->store($inputs);
 
-        $alert_type = ($results['query'] ? 'success' : 'warning');
-        $alert_icon = ($results['query'] ? 'check' : 'warning');
-        $alert_message = ($results['query'] ? $this->success_message : $this->warning_message);
-        $this->session->set_flashdata('alert_type', $alert_type);
-        $this->session->set_flashdata('alert_icon', $alert_icon);
-        $this->session->set_flashdata('alert_message', $alert_message);
+        // $alert_type = ($results['query'] ? 'success' : 'warning');
+        // $alert_icon = ($results['query'] ? 'check' : 'warning');
+        // $alert_message = ($results['query'] ? $this->success_message : $this->warning_message);
+        // $this->session->set_flashdata('alert_type', $alert_type);
+        // $this->session->set_flashdata('alert_icon', $alert_icon);
+        // $this->session->set_flashdata('alert_message', $alert_message);
 
-        redirect('cctv_request_log');
+        // redirect('cctv_request_log');
     }
 
     private function find($id = 0)
@@ -113,5 +120,24 @@ class Cctv_request_log extends CI_Controller
         $this->session->set_flashdata('alert_message', $alert_message);
 
         redirect('cctv_request_log');
+    }
+
+    private function upload($prop)
+    {
+      $config['upload_path']=$prop['upload_path'];
+          $config['allowed_types']=$prop['allowed_types'];
+          $config['file_name']=date("YmdHis");
+  
+          $this->load->library('upload');
+          $this->upload->initialize($config);
+  
+          if ($this->upload->do_upload($prop['txt_upload'])) {
+              $data=$this->upload->data();
+              $file_name=$data['file_name'];
+          }else {
+              echo $this->upload->display_errors(); exit();
+              $file_name = '';
+          }
+          return $file_name;
     }
 }

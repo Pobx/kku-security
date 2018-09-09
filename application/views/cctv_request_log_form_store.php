@@ -9,7 +9,8 @@
 		<div class="box-body">
 
 			<!-- <form class="form-horizontal form_submit_data"> -->
-			<?php $this->load->view('header_form_submit_data');?>
+			<?php $this->load->view('header_form_submit_data_multipart');?>
+
 
 			<div class="box-body">
 				<?php
