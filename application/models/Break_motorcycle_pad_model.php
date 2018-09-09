@@ -9,6 +9,14 @@ class Break_motorcycle_pad_model extends CI_Model
     private $items = '
     id,	
     period_time,
+    (
+      CASE 
+        WHEN period_time = "morning" THEN "เช้า"
+        WHEN period_time = "afternoon" THEN "บ่าย"
+        WHEN period_time = "night" THEN "ดึก"
+        ELSE ""
+      END
+    ) AS period_time_name,
     date_break,
     DATE_FORMAT(DATE_ADD(DATE(date_break), INTERVAL 543 YEAR),"%d/%m/%Y") as date_break_only,
     TIME(date_break) as date_break_time_only,

@@ -41,6 +41,9 @@
     ?>
 					<tr>
 						<td class="text-center">
+							<?php echo $value['period_time_name'];?>
+						</td>
+						<td class="text-center">
 							<?php echo $value['date_break'];?>
 						</td>
 						<td class="text-center">
