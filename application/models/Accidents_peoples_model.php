@@ -29,6 +29,7 @@ class Accidents_peoples_model extends CI_Model
     (
       CASE 
         WHEN people_type = "officer" THEN "บุคลากร"
+        WHEN people_type = "staff" THEN "บุคลากร"
         WHEN people_type = "student" THEN "นักศึกษา"
         WHEN people_type = "people_inside" THEN "บุคคลภายใน"
         ELSE ""
