@@ -9,7 +9,6 @@ class Vehicles_forget_key_detective_model extends CI_Model
     private $items = '
     id,
     vehicles_forget_key_id,
-    people_type,
     name,
     remark,
     status,

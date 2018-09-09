@@ -37,44 +37,23 @@
 					</tr>
 				</thead>
 				<tbody>
-					<?php foreach ($accident_participate as $key => $value)
+					<?php foreach ($vehicles_forget_key_detective as $key => $value)
 {
     ?>
 					<tr>
 						<td class="text-center">
-							<?php echo $value['victim_type_name']; ?>
+							<?php echo $value['name']; ?>
 						</td>
 
 						<td class="text-center">
-							<?php echo $value['people_type_name']; ?>
+							<?php echo $value['department_name']; ?>
 						</td>
 						<td class="text-center">
-							<?php echo $value['injury_type_name']; ?>
-						</td>
-						<td class="text-center">
-							<?php echo $value['people_name']; ?>
-						</td>
-						<td class="text-center">
-							<?php echo $value['people_department_name']; ?>
-						</td>
-						<td class="text-center">
-							<?php echo $value['car_type_name']; ?>
-						</td>
-						<td class="text-center">
-							<?php echo $value['car_color']; ?>
-						</td>
-						<td class="text-center">
-							<?php echo $value['car_license_plate']; ?>
-						</td>
-						<td class="text-center">
-							<?php echo $value['car_brand']; ?>
-						</td>
-						<td class="text-center">
-							<?php echo $value['car_model']; ?>
+							<?php echo $value['remark']; ?>
 						</td>
 
 						<td class="text-center">
-							<a href="javascript:removeItem('<?php echo $value['id']; ?>', '<?php echo $link_go_to_participate_remove; ?>', 'main_form')"
+							<a href="javascript:removeItem('<?php echo $value['id']; ?>', '<?php echo $link_go_to_detective_remove; ?>', 'main_form')"
 							class="btn btn-danger">
 								<i class="fa fa-trash-o"></i>
 							</a>
