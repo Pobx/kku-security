@@ -16,9 +16,14 @@ class Student_do_not_wear_helmet_model extends CI_Model
     id_card,
     department_name,
     model,
+    man_type,
+    period_time,
     brand,
     color,
+    student_faculty,
     license_plate,
+    officer_office,
+    officer_card_id,
     status,
     (
       CASE 

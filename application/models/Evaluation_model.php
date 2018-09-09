@@ -10,8 +10,6 @@ class Evaluation_model extends CI_Model {
         $this->load->model('Faculty_model');
         $this->load->model('Personals_model'); 
         $this->load->model('Eval_service_model');
-     // $this->load->library('FilterVehicles');
-       // $this->load->library('FilterPeoples');
     }
 
   private $table='evaluations';
@@ -58,9 +56,9 @@ class Evaluation_model extends CI_Model {
                       ->from($this->table)
                       ->join($this->table3, $this->table.'.department_id = '.$this->table3.'.id')
                       ->join($this->table4, $this->table.'.	posonal_id = '.$this->table4.'.id')
-
                       ->get();
-     //print_r($query->result_array());die();
+
+                      
     $results['results'] = $query->result_array();
     $results['rows'] = $query->num_rows();
     $results['fields'] = $query->list_fields();
@@ -69,23 +67,18 @@ class Evaluation_model extends CI_Model {
   }
 
   public function find($id) {
-    $query = $this->db->select("evaluations.* ,eval_service.service_id")
+    $query = $this->db->select($this->items)
                       ->from($this->table)
-                      ->join($this->table5,$this->table.'.id='.$this->table5.'.eval_id', 'left')
                       ->where($this->table.'.id', $id)->get();
-
-    $query2 = $this->db->select($this->table5.'.service_id')
+    $query2 = $this->db->select("eval_service.service_id")
                       ->from($this->table5)
                       ->where($this->table5.'.eval_id', $id)->get();
-                      
+                 
     $results['rows'] = $query->num_rows();
-    $results['results'] = $query->result_array();
+    $results['results'] = $query->first_row();
     $results['fields'] = $query->list_fields();
     $results['service'] = $query2->result_array();
-    echo "<pre>";
-     print_r($query);
-     
-     die();
+
 
     return $results;
   }

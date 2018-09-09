@@ -10,9 +10,7 @@
 
 			<!-- <form class="form-horizontal form_submit_data"> -->
 			<?php $this->load->view('header_form_submit_data');?>
-			<div class="box-header">
-				<?php $this->load->view('button_save_and_back_page_in_form');?>
-			</div>
+			
 			<div class="box-body">
 				<?php
           $this->load->view('student_do_not_wear_helmet_student_information');

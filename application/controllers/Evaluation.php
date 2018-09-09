@@ -69,7 +69,7 @@ class Evaluation extends CI_Controller
     public function store() {
       $inptus = $this->input->post();
     //  $inptus['eval_date'] = $this->date_libs->set_date_th($inptus['eval_date']);
-     echo "<pre>", print_r($inptus); exit();
+     //echo "<pre>", print_r($inptus); exit();
       $results = $this->Evaluation_model->store($inptus);
 
       $alert_type = ($results['query']? 'success' : 'warning');
@@ -85,18 +85,19 @@ class Evaluation extends CI_Controller
     private function find($id = 0) {
       $results = $this->Evaluation_model->find($id);
       $values = $results['results'];
+      $service = $results['service'];
       $fields = $results['fields'];
       $rows = $results['rows'];
       $data = array();
-      
+
       foreach ($fields as $key => $value) {
         if ($rows <= 0) {
           $data[$value] = '';
         } else {
           $data[$value] = $values->$value;
         }
-      }
-
+      }  
+      
       return $data;
     }
     

@@ -1,38 +1,19 @@
 <?php
 defined('BASEPATH') || exit('No direct script access allowed');
 
-class Vehicles_forget_key_model extends CI_Model
+class Vehicles_forget_key_detective_model extends CI_Model
 {
 
-    private $table = 'vehicles_forget_key';
+    private $table = 'vehicles_forget_key_detective';
     private $id    = 'id';
     private $items = '
     id,
-    period_time,
-    people_type,
-    DATE_FORMAT(DATE_ADD(date_forget_key, INTERVAL 543 YEAR),"%d/%m/%Y") as date_forget_key,
-    owner_assets_name,
-    owner_assets_department,
-    owner_assets_age,
-    owner_assets_phone,
-    owner_assets_forget_key_place,
-    car_type,
-    (
-      CASE 
-        WHEN car_type = "car" THEN "รถยนต์"
-        WHEN car_type = "motorcycle" THEN "รถจักรยานยนต์"
-        ELSE ""
-      END
-    ) AS car_type_name,
-    model,
-    brand,
-    color,
-    license_plate,
-    car_state,
-    state_comment,
+    vehicles_forget_key_id,
+    name,
+    remark,
     status,
     (
-      CASE 
+      CASE
         WHEN status = "active" THEN "ACTIVE"
         WHEN status = "disabled" THEN "ลบรายการ"
         ELSE ""

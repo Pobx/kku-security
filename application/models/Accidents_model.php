@@ -16,7 +16,26 @@ class Accidents_model extends CI_Model
     private $table = 'accidents';
     private $id    = 'id';
     private $items = '
-    id,
+    accidents.id,
+    period_time,
+    DATE_FORMAT(DATE_ADD(accident_date, INTERVAL 543 YEAR),"%d/%m/%Y") as accident_date,
+    (
+      CASE 
+        WHEN period_time = "morning" THEN "เช้า"
+        WHEN period_time = "afternoon" THEN "บ่าย"
+        WHEN period_time = "night" THEN "ดึก"
+        ELSE ""
+      END
+    ) AS period_time_name,
+    place,
+    accident_place.name as accident_place_name,
+    accident_cause,
+    accident_cause.name as accident_cause_name,
+    accidents.status
+    ';
+
+    private $items2 = '
+    accidents.id,
     period_time,
     DATE_FORMAT(DATE_ADD(accident_date, INTERVAL 543 YEAR),"%d/%m/%Y") as accident_date,
     (
@@ -29,7 +48,7 @@ class Accidents_model extends CI_Model
     ) AS period_time_name,
     place,
     accident_cause,
-    status
+    accidents.status
     ';
 
     public function all($qstr = '')
@@ -39,7 +58,11 @@ class Accidents_model extends CI_Model
             $this->db->where($qstr);
         }
 
-        $query = $this->db->select($this->items)->from($this->table)->get();
+        $query = $this->db->select($this->items)
+        ->from($this->table)
+        ->join('accident_place', 'accident_place.id = accidents.place')
+        ->join('accident_cause', 'accident_cause.id = accidents.accident_cause')
+        ->get();
 
         $results['results'] = $query->result_array();
         $results['rows'] = $query->num_rows();
@@ -69,7 +92,7 @@ class Accidents_model extends CI_Model
 
     public function find($id)
     {
-        $query = $this->db->select($this->items)->from($this->table)->where('id', $id)->get();
+        $query = $this->db->select($this->items2)->from($this->table)->where('id', $id)->get();
 
         $results['rows'] = $query->num_rows();
         $results['results'] = $query->first_row();

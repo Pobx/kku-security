@@ -90,12 +90,11 @@ class Redbox_model extends CI_Model
     public function remove($id)
     {
         $inputs = array(
-            'id'      => $id,
-            'updated' => date('Y-m-d H:i:s'),
-            'status'  => 'disabled',
+            'rbp_id'      => $id,
+            'status'  => 0,
         );
 
-        $results['query'] = $this->db->where($this->id, $inputs['id'])->update($this->table, $inputs);
+        $results['query'] = $this->db->where($this->id, $inputs['rbp_id'])->update($this->table, $inputs);
 
         return $results;
     }

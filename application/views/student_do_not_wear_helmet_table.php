@@ -1,3 +1,4 @@
+<?php $this->load->view('dashboard_admin_bar_chart_monthly');?>
 <section class="content">
 	<div class="box box-primary">
 		<div class="box-header with-border">
@@ -47,25 +48,62 @@
 							<?php echo $value['place']; ?>
 						</td>
 						<td class="text-center">
+							<?php 
+								if($value['man_type'] == "student"){
+									echo "นักศึกษา";
+								}else if($value['man_type'] == "officer"){
+									echo "บุคลาการมหาวิทยาลัย";
+								}else if($value['man_type'] == "external_person"){
+									echo "บุคคลภายนอก";
+								}   
+							?>
+						</td>
+						<td class="text-center">
 							<?php echo $value['student_name']; ?>
 						</td>
 						<td class="text-center">
-							<?php echo $value['student_code']; ?>
+							<?php 
+								if($value['man_type'] == "student"){
+									echo $value['student_code'];
+								}else if($value['man_type'] == "officer"){
+									echo $value['officer_card_id'];
+								}else if($value['man_type'] == "external_person"){
+									echo $value['ex_person_card_id'];
+								}   
+							?>
+						
 						</td>
 						<td class="text-center">
-							<?php echo $value['id_card']; ?>
+							<?php 
+								if($value['period_time'] == "morning"){
+									echo "เช้า";
+								}else{
+									echo "บ่าย";
+								} 
+							?>
 						</td>
+
 						<td>
-							<?php echo $value['department_name']; ?>
+							<?php 
+								$user_address ="";
+								if($value['man_type'] == "student"){
+									$user_address = $value['student_faculty'];
+								}else if($value['man_type'] == "officer"){
+									$user_address = $value['officer_office'];
+								}else if($value['man_type'] == "external_person"){
+									$user_address = $value['ex_person_address'];
+								}
+								echo $user_address; 
+							?>
 						</td>
 
 						<td>
 							<?php echo $value['car_body']; ?>
 						</td>
 
-						<td class="text-center">
-							<?php echo $value['status_name']; ?>
-						</td>
+						<!-- <td class="text-center">
+							<php echo $value['status_name']; ?>
+						</td> -->
 						<td class="text-center">
 							<a href="<?php echo $link_go_to_form . '/' . $value['id']; ?>" class="btn btn-warning">
 								<i class="fa fa-pencil"></i>
@@ -80,15 +118,7 @@
 					</tr>
 					<?php }?>
 				</tbody>
-				<tfoot>
-					<?php foreach ($header_columns as $key => $value)
-{
-    ?>
-					<th class="text-center">
-						<?php echo $value; ?>
-					</th>
-					<?php }?>
-				</tfoot>
+				
 			</table>
 		</div>
 
@@ -96,4 +126,4 @@
 		</div>
 	</div>
 
-	<?php $this->load->view('dashboard_admin_bar_chart_monthly');?>
+

@@ -48,7 +48,7 @@
 								<?php echo $value['period_time_name']; ?>
 							</td>
 							<td class="text-center">
-								<?php echo $value['place']; ?>
+								<?php echo $value['accident_place_name']; ?>
 							</td>
 							<td class="text-center">
 								<?php echo $value['count_car']; ?>
@@ -64,7 +64,7 @@
                 ?>
 							</td>
 							<td class="text-center">
-								<?php echo $value['accident_cause']; ?>
+								<?php echo $value['accident_cause_name']; ?>
 							</td>
 							<td class="text-center">
 								<?php echo $value['count_injury']; ?>
