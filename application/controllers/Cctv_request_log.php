@@ -8,6 +8,8 @@ class Cctv_request_log extends CI_Controller
         parent::__construct();
 
         $this->load->model('Cctv_request_log_model');
+        $this->load->model('Cctv_events_model');
+        
         $this->load->library('Date_libs');
     }
 
@@ -40,12 +42,16 @@ class Cctv_request_log extends CI_Controller
     {
         $id = $this->uri->segment(3);
         $data = $this->find($id);
-        $data['redbox_lists'] = $this->Cctv_request_log_model->get_redbox_postion_list();
+        
         $data['head_topic_label'] = $this->head_topic_label;
         $data['head_sub_topic_label'] = $this->head_sub_topic_label_form;
         $data['link_back_to_table'] = site_url('cctv_request_log');
         $data['form_submit_data_url'] = site_url('cctv_request_log/store');
 
+        $qstr = array('status'=>'active');
+        $results_cctv_event = $this->Cctv_events_model->all($qstr);
+        $data['results_cctv_event'] = $results_cctv_event['results'];
+        
         $data['content'] = 'cctv_request_log_form_store';
 
         $this->load->view('template_layout', $data);

@@ -8,7 +8,9 @@ class Cctv_request_log_model extends CI_Model
     private $items        = '
     cctv_request_log.id,
     DATE_FORMAT(DATE_ADD(request_date, INTERVAL 543 YEAR),"%d/%m/%Y") as request_date,
-    people_type,
+    link_copy_polic_doc,
+    link_copy_gov_doc,
+    link_copy_other_gov_doc,
     people_type,
     (
       CASE 
@@ -29,6 +31,16 @@ class Cctv_request_log_model extends CI_Model
       END
     ) AS status_name,
     cctv_events.name AS cctv_event_name
+    ';
+
+    private $items2        = '
+    id,
+    DATE_FORMAT(DATE_ADD(request_date, INTERVAL 543 YEAR),"%d/%m/%Y") as request_date,
+    people_type,
+    cctv_event_id,
+    link_copy_polic_doc,
+    link_copy_gov_doc,
+    link_copy_other_gov_doc,
     ';
 
     public function all($qstr = '')
@@ -53,23 +65,13 @@ class Cctv_request_log_model extends CI_Model
 
     public function find($id)
     {
-        $query = $this->db->select($this->items)->from($this->table)->where('rbp_id', $id)->get();
+        $query = $this->db->select($this->items2)->from($this->table)->where('id', $id)->get();
 
         $results['rows'] = $query->num_rows();
         $results['results'] = $query->first_row();
         $results['fields'] = $query->list_fields();
         $results['result'] = $query->result();
 
-        return $results;
-    }
-
-    public function get_redbox_postion_list()
-    {
-        $query = $this->db->select($this->redbox_lists)->from($this->redbox_table)->get();
-        $results['rows'] = $query->num_rows();
-        $results['results'] = $query->first_row();
-        $results['fields'] = $query->list_fields();
-        $results['result'] = $query->result();
         return $results;
     }
 
