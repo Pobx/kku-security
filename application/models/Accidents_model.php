@@ -34,6 +34,23 @@ class Accidents_model extends CI_Model
     accidents.status
     ';
 
+    private $items2 = '
+    accidents.id,
+    period_time,
+    DATE_FORMAT(DATE_ADD(accident_date, INTERVAL 543 YEAR),"%d/%m/%Y") as accident_date,
+    (
+      CASE 
+        WHEN period_time = "morning" THEN "เช้า"
+        WHEN period_time = "afternoon" THEN "บ่าย"
+        WHEN period_time = "night" THEN "ดึก"
+        ELSE ""
+      END
+    ) AS period_time_name,
+    place,
+    accident_cause,
+    accidents.status
+    ';
+
     public function all($qstr = '')
     {
         if (isset($qstr) && !empty($qstr))
@@ -75,7 +92,7 @@ class Accidents_model extends CI_Model
 
     public function find($id)
     {
-        $query = $this->db->select($this->items)->from($this->table)->where('id', $id)->get();
+        $query = $this->db->select($this->items2)->from($this->table)->where('id', $id)->get();
 
         $results['rows'] = $query->num_rows();
         $results['results'] = $query->first_row();

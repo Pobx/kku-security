@@ -108,9 +108,9 @@
 	<div class="col-sm-4">
 		<select class="form-control select2" id="car_state" name="car_state">
 			<option selected="selected">เลือก</option>
-			<option value="new" <?php if ($car_state=='new' ){ echo 'selected' ; }?>>ใหม่</option>
-			<option value="old" <?php if ($car_state=='old' ){ echo 'selected' ; }?>>เก่า</option>
-			<option value="other" <?php if ($car_state=='other' ){ echo 'selected' ; }?>>อื่นๆ</option>
+			<option value="new">ใหม่</option>
+			<option value="old">เก่า</option>
+			<option value="other">อื่นๆ</option>
 		</select>
 	</div>
 </div>

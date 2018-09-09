@@ -34,9 +34,19 @@
 
 	<script>
 		$(document).ready(function () {
+			var people_type = '<?php echo $people_type;?>';
+			var owner_assets_department = '<?php echo $owner_assets_department;?>';
+			var car_state = '<?php echo $car_state;?>';
 
-			$('#div_owner_assets_department').hide();
-			$('#owner_assets_department').val('');
+			if (people_type == 'student' || people_type == 'staff') {
+				$('#div_owner_assets_department').show();
+				$('#owner_assets_department').val(owner_assets_department);
+			} else {
+				$('#div_owner_assets_department').hide();
+				$('#owner_assets_department').val('');
+			}
+
+
 			$('input[name="people_type"]').on('ifClicked', function (event) {
 				// alert("You clicked " + this.value);
 				if (this.value == 'people_outside') {
@@ -50,6 +60,7 @@
 
 			$('#div_state_comment').hide();
 			$('#car_state').val('');
+
 			$("#car_state").change(function () {
 
 				if ($('#car_state').val() == 'other') {
@@ -60,7 +71,9 @@
 					$('#state_comment').val('');
 				}
 
-			})
-		})
+			});
+
+			$('[name=car_state]').val(car_state);
+		});
 
 	</script>
