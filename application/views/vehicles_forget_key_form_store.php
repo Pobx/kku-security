@@ -35,6 +35,7 @@
 
 	</div>
 
+	<?php $this->load->view('vehicles_forget_key_table_detective_information');?>
 	<script>
 		$(document).ready(function () {
 			var people_type = '<?php echo $people_type;?>';

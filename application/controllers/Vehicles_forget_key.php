@@ -8,6 +8,7 @@ class Vehicles_forget_key extends CI_Controller
         parent::__construct();
 
         $this->load->model('Vehicles_forget_key_model');
+        $this->load->model('Vehicles_forget_key_detective_model');
         $this->load->library('Date_libs');
     }
 
@@ -18,6 +19,7 @@ class Vehicles_forget_key extends CI_Controller
     private $header_sub_topic_label_detective = 'ข้อมูลผู้ตรวจพบ';
     
     private $header_columns             = array('วันที่', 'ชื่อ - สกุล', 'สังกัดหน่วยงาน', 'อายุ(ปี)', 'เบอร์ติดต่อ', 'สถานที่ลืมกุญแจ', 'สถานะ', 'แก้ไข', 'ลบ');
+    private $header_columns_detective   = array('ชื่อ - สกุล', 'สังกัดหน่วยงาน','หมายเหตุ', 'ลบ');
     private $success_message            = 'บันทึกข้อมูลสำเร็จ';
     private $warning_message            = 'ไม่สามารถทำรายการ กรุณลองใหม่อีกครั้ง';
     private $danger_message             = 'ลบข้อมูลสำเร็จ';
@@ -50,7 +52,7 @@ class Vehicles_forget_key extends CI_Controller
         $data['head_sub_topic_label'] = $this->head_sub_topic_label_form;
         $data['header_sub_topic_label_owner_assets'] = $this->header_sub_topic_label_owner_assets; 
         $data['header_sub_topic_label_detective'] = $this->header_sub_topic_label_detective;
-        
+
         $data['link_back_to_table'] = site_url('vehicles_forget_key');
         $data['form_submit_data_url'] = site_url('vehicles_forget_key/store');
 
