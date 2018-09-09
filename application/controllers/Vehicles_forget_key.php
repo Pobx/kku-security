@@ -60,7 +60,7 @@ class Vehicles_forget_key extends CI_Controller
         
         $data['link_go_to_detective_remove'] = site_url('vehicles_forget_key/remove_detective/'.$id);
 
-        $qstr = array('status'=>'active');
+        $qstr = array('vehicles_forget_key_id'=>$id, 'status'=>'active');
         $vehicles_forget_key_detective = $this->Vehicles_forget_key_detective_model->all($qstr);
         $data['vehicles_forget_key_detective'] = $vehicles_forget_key_detective['results'];
 
