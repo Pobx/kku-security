@@ -67,7 +67,7 @@ class Security_cards_model extends CI_Model
         }
         else
         {
-            // $inputs['created'] = date('Y-m-d H:i:s');
+            $inputs['created'] = date('Y-m-d H:i:s');
             $results['query'] = $this->db->insert($this->table, $inputs);
             $results['lastID'] = $this->db->insert_id();
         }

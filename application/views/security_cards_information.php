@@ -49,15 +49,6 @@
 </div>
 
 <div class="form-group">
-	<label for="people_department_name" class="col-sm-2 control-label">สังกัด</label>
-
-	<div class="col-sm-4">
-		<input type="text" class="form-control" id="people_department_name" name="people_department_name" placeholder="สังกัด"
-		value="<?php echo $people_department_name; ?>">
-	</div>
-</div>
-
-<div class="form-group">
 	<label for="car_color" class="col-sm-2 control-label">สี</label>
 
 	<div class="col-sm-4">

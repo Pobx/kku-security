@@ -54,7 +54,9 @@ class Security_cards extends CI_Controller
     public function store()
     {
         $inputs = $this->input->post();
-
+        $inputs['issue_date'] = $this->date_libs->set_date_th($inputs['issue_date']);
+        $inputs['expire_date'] = $this->date_libs->set_date_th($inputs['expire_date']);
+        
         $results = $this->Security_cards_model->store($inputs);
 
         $alert_type = ($results['query'] ? 'success' : 'warning');
