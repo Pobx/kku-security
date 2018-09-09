@@ -15,7 +15,7 @@
 </li>
 
 <li>
-	<a href="<?php echo site_url('break_homes_motorcycle_pad_theive');?>"><i class="fa fa-book"></i>ทะเบียนการจัดทําบัตร<br />ผ่านเข้า-ออก</a>
+	<a href="<?php echo site_url('security_cards');?>"><i class="fa fa-book"></i>ทะเบียนการจัดทําบัตร<br />ผ่านเข้า-ออก</a>
 </li>
 
 <!-- <li>
