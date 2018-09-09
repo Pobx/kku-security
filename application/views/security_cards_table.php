@@ -56,6 +56,14 @@
 						</td>
 
 						<td class="text-center">
+							<?php echo $value['people_phone']; ?>
+						</td>
+
+						<td class="text-center">
+							<?php echo $value['car_license_plate']; ?>
+						</td>
+
+						<td class="text-center">
 							<?php echo $value['car_province']; ?>
 						</td>
 
@@ -65,10 +73,6 @@
 
 						<td class="text-center">
 							<?php echo $value['car_color']; ?>
-						</td>
-
-						<td class="text-center">
-							<?php echo $value['car_license_plate']; ?>
 						</td>
 
 						<td class="text-center">

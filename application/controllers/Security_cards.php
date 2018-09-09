@@ -14,7 +14,7 @@ class Security_cards extends CI_Controller
     private $head_topic_label           = 'ทะเบียนการจัดทําบัตรผ่านเข้า-ออก ';
     private $head_sub_topic_label_table = 'รายการ ทะเบียนการจัดทําบัตรผ่านเข้า-ออก ';
     private $head_sub_topic_label_form  = 'ฟอร์มบันทึกข้อมูล ทะเบียนการจัดทําบัตรผ่านเข้า-ออก ';
-    private $header_columns             = array('เลขที่บัตร', 'ชื่อ - สกุล', 'ตําแหน่ง', 'สังกัด', 'ทะเบียน', 'จังหวัด', 'ยี่ห้อ', 'สี', 'แก้ไข', 'ลบ');
+    private $header_columns             = array('เลขที่บัตร', 'ชื่อ - สกุล', 'ตําแหน่ง', 'สังกัด', 'เบอร์ติดต่อ', 'ทะเบียน', 'จังหวัด', 'ยี่ห้อ', 'สี', 'วันออกบัตร', 'วันหมดอายุ', 'แก้ไข', 'ลบ');
     private $success_message            = 'บันทึกข้อมูลสำเร็จ';
     private $warning_message            = 'ไม่สามารถทำรายการ กรุณลองใหม่อีกครั้ง';
     private $danger_message             = 'ลบข้อมูลสำเร็จ';

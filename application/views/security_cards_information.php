@@ -49,6 +49,14 @@
 </div>
 
 <div class="form-group">
+	<label for="car_province" class="col-sm-2 control-label">จังหวัด</label>
+
+	<div class="col-sm-4">
+		<input type="text" class="form-control" id="car_province" name="car_province" placeholder="จังหวัด" value="<?php echo $car_province; ?>">
+	</div>
+</div>
+
+<div class="form-group">
 	<label for="car_brand" class="col-sm-2 control-label">ยี่ห้อ</label>
 
 	<div class="col-sm-4">
