@@ -1,5 +1,5 @@
 <div class="form-group">
-	<label class="col-sm-2 control-label">ประเภทบุคลากร</label>
+	<label class="col-sm-2 control-label">ประเภทบุคล</label>
 
 	<div class="col-sm-4">
 		<label>
