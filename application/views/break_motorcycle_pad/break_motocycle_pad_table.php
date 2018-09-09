@@ -47,7 +47,7 @@
 							<?php echo $value['victim_name']; ?>
 						</td>
 						<td class="text-center">
-							<?php echo $value['victim_address']; ?>
+							<?php echo $value['victim_department_name']; ?>
 						</td>
 						<td class="text-center">
 							<?php echo $value['place']; ?>

@@ -24,6 +24,7 @@ class Break_motorcycle_pad_model extends CI_Model
     ) AS people_type_name,
     victim_name,
     victim_address,
+    victim_department_name,
     place,
     assets_loses,
     remark,

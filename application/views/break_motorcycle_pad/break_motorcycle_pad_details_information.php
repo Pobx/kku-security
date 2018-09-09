@@ -1,3 +1,4 @@
+<?php $this->load->view('period_times');?>
 <div class="form-group">
 	<label for="date_break" class="col-sm-2 control-label">วันที่</label>
 
@@ -21,12 +22,14 @@
 		<input type="text" class="form-control" id="victim_name" name="victim_name" placeholder="ชื่อ - สกุล" value="<?php echo $victim_name; ?>">
 	</div>
 </div>
+<?php $this->load->view('people_type');?>
 
-<div class="form-group">
-	<label for="victim_address" class="col-sm-2 control-label">สังกัดหน่วยงาน</label>
+<div class="form-group" id="div_victim_department_name">
+	<label for="victim_department_name" id="label_victim_department_name" class="col-sm-2 control-label">สังกัดหน่วยงาน</label>
 
 	<div class="col-sm-4">
-		<input type="text" class="form-control" id="victim_address" name="victim_address" placeholder="สังกัดหน่วยงาน" value="<?php echo $victim_address; ?>">
+		<input type="text" class="form-control" id="victim_department_name" name="victim_department_name" placeholder="สังกัดหน่วยงาน"
+		value="<?php echo $victim_department_name; ?>">
 	</div>
 </div>
 

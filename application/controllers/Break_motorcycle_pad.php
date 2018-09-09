@@ -14,7 +14,7 @@ class Break_motorcycle_pad extends CI_Controller
     private $head_topic_label           = 'สาเหตุงัดเบาะรถจักยานยนต์ ';
     private $head_sub_topic_label_table = 'รายการ สาเหตุงัดเบาะรถจักยานยนต์ ';
     private $head_sub_topic_label_form  = 'ฟอร์มบันทึกข้อมูล สาเหตุงัดเบาะรถจักยานยนต์ ';
-    private $header_columns             = array('วันที่', 'ชื่อ - สกุล', 'สังกัดหน่วยงาน', 'สถานที่เกิดเหตุ', 'รายการของที่สูญหาย', 'หมายเหตุ', 'สถานะ', 'แก้ไข', 'ลบ');
+    private $header_columns             = array('วันที่', 'ชื่อ - สกุล', 'สังกัดหน่วยงาน/คณะ', 'สถานที่เกิดเหตุ', 'รายการของที่สูญหาย', 'หมายเหตุ', 'สถานะ', 'แก้ไข', 'ลบ');
     private $success_message            = 'บันทึกข้อมูลสำเร็จ';
     private $warning_message            = 'ไม่สามารถทำรายการ กรุณลองใหม่อีกครั้ง';
     private $danger_message             = 'ลบข้อมูลสำเร็จ';
