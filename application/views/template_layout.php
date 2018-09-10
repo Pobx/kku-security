@@ -283,7 +283,7 @@ echo 'ขณะนี้เวลา  ' . $now_date;
 			var bar_chart_data = '<?php echo $bar_chart_data;?>';
 
 			bar_chart_data = JSON.parse(bar_chart_data);
-			// console.log(bar_chart_data)
+			console.log(bar_chart_data);
 			if (bar_chart_data.length > 0) {
 				bar_chart_monthly(bar_chart_data);
 			}

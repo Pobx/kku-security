@@ -8,6 +8,7 @@ class Student_do_not_wear_helmet_model extends CI_Model
     private $id    = 'id';
     private $items = '
     id,
+    inspect_date AS inspect_date_en,
     DATE_FORMAT(DATE_ADD(inspect_date, INTERVAL 543 YEAR),"%d/%m/%Y") as inspect_date,
     CONCAT(license_plate, " ", color, " ", brand, " ", model) as car_body,
     place,
@@ -18,6 +19,14 @@ class Student_do_not_wear_helmet_model extends CI_Model
     model,
     man_type,
     period_time,
+    (
+      CASE 
+        WHEN period_time = "morning" THEN "เช้า"
+        WHEN period_time = "afternoon" THEN "บ่าย"
+        WHEN period_time = "night" THEN "ดึก"
+        ELSE ""
+      END
+    ) AS period_time_name,
     brand,
     color,
     student_faculty,
