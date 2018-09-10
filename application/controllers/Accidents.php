@@ -42,12 +42,10 @@ class Accidents extends CI_Controller
         );
 
         $results = $this->Accidents_model->all($qstr);
-        
-        
+
         $data['results'] = $results['results'];
         
         $data['bar_chart_data'] = $this->filterbarchartdata->filter($results['results'], 'accident_date');
-        
         $data['fields'] = $results['fields'];
         $data['content'] = 'accidents_table';
 

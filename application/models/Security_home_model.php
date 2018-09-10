@@ -7,6 +7,7 @@ class Security_home_model extends CI_Model {
 	private $id='id';
   private $items = '
     id, 
+    start_date AS start_date_en,
     DATE_FORMAT(DATE_ADD(start_date, INTERVAL 543 YEAR),"%d/%m/%Y") as start_date, 
     DATE_FORMAT(DATE_ADD(end_date, INTERVAL 543 YEAR),"%d/%m/%Y") as end_date,
     CONCAT(DATE_FORMAT(DATE_ADD(start_date, INTERVAL 543 YEAR),"%d/%m/%Y"), " - ", DATE_FORMAT(DATE_ADD(end_date, INTERVAL 543 YEAR),"%d/%m/%Y")) as home_date,

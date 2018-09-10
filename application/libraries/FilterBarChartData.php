@@ -13,7 +13,7 @@ class FilterBarChartData
       for ($i=1; $i <=12 ; $i++) {
         $months = array_filter($data, function($value) use ($i, $index) {
           $month = date("m", strtotime($value[$index]));
-          
+          echo $month."<br>";
           if ($month == $i) {
             return $value['id'];
           }
