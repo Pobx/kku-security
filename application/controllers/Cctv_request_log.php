@@ -11,6 +11,7 @@ class Cctv_request_log extends CI_Controller
         $this->load->model('Cctv_events_model');
         
         $this->load->library('Date_libs');
+        $this->load->library('FilterBarChartData');
     }
 
     private $head_topic_label           = 'สถิติขอความอนุเคราะห์ดูภาพเหตุการณ์ ';
@@ -29,9 +30,15 @@ class Cctv_request_log extends CI_Controller
         $data['link_go_to_remove'] = site_url('cctv_request_log/remove');
         $data['header_columns'] = $this->header_columns;
 
-        $qstr = array('cctv_request_log.status !=' => 'disabled');
+        $qstr = array(
+          'YEAR(cctv_request_log.request_date)'=>date('Y'),
+          'cctv_request_log.status !=' => 'disabled'
+        );
+
         $results = $this->Cctv_request_log_model->all($qstr);
         $data['results'] = $results['results'];
+
+        $data['bar_chart_data'] = $this->filterbarchartdata->filter($results['results'], 'request_date_en');
         $data['fields'] = $results['fields'];
         $data['content'] = 'cctv_request_log_table';
 

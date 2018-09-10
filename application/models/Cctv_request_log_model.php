@@ -23,6 +23,7 @@ class Cctv_request_log_model extends CI_Model
         ELSE ""
       END
     ) AS operation_status_name,
+    request_date AS request_date_en,
     DATE_FORMAT(DATE_ADD(request_date, INTERVAL 543 YEAR),"%d/%m/%Y") as request_date,
     link_copy_polic_doc,
     link_copy_gov_doc,
