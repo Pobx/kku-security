@@ -1,4 +1,3 @@
-<?php $this->load->view('dashboard_admin_bar_chart_monthly');?>
 <section class="content">
 	<div class="box box-primary">
 		<div class="box-header with-border">
