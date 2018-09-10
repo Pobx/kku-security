@@ -62,10 +62,10 @@
 								<?php echo $value['accident_date']; ?>
 							</td>
 							<td class="text-center">
-								<?php echo $value['period_time']; ?>
+								<?php echo $value['period_time_name']; ?>
 							</td>
 							<td class="text-center">
-								<?php echo $value['place']; ?>
+								<?php echo $value['accident_place_name']; ?>
 							</td>
 							<td class="text-center">
 								<?php echo $value['count_car']; ?>
@@ -75,7 +75,7 @@
 							</td>
 							<td class="text-center">
 								<?php 
-                  foreach ($value['results_vehicles'] as $car) {
+                  foreach ($value['results_participate'] as $car) {
                     echo $car['car_body']."<hr />";
                   }
                 ?>
@@ -91,14 +91,14 @@
 							</td>
 							<td class="text-center">
 								<?php 
-                  foreach ($value['results_peoples'] as $people) {
+                  foreach ($value['results_participate'] as $people) {
                     echo $people['people_name']."<hr />";
                   }
                 ?>
 							</td>
 							<td class="text-center">
 								<?php 
-                  foreach ($value['results_peoples'] as $people) {
+                  foreach ($value['results_participate'] as $people) {
                     echo $people['people_department_name']."<hr />";
                   }
                 ?>
