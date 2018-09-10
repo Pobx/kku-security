@@ -44,7 +44,7 @@
 							<?php echo $value['period_time_name'];?>
 						</td>
 						<td class="text-center">
-							<?php echo $value['date_break'];?>
+							<?php echo $value['date_break'].' '.$value['date_break_time_only'];?>
 						</td>
 						<td class="text-center">
 							<?php echo $value['victim_name']; ?>

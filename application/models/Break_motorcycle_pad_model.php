@@ -17,8 +17,8 @@ class Break_motorcycle_pad_model extends CI_Model
         ELSE ""
       END
     ) AS period_time_name,
-    date_break,
-    DATE_FORMAT(DATE_ADD(DATE(date_break), INTERVAL 543 YEAR),"%d/%m/%Y") as date_break_only,
+    DATE(date_break) AS date_break_en,
+    DATE_FORMAT(DATE_ADD(DATE(date_break), INTERVAL 543 YEAR),"%d/%m/%Y") as date_break,
     TIME(date_break) as date_break_time_only,
     people_type,
     (

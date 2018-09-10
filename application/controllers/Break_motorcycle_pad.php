@@ -9,6 +9,7 @@ class Break_motorcycle_pad extends CI_Controller
 
         $this->load->model('Break_motorcycle_pad_model');
         $this->load->library('Date_libs');
+        $this->load->library('FilterBarChartData');
     }
 
     private $head_topic_label           = 'สาเหตุงัดเบาะรถจักยานยนต์ ';
@@ -27,9 +28,15 @@ class Break_motorcycle_pad extends CI_Controller
         $data['link_go_to_remove'] = site_url('break_motorcycle_pad/remove');
         $data['header_columns'] = $this->header_columns;
 
-        $qstr = array('status !=' => 'disabled');
+        $qstr = array(
+          'YEAR(date_break)'=>date('Y'),
+          'status !=' => 'disabled'
+        );
+
         $results = $this->Break_motorcycle_pad_model->all($qstr);
         $data['results'] = $results['results'];
+
+        $data['bar_chart_data'] = $this->filterbarchartdata->filter($results['results'], 'date_break_en');
         $data['fields'] = $results['fields'];
         $data['content'] = 'break_motorcycle_pad/break_motocycle_pad_table';
 
