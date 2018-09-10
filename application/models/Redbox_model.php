@@ -15,10 +15,15 @@ class Redbox_model extends CI_Model
     private $id    = 'rbp_id';
     private $items = '
     rbp_id,
-    redbox_id,
+    rbp_id AS id,
+    redbox.redbox_id,
+    redbox.zone,
+    redbox.redboxname,
     checker_id,
-    checked_datetime,
-    status,
+    DATE(checked_datetime) AS checked_datetime_en,
+    DATE_FORMAT(DATE_ADD(DATE(checked_datetime), INTERVAL 543 YEAR),"%d/%m/%Y") as checked_datetime_th,
+    TIME(checked_datetime) as checked_datetime_time_only,
+    redbox_positions.status,
     comment
     ';
     private $redbox_lists = '
@@ -34,7 +39,7 @@ class Redbox_model extends CI_Model
             $this->db->where($qstr);
         }
 
-        $this->db->select('redbox.*, redbox_positions.*, users.name as checker_name');
+        $this->db->select($this->items.', redbox_positions.*, users.name as checker_name');
         $this->db->from($this->table);
         $this->db->join($this->redbox_table, 'redbox.redbox_id = redbox_positions.redbox_id');
         $this->db->join('users', 'users.id = redbox_positions.checker_id');
