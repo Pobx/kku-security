@@ -9,7 +9,11 @@ class Dashboard extends CI_Controller
         parent::__construct();
 
         $this->load->model('Accidents_model');
-        $this->load->model('Break_homes_model');
+				$this->load->model('Break_homes_model');
+				$this->load->model('Security_home_model');
+				$this->load->model('Vehicles_forget_key_model');
+				$this->load->model('Student_do_not_wear_helmet_model');
+
 				$this->load->library('Date_libs');
 				$this->load->library('FilterPeriodTimes');
 				$this->load->library('FilterPeoples');
@@ -45,6 +49,36 @@ class Dashboard extends CI_Controller
 
 				$results_break_homes = $this->Break_homes_model->all($qstr_break_homes);
 				$data['count_break_homes'] = $results_break_homes['rows'];
+
+				$qstr_security_home = array(
+					'YEAR(start_date)'=>date('Y'),
+          'status !=' => 'disabled'
+				);
+
+				$results_security_home = $this->Security_home_model->all($qstr_security_home);
+				$data['count_security_home'] = $results_security_home['rows'];
+
+				$qstr_vehicles_forget_key = array(
+					'YEAR(date_forget_key)'=>date('Y'),
+          'status !=' => 'disabled'
+				);
+
+				$results_vehicles_forget_key = $this->Vehicles_forget_key_model->all($qstr_vehicles_forget_key);
+				$data['count_vehicles_forget_key'] = $results_vehicles_forget_key['rows'];
+				$data['count_vehicles_forget_key_morning'] = $this->filterperiodtimes->filter($results_vehicles_forget_key['results'], 'morning', 'period_time');
+				$data['count_vehicles_forget_key_afternoon'] = $this->filterperiodtimes->filter($results_vehicles_forget_key['results'], 'afternoon', 'period_time');
+				$data['count_vehicles_forget_key_night'] = $this->filterperiodtimes->filter($results_vehicles_forget_key['results'], 'night', 'period_time');
+				$data['count_vehicles_forget_key_students'] = $this->filterpeoples->filter($results_participate, 'student', 'people_type');
+				$data['count_vehicles_forget_key_officer'] = $this->filterpeoples->filter($results_participate, 'officer', 'people_type');
+				$data['count_vehicles_forget_key_people_outside'] = $this->filterpeoples->filter($results_participate, 'people_outside', 'people_type');
+
+				$qstr_student_do_not_wear_helmet = array(
+					'YEAR(inspect_date)'=>date('Y'),
+          'status !=' => 'disabled'
+				);
+
+				$results_student_do_not_wear_helmet = $this->Student_do_not_wear_helmet_model->all($qstr_student_do_not_wear_helmet);
+				$data['count_student_do_not_wear_helmet'] = $results_student_do_not_wear_helmet['rows'];
 				// echo "<pre>", print_r($results_participate); exit();
         $data['content'] = 'dashboard_admin';
         $this->load->view('template_layout', $data);
