@@ -187,6 +187,15 @@ echo $head_sub_topic_label;
 
 				<?php
         $bar_chart_data = (isset($bar_chart_data)? $bar_chart_data : json_encode(array()));
+        $pie_chart_display = (isset($pie_chart_display)? $pie_chart_display : 'off');
+
+        $count_accidents = (isset($count_accidents)? $count_accidents : 0);
+        $count_break_homes = (isset($count_break_homes)? $count_break_homes : 0);
+        $count_security_home = (isset($count_security_home)? $count_security_home : 0);
+        $count_vehicles_forget_key = (isset($count_vehicles_forget_key)? $count_vehicles_forget_key : 0);
+        $count_break_motorcycle_pad = (isset($count_break_motorcycle_pad)? $count_break_motorcycle_pad : 0);
+        $count_student_do_not_wear_helmet = (isset($count_student_do_not_wear_helmet)? $count_student_do_not_wear_helmet : 0);
+        
 if (isset($content))
 {
     $this->load->view($content);
@@ -273,17 +282,31 @@ echo 'ขณะนี้เวลา  ' . $now_date;
 	<script src="<?php echo base_url('bower_components/select2/dist/js/select2.full.min.js'); ?>"></script>
 
 	<!-- my demo -->
-	<!-- <script src="<?php //echo base_url('assets/demo/dashboard_admin_donut_chart.js'); ?>"></script> -->
+	<script src="<?php echo base_url('assets/demo/dashboard_admin_donut_chart.js'); ?>"></script>
 	<script src="<?php echo base_url('assets/demo/dashboard_admin_bar_chart_monthly.js'); ?>"></script>
 
 	<!-- AdminLTE App -->
 	<script src="<?php echo base_url('dist/js/adminlte.min.js'); ?>"></script>
 	<script>
 		$(function () {
+			var pie_chart_display = '<?php echo $pie_chart_display;?>';
+			if (pie_chart_display == 'on') {
+				var pie_chart_data = {
+					count_accidents: '<?php echo $count_accidents;?>',
+					count_break_homes: '<?php echo $count_break_homes;?>',
+					count_security_home: '<?php echo $count_security_home;?>',
+					count_vehicles_forget_key: '<?php echo $count_vehicles_forget_key;?>',
+					count_break_motorcycle_pad: '<?php echo $count_break_motorcycle_pad;?>',
+					count_student_do_not_wear_helmet: '<?php echo $count_student_do_not_wear_helmet;?>',
+				}
+
+				pie_chart_summary_incidence(pie_chart_data)
+			}
+
 			var bar_chart_data = '<?php echo $bar_chart_data;?>';
 
 			bar_chart_data = JSON.parse(bar_chart_data);
-			console.log(bar_chart_data);
+			// console.log(bar_chart_data);
 			if (bar_chart_data.length > 0) {
 				bar_chart_monthly(bar_chart_data);
 			}

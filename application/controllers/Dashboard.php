@@ -25,6 +25,7 @@ class Dashboard extends CI_Controller
 
     public function index()
     {
+        $data['pie_chart_display'] = 'on';
         $data['head_topic_label'] = $this->head_topic_label;
 				$data['year_th'] = 'ปี พ.ศ '.(date('Y') + 543);
 				$qstr_accidents = array(
