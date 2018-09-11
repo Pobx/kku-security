@@ -8,14 +8,43 @@ class Break_motorcycle_pad_model extends CI_Model
     private $id    = 'id';
     private $items = '
     id,	
-    date_break,
-    DATE_FORMAT(DATE_ADD(DATE(date_break), INTERVAL 543 YEAR),"%d/%m/%Y") as date_break_only,
+    period_time,
+    (
+      CASE 
+        WHEN period_time = "morning" THEN "เช้า"
+        WHEN period_time = "afternoon" THEN "บ่าย"
+        WHEN period_time = "night" THEN "ดึก"
+        ELSE ""
+      END
+    ) AS period_time_name,
+    DATE(date_break) AS date_break_en,
+    DATE_FORMAT(DATE_ADD(DATE(date_break), INTERVAL 543 YEAR),"%d/%m/%Y") as date_break,
     TIME(date_break) as date_break_time_only,
+    people_type,
+    (
+      CASE 
+        WHEN people_type = "officer" THEN "บุคลากร"
+        WHEN people_type = "student" THEN "นักศึกษา"
+        WHEN people_type = "staff" THEN "บุคลากร"
+        WHEN people_type = "people_inside" THEN "บุคคลภายใน"
+        ELSE ""
+      END
+    ) AS people_type_name,
     victim_name,
     victim_address,
+    victim_department_name,
     place,
     assets_loses,
     remark,
+    operation_status,
+    (
+      CASE
+        WHEN operation_status = "caught" THEN "จับได้"
+        WHEN operation_status = "not_caught" THEN "จับไม่ได้"
+        WHEN operation_status = "other" THEN "อื่นๆ"
+        ELSE ""
+      END
+    ) AS operation_status_name,
     created,
     updated,
     status,

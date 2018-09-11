@@ -9,6 +9,7 @@ class Report_break_homes extends CI_Controller
 
         $this->load->model('Break_homes_model');
         $this->load->library('Date_libs');
+        $this->load->library('FilterBarChartData');
     }
 
     private $head_topic_label           = 'สถิติการงัดที่พักอาศัย';
@@ -41,6 +42,8 @@ class Report_break_homes extends CI_Controller
 
         $results = $this->Break_homes_model->all($qstr);
         $data['results'] = $results['results'];
+
+        $data['bar_chart_data'] = $this->filterbarchartdata->filter($results['results'], 'date_break_en');
         $data['fields'] = $results['fields'];
         $data['content'] = 'report_break_homes_table';
 

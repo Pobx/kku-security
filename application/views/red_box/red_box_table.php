@@ -1,4 +1,3 @@
-<?php $this->load->view('dashboard_admin_bar_chart_monthly');?>
 <section class="content">
 	<div class="box box-primary">
 		<div class="box-header with-border">
@@ -55,13 +54,12 @@
 						</td>
 						<td class="text-center">
 							<?php  
-								$date = explode(" ",$value['checked_datetime']);
-								echo $date[0];
+								echo $value['checked_datetime_th'];
 							 ?>
 						</td>
-						<td>
+						<td class="text-center">
 							<?php  
-								echo $date[1];
+								echo $value['checked_datetime_time_only'];
 							 ?>
 						</td>
 						<td>
@@ -85,7 +83,7 @@
 					</tr>
 					<?php }?>
 				</tbody>
-				
+
 			</table>
 		</div>
 
@@ -93,4 +91,4 @@
 		</div>
 	</div>
 
-	
+	<?php $this->load->view('dashboard_admin_bar_chart_monthly');?>

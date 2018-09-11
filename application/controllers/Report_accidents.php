@@ -9,6 +9,7 @@ class Report_accidents extends CI_Controller
 
         $this->load->model('Accidents_model');
         $this->load->library('Date_libs');
+        $this->load->library('FilterBarChartData');
     }
 
     private $head_topic_label           = 'สถิติอุบัติเหตุ';
@@ -28,9 +29,9 @@ class Report_accidents extends CI_Controller
         $data['link_excel'] =  site_url('report_accidents/export_excel');
 
         $qstr = array(
-          'accident_date >=' => $this->date_libs->set_date_th( $data['start_date']),
-          'accident_date <=' => $this->date_libs->set_date_th($data['end_date']),
-          'status !=' => 'disabled'
+          'accidents.accident_date >=' => $this->date_libs->set_date_th( $data['start_date']),
+          'accidents.accident_date <=' => $this->date_libs->set_date_th($data['end_date']),
+          'accidents.status !=' => 'disabled'
         );
 
         $sess_inputs = array(
@@ -42,6 +43,8 @@ class Report_accidents extends CI_Controller
 
         $results = $this->Accidents_model->all($qstr);
         $data['results'] = $results['results'];
+
+        $data['bar_chart_data'] = $this->filterbarchartdata->filter($results['results'], 'accident_date');
         $data['fields'] = $results['fields'];
         $data['content'] = 'report_accidents_table';
 
@@ -53,9 +56,9 @@ class Report_accidents extends CI_Controller
       $data['header_columns'] = $this->header_columns;
       $inputs = $this->session->userdata();
       $qstr = array(
-        'accident_date >=' =>$inputs['start_date'],
-        'accident_date <=' =>$inputs['end_date'],
-        'status !=' => 'disabled'
+        'accidents.accident_date >=' =>$inputs['start_date'],
+        'accidents.accident_date <=' =>$inputs['end_date'],
+        'accidents.status !=' => 'disabled'
       );
 
         $results = $this->Accidents_model->all($qstr);

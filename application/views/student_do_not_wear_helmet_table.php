@@ -1,4 +1,3 @@
-<?php $this->load->view('dashboard_admin_bar_chart_monthly');?>
 <section class="content">
 	<div class="box box-primary">
 		<div class="box-header with-border">
@@ -71,16 +70,10 @@
 									echo $value['ex_person_card_id'];
 								}   
 							?>
-						
+
 						</td>
 						<td class="text-center">
-							<?php 
-								if($value['period_time'] == "morning"){
-									echo "เช้า";
-								}else{
-									echo "บ่าย";
-								} 
-							?>
+							<?php echo $value['period_time_name'];?>
 						</td>
 
 						<td>
@@ -118,7 +111,7 @@
 					</tr>
 					<?php }?>
 				</tbody>
-				
+
 			</table>
 		</div>
 
@@ -126,4 +119,4 @@
 		</div>
 	</div>
 
-
+	<?php $this->load->view('dashboard_admin_bar_chart_monthly');?>

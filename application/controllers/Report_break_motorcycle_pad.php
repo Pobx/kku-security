@@ -9,6 +9,7 @@ class Report_break_motorcycle_pad extends CI_Controller
 
         $this->load->model('Break_motorcycle_pad_model');
         $this->load->library('Date_libs');
+        $this->load->library('FilterBarChartData');
     }
 
     private $head_topic_label           = 'สถิติการงัดเบาะรถจักยานยนต์';
@@ -42,6 +43,8 @@ class Report_break_motorcycle_pad extends CI_Controller
         $results = $this->Break_motorcycle_pad_model->all($qstr);
         $data['results'] = $results['results'];
         $data['fields'] = $results['fields'];
+
+        $data['bar_chart_data'] = $this->filterbarchartdata->filter($results['results'], 'date_break_en');
         $data['content'] = 'report_break_motorcycle_pad_table';
 
         // echo "<pre>", print_r($data['results']); exit();

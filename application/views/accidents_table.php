@@ -26,15 +26,13 @@
 			<div class="table-responsive">
 				<table class="table table-bordered table-striped mydataTable">
 					<thead>
-						<tr>
-							<?php foreach ($header_columns as $key => $value)
+						<?php foreach ($header_columns as $key => $value)
 {
     ?>
-							<th class="text-center">
-								<?php echo $value; ?>
-							</th>
-							<?php }?>
-						</tr>
+						<th class="text-center">
+							<?php echo $value; ?>
+						</th>
+						<?php }?>
 					</thead>
 					<tbody>
 						<?php foreach ($results as $key => $value)
@@ -127,5 +125,4 @@
 		<div class="box-footer">
 		</div>
 	</div>
-
 	<?php $this->load->view('dashboard_admin_bar_chart_monthly');?>

@@ -10,6 +10,7 @@ class Vehicles_forget_key extends CI_Controller
         $this->load->model('Vehicles_forget_key_model');
         $this->load->model('Vehicles_forget_key_detective_model');
         $this->load->library('Date_libs');
+        $this->load->library('FilterBarChartData');
     }
 
     private $head_topic_label           = 'สถิติการลืมกุญแจ';
@@ -32,9 +33,15 @@ class Vehicles_forget_key extends CI_Controller
         $data['link_go_to_remove'] = site_url('vehicles_forget_key/remove');
         $data['header_columns'] = $this->header_columns;
 
-        $qstr = array('status !=' => 'disabled');
+        $qstr = array(
+          'YEAR(date_forget_key)'=>date('Y'),
+          'status !=' => 'disabled'
+        );
+
         $results = $this->Vehicles_forget_key_model->all($qstr);
         $data['results'] = $results['results'];
+
+        $data['bar_chart_data'] = $this->filterbarchartdata->filter($results['results'], 'date_forget_key_en');
         $data['fields'] = $results['fields'];
         $data['content'] = 'vehicles_forget_key_table';
 

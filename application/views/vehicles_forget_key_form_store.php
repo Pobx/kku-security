@@ -56,7 +56,6 @@
 				$('#owner_assets_department').val('');
 			}
 
-
 			$('input[name="people_type"]').on('ifClicked', function (event) {
 				// alert("You clicked " + this.value);
 				if (this.value == 'people_outside') {

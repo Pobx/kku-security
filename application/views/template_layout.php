@@ -1,7 +1,8 @@
-<?php 
+<?php
 $sess_userprofile = $this->session->userdata();
-if (!isset($sess_userprofile['logged']) || $sess_userprofile['logged'] == false) {
-  redirect('authen');
+if (!isset($sess_userprofile['logged']) || $sess_userprofile['logged'] == false)
+{
+    redirect('authen');
 }
 ?>
 <!DOCTYPE html>
@@ -22,11 +23,11 @@ if (!isset($sess_userprofile['logged']) || $sess_userprofile['logged'] == false)
 	<!-- DataTables -->
 	<link rel="stylesheet" href="<?php echo base_url('bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css'); ?>">
 	<!-- iCheck for checkboxes and radio inputs -->
-	<link rel="stylesheet" href="<?php echo base_url('plugins/iCheck/all.css');?>">
+	<link rel="stylesheet" href="<?php echo base_url('plugins/iCheck/all.css'); ?>">
 	<!-- bootstrap datepicker-thai -->
-	<link rel="stylesheet" href="<?php echo base_url('plugins/bootstrap-datepicker-thai/css/datepicker.css');?>">
+	<link rel="stylesheet" href="<?php echo base_url('plugins/bootstrap-datepicker-thai/css/datepicker.css'); ?>">
 	<!-- Select2 -->
-	<link rel="stylesheet" href="<?php echo base_url('bower_components/select2/dist/css/select2.min.css');?>">
+	<link rel="stylesheet" href="<?php echo base_url('bower_components/select2/dist/css/select2.min.css'); ?>">
 	<!-- Theme style -->
 	<link rel="stylesheet" href="<?php echo base_url('dist/css/AdminLTE.min.css'); ?>">
 	<!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -89,7 +90,7 @@ if (!isset($sess_userprofile['logged']) || $sess_userprofile['logged'] == false)
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 								<img src="<?php echo base_url('dist/img/avatar04.png'); ?>" class="user-image" alt="User Image">
 								<span class="hidden-xs">
-									<?php echo $sess_userprofile['name'];?></span>
+									<?php echo $sess_userprofile['name']; ?></span>
 							</a>
 							<ul class="dropdown-menu">
 								<!-- User image -->
@@ -97,7 +98,7 @@ if (!isset($sess_userprofile['logged']) || $sess_userprofile['logged'] == false)
 									<img src="<?php echo base_url('dist/img/avatar04.png'); ?>" class="img-circle" alt="User Image">
 
 									<p>
-										<?php echo $sess_userprofile['name'];?>
+										<?php echo $sess_userprofile['name']; ?>
 										<!-- <small>Member since Nov. 2012</small> -->
 									</p>
 								</li>
@@ -108,7 +109,7 @@ if (!isset($sess_userprofile['logged']) || $sess_userprofile['logged'] == false)
 								<!-- Menu Footer-->
 								<li class="user-footer">
 									<div class="pull-right">
-										<a href="<?php echo site_url('authen/logout');?>" class="btn btn-default btn-flat">ออกจากระบบ</a>
+										<a href="<?php echo site_url('authen/logout'); ?>" class="btn btn-default btn-flat">ออกจากระบบ</a>
 									</div>
 								</li>
 							</ul>
@@ -123,7 +124,7 @@ if (!isset($sess_userprofile['logged']) || $sess_userprofile['logged'] == false)
 			<section class="sidebar">
 				<div class="user-panel">
 					<div class="pull-left image">
-						<img src="<?php echo base_url('dist/img/avatar04.png');?>" class="img-circle" alt="User Image">
+						<img src="<?php echo base_url('dist/img/avatar04.png'); ?>" class="img-circle" alt="User Image">
 					</div>
 					<div class="pull-left info">
 						<p>Steve Jobs</p>
@@ -133,14 +134,15 @@ if (!isset($sess_userprofile['logged']) || $sess_userprofile['logged'] == false)
 
 				<ul class="sidebar-menu" data-widget="tree">
 					<li class="header">MAIN NAVIGATION</li>
-					<?php 
-            if ($sess_userprofile['permission'] != 'security') {
-              $this->load->view('sidebar_admin');
-            }
-          ?>
+					<?php
+if ($sess_userprofile['permission'] != 'security')
+{
+    $this->load->view('sidebar_admin');
+}
+?>
 
 					<li>
-						<a href="<?php echo site_url('authen/logout');?>"><i class="fa fa-sign-out"></i> <span class="text-red">ออกจากระบบ</span></a>
+						<a href="<?php echo site_url('authen/logout'); ?>"><i class="fa fa-sign-out"></i> <span class="text-red">ออกจากระบบ</span></a>
 					</li>
 				</ul>
 			</section>
@@ -154,14 +156,14 @@ if (!isset($sess_userprofile['logged']) || $sess_userprofile['logged'] == false)
 			<section class="content-header">
 				<h1>
 					<?php
-            $head_topic_label = (isset($head_topic_label)? $head_topic_label : '');
-            echo $head_topic_label;
-          ?>
+$head_topic_label = (isset($head_topic_label) ? $head_topic_label : '');
+echo $head_topic_label;
+?>
 					<small>
 						<?php
-              $head_sub_topic_label = (isset($head_sub_topic_label)? $head_sub_topic_label : '');
-              echo $head_sub_topic_label;
-            ?>
+$head_sub_topic_label = (isset($head_sub_topic_label) ? $head_sub_topic_label : '');
+echo $head_sub_topic_label;
+?>
 					</small>
 				</h1>
 
@@ -173,15 +175,27 @@ if (!isset($sess_userprofile['logged']) || $sess_userprofile['logged'] == false)
 
 			<!-- Main content -->
 			<section class="content">
-				<?php if ($this->session->flashdata('alert_type') !='') {?>
-				<div class="alert alert-<?php echo $this->session->flashdata('alert_type');?> alert-dismissible">
+				<?php if ($this->session->flashdata('alert_type') != '')
+{
+    ?>
+				<div class="alert alert-<?php echo $this->session->flashdata('alert_type'); ?> alert-dismissible">
 					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-					<h4><i class="icon fa fa-<?php echo $this->session->flashdata('alert_icon');?>"></i> ระบบแจ้งเตือน</h4>
-					<?php echo $this->session->flashdata('alert_message');?>
+					<h4><i class="icon fa fa-<?php echo $this->session->flashdata('alert_icon'); ?>"></i> ระบบแจ้งเตือน</h4>
+					<?php echo $this->session->flashdata('alert_message'); ?>
 				</div>
 				<?php }?>
 
 				<?php
+        $bar_chart_data = (isset($bar_chart_data)? $bar_chart_data : json_encode(array()));
+        $pie_chart_display = (isset($pie_chart_display)? $pie_chart_display : 'off');
+
+        $count_accidents = (isset($count_accidents)? $count_accidents : 0);
+        $count_break_homes = (isset($count_break_homes)? $count_break_homes : 0);
+        $count_security_home = (isset($count_security_home)? $count_security_home : 0);
+        $count_vehicles_forget_key = (isset($count_vehicles_forget_key)? $count_vehicles_forget_key : 0);
+        $count_break_motorcycle_pad = (isset($count_break_motorcycle_pad)? $count_break_motorcycle_pad : 0);
+        $count_student_do_not_wear_helmet = (isset($count_student_do_not_wear_helmet)? $count_student_do_not_wear_helmet : 0);
+        
 if (isset($content))
 {
     $this->load->view($content);
@@ -202,10 +216,10 @@ else
 			<!-- <strong>Copyright &copy; 2018 <a href="#">Itechs Development Team</a>.</strong> All rights -->
 			<!-- <strong>ระบบ ร.ป.ภ มหาวิทยาลัยขอนแก่น.</strong> -->
 			<strong>
-				<?php 
-        $now_date = date('d/m'). '/'.(date('Y') + 543).' '.date('H:i:s');
-        echo 'ขณะนี้เวลา  '.$now_date;
-      ?>
+				<?php
+$now_date = date('d/m') . '/' . (date('Y') + 543) . ' ' . date('H:i:s');
+echo 'ขณะนี้เวลา  ' . $now_date;
+?>
 			</strong>
 		</footer>
 
@@ -247,39 +261,66 @@ else
 	<script src="<?php echo base_url('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js'); ?>"></script>
 
 	<!-- iCheck 1.0.1 -->
-	<script src="<?php echo base_url('plugins/iCheck/icheck.min.js');?>"></script>
+	<script src="<?php echo base_url('plugins/iCheck/icheck.min.js'); ?>"></script>
 
 	<!-- InputMask -->
-	<script src="<?php echo base_url('plugins/input-mask/jquery.inputmask.js');?>"></script>
-	<script src="<?php echo base_url('plugins/input-mask/jquery.inputmask.date.extensions.js');?>"></script>
-	<script src="<?php echo base_url('plugins/input-mask/jquery.inputmask.extensions.js');?>"></script>
+	<script src="<?php echo base_url('plugins/input-mask/jquery.inputmask.js'); ?>"></script>
+	<script src="<?php echo base_url('plugins/input-mask/jquery.inputmask.date.extensions.js'); ?>"></script>
+	<script src="<?php echo base_url('plugins/input-mask/jquery.inputmask.extensions.js'); ?>"></script>
 
 	<!-- bootstrap datepicker -->
 	<script src="<?php //echo base_url('bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js');?>"></script>
 	<!-- ChartJS -->
-	<script src="<?php echo base_url('bower_components/chart.js/Chart.js');?>"></script>
+	<script src="<?php echo base_url('bower_components/chart.js/Chart.js'); ?>"></script>
 
 	<!-- bootstrap datepicker-thai -->
-	<script src="<?php echo base_url('plugins/bootstrap-datepicker-thai/js/bootstrap-datepicker.js');?>"></script>
-	<script src="<?php echo base_url('plugins/bootstrap-datepicker-thai/js/bootstrap-datepicker-thai.js');?>"></script>
-	<script src="<?php echo base_url('plugins/bootstrap-datepicker-thai/js/locales/bootstrap-datepicker.th.js');?>"></script>
+	<script src="<?php echo base_url('plugins/bootstrap-datepicker-thai/js/bootstrap-datepicker.js'); ?>"></script>
+	<script src="<?php echo base_url('plugins/bootstrap-datepicker-thai/js/bootstrap-datepicker-thai.js'); ?>"></script>
+	<script src="<?php echo base_url('plugins/bootstrap-datepicker-thai/js/locales/bootstrap-datepicker.th.js'); ?>"></script>
 
 	<!-- Select2 -->
-	<script src="<?php echo base_url('bower_components/select2/dist/js/select2.full.min.js');?>"></script>
+	<script src="<?php echo base_url('bower_components/select2/dist/js/select2.full.min.js'); ?>"></script>
 
 	<!-- my demo -->
-	<script src="<?php echo base_url('assets/demo/dashboard_admin_donut_chart.js');?>"></script>
-	<script src="<?php echo base_url('assets/demo/dashboard_admin_bar_chart_monthly.js');?>"></script>
+	<script src="<?php echo base_url('assets/demo/dashboard_admin_donut_chart.js'); ?>"></script>
+	<script src="<?php echo base_url('assets/demo/dashboard_admin_bar_chart_monthly.js'); ?>"></script>
 
 	<!-- AdminLTE App -->
 	<script src="<?php echo base_url('dist/js/adminlte.min.js'); ?>"></script>
 	<script>
 		$(function () {
+			var pie_chart_display = '<?php echo $pie_chart_display;?>';
+			if (pie_chart_display == 'on') {
+				var pie_chart_data = {
+					count_accidents: '<?php echo $count_accidents;?>',
+					count_break_homes: '<?php echo $count_break_homes;?>',
+					count_security_home: '<?php echo $count_security_home;?>',
+					count_vehicles_forget_key: '<?php echo $count_vehicles_forget_key;?>',
+					count_break_motorcycle_pad: '<?php echo $count_break_motorcycle_pad;?>',
+					count_student_do_not_wear_helmet: '<?php echo $count_student_do_not_wear_helmet;?>',
+				}
+
+				pie_chart_summary_incidence(pie_chart_data)
+			}
+
+			var bar_chart_data = '<?php echo $bar_chart_data;?>';
+
+			bar_chart_data = JSON.parse(bar_chart_data);
+			// console.log(bar_chart_data);
+			if (bar_chart_data.length > 0) {
+				bar_chart_monthly(bar_chart_data);
+			}
+
+			// $('.mydataTable tfoot th').each(function () {
+			// 	var title = $(this).text();
+			// 	$(this).append('<br /><input type="text" class="form-control" placeholder="ค้นหา... ' + title + '" />');
+			// });
+
 			$('.mydataTable').DataTable({
 				"language": {
 					"emptyTable": "ไม่พบรายการ",
 					"lengthMenu": "แสดง _MENU_ จำนวน",
-					"info": "แสดง _START_ to _END_ of _TOTAL_ จำนวน",
+					"info": "แสดง _START_ ถึง _END_ จากทั้งหมด _TOTAL_ จำนวน",
 					"infoEmpty": "รายการ 0 ถึง 0 จาก 0 รายการ",
 					"thousands": ",",
 					"loadingRecords": "กำลังโหลดข้อมูล...",
@@ -293,7 +334,18 @@ else
 						"previous": "ย้อนกลับ"
 					}
 				}
-			});
+			})
+			// .columns().every(function () {
+			// 	var that = this;
+
+			// 	$('input', this.footer()).on('keyup change', function () {
+			// 		if (that.search() !== this.value) {
+			// 			that
+			// 				.search(this.value)
+			// 				.draw();
+			// 		}
+			// 	});
+			// });
 
 			$(".form_submit_data").submit(function () {
 				if (confirm('คุณต้องการบันทึกข้อมูลใช่หรือไม่ ?') == true) {

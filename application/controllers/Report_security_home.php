@@ -9,6 +9,7 @@ class Report_security_home extends CI_Controller
 
         $this->load->model('Security_home_model');
         $this->load->library('Date_libs');
+        $this->load->library('FilterBarChartData');
     }
 
     private $head_topic_label           = 'สถิติโครงการฝากบ้าน';
@@ -42,6 +43,8 @@ class Report_security_home extends CI_Controller
 
         $results = $this->Security_home_model->all($qstr);
         $data['results'] = $results['results'];
+
+        $data['bar_chart_data'] = $this->filterbarchartdata->filter($results['results'], 'start_date_en');
         $data['fields'] = $results['fields'];
         $data['content'] = 'report_security_home_table';
 

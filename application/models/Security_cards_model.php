@@ -1,41 +1,26 @@
 <?php
 defined('BASEPATH') || exit('No direct script access allowed');
 
-class Student_do_not_wear_helmet_model extends CI_Model
+class Security_cards_model extends CI_Model
 {
-
-    private $table = 'student_do_not_wear_helmet';
+    private $table = 'security_cards';
     private $id    = 'id';
     private $items = '
     id,
-    inspect_date AS inspect_date_en,
-    DATE_FORMAT(DATE_ADD(inspect_date, INTERVAL 543 YEAR),"%d/%m/%Y") as inspect_date,
-    CONCAT(license_plate, " ", color, " ", brand, " ", model) as car_body,
-    place,
-    student_name,
-    student_code,
-    id_card,
-    department_name,
-    model,
-    man_type,
-    period_time,
-    (
-      CASE 
-        WHEN period_time = "morning" THEN "เช้า"
-        WHEN period_time = "afternoon" THEN "บ่าย"
-        WHEN period_time = "night" THEN "ดึก"
-        ELSE ""
-      END
-    ) AS period_time_name,
-    brand,
-    color,
-    student_faculty,
-    license_plate,
-    officer_office,
-    officer_card_id,
+    numbers,
+    people_name,
+    people_position,
+    people_department_name,
+    people_phone,
+    car_province,
+    car_brand,
+    car_color,
+    car_license_plate,
+    DATE_FORMAT(DATE_ADD(issue_date, INTERVAL 543 YEAR),"%d/%m/%Y") as issue_date,
+    DATE_FORMAT(DATE_ADD(expire_date, INTERVAL 543 YEAR),"%d/%m/%Y") as expire_date,
     status,
     (
-      CASE 
+      CASE
         WHEN status = "active" THEN "ACTIVE"
         WHEN status = "disabled" THEN "ลบรายการ"
         ELSE ""
@@ -66,6 +51,7 @@ class Student_do_not_wear_helmet_model extends CI_Model
         $results['rows'] = $query->num_rows();
         $results['results'] = $query->first_row();
         $results['fields'] = $query->list_fields();
+        $results['result'] = $query->result();
 
         return $results;
     }

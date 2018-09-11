@@ -1,4 +1,3 @@
-<?php $this->load->view('dashboard_admin_bar_chart_monthly');?>
 <section class="content">
 	<div class="box box-primary">
 		<div class="box-header with-border">
@@ -42,42 +41,42 @@
     ?>
 					<tr>
 						<td class="text-center">
-							<?php echo $value['rbp_id']; ?>
+							<?php echo $value['request_date']; ?>
 						</td>
 						<td class="text-center">
-							<?php echo $value['checker_name']; ?>
+							<?php echo $value['people_type_name']; ?>
 						</td>
 						<td class="text-center">
-							<?php echo $value['zone']; ?>
+							<?php echo $value['cctv_event_name']; ?>
 						</td>
 						<td class="text-center">
-							<?php echo $value['redboxname']; ?>
-						</td>
-						<td class="text-center">
-							<?php
-$date = explode(' ', $value['checked_datetime']);
-    echo $date[0];
-    ?>
-						</td>
-						<td>
-							<?php
-echo $date[1];
-    ?>
-						</td>
-						<td>
-							<?php echo $value['status'] == 1 ? 'ปกติ' : 'ไม่ปกติ'; ?>
-						</td>
-						<td>
-							<?php echo $value['comment']; ?>
+							<?php if ($value['link_copy_polic_doc'] !='') {?>
+							<a href="<?php echo base_url('assets/files/'.$value['link_copy_polic_doc']); ?>" target="_blank" class="btn btn-primary"><i
+								class="fa fa-download"></i></button>
+								<?php }?>
 						</td>
 
 						<td class="text-center">
-							<a href="<?php echo $link_go_to_form . '/' . $value['rbp_id']; ?>" class="btn btn-warning">
+							<?php if ($value['link_copy_gov_doc'] !='') {?>
+							<a href="<?php echo base_url('assets/files/'.$value['link_copy_gov_doc']); ?>" target="_blank" class="btn btn-primary"><i
+								class="fa fa-download"></i></button>
+								<?php }?>
+						</td>
+
+						<td class="text-center">
+							<?php if ($value['link_copy_other_gov_doc'] !='') {?>
+							<a href="<?php echo base_url('assets/files/'.$value['link_copy_other_gov_doc']); ?>" target="_blank" class="btn btn-primary"><i
+								class="fa fa-download"></i></button>
+								<?php }?>
+						</td>
+
+						<td class="text-center">
+							<a href="<?php echo $link_go_to_form . '/' . $value['id']; ?>" class="btn btn-warning">
 								<i class="fa fa-pencil"></i>
 							</a>
 						</td>
 						<td class="text-center">
-							<a href="javascript:removeItem('<?php echo $value['rbp_id']; ?>', '<?php echo $link_go_to_remove; ?>')" class="btn btn-danger">
+							<a href="javascript:removeItem('<?php echo $value['id']; ?>', '<?php echo $link_go_to_remove; ?>')" class="btn btn-danger">
 								<i class="fa fa-trash-o"></i>
 							</a>
 						</td>
@@ -93,4 +92,4 @@ echo $date[1];
 		</div>
 	</div>
 
-
+	<?php $this->load->view('dashboard_admin_bar_chart_monthly');?>

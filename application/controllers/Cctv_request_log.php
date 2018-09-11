@@ -8,7 +8,10 @@ class Cctv_request_log extends CI_Controller
         parent::__construct();
 
         $this->load->model('Cctv_request_log_model');
+        $this->load->model('Cctv_events_model');
+        
         $this->load->library('Date_libs');
+        $this->load->library('FilterBarChartData');
     }
 
     private $head_topic_label           = 'สถิติขอความอนุเคราะห์ดูภาพเหตุการณ์ ';
@@ -27,9 +30,15 @@ class Cctv_request_log extends CI_Controller
         $data['link_go_to_remove'] = site_url('cctv_request_log/remove');
         $data['header_columns'] = $this->header_columns;
 
-        $qstr = array('cctv_request_log.status !=' => 'disabled');
+        $qstr = array(
+          'YEAR(cctv_request_log.request_date)'=>date('Y'),
+          'cctv_request_log.status !=' => 'disabled'
+        );
+
         $results = $this->Cctv_request_log_model->all($qstr);
         $data['results'] = $results['results'];
+
+        $data['bar_chart_data'] = $this->filterbarchartdata->filter($results['results'], 'request_date_en');
         $data['fields'] = $results['fields'];
         $data['content'] = 'cctv_request_log_table';
 
@@ -40,12 +49,16 @@ class Cctv_request_log extends CI_Controller
     {
         $id = $this->uri->segment(3);
         $data = $this->find($id);
-        $data['redbox_lists'] = $this->Cctv_request_log_model->get_redbox_postion_list();
+        
         $data['head_topic_label'] = $this->head_topic_label;
         $data['head_sub_topic_label'] = $this->head_sub_topic_label_form;
         $data['link_back_to_table'] = site_url('cctv_request_log');
         $data['form_submit_data_url'] = site_url('cctv_request_log/store');
 
+        $qstr = array('status'=>'active');
+        $results_cctv_event = $this->Cctv_events_model->all($qstr);
+        $data['results_cctv_event'] = $results_cctv_event['results'];
+        
         $data['content'] = 'cctv_request_log_form_store';
 
         $this->load->view('template_layout', $data);
@@ -54,11 +67,33 @@ class Cctv_request_log extends CI_Controller
     public function store()
     {
         $inputs = $this->input->post();
-        $d = strtotime('now');
-        $inputs['checked_datetime'] = date('Y-m-d H:i:s', $d);
-        $inputs['checker_id'] = 'sec001';
-        // unset($inputs['cheked_redbox_date']);
-        // echo "<pre>", print_r($inputs); exit();
+        $inputs['request_date'] = $this->date_libs->set_date_th($inputs['request_date']);
+        $prop=array(
+          'upload_path'=>'./assets/files/'
+          , 'allowed_types'=>'*'
+          , 'txt_upload'=>'link_copy_polic_doc'
+        );
+
+        $inputs['link_copy_polic_doc']=$this->upload($prop);
+        
+        $prop['txt_upload'] = 'link_copy_gov_doc';
+        $inputs['link_copy_gov_doc']=$this->upload($prop);
+
+        $prop['txt_upload'] = 'link_copy_other_gov_doc';
+        $inputs['link_copy_other_gov_doc']=$this->upload($prop);
+
+        if ($inputs['link_copy_polic_doc'] =='not-file') {
+          unset($inputs['link_copy_polic_doc']);
+        }
+
+        if ($inputs['link_copy_gov_doc'] =='not-file') {
+          unset($inputs['link_copy_gov_doc']);
+        }
+
+        if ($inputs['link_copy_other_gov_doc'] =='not-file') {
+          unset($inputs['link_copy_other_gov_doc']);
+        }
+
         $results = $this->Cctv_request_log_model->store($inputs);
 
         $alert_type = ($results['query'] ? 'success' : 'warning');
@@ -107,5 +142,24 @@ class Cctv_request_log extends CI_Controller
         $this->session->set_flashdata('alert_message', $alert_message);
 
         redirect('cctv_request_log');
+    }
+
+    private function upload($prop)
+    {
+      $config['upload_path']=$prop['upload_path'];
+          $config['allowed_types']=$prop['allowed_types'];
+          $config['file_name']=date("YmdHis");
+  
+          $this->load->library('upload');
+          $this->upload->initialize($config);
+  
+          if ($this->upload->do_upload($prop['txt_upload'])) {
+              $data=$this->upload->data();
+              $file_name=$data['file_name'];
+          }else {
+              // echo $this->upload->display_errors(); exit();
+              $file_name = 'not-file';
+          }
+          return $file_name;
     }
 }

@@ -10,6 +10,7 @@ class Vehicles_forget_key_model extends CI_Model
     id,
     period_time,
     people_type,
+    date_forget_key AS date_forget_key_en,
     DATE_FORMAT(DATE_ADD(date_forget_key, INTERVAL 543 YEAR),"%d/%m/%Y") as date_forget_key,
     owner_assets_name,
     owner_assets_department,

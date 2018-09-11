@@ -41,29 +41,47 @@
     ?>
 					<tr>
 						<td class="text-center">
-							<?php echo $value['period_time_name'];?>
+							<?php echo $value['numbers']; ?>
 						</td>
 						<td class="text-center">
-							<?php echo $value['date_break'].' '.$value['date_break_time_only'];?>
+							<?php echo $value['people_name']; ?>
 						</td>
 						<td class="text-center">
-							<?php echo $value['victim_name']; ?>
+							<?php echo $value['people_position']; ?>
 						</td>
+
 						<td class="text-center">
-							<?php echo $value['victim_department_name']; ?>
+							<?php echo $value['people_department_name']; ?>
 						</td>
+
 						<td class="text-center">
-							<?php echo $value['place']; ?>
+							<?php echo $value['people_phone']; ?>
 						</td>
+
 						<td class="text-center">
-							<?php echo $value['assets_loses']; ?>
+							<?php echo $value['car_license_plate']; ?>
 						</td>
-						<td>
-							<?php echo $value['remark']; ?>
-						</td>
+
 						<td class="text-center">
-							<?php echo $value['status_name']; ?>
+							<?php echo $value['car_province']; ?>
 						</td>
+
+						<td class="text-center">
+							<?php echo $value['car_brand']; ?>
+						</td>
+
+						<td class="text-center">
+							<?php echo $value['car_color']; ?>
+						</td>
+
+						<td class="text-center">
+							<?php echo $value['issue_date']; ?>
+						</td>
+
+						<td class="text-center">
+							<?php echo $value['expire_date']; ?>
+						</td>
+
 						<td class="text-center">
 							<a href="<?php echo $link_go_to_form . '/' . $value['id']; ?>" class="btn btn-warning">
 								<i class="fa fa-pencil"></i>
@@ -78,20 +96,10 @@
 					</tr>
 					<?php }?>
 				</tbody>
-				<tfoot>
-					<?php foreach ($header_columns as $key => $value)
-{
-    ?>
-					<th class="text-center">
-						<?php echo $value; ?>
-					</th>
-					<?php }?>
-				</tfoot>
+
 			</table>
 		</div>
 
 		<div class="box-footer">
 		</div>
 	</div>
-
-	<?php $this->load->view('dashboard_admin_bar_chart_monthly');?>

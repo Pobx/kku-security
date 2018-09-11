@@ -9,6 +9,7 @@ class Student_do_not_wear_helmet extends CI_Controller
 
         $this->load->model('Student_do_not_wear_helmet_model');
         $this->load->library('Date_libs');
+        $this->load->library('FilterBarChartData');
     }
 
     private $head_topic_label           = 'สถิติไม่สวมหมวกนิรภัย';
@@ -27,9 +28,15 @@ class Student_do_not_wear_helmet extends CI_Controller
         $data['link_go_to_remove'] = site_url('student_do_not_wear_helmet/remove');
         $data['header_columns'] = $this->header_columns;
 
-        $qstr = array('status !=' => 'disabled');
+        $qstr = array(
+          'YEAR(inspect_date)'=>date('Y'),
+          'status !=' => 'disabled'
+        );
+
         $results = $this->Student_do_not_wear_helmet_model->all($qstr);
         $data['results'] = $results['results'];
+        $data['bar_chart_data'] = $this->filterbarchartdata->filter($results['results'], 'inspect_date_en');
+        
         $data['fields'] = $results['fields'];
         $data['content'] = 'student_do_not_wear_helmet_table';
 

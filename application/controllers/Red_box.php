@@ -9,6 +9,7 @@ class Red_box extends CI_Controller
 
         $this->load->model('Redbox_model');
         $this->load->library('Date_libs');
+        $this->load->library('FilterBarChartData');
     }
 
     private $head_topic_label           = 'จุดตรวจตู้แดง ';
@@ -28,9 +29,15 @@ class Red_box extends CI_Controller
         $data['link_go_to_remove'] = site_url('red_box/remove');
         $data['header_columns'] = $this->header_columns;
 
-        $qstr = array('redbox_positions.status !=' => 0);
+        $qstr = array(
+          'YEAR(checked_datetime)'=>date('Y'),
+          'redbox_positions.status !=' => 0
+        );
+
         $results = $this->Redbox_model->all($qstr);
         $data['results'] = $results['results'];
+
+        $data['bar_chart_data'] = $this->filterbarchartdata->filter($results['results'], 'checked_datetime_en');
         $data['fields'] = $results['fields'];
         $data['content'] = 'red_box/red_box_table';
         

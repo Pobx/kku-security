@@ -7,6 +7,7 @@ class Break_homes_model extends CI_Model {
 	private $id='id';
   private $items = '
     id, 
+    date_break AS date_break_en,
     DATE_FORMAT(DATE_ADD(date_break, INTERVAL 543 YEAR),"%d/%m/%Y") as date_break, 
     victim_name,
     address,

@@ -8,6 +8,7 @@ class Security_homes extends CI_Controller
 
     $this->load->model('Security_home_model');
     $this->load->library('Date_libs');
+    $this->load->library('FilterBarChartData');
   }
 
   private $head_topic_label = 'โครงการฝากบ้าน';
@@ -26,12 +27,18 @@ class Security_homes extends CI_Controller
       $data['link_go_to_remove'] = site_url('security_homes/remove');
       $data['header_columns'] = $this->header_columns;
       
-      $qstr = array('status !='=>'disabled');
+      $qstr = array(
+        'YEAR(start_date)'=>date('Y'),
+        'status !='=>'disabled'
+      );
+
       $results = $this->Security_home_model->all($qstr);
       $data['results'] = $results['results'];
+      $data['bar_chart_data'] = $this->filterbarchartdata->filter($results['results'], 'start_date_en');
       $data['fields'] = $results['fields'];
       $data['content'] = 'security_homes_table';
-      // echo "<pre>", print_r($data['results']); exit();
+
+      // echo "<pre>", print_r($data['bar_chart_data']); exit();
       $this->load->view('template_layout', $data);
     }
 
