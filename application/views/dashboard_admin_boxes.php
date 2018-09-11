@@ -70,9 +70,7 @@
 				<h3 class="widget-user-username">สถิติเหตุทรัพย์งัดที่พักอาศัย
 		</h3>
 				<h5 class="widget-user-desc">
-				<span>
-						<?=date("j F Y", strtotime("1/01/18")); ;?> -
-						<?=date('d F Y');?></span>
+				<span><?php echo $year_th;?></span>
 				</h5>
 			</div>
 			<div class="widget-user-image">
@@ -84,7 +82,7 @@
 				<div class="row">
 					<div class="col-sm-4 border-right">
 						<div class="description-block">
-							<h5 class="description-header">3,200</h5>
+							<h5 class="description-header"><?php echo $count_break_homes;?></h5>
 							<span class="description-text">ครั้ง</span>
 							<div class=" no-padding">
 								<br><br><br>	
@@ -98,28 +96,16 @@
 							<span class="description-text">ช่วงเวลาเกิดเหตุ</span>
 							<div class="box-footer no-padding">
 								<ul class="nav nav-stacked">
-									<li><a href="#">เช้า <span class="pull-right badge bg-blue">31</span></a></li>
-									<li><a href="#">บ่าย <span class="pull-right badge bg-aqua">5</span></a></li>
-									<li><a href="#">ดึก <span class="pull-right badge bg-red">842</span></a></li>
+									<li><a href="#">เช้า <span class="pull-right badge bg-blue">ไม่ได้เก็บ</span></a></li>
+									<li><a href="#">บ่าย <span class="pull-right badge bg-aqua">ไม่ได้เก็บ</span></a></li>
+									<li><a href="#">ดึก <span class="pull-right badge bg-red">ไม่ได้เก็บ</span></a></li>
 								</ul>	
 							</div>
 						</div>
 						<!-- /.description-block -->
 					</div>
 					<!-- /.col -->
-					<div class="col-sm-4">
-					<div class="">
-							<span class="description-text">ประเภทบุคคล</span>
-							<div class="box-footer no-padding">
-								<ul class="nav nav-stacked">
-									<li><a href="#">นักศึกษา <span class="pull-right badge bg-blue">31</span></a></li>
-									<li><a href="#">บุคลากร <span class="pull-right badge bg-aqua">5</span></a></li>
-									<li><a href="#">คนภายนอก <span class="pull-right badge bg-red">842</span></a></li>
-								</ul>	
-							</div>
-						</div>
-						<!-- /.description-block -->
-					</div>
+					<div class="col-sm-4"></div>
 					<!-- /.col -->
 				</div>
 				<!-- /.row -->
@@ -137,9 +123,7 @@
 			<div class="widget-user-header bg-red-active">
 				<h3 class="widget-user-username">โครงการฝากบ้าน</h3>
 				<h5 class="widget-user-desc">
-				<span>
-						<?=date("j F Y", strtotime("1/01/18")); ;?> -
-						<?=date('d F Y');?></span>
+				<span><?php echo $year_th;?></span>
 				</h5>
 			</div>
 			<div class="widget-user-image">

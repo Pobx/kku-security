@@ -9,6 +9,7 @@ class Dashboard extends CI_Controller
         parent::__construct();
 
         $this->load->model('Accidents_model');
+        $this->load->model('Break_homes_model');
 				$this->load->library('Date_libs');
 				$this->load->library('FilterPeriodTimes');
 				$this->load->library('FilterPeoples');
@@ -37,7 +38,13 @@ class Dashboard extends CI_Controller
 				$data['count_accidents_officer'] = $this->filterpeoples->filter($results_participate, 'officer', 'people_type');
 				$data['count_accidents_people_inside'] = $this->filterpeoples->filter($results_participate, 'people_inside', 'people_type');
 				
+				$qstr_break_homes = array(
+					'YEAR(date_break)'=>date('Y'),
+          'status !=' => 'disabled'
+				);
 
+				$results_break_homes = $this->Break_homes_model->all($qstr_break_homes);
+				$data['count_break_homes'] = $results_break_homes['rows'];
 				// echo "<pre>", print_r($results_participate); exit();
         $data['content'] = 'dashboard_admin';
         $this->load->view('template_layout', $data);
