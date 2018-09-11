@@ -9,7 +9,9 @@ class Dashboard extends CI_Controller
         parent::__construct();
 
         $this->load->model('Accidents_model');
-        $this->load->library('Date_libs');
+				$this->load->library('Date_libs');
+				$this->load->library('FilterPeriodTimes');
+				
     }
 
     private $head_topic_label           = 'Dashboard';
@@ -25,9 +27,26 @@ class Dashboard extends CI_Controller
 
 				$results_accidents = $this->Accidents_model->all($qstr_accidents);
 				$data['count_accidents'] = $results_accidents['rows'];
+				$data['count_accidents_morning'] = $this->filterperiodtimes->filter($results_accidents['results'], 'morning', 'period_time');
+				$data['count_accidents_afternoon'] = $this->filterperiodtimes->filter($results_accidents['results'], 'afternoon', 'period_time');
+				$data['count_accidents_night'] = $this->filterperiodtimes->filter($results_accidents['results'], 'night', 'period_time');
 
-				// echo $results_accidents['rows']; exit();
+				$results_participate = $this->mapPartitipate($results_accidents['results']);
+			
+
+				echo "<pre>", print_r($results_participate); exit();
         $data['content'] = 'dashboard_admin';
         $this->load->view('template_layout', $data);
-    }
+		}
+		
+		private function mapPartitipate($data) {
+			$results = array();
+			foreach ($data as $key => $value) {
+				foreach ($value['results_participate'] as $key1 => $value1) {
+					array_push($results, $value1);
+				}
+			}
+
+			return $results;
+		}
 }

@@ -32,9 +32,9 @@
 							<span class="description-text">ช่วงเวลาเกิดเหตุ</span>
 							<div class="box-footer no-padding">
 								<ul class="nav nav-stacked">
-									<li><a href="#">เช้า <span class="pull-right badge bg-blue">31</span></a></li>
-									<li><a href="#">บ่าย <span class="pull-right badge bg-aqua">5</span></a></li>
-									<li><a href="#">ดึก <span class="pull-right badge bg-red">842</span></a></li>
+									<li><a href="#">เช้า <span class="pull-right badge bg-blue"><?php echo $count_accidents_morning;?></span></a></li>
+									<li><a href="#">บ่าย <span class="pull-right badge bg-aqua"><?php echo $count_accidents_afternoon;?></span></a></li>
+									<li><a href="#">ดึก <span class="pull-right badge bg-red"><?php echo $count_accidents_night;?></span></a></li>
 								</ul>	
 							</div>
 						</div>
