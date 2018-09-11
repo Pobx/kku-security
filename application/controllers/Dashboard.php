@@ -11,7 +11,8 @@ class Dashboard extends CI_Controller
         $this->load->model('Accidents_model');
 				$this->load->library('Date_libs');
 				$this->load->library('FilterPeriodTimes');
-				
+				$this->load->library('FilterPeoples');
+
     }
 
     private $head_topic_label           = 'Dashboard';
@@ -32,9 +33,12 @@ class Dashboard extends CI_Controller
 				$data['count_accidents_night'] = $this->filterperiodtimes->filter($results_accidents['results'], 'night', 'period_time');
 
 				$results_participate = $this->mapPartitipate($results_accidents['results']);
-			
+				$data['count_accidents_students'] = $this->filterpeoples->filter($results_participate, 'student', 'people_type');
+				$data['count_accidents_officer'] = $this->filterpeoples->filter($results_participate, 'officer', 'people_type');
+				$data['count_accidents_people_inside'] = $this->filterpeoples->filter($results_participate, 'people_inside', 'people_type');
+				
 
-				echo "<pre>", print_r($results_participate); exit();
+				// echo "<pre>", print_r($results_participate); exit();
         $data['content'] = 'dashboard_admin';
         $this->load->view('template_layout', $data);
 		}

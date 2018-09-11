@@ -46,9 +46,9 @@
 							<span class="description-text">ประเภทบุคคล</span>
 							<div class="box-footer no-padding">
 								<ul class="nav nav-stacked">
-									<li><a href="#">นักศึกษา <span class="pull-right badge bg-blue">31</span></a></li>
-									<li><a href="#">บุคลากร <span class="pull-right badge bg-aqua">5</span></a></li>
-									<li><a href="#">คนภายนอก <span class="pull-right badge bg-red">842</span></a></li>
+									<li><a href="#">นักศึกษา <span class="pull-right badge bg-blue"><?php echo $count_accidents_students;?></span></a></li>
+									<li><a href="#">บุคลากร <span class="pull-right badge bg-aqua"><?php echo $count_accidents_officer;?></span></a></li>
+									<li><a href="#">คนภายนอก <span class="pull-right badge bg-red"><?php echo $count_accidents_people_inside;?></span></a></li>
 								</ul>	
 							</div>
 						</div>
