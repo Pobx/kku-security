@@ -6,9 +6,7 @@
 			<div class="widget-user-header bg-aqua-active">
 				<h3 class="widget-user-username">สถิติการเกิดอุบัติเหตุ</h3>
 				<h5 class="widget-user-desc">
-				<span>
-						<?=date("j F Y", strtotime("1/01/18")); ;?> -
-						<?=date('d F Y');?></span>
+				<span><?php echo $year_th;?></span>
 				</h5>
 			</div>
 			<div class="widget-user-image">
@@ -20,7 +18,7 @@
 				<div class="row">
 					<div class="col-sm-4 border-right">
 						<div class="description-block">
-							<h5 class="description-header">3,200</h5>
+							<h5 class="description-header"><?php echo $count_accidents;?></h5>
 							<span class="description-text">ครั้ง</span>
 							<div class=" no-padding">
 								<br><br><br>	
