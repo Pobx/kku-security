@@ -16,7 +16,7 @@
 			<div class="col-sm-4 border-right">
 				<div class="description-block">
 					<h5 class="description-header">
-						<?php echo $count_vehicles_forget_key;?>
+						<?php echo $count_break_motorcycle_pad;?>
 					</h5>
 					<span class="description-text">ครั้ง</span>
 					<div class=" no-padding">
@@ -30,11 +30,11 @@
 					<div class="box-footer no-padding">
 						<ul class="nav nav-stacked">
 							<li><a href="#">เช้า <span class="pull-right badge bg-blue">
-										<?php echo $count_vehicles_forget_key_morning;?></span></a></li>
+										<?php echo $count_break_motorcycle_pad_morning;?></span></a></li>
 							<li><a href="#">บ่าย <span class="pull-right badge bg-aqua">
-										<?php echo $count_vehicles_forget_key_afternoon;?></span></a></li>
+										<?php echo $count_break_motorcycle_pad_afternoon;?></span></a></li>
 							<li><a href="#">ดึก <span class="pull-right badge bg-red">
-										<?php echo $count_vehicles_forget_key_night;?></span></a></li>
+										<?php echo $count_break_motorcycle_pad_night;?></span></a></li>
 						</ul>
 					</div>
 				</div>
@@ -45,11 +45,11 @@
 					<div class="box-footer no-padding">
 						<ul class="nav nav-stacked">
 							<li><a href="#">นักศึกษา <span class="pull-right badge bg-blue">
-										<?php echo $count_vehicles_forget_key_students;?></span></a></li>
+										<?php echo $count_break_motorcycle_pad_students;?></span></a></li>
 							<li><a href="#">บุคลากร <span class="pull-right badge bg-aqua">
-										<?php echo $count_vehicles_forget_key_officer;?></span></a></li>
+										<?php echo $count_break_motorcycle_pad_officer;?></span></a></li>
 							<li><a href="#">คนภายนอก <span class="pull-right badge bg-red">
-										<?php echo $count_vehicles_forget_key_people_outside;?></span></a></li>
+										<?php echo $count_break_motorcycle_pad_people_outside;?></span></a></li>
 						</ul>
 					</div>
 				</div>

@@ -12,7 +12,8 @@ class Dashboard extends CI_Controller
 				$this->load->model('Break_homes_model');
 				$this->load->model('Security_home_model');
 				$this->load->model('Vehicles_forget_key_model');
-				$this->load->model('Student_do_not_wear_helmet_model');
+        $this->load->model('Student_do_not_wear_helmet_model');
+        $this->load->model('Break_motorcycle_pad_model');
 
 				$this->load->library('Date_libs');
 				$this->load->library('FilterPeriodTimes');
@@ -74,14 +75,35 @@ class Dashboard extends CI_Controller
         $data['count_vehicles_forget_key_officer'] += $data['count_vehicles_forget_key_staff'];
         $data['count_vehicles_forget_key_people_outside'] = $this->filterpeoples->filter($results_vehicles_forget_key['results'], 'people_outside', 'people_type');
 
+        $qstr_break_motorcycle_pad = array(
+					'YEAR(date_break)'=>date('Y'),
+          'status !=' => 'disabled'
+        );
+        
+        $results_break_motorcycle_pad = $this->Break_motorcycle_pad_model->all($qstr_break_motorcycle_pad);
+        $data['count_break_motorcycle_pad'] = $results_break_motorcycle_pad['rows'];
+        $data['count_break_motorcycle_pad_morning'] = $this->filterperiodtimes->filter($results_break_motorcycle_pad['results'], 'morning', 'period_time');
+				$data['count_break_motorcycle_pad_afternoon'] = $this->filterperiodtimes->filter($results_break_motorcycle_pad['results'], 'afternoon', 'period_time');
+        $data['count_break_motorcycle_pad_night'] = $this->filterperiodtimes->filter($results_break_motorcycle_pad['results'], 'night', 'period_time');
+        
+				$data['count_break_motorcycle_pad_students'] = $this->filterpeoples->filter($results_break_motorcycle_pad['results'], 'student', 'people_type');
+				$data['count_break_motorcycle_pad_officer'] = $this->filterpeoples->filter($results_break_motorcycle_pad['results'], 'officer', 'people_type');
+				$data['count_break_motorcycle_pad_people_inside'] = $this->filterpeoples->filter($results_break_motorcycle_pad['results'], 'people_inside', 'people_type');
+        $data['count_break_motorcycle_pad_staff'] = $this->filterpeoples->filter($results_break_motorcycle_pad['results'], 'staff', 'people_type');
+        
+        $data['count_break_motorcycle_pad_officer'] += ($data['count_break_motorcycle_pad_staff'] + $data['count_break_motorcycle_pad_people_inside']);
+        $data['count_break_motorcycle_pad_people_outside'] = $this->filterpeoples->filter($results_break_motorcycle_pad['results'], 'people_outside', 'people_type');
+
+
 				$qstr_student_do_not_wear_helmet = array(
 					'YEAR(inspect_date)'=>date('Y'),
           'status !=' => 'disabled'
 				);
 
 				$results_student_do_not_wear_helmet = $this->Student_do_not_wear_helmet_model->all($qstr_student_do_not_wear_helmet);
-				$data['count_student_do_not_wear_helmet'] = $results_student_do_not_wear_helmet['rows'];
-				// echo "<pre>", print_r($results_participate); exit();
+        $data['count_student_do_not_wear_helmet'] = $results_student_do_not_wear_helmet['rows'];
+        
+        // echo "<pre>", print_r($data['count_break_motorcycle_pad_afternoon']); exit();
         $data['content'] = 'dashboard_admin';
         $this->load->view('template_layout', $data);
 		}

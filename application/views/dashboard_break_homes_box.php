@@ -1,5 +1,4 @@
 <div class="box box-widget widget-user">
-	<!-- Add the bg color to the header using any of the bg-* classes -->
 	<div class="widget-user-header bg-yellow-active">
 		<h3 class="widget-user-username">สถิติเหตุทรัพย์งัดที่พักอาศัย
 		</h3>
@@ -11,7 +10,6 @@
 	<div class="widget-user-image">
 		<span class="info-box-icon" style="border-radius:50%; background:#ffffff; color:#000000">
 			<i class="fa fa-home"></i></span>
-		<!-- <img class="img-circle" src="../dist/img/user1-128x128.jpg" alt="User Avatar"> -->
 	</div>
 	<div class="box-footer">
 		<div class="row">
@@ -25,38 +23,31 @@
 						<br><br><br>
 					</div>
 				</div>
-				<!-- /.description-block -->
 			</div>
-			<!-- /.col -->
 			<div class="col-sm-4 border-right">
 				<div class="">
 					<span class="description-text">ช่วงเวลาเกิดเหตุ</span>
 					<div class="box-footer no-padding">
 						<ul class="nav nav-stacked">
-							<li><a href="#">เช้า <span class="pull-right badge bg-blue">ไม่ได้เก็บ</span></a></li>
-							<li><a href="#">บ่าย <span class="pull-right badge bg-aqua">ไม่ได้เก็บ</span></a></li>
-							<li><a href="#">ดึก <span class="pull-right badge bg-red">ไม่ได้เก็บ</span></a></li>
+							<li><a href="#">เช้า <span class="pull-right badge bg-blue">0</span></a></li>
+							<li><a href="#">บ่าย <span class="pull-right badge bg-aqua">0</span></a></li>
+							<li><a href="#">ดึก <span class="pull-right badge bg-red">0</span></a></li>
 						</ul>
 					</div>
 				</div>
-				<!-- /.description-block -->
 			</div>
-			<!-- /.col -->
 			<div class="col-sm-4">
 				<div class="">
 					<span class="description-text">ประเภทบุคคล</span>
 					<div class="box-footer no-padding">
 						<ul class="nav nav-stacked">
-							<li><a href="#">นักศึกษา <span class="pull-right badge bg-blue">ไม่ได้เก็บ</span></a></li>
-							<li><a href="#">บุคลากร <span class="pull-right badge bg-aqua">ไม่ได้เก็บ</span></a></li>
-							<li><a href="#">คนภายนอก <span class="pull-right badge bg-red">ไม่ได้เก็บ</span></a></li>
+							<li><a href="#">นักศึกษา <span class="pull-right badge bg-blue">0</span></a></li>
+							<li><a href="#">บุคลากร <span class="pull-right badge bg-aqua">0</span></a></li>
+							<li><a href="#">คนภายนอก <span class="pull-right badge bg-red">0</span></a></li>
 						</ul>
 					</div>
 				</div>
-				<!-- /.description-block -->
 			</div>
-			<!-- /.col -->
 		</div>
-		<!-- /.row -->
 	</div>
 </div>

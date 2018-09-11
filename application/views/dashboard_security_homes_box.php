@@ -28,18 +28,18 @@
 					<span class="description-text">ช่วงเวลาเกิดเหตุ</span>
 					<div class="box-footer no-padding">
 						<ul class="nav nav-stacked">
-							<li><a href="#">เช้า <span class="pull-right badge bg-blue">ไม่ได้เก็บ</span></a></li>
-							<li><a href="#">บ่าย <span class="pull-right badge bg-aqua">ไม่ได้เก็บ</span></a></li>
-							<li><a href="#">ดึก <span class="pull-right badge bg-red">ไม่ได้เก็บ</span></a></li>
+							<li><a href="#">เช้า <span class="pull-right badge bg-blue">0</span></a></li>
+							<li><a href="#">บ่าย <span class="pull-right badge bg-aqua">0</span></a></li>
+							<li><a href="#">ดึก <span class="pull-right badge bg-red">0</span></a></li>
 						</ul>
 					</div>
 				</div>
 			</div>
 			<div class="col-sm-4">
 				<ul class="nav nav-stacked">
-					<li><a href="#">นักศึกษา <span class="pull-right badge bg-blue">ไม่ได้เก็บ</span></a></li>
-					<li><a href="#">บุคลากร <span class="pull-right badge bg-aqua">ไม่ได้เก็บ</span></a></li>
-					<li><a href="#">คนภายนอก <span class="pull-right badge bg-red">ไม่ได้เก็บ</span></a></li>
+					<li><a href="#">นักศึกษา <span class="pull-right badge bg-blue">0</span></a></li>
+					<li><a href="#">บุคลากร <span class="pull-right badge bg-aqua">0</span></a></li>
+					<li><a href="#">คนภายนอก <span class="pull-right badge bg-red">0</span></a></li>
 				</ul>
 			</div>
 		</div>
