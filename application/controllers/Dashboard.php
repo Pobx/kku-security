@@ -68,9 +68,11 @@ class Dashboard extends CI_Controller
 				$data['count_vehicles_forget_key_morning'] = $this->filterperiodtimes->filter($results_vehicles_forget_key['results'], 'morning', 'period_time');
 				$data['count_vehicles_forget_key_afternoon'] = $this->filterperiodtimes->filter($results_vehicles_forget_key['results'], 'afternoon', 'period_time');
 				$data['count_vehicles_forget_key_night'] = $this->filterperiodtimes->filter($results_vehicles_forget_key['results'], 'night', 'period_time');
-				$data['count_vehicles_forget_key_students'] = $this->filterpeoples->filter($results_participate, 'student', 'people_type');
-				$data['count_vehicles_forget_key_officer'] = $this->filterpeoples->filter($results_participate, 'officer', 'people_type');
-				$data['count_vehicles_forget_key_people_outside'] = $this->filterpeoples->filter($results_participate, 'people_outside', 'people_type');
+				$data['count_vehicles_forget_key_students'] = $this->filterpeoples->filter($results_vehicles_forget_key['results'], 'student', 'people_type');
+				$data['count_vehicles_forget_key_officer'] = $this->filterpeoples->filter($results_vehicles_forget_key['results'], 'officer', 'people_type');
+				$data['count_vehicles_forget_key_staff'] = $this->filterpeoples->filter($results_vehicles_forget_key['results'], 'staff', 'people_type');
+        $data['count_vehicles_forget_key_officer'] += $data['count_vehicles_forget_key_staff'];
+        $data['count_vehicles_forget_key_people_outside'] = $this->filterpeoples->filter($results_vehicles_forget_key['results'], 'people_outside', 'people_type');
 
 				$qstr_student_do_not_wear_helmet = array(
 					'YEAR(inspect_date)'=>date('Y'),

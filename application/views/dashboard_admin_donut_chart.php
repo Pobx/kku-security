@@ -1,6 +1,6 @@
 <div class="box box-primary">
 	<div class="row">
-		<div class="col-md-6">
+		<div class="col-md-12">
 			<div class="box-header with-border">
 				<h3 class="box-title">สรุปสถานะเหตุการณ์ประจำปี
 					<?php echo (date('Y') + 543);?>
@@ -31,9 +31,6 @@
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="col-md-6">
-			<?php $this->load->view('dashboard_admin_table_accidents_panel');?>
 		</div>
 	</div>
 </div>
