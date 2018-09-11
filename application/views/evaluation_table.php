@@ -58,7 +58,7 @@
 					
 						<td class="text-center">
 							<a href="<?php echo $link_go_to_form.'/'.$value['id'];?>" class="btn btn-warning">
-								<i class="fa fa-pencil"></i>
+								<i class="fa fa-eye"></i>
 							</a>
 						</td>
 						<td class="text-center">

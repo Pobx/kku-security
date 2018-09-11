@@ -13,7 +13,7 @@ class Evaluation_model extends CI_Model {
     }
 
   private $table='evaluations';
-  private $table2='eval_service';
+  private $table2='services';
   private $table3='faculty';
   private $table4='personals';
   private $table5='eval_service';
@@ -30,7 +30,7 @@ class Evaluation_model extends CI_Model {
       END
     ) AS gender,
     age,
-    posonal_id,
+    personal_id,
     department_id,
     performance,
     success,
@@ -55,7 +55,7 @@ class Evaluation_model extends CI_Model {
     $query = $this->db->select("faculty.name as facultyname,personals.name as personalname,evaluations.*")
                       ->from($this->table)
                       ->join($this->table3, $this->table.'.department_id = '.$this->table3.'.id')
-                      ->join($this->table4, $this->table.'.	posonal_id = '.$this->table4.'.id')
+                      ->join($this->table4, $this->table.'.personal_id = '.$this->table4.'.id')
                       ->get();
 
                       
@@ -67,17 +67,20 @@ class Evaluation_model extends CI_Model {
   }
 
   public function find($id) {
-    $query = $this->db->select($this->items)
+    $query = $this->db->select("evaluations.*,eval_service.service_id,services.name as service_name,faculty.name as faculty_name,personals.name as personal_name")
                       ->from($this->table)
+                      ->join($this->table5,$this->table.'.id='.$this->table5.'.eval_id')
+                      ->join($this->table2,$this->table2.'.id='.$this->table5.'.service_id')
+                      ->join($this->table3, $this->table.'.department_id = '.$this->table3.'.id')
+                      ->join($this->table4, $this->table.'.personal_id = '.$this->table4.'.id')
                       ->where($this->table.'.id', $id)->get();
-    $query2 = $this->db->select("eval_service.service_id")
-                      ->from($this->table5)
-                      ->where($this->table5.'.eval_id', $id)->get();
-                 
+         
     $results['rows'] = $query->num_rows();
     $results['results'] = $query->first_row();
     $results['fields'] = $query->list_fields();
-    $results['service'] = $query2->result_array();
+    $results['service'] = $query->result_array();
+
+   //echo "<pre>", print_r($results['service']); exit();
 
 
     return $results;
@@ -90,7 +93,7 @@ class Evaluation_model extends CI_Model {
       $arr = array(
         'gender'=>$inputs['gender'],
         'age'=>$inputs['age'],
-        'posonal_id'=>$inputs['posonal_id'],
+        'personal_id'=>$inputs['personal_id'],
         'department_id'=>$inputs['department_id'],
         'performance'=>$inputs['performance'],
         'success'=>$inputs['success'],
@@ -131,7 +134,7 @@ class Evaluation_model extends CI_Model {
         'eval_date'=>$this->date_libs->set_date_th($inptus['eval_date']),
         'gender'=>$inputs['gender'],
         'age'=>$inputs['age'],
-        'posonal_id'=>$inputs['posonal_id'],
+        'personal_id'=>$inputs['personal_id'],
         'department_id'=>$inputs['department_id'],
         'performance'=>$inputs['performance'],
         'success'=>$inputs['success'],
