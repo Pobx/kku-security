@@ -1,6 +1,8 @@
 <!-- <div class="box box-primary"> -->
 <div class="box-header bg-yellow">
-	<h3 class="box-title">สรุปเหตุการณ์ในรอบสัปดาห์</h3>
+	<h3 class="box-title">สรุปเหตุการณ์ประจำ
+		<?php echo $year_th;?>
+	</h3>
 	<div class="box-tools pull-right">
 		<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
 			<i class="fa fa-minus"></i></button>
