@@ -70,6 +70,11 @@
 		<li>
 			<a href="<?php echo site_url('report_break_motorcycle_pad');?>"><i class="fa fa-motorcycle"></i> <span>สถิติงัดเบาะรถจักยานยนต์</span></a>
 		</li>
+
+		<li>
+			<a href="<?php echo site_url('report_cctv_request_log');?>"><i class="fa fa-camera"></i> <span>สถิติขอความอนุเคราะห์<br />ดูภาพเหตุการณ์</span></a>
+		</li>
+
 		<li>
 			<a href="<?php echo site_url('report_redboxs');?>"><i class="fa fa-inbox"></i> <span>สถิติกล่องแดง</span></a>
 		</li>
