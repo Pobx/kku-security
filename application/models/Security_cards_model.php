@@ -16,6 +16,7 @@ class Security_cards_model extends CI_Model
     car_brand,
     car_color,
     car_license_plate,
+    issue_date AS issue_date_en,
     DATE_FORMAT(DATE_ADD(issue_date, INTERVAL 543 YEAR),"%d/%m/%Y") as issue_date,
     DATE_FORMAT(DATE_ADD(expire_date, INTERVAL 543 YEAR),"%d/%m/%Y") as expire_date,
     status,
