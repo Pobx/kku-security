@@ -70,6 +70,9 @@
 		<li>
 			<a href="<?php echo site_url('report_break_motorcycle_pad');?>"><i class="fa fa-motorcycle"></i> <span>สถิติงัดเบาะรถจักยานยนต์</span></a>
 		</li>
+		<li>
+			<a href="<?php echo site_url('report_redboxs');?>"><i class="fa fa-inbox"></i> <span>สถิติกล่องแดง</span></a>
+		</li>
 
 		<li>
 			<a href="<?php echo site_url('report_do_not_wear_helmet');?>"><i class="fa fa-motorcycle"></i> <span>สถิติไม่สวมหมวกนิรภัย</span></a>
