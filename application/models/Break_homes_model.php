@@ -9,9 +9,38 @@ class Break_homes_model extends CI_Model {
     id, 
     date_break AS date_break_en,
     DATE_FORMAT(DATE_ADD(date_break, INTERVAL 543 YEAR),"%d/%m/%Y") as date_break, 
+    time_break,
     victim_name,
+    victim_phone,
+    department,
+    type_address,
+    (
+      CASE 
+      WHEN type_address = "home" THEN "บ้าน"
+      WHEN type_address = "flat" THEN "แฟลต"
+      WHEN type_address = "office" THEN "สำนักงาน"
+      WHEN type_address = "other" THEN "อื่นๆ"
+    END
+    ),
     address,
     assets_loses,
+    victim_process,
+    (
+      CASE 
+      WHEN victim_process = "bill" THEN "มีบันทึกประจำวัน"
+      WHEN victim_process = "camera" THEN "ขอดูกล้องวงจรปิด"
+      WHEN victim_process = "other" THEN "อื่นๆ"
+      END
+    ),
+    victim_process_note,
+    staff_process,
+    (
+      CASE 
+        WHEN staff_process = "yes" THEN "จับได้"
+        WHEN staff_process = "no" THEN "จับไม่ได้"
+      END
+    ) ,
+    staff_process_note,
     remark,
     status,
     (
