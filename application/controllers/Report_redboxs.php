@@ -57,9 +57,9 @@ class Report_redboxs extends CI_Controller
         $data['header_columns'] = $this->header_columns;
         $inputs = $this->session->userdata();
         $qstr = array(
-            'start_date >=' => $inputs['start_date'],
-            'end_date <='   => $inputs['end_date'],
-            'status !='     => 'disabled',
+          'DATE(checked_datetime) >=' => $this->date_libs->set_date_th($inputs['start_date']),
+          'DATE(checked_datetime) <='   => $this->date_libs->set_date_th($inputs['end_date']),
+          'redbox_positions.status !='     => 'disabled',
         );
 
         $results = $this->Redbox_model->all($qstr);
@@ -67,7 +67,7 @@ class Report_redboxs extends CI_Controller
         $data['fields'] = $results['fields'];
 
         // echo "<pre>", print_r($data['results']); exit();
-        $this->load->view('excel_security_home_table', $data);
+        $this->load->view('excel_redboxs_table', $data);
 
     }
 
