@@ -22,25 +22,23 @@ class Evaluation extends CI_Controller
   private $warning_message = 'ไม่สามารถทำรายการ กรุณลองใหม่อีกครั้ง';
   private $danger_message = 'ลบข้อมูลสำเร็จ';
 
-    public function index()
-    {
-      $data['form_submit_data_url_modal'] =site_url('evaluation/store');
-      $data['head_topic_label'] = $this->head_topic_label;
-      $data['head_sub_topic_label'] = $this->head_sub_topic_label_table;
-      $data['link_go_to_form'] = site_url('evaluation/form_store');
-      $data['link_go_to_remove'] = site_url('evaluation/remove');
-      $data['header_columns'] = $this->header_columns;
+    // public function index()
+    // {
+    //   $data['form_submit_data_url_modal'] =site_url('evaluation/store');
+    //   $data['head_topic_label'] = $this->head_topic_label;
+    //   $data['head_sub_topic_label'] = $this->head_sub_topic_label_table;
+    //   $data['link_go_to_form'] = site_url('evaluation/form_store');
+    //   $data['link_go_to_remove'] = site_url('evaluation/remove');
+    //   $data['header_columns'] = $this->header_columns;
       
-      $qstr = array('faculty.status !='=>'disabled');
-      $results = $this->Evaluation_model->all($qstr);
-      $data['results'] = $results['results'];
-      $data['fields'] = $results['fields'];
-      $data['content'] = 'evaluation_table';
+    //   $qstr = array('faculty.status !='=>'disabled');
+    //   $results = $this->Evaluation_model->all($qstr);
+    //   $data['results'] = $results['results'];
+    //   $data['fields'] = $results['fields'];
+    //   $data['content'] = 'evaluation_table';
 
-
-      // echo "<pre>", print_r($data['results']); exit();
-      $this->load->view('template_layout', $data);
-    }
+    //   $this->load->view('template_layout', $data);
+    // }
 
     public function form_store() {
 
@@ -61,16 +59,15 @@ class Evaluation extends CI_Controller
 
       $service = $this->Services_model->all();
       $data['service'] = $service['results'];
-      
 
     //  echo "<pre>", print_r($data); exit();
-      $this->load->view('template_layout', $data);
+      $this->load->view('template_layout_evaluation', $data);
     }
 
     public function store() {
       $inptus = $this->input->post();
-     // $inptus['eval_date'] = $this->date_libs->set_date_th($inptus['eval_date']);
-     //echo "<pre>", print_r($inptus); exit();
+      // echo "<pre>", print_r($inptus); exit();
+
       $results = $this->Evaluation_model->store($inptus);
 
       $alert_type = ($results['query']? 'success' : 'warning');
@@ -100,7 +97,6 @@ class Evaluation extends CI_Controller
       }  
       $arr['fields'] = $data; 
       $arr['service_array'] = $service; 
-      //echo "<pre>"; print_r($arr['service_array']); die();
       return $arr;
     }
     
