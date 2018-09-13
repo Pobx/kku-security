@@ -13,7 +13,7 @@ class Break_homes extends CI_Controller
   private $head_topic_label = 'สถิติการงัดที่พักอาศัย';
   private $head_sub_topic_label_table = 'รายการสถิติการงัดที่พักอาศัย';
   private $head_sub_topic_label_form = 'ฟอร์มบันทึกข้อมูล สถิติการงัดที่พักอาศัย';
-  private $header_columns = array('วันที่',  'ชื่อ - สกุล', 'สถานที่เกิดเหตุ', 'ทรัพย์สินที่เสียหาย', 'หมายเหตุ','สถานะ', 'แก้ไข', 'ลบ');
+  private $header_columns = array('วันที่',  'ชื่อ - สกุล', 'สถานที่เกิดเหตุ', 'ทรัพย์สินที่เสียหาย', 'หมายเหตุ','แก้ไข', 'ลบ');
   private $success_message = 'บันทึกข้อมูลสำเร็จ';
   private $warning_message = 'ไม่สามารถทำรายการ กรุณลองใหม่อีกครั้ง';
   private $danger_message = 'ลบข้อมูลสำเร็จ';

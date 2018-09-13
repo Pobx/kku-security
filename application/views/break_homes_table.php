@@ -51,9 +51,7 @@
 						<td class="text-center">
 							<?php echo $value['remark'];?>
 						</td>
-						<td class="text-center">
-							<?php echo $value['status_name'];?>
-						</td>
+					
 						<td class="text-center">
 							<a href="<?php echo $link_go_to_form.'/'.$value['id'];?>" class="btn btn-warning">
 								<i class="fa fa-pencil"></i>
@@ -68,13 +66,7 @@
 					</tr>
 					<?php }?>
 				</tbody>
-				<tfoot>
-					<?php foreach ($header_columns as $key => $value) {?>
-					<th class="text-center">
-						<?php echo $value;?>
-					</th>
-					<?php }?>
-				</tfoot>
+				
 			</table>
 		</div>
 

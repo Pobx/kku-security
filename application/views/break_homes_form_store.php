@@ -71,12 +71,14 @@
  					</div>
 				</div>
    
-				<div class="form-group hide" id="adress_info">
+           
+				<div class="<?=$address !="" ? 'form-group show' : 'form-group show';?>" id="adress_info">
 					<label for="address" class="col-sm-2 control-label">ที่อยู่สถานที่เกิดเหตุ</label>
 					<div class="col-sm-4">
 						<textarea class="form-control" rows="3" id="address" name="address" placeholder="สถานที่เกิดเหตุ"><?php echo $address;?></textarea>
 					</div>
 				</div>
+          
 
 				<div class="form-group">
 					<label for="assets_loses" class="col-sm-2 control-label">ทรัพย์สินที่เสียหาย</label>
@@ -88,13 +90,13 @@
 				<div class="form-group">
 					<label for="victim_process" class="col-sm-2 control-label">การดำเนินการ</label>
 					<div class="col-sm-4">
-						<input type="radio"  id="victim_process" name="victim_process" value="bill"  <?php if($victim_process=="bill"){ echo "checked"; } ?>>
+						<input type="radio"  id="victim_process1" class="victim_process" name="victim_process" value="bill"  <?php if($victim_process=="bill"){ echo "checked"; } ?>>
 						<label for="victim_process">มีบันทึกประจำวัน</label><br>
-						<input type="radio"  id="victim_process" name="victim_process" value="camera" <?php if($victim_process=="amera"){ echo "checked"; } ?>>
+						<input type="radio"  id="victim_process2" class="victim_process" name="victim_process" value="camera" <?php if($victim_process=="amera"){ echo "checked"; } ?>>
 						<label for="victim_process">ขอดูกล้องวงจรปิด</label><br>
-						<input type="radio"  id="victim_process" name="victim_process" value="other" <?php if($victim_process=="other"){ echo "checked"; } ?>>
+						<input type="radio"  id="victim_process3" class="victim_process" name="victim_process" value="other" <?php if($victim_process=="other"){ echo "checked"; } ?>>
 						<label for="victim_process">อื่นๆ</label>
-						<input type="text" class="form-control hide" id="victim_process_note" name="victim_process_note" placeholder="" value="<?php echo $victim_process_note;?>">
+						<input type="text" class="<?=$victim_process == 'other' ? 'form-control show' : 'form-control hide';?>" id="victim_process_note" name="victim_process_note" placeholder="" value="<?php echo $victim_process_note;?>">
 					</div>
 				</div>
 
@@ -127,24 +129,23 @@
 		</div>
 	</div>
 <script>
+/*
 	 $('#type_address').change(function(){
 		 var address =  $(this).val();
 		 if(address == ""){
 			$('#adress_info').attr('class', 'form-group hide');
 		 }else{
 			$('#adress_info').attr('class', 'form-group show');
-		 }
-
-		 
+		 } 
 	 })
-
-	  $('#victim_process').change(function(){
+*/
+	  $('.victim_process').click(function(){
 		var vprocess =  $(this).val();
 		if(vprocess == "other"){
-			$('#victim_process_note').attr('class', 'form-group show');
+			$('#victim_process_note').attr('class', 'form-control show');
 		 }
 		else{
-			$('#victim_process_note').attr('class', 'form-group hide');
+			$('#victim_process_note').attr('class', 'form-control hide');
 		 }
 	  })
 </script>
