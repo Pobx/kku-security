@@ -77,7 +77,9 @@ class Evaluation extends CI_Controller
       $this->session->set_flashdata('alert_icon', $alert_icon);
       $this->session->set_flashdata('alert_message', $alert_message);
 
-      redirect('evaluation');
+      // redirect('evaluation');
+      redirect('evaluation/form_store');
+      
     }
 
     private function find($id = 0) {
