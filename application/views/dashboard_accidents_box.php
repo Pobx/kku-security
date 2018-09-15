@@ -50,7 +50,7 @@
 										<?php echo $count_accidents_students; ?></span></a></li>
 							<li><a href="#">บุคลากร <span class="pull-right badge bg-aqua">
 										<?php echo $count_accidents_officer; ?></span></a></li>
-							<li><a href="#">คนภายนอก <span class="pull-right badge bg-red">
+							<li><a href="#">บุคคลภายใน <span class="pull-right badge bg-red">
 										<?php echo $count_accidents_people_inside; ?></span></a></li>
 						</ul>
 					</div>
