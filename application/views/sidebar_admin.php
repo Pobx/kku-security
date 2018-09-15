@@ -33,7 +33,7 @@
 </li>
 
 <li>
-	<a href="<?php echo site_url('red_box'); ?>"><i class="fa fa-inbox"></i> <span>สถิติกล่องแดง</span></a>
+	<a href="<?php echo site_url('redbox'); ?>"><i class="fa fa-inbox"></i> <span>สถิติกล่องแดง</span></a>
 </li>
 
 <li>

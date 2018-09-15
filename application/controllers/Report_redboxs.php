@@ -7,7 +7,7 @@ class Report_redboxs extends CI_Controller
     {
         parent::__construct();
 
-        $this->load->model('Redbox_model');
+        $this->load->model('Redbox_inspect_transaction_model');
         $this->load->library('Date_libs');
         $this->load->library('FilterBarChartData');
     }
@@ -29,9 +29,9 @@ class Report_redboxs extends CI_Controller
         $data['link_excel'] = site_url('report_redboxs/export_excel');
 
         $qstr = array(
-            'DATE(checked_datetime) >=' => $this->date_libs->set_date_th($data['start_date']),
-            'DATE(checked_datetime) <='   => $this->date_libs->set_date_th($data['end_date']),
-            'redbox_positions.status !='     => 'disabled',
+            'DATE(redbox_inspect_transaction.inspect_date) >=' => $this->date_libs->set_date_th($data['start_date']),
+            'DATE(redbox_inspect_transaction.inspect_date) <='   => $this->date_libs->set_date_th($data['end_date']),
+            'redbox_inspect_transaction.status'     => 'active',
         );
 
         $sess_inputs = array(
@@ -41,10 +41,10 @@ class Report_redboxs extends CI_Controller
 
         $this->session->set_userdata($sess_inputs);
 
-        $results = $this->Redbox_model->all($qstr);
+        $results = $this->Redbox_inspect_transaction_model->all($qstr);
         $data['results'] = $results['results'];
 
-        $data['bar_chart_data'] = $this->filterbarchartdata->filter($results['results'], 'checked_datetime_en');
+        $data['bar_chart_data'] = $this->filterbarchartdata->filter($results['results'], 'inspect_date_en');
         $data['fields'] = $results['fields'];
         $data['content'] = 'report_redboxs_table';
         
@@ -57,12 +57,12 @@ class Report_redboxs extends CI_Controller
         $data['header_columns'] = $this->header_columns;
         $inputs = $this->session->userdata();
         $qstr = array(
-          'DATE(checked_datetime) >=' => $this->date_libs->set_date_th($inputs['start_date']),
-          'DATE(checked_datetime) <='   => $this->date_libs->set_date_th($inputs['end_date']),
-          'redbox_positions.status !='     => 'disabled',
+          'DATE(redbox_inspect_transaction.inspect_date) >=' => $inputs['start_date'],
+          'DATE(redbox_inspect_transaction.inspect_date) <='   => $inputs['end_date'],
+          'redbox_inspect_transaction.status'     => 'active',
         );
 
-        $results = $this->Redbox_model->all($qstr);
+        $results = $this->Redbox_inspect_transaction_model->all($qstr);
         $data['results'] = $results['results'];
         $data['fields'] = $results['fields'];
 

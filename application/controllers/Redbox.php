@@ -7,7 +7,9 @@ class Redbox extends CI_Controller
     {
         parent::__construct();
 
-        $this->load->model('Redbox_model');
+        $this->load->model('Redbox_inspect_transaction_model');
+        $this->load->model('Redbox_place_model');
+        
         $this->load->library('Date_libs');
         $this->load->library('FilterBarChartData');
     }
@@ -15,7 +17,7 @@ class Redbox extends CI_Controller
     private $head_topic_label           = 'จุดตรวจตู้แดง ';
     private $head_sub_topic_label_table = 'รายการ จุดตรวจตู้แดง ';
     private $head_sub_topic_label_form  = 'ฟอร์มบันทึกข้อมูล จุดตรวจตู้แดง ';
-    private $header_columns             = array('ลำดับ', 'ชื่อ - สกุล', 'โซน', 'ชื่อตู้แดง', 'วันที่บันทึก', 'เวลา', 'สถานะ', 'หมายเหตุ', 'แก้ไข', 'ลบ');
+    private $header_columns             = array('ชื่อ - สกุล', 'โซน', 'ชื่อตู้แดง', 'วันที่บันทึก', 'เวลา', 'สถานะ', 'หมายเหตุ', 'แก้ไข', 'ลบ');
     private $success_message            = 'บันทึกข้อมูลสำเร็จ';
     private $warning_message            = 'ไม่สามารถทำรายการ กรุณลองใหม่อีกครั้ง';
     private $danger_message             = 'ลบข้อมูลสำเร็จ';
@@ -30,16 +32,15 @@ class Redbox extends CI_Controller
         $data['header_columns'] = $this->header_columns;
 
         $qstr = array(
-          'YEAR(checked_datetime)'=>date('Y'),
-          // 'redbox_positions.status !=' => 0
+          'YEAR(redbox_inspect_transaction.inspect_date)'=>date('Y'),
+          'redbox_inspect_transaction.status' => 'active'
         );
 
-        $results = $this->Redbox_model->all($qstr);
+        $results = $this->Redbox_inspect_transaction_model->all($qstr);
         $data['results'] = $results['results'];
 
-        $data['bar_chart_data'] = $this->filterbarchartdata->filter($results['results'], 'checked_datetime_en');
-        $data['fields'] = $results['fields'];
-        $data['content'] = 'redbox/red_box_table';
+        $data['bar_chart_data'] = $this->filterbarchartdata->filter($results['results'], 'inspect_date_en');
+        $data['content'] = 'redbox_table';
         
         // echo "<pre>", print_r($data['results']); exit();
         $this->load->view('template_layout', $data);
@@ -47,15 +48,24 @@ class Redbox extends CI_Controller
 
     public function form_store()
     {
+        $sess_data = $this->session->userdata();
         $id = $this->uri->segment(3);
         $data = $this->find($id);
-        $data['redbox_lists'] = $this->Redbox_model->get_redbox_postion_list();
+        $qstr_redbox_place = array('status'=>'active');
+        $results_redbox_place = $this->Redbox_place_model->all($qstr_redbox_place);
+        $data['results_redbox_place'] = $results_redbox_place['results'];
+
         $data['head_topic_label'] = $this->head_topic_label;
         $data['head_sub_topic_label'] = $this->head_sub_topic_label_form;
         $data['link_back_to_table'] = site_url('redbox');
         $data['form_submit_data_url'] = site_url('redbox/store');
+        $data['permission'] = $sess_data['permission'];
+        
+        if ($sess_data['permission'] =='security') {
+          $data['user_id'] = $sess_data['id'];
+        }
 
-        $data['content'] = 'redbox/red_box_form_store';
+        $data['content'] = 'redbox_form_store';
 
         // echo "<pre>", print_r($data); exit();
         $this->load->view('template_layout', $data);
@@ -63,13 +73,12 @@ class Redbox extends CI_Controller
 
     public function store()
     {
+        $sess_data = $this->session->userdata();
         $inputs = $this->input->post();
-        $d=strtotime("now");
-        $inputs['checked_datetime'] =date("Y-m-d H:i:s", $d);
-        $inputs['checker_id'] = '2';
+        $inputs['inspect_date'] = date("Y-m-d H:i:s");
 
         // echo "<pre>", print_r($inputs); exit();
-        $results = $this->Redbox_model->store($inputs);
+        $results = $this->Redbox_inspect_transaction_model->store($inputs);
 
         $alert_type = ($results['query'] ? 'success' : 'warning');
         $alert_icon = ($results['query'] ? 'check' : 'warning');
@@ -77,13 +86,14 @@ class Redbox extends CI_Controller
         $this->session->set_flashdata('alert_type', $alert_type);
         $this->session->set_flashdata('alert_icon', $alert_icon);
         $this->session->set_flashdata('alert_message', $alert_message);
-
-        redirect('redbox');
+      
+        $redirect_page = ($sess_data['permission'] =='security'? 'redbox/form_store' : 'redbox');
+        redirect($redirect_page);
     }
 
     private function find($id = 0)
     {
-        $results = $this->Redbox_model->find($id);
+        $results = $this->Redbox_inspect_transaction_model->find($id);
         $values = $results['results'];
         $fields = $results['fields'];
         $rows = $results['rows'];
@@ -107,7 +117,7 @@ class Redbox extends CI_Controller
     public function remove()
     {
         $id = $this->uri->segment(3);
-        $results = $this->Redbox_model->remove($id);
+        $results = $this->Redbox_inspect_transaction_model->remove($id);
 
         $alert_type = ($results['query'] ? 'danger' : 'warning');
         $alert_icon = ($results['query'] ? 'trash' : 'warning');
