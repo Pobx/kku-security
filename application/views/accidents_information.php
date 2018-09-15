@@ -78,8 +78,8 @@
 
 	<label for="assets_amount" class="col-sm-1 control-label">จำนวน</label>
 
-	<div class="col-sm-2">
-		<input type="text" class="form-control" id="assets_amount" name="assets_amount" placeholder="จำนวน" value="<?php echo $assets_amount; ?>">
+	<div class="col-sm-1">
+		<input type="number" class="form-control" id="assets_amount" name="assets_amount" placeholder="จำนวน" value="<?php echo $assets_amount; ?>">
 	</div>
 
 	<label for="assets_remark" class="col-sm-1 control-label">หมายเหตุ</label>
