@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') || exit('No direct script access allowed');
 
-class Redbox_model extends CI_Model
+class Redbox_inspect_transaction_model extends CI_Model
 {
 
   public function __construct()
@@ -10,38 +10,32 @@ class Redbox_model extends CI_Model
 
     }
 
-    private $table = 'redbox_positions';
-    private $redbox_table = 'redbox';
-    private $id    = 'rbp_id';
+    private $table = 'redbox_inspect_transaction';
+    private $id    = 'id';
     private $items = '
-    rbp_id,
-    rbp_id AS id,
-    redbox.redbox_id,
-    redbox.zone,
-    redbox.redboxname,
-    checker_id,
-    DATE(checked_datetime) AS checked_datetime_en,
-    DATE_FORMAT(DATE_ADD(DATE(checked_datetime), INTERVAL 543 YEAR),"%d/%m/%Y") as checked_datetime_th,
-    TIME(checked_datetime) as checked_datetime_time_only,
-    redbox_positions.status,
-    comment
-    ';
+    redbox_inspect_transaction.id,
+    redbox_inspect_transaction.redbox_place_id,
+    redbox_place.name AS place_name,
+    users.name AS inspector_name,
+    DATE(inspect_date) AS inspect_date_en,
+    DATE_FORMAT(DATE_ADD(DATE(inspect_date), INTERVAL 543 YEAR),"%d/%m/%Y") as inspect_date_th,
+    TIME(inspect_date) as inspect_date_time,
+    (
+      CASE 
+        WHEN redbox_inspect_transaction.status = "active" THEN "ACTIVE"
+        WHEN redbox_inspect_transaction.status = "disabled" THEN "ลบรายการ"
+        ELSE ""
+      END
+    ) AS status_name,
 
-    private $redbox_lists = '
-        redbox_id,
-        redboxname,
-        zone
-    ';
-
-    private $items_for_form = '
-    rbp_id,
-    redbox_id,
-    checker_id,
-    DATE(checked_datetime) AS checked_datetime_en,
-    DATE_FORMAT(DATE_ADD(DATE(checked_datetime), INTERVAL 543 YEAR),"%d/%m/%Y") as checked_datetime_th,
-    TIME(checked_datetime) as checked_datetime_time_only,
-    redbox_positions.status,
-    comment
+    (
+      CASE 
+        WHEN redbox_inspect_transaction.status_inspect = "normal" THEN "ปกติ"
+        WHEN redbox_inspect_transaction.status_inspect = "abnormal" THEN "ไม่ปกติ"
+        ELSE ""
+      END
+    ) AS status_inspect_name,
+    redbox_inspect_transaction.comment
     ';
 
     public function all($qstr = '')
@@ -51,10 +45,10 @@ class Redbox_model extends CI_Model
             $this->db->where($qstr);
         }
 
-        $this->db->select($this->items.', redbox_positions.*, users.name as checker_name');
+        $this->db->select($this->items);
         $this->db->from($this->table);
-        $this->db->join($this->redbox_table, 'redbox.redbox_id = redbox_positions.redbox_id');
-        $this->db->join('users', 'users.id = redbox_positions.checker_id');
+        $this->db->join('redbox_place', 'redbox_place.id = redbox_inspect_transaction.redbox_place_id', 'left');
+        $this->db->join('users', 'users.id = redbox_inspect_transaction.user_id');
         $query = $this->db->get();
 
         $results['results'] = $query->result_array();

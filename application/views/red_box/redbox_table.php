@@ -41,9 +41,6 @@
     ?>
 					<tr>
 						<td class="text-center">
-							<?php echo $value['rbp_id'];?>
-						</td>
-						<td class="text-center">
 							<?php echo $value['checker_name']; ?>
 						</td>
 						<td class="text-center">
