@@ -19,6 +19,10 @@ class Accidents_model extends CI_Model
     accidents.id,
     period_time,
     DATE_FORMAT(DATE_ADD(accident_date, INTERVAL 543 YEAR),"%d/%m/%Y") as accident_date,
+    accident_time,
+    assets_name,
+    assets_amount,
+    assets_remark,
     (
       CASE 
         WHEN period_time = "morning" THEN "เช้า"
@@ -38,6 +42,10 @@ class Accidents_model extends CI_Model
     accidents.id,
     period_time,
     DATE_FORMAT(DATE_ADD(accident_date, INTERVAL 543 YEAR),"%d/%m/%Y") as accident_date,
+    accident_time,
+    assets_name,
+    assets_amount,
+    assets_remark,
     (
       CASE 
         WHEN period_time = "morning" THEN "เช้า"

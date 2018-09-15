@@ -85,6 +85,6 @@
 	<label for="assets_remark" class="col-sm-1 control-label">หมายเหตุ</label>
 
 	<div class="col-sm-2">
-		<input type="text" class="form-control" id="assets_remark" name="assets_remark" placeholder="หมายเหตุ" value="<?php echo $accident_time; ?>">
+		<input type="text" class="form-control" id="assets_remark" name="assets_remark" placeholder="หมายเหตุ" value="<?php echo $assets_remark; ?>">
 	</div>
 </div>
