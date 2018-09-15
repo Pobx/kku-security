@@ -2,15 +2,6 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Evaluation_model extends CI_Model {
-    public function __construct()
-    {
-        parent::__construct();
-
-        $this->load->model('Services_model');
-        $this->load->model('Faculty_model');
-        $this->load->model('Personals_model'); 
-        $this->load->model('Eval_service_model');
-    }
 
   private $table='evaluations';
   private $table2='services';
@@ -80,91 +71,22 @@ class Evaluation_model extends CI_Model {
     $results['fields'] = $query->list_fields();
     $results['service'] = $query->result_array();
 
-   //echo "<pre>", print_r($results['service']); exit();
-
-
+    //  echo "<pre>", print_r($results['service']); exit();
     return $results;
   }
 
   public function store($inputs)
 	{
     //echo "<pre>", print_r($inputs); exit();
-    if(isset($inputs)){
-      $arr = array(
-        'gender'=>$inputs['gender'],
-        'age'=>$inputs['age'],
-        'personal_id'=>$inputs['personal_id'],
-        'department_id'=>$inputs['department_id'],
-        'performance'=>$inputs['performance'],
-        'success'=>$inputs['success'],
-        'timeline'=>$inputs['timeline'],
-        'service_clear'=>$inputs['service_clear'],
-        'materials'=>$inputs['materials'],
-        'servicemind'=>$inputs['servicemind'],
-        'communication'=>$inputs['communication'],
-        'knowlage'=>$inputs['knowlage'],
-        'questions'=>$inputs['questions'],
-        'followup'=>$inputs['followup'],
-        'comment'=>$inputs['comment']
-      );
-    }
 
     if ($inputs['id'] != '') {
       $inputs['updated'] = date('Y-m-d H:i:s');
       $results['query'] = $this->db->where($this->id, $inputs['id'])->update($this->table, $arr);
       $results['lastID'] = $inputs['id'];
-
-      //delete old data
-      $results['query'][$service]  =$this->db->where('eval_id', $inputs['id'])->delete($this->table2);
-
-      foreach($inputs['service'] as $service){
-        $arr2 = array(
-  
-          'eval_id'=>$results['lastID'],
-          'service_id'=>$service
-  
-        );
-        //insert new 
-        $results['query'][$service] = $this->db->insert($this->table2, $arr2);
-
-      }
-
     }else {
-      $arr = array(
-        'eval_date'=>$this->date_libs->set_date_th($inptus['eval_date']),
-        'gender'=>$inputs['gender'],
-        'age'=>$inputs['age'],
-        'personal_id'=>$inputs['personal_id'],
-        'department_id'=>$inputs['department_id'],
-        'performance'=>$inputs['performance'],
-        'success'=>$inputs['success'],
-        'timeline'=>$inputs['timeline'],
-        'service_clear'=>$inputs['service_clear'],
-        'materials'=>$inputs['materials'],
-        'servicemind'=>$inputs['servicemind'],
-        'communication'=>$inputs['communication'],
-        'knowlage'=>$inputs['knowlage'],
-        'questions'=>$inputs['questions'],
-        'followup'=>$inputs['followup'],
-        'comment'=>$inputs['comment']
-      );
-      
       $inputs['created'] = date('Y-m-d H:i:s');
       $results['query'] = $this->db->insert($this->table, $arr);
       $results['lastID'] = $this->db->insert_id();
-
-      $this->table2 ="eval_service";
-      foreach($inputs['service'] as $service){
-        $arr2 = array(
-  
-          'eval_id'=>$results['lastID'],
-          'service_id'=>$service
-  
-        );
-        $results['query'][$service] = $this->db->insert($this->table2, $arr2);
-      }
-      
-
     }
 
     return $results;

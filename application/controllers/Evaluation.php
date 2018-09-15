@@ -42,8 +42,8 @@ class Evaluation extends CI_Controller
 
     public function form_store() {
 
-      $id = $this->uri->segment(3);
-      $data = $this->find($id);
+      // $id = $this->uri->segment(3);
+      // $data = $this->find($id);
  
       $data['head_topic_label'] = $this->head_topic_label;
       $data['head_sub_topic_label'] = $this->head_sub_topic_label_form;
@@ -57,8 +57,8 @@ class Evaluation extends CI_Controller
       $faculty = $this->Faculty_model->all();
       $data['faculty'] = $faculty['results'];
 
-      $service = $this->Services_model->all();
-      $data['service'] = $service['results'];
+      $services = $this->Services_model->all();
+      $data['services'] = $services['results'];
 
     //  echo "<pre>", print_r($data); exit();
       $this->load->view('template_layout_evaluation', $data);
@@ -66,7 +66,7 @@ class Evaluation extends CI_Controller
 
     public function store() {
       $inptus = $this->input->post();
-      // echo "<pre>", print_r($inptus); exit();
+      echo "<pre>", print_r($inptus); exit();
 
       $results = $this->Evaluation_model->store($inptus);
 
