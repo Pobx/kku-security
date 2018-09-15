@@ -25,7 +25,7 @@
 	<label class="col-sm-3 control-label">ความรุนแรงการบาดเจ็บ</label>
 	<!-- <label class="col-sm-2 control-label">ความรุนแรง</label> -->
 
-	<div class="col-sm-4">
+	<div class="col-sm-6">
 		<label>
 			<input type="radio" name="injury_type" class="flat-red" value="injury">&nbsp;บาดเจ็บเล็กน้อย
 			<input type="radio" name="injury_type" class="flat-red" value="injury_hard">&nbsp;สาหัส
