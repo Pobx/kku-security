@@ -1,7 +1,7 @@
 <?php
 // defined('BASEPATH') || exit('No direct script access allowed');
 
-class Red_box extends CI_Controller
+class Redbox extends CI_Controller
 {
     public function __construct()
     {
@@ -25,8 +25,8 @@ class Red_box extends CI_Controller
     {
         $data['head_topic_label'] = $this->head_topic_label;
         $data['head_sub_topic_label'] = $this->head_sub_topic_label_table;
-        $data['link_go_to_form'] = site_url('red_box/form_store');
-        $data['link_go_to_remove'] = site_url('red_box/remove');
+        $data['link_go_to_form'] = site_url('redbox/form_store');
+        $data['link_go_to_remove'] = site_url('redbox/remove');
         $data['header_columns'] = $this->header_columns;
 
         $qstr = array(
@@ -39,7 +39,7 @@ class Red_box extends CI_Controller
 
         $data['bar_chart_data'] = $this->filterbarchartdata->filter($results['results'], 'checked_datetime_en');
         $data['fields'] = $results['fields'];
-        $data['content'] = 'red_box/red_box_table';
+        $data['content'] = 'redbox/red_box_table';
         
         // echo "<pre>", print_r($data['results']); exit();
         $this->load->view('template_layout', $data);
@@ -52,10 +52,10 @@ class Red_box extends CI_Controller
         $data['redbox_lists'] = $this->Redbox_model->get_redbox_postion_list();
         $data['head_topic_label'] = $this->head_topic_label;
         $data['head_sub_topic_label'] = $this->head_sub_topic_label_form;
-        $data['link_back_to_table'] = site_url('red_box');
-        $data['form_submit_data_url'] = site_url('red_box/store');
+        $data['link_back_to_table'] = site_url('redbox');
+        $data['form_submit_data_url'] = site_url('redbox/store');
 
-        $data['content'] = 'red_box/red_box_form_store';
+        $data['content'] = 'redbox/red_box_form_store';
 
         // echo "<pre>", print_r($data); exit();
         $this->load->view('template_layout', $data);
@@ -78,7 +78,7 @@ class Red_box extends CI_Controller
         $this->session->set_flashdata('alert_icon', $alert_icon);
         $this->session->set_flashdata('alert_message', $alert_message);
 
-        redirect('red_box');
+        redirect('redbox');
     }
 
     private function find($id = 0)
@@ -116,6 +116,6 @@ class Red_box extends CI_Controller
         $this->session->set_flashdata('alert_icon', $alert_icon);
         $this->session->set_flashdata('alert_message', $alert_message);
 
-        redirect('red_box');
+        redirect('redbox');
     }
 }
