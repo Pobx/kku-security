@@ -82,6 +82,12 @@ class Accidents extends CI_Controller
         
         $data['content'] = 'accidents_form_store';
 
+        // new data temp 
+        $data['accident_time'] ='';
+        $data['assets_name'] = '';
+        $data['assets_amount'] = '';
+        $data['assets_remark'] = '';
+
         // echo "<pre>", print_r($data); exit();
         $this->load->view('template_layout', $data);
     }
