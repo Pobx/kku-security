@@ -18,22 +18,22 @@
 
 			<!-- <form class="form-horizontal form_submit_data"> -->
 			<?php $this->load->view('header_form_submit_data');?>
-			<div class="box-header">
-				<?php $this->load->view('button_save_and_back_page_in_form');?>
-			</div>
+			<div class="box-header"></div>
+
 			<div class="box-body">
 				<div class="form-group">
 					<label for="date_break" class="col-sm-2 control-label">วันที่</label>
 					<div class="col-sm-4">
 						<input type="text" class="form-control datepicker" id="date_break" name="date_break" data-provide="datepicker"
-						data-date-language="th-th" placeholder="วันที่" value="<?php echo $date_break;?>">
+						 data-date-language="th-th" placeholder="วันที่" value="<?php echo $date_break;?>">
 					</div>
 				</div>
-				
+
 				<div class="form-group">
 					<label for="time_break" class="col-sm-2 control-label">เวลา</label>
 					<div class="col-sm-4">
-						<input type="text" class="form-control"  data-date-language="th-th" id="time_break" name="time_break" placeholder="เวลา" value="<?php echo $time_break;?>">
+						<input type="text" class="form-control" id="time_break" name="time_break" placeholder="เวลา" value="<?php echo $time_break;?>"
+						 data-inputmask='"mask": "99:99"' data-mask>
 					</div>
 				</div>
 
@@ -61,24 +61,24 @@
 				<div class="form-group">
 					<label for="type_address" class="col-sm-2 control-label">ประเภทสถานที่เกิดเหตุ</label>
 					<div class="col-sm-4">
-					  <select class="form-control" id="type_address" name="type_address">
-					   <option value="">เลือก</option>
-					   <option value="home" <?php if($type_address=="home"){ echo "selected"; } ?>>บ้านพัก</option>
-					   <option value="flat" <?php if($type_address=="flat"){ echo "selected"; } ?> >แฟลต</option>
-					   <option value="office" <?php if($type_address=="office"){ echo "selected"; } ?>  >สำนักงาน</option>
-					   <option value="other"  <?php if($type_address=="other"){ echo "selected"; } ?> >อื่นๆ</option>
-					  </select>
- 					</div>
+						<select class="form-control" id="type_address" name="type_address">
+							<option value="">เลือก</option>
+							<option value="home" <?php if($type_address=="home" ){ echo "selected" ; } ?>>บ้านพัก</option>
+							<option value="flat" <?php if($type_address=="flat" ){ echo "selected" ; } ?> >แฟลต</option>
+							<option value="office" <?php if($type_address=="office" ){ echo "selected" ; } ?> >สำนักงาน</option>
+							<option value="other" <?php if($type_address=="other" ){ echo "selected" ; } ?> >อื่นๆ</option>
+						</select>
+					</div>
 				</div>
-   
-           
-				<div class="<?=$address !="" ? 'form-group show' : 'form-group show';?>" id="adress_info">
+
+
+				<div class="<?php echo $address !="" ? 'form-group show' : 'form-group show';?>" id="adress_info">
 					<label for="address" class="col-sm-2 control-label">ที่อยู่สถานที่เกิดเหตุ</label>
 					<div class="col-sm-4">
 						<textarea class="form-control" rows="3" id="address" name="address" placeholder="สถานที่เกิดเหตุ"><?php echo $address;?></textarea>
 					</div>
 				</div>
-          
+
 
 				<div class="form-group">
 					<label for="assets_loses" class="col-sm-2 control-label">ทรัพย์สินที่เสียหาย</label>
@@ -87,27 +87,33 @@
 						<textarea class="form-control" rows="3" id="assets_loses" name="assets_loses" placeholder="ทรัพย์สินที่เสียหาย"><?php echo $assets_loses;?></textarea>
 					</div>
 				</div>
-				<div class="form-group">
+				<!-- <div class="form-group">
 					<label for="victim_process" class="col-sm-2 control-label">การดำเนินการ</label>
 					<div class="col-sm-4">
-						<input type="radio"  id="victim_process1" class="victim_process" name="victim_process" value="bill"  <?php if($victim_process=="bill"){ echo "checked"; } ?>>
+						<input type="radio" id="victim_process1" class="victim_process" name="victim_process" value="bill" <?php
+						//  if($victim_process=="bill" ){ echo "checked" ; } ?>>
 						<label for="victim_process">มีบันทึกประจำวัน</label><br>
-						<input type="radio"  id="victim_process2" class="victim_process" name="victim_process" value="camera" <?php if($victim_process=="amera"){ echo "checked"; } ?>>
+						<input type="radio" id="victim_process2" class="victim_process" name="victim_process" value="camera" <?php
+						//  if($victim_process=="amera" ){ echo "checked" ; } ?>>
 						<label for="victim_process">ขอดูกล้องวงจรปิด</label><br>
-						<input type="radio"  id="victim_process3" class="victim_process" name="victim_process" value="other" <?php if($victim_process=="other"){ echo "checked"; } ?>>
+						<input type="radio" id="victim_process3" class="victim_process" name="victim_process" value="other" <?php
+						//  if($victim_process=="other" ){ echo "checked" ; } ?>>
 						<label for="victim_process">อื่นๆ</label>
-						<input type="text" class="<?=$victim_process == 'other' ? 'form-control show' : 'form-control hide';?>" id="victim_process_note" name="victim_process_note" placeholder="" value="<?php echo $victim_process_note;?>">
+						<input type="text" class="<?php //  echo $victim_process == 'other' ? 'form-control show' : 'form-control hide';?>"
+						 id="victim_process_note" name="victim_process_note" placeholder="" value="<?php // echo $victim_process_note;?>">
 					</div>
-				</div>
+				</div> -->
 
 				<div class="form-group">
 					<label for="staff_process" class="col-sm-2 control-label">การติดตามจับกุม</label>
 					<div class="col-sm-4">
-					    <input type="radio"  id="staff_process" name="staff_process" value="yes"  <?php if($staff_process=="yes"){ echo "checked"; } ?>>
+						<input type="radio" id="staff_process" name="staff_process" value="yes" class="flat-red" <?php if($staff_process=="yes"
+						 ){ echo "checked" ; } ?>>
 						<label for="staff_process">จับได้</label><br>
-						<input type="radio"  id="staff_process" name="staff_process" value="no"  <?php if($staff_process=="no"){ echo "checked"; } ?>>
+						<input type="radio" id="staff_process" name="staff_process" value="no" class="flat-red" <?php if($staff_process=="no"
+						 ){ echo "checked" ; } ?>>
 						<label for="staff_process">จับไม่ได้</label><br>
- 					</div>
+					</div>
 				</div>
 
 				<div class="form-group">
@@ -128,8 +134,8 @@
 			</form>
 		</div>
 	</div>
-<script>
-/*
+	<script>
+		/*
 	 $('#type_address').change(function(){
 		 var address =  $(this).val();
 		 if(address == ""){
@@ -139,13 +145,13 @@
 		 } 
 	 })
 */
-	  $('.victim_process').click(function(){
-		var vprocess =  $(this).val();
-		if(vprocess == "other"){
-			$('#victim_process_note').attr('class', 'form-control show');
-		 }
-		else{
-			$('#victim_process_note').attr('class', 'form-control hide');
-		 }
-	  })
-</script>
+		$('.victim_process').click(function () {
+			var vprocess = $(this).val();
+			if (vprocess == "other") {
+				$('#victim_process_note').attr('class', 'form-control show');
+			} else {
+				$('#victim_process_note').attr('class', 'form-control hide');
+			}
+		})
+
+	</script>
