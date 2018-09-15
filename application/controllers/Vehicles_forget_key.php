@@ -76,7 +76,7 @@ class Vehicles_forget_key extends CI_Controller
         $qstr_forget_key_place = array('status'=>'active');
         $resluts_forget_key_place = $this->Vehicles_forget_key_place_model->all($qstr_forget_key_place);
         $data['resluts_forget_key_place'] = $resluts_forget_key_place['results'];
-        
+
         $data['content'] = 'vehicles_forget_key_form_store';
 
         // echo "<pre>", print_r($data); exit();
@@ -85,9 +85,14 @@ class Vehicles_forget_key extends CI_Controller
 
     public function store()
     {
-        $inptus = $this->input->post();
-        $inptus['date_forget_key'] = $this->date_libs->set_date_th($inptus['date_forget_key']);
-        $results = $this->Vehicles_forget_key_model->store($inptus);
+        $inputs = $this->input->post();
+        if (isset($inputs['chk_place']) && $inputs['chk_place'] == 'checked_new_place') {
+          $inputs['vehicles_forget_key_place_id'] = $this->create_new_place($inputs);
+        }
+
+        $inputs['date_forget_key'] = $this->date_libs->set_date_th($inputs['date_forget_key']);
+        unset($inputs['chk_place'], $inputs['place_text']);
+        $results = $this->Vehicles_forget_key_model->store($inputs);
 
         $alert_type = ($results['query'] ? 'success' : 'warning');
         $alert_icon = ($results['query'] ? 'check' : 'warning');
@@ -97,6 +102,17 @@ class Vehicles_forget_key extends CI_Controller
         $this->session->set_flashdata('alert_message', $alert_message);
 
         redirect('vehicles_forget_key');
+    }
+
+    private function create_new_place($inputs) {
+      $data = array(
+        'id'=>'',
+        'name'=>$inputs['place_text'],
+        'status'=>'active'
+      );
+
+      $results = $this->Vehicles_forget_key_place_model->store($data);
+      return $results['lastID'];
     }
 
     private function find($id = 0)
