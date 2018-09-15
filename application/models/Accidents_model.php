@@ -18,6 +18,7 @@ class Accidents_model extends CI_Model
     private $items = '
     accidents.id,
     period_time,
+    accident_date AS accident_date_en,
     DATE_FORMAT(DATE_ADD(accident_date, INTERVAL 543 YEAR),"%d/%m/%Y") as accident_date,
     accident_time,
     assets_name,
