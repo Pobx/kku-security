@@ -8,6 +8,8 @@ class Redbox extends CI_Controller
         parent::__construct();
 
         $this->load->model('Redbox_inspect_transaction_model');
+        $this->load->model('Redbox_place_model');
+        
         $this->load->library('Date_libs');
         $this->load->library('FilterBarChartData');
     }
@@ -38,7 +40,6 @@ class Redbox extends CI_Controller
         $data['results'] = $results['results'];
 
         $data['bar_chart_data'] = $this->filterbarchartdata->filter($results['results'], 'inspect_date_en');
-        $data['fields'] = $results['fields'];
         $data['content'] = 'redbox/redbox_table';
         
         // echo "<pre>", print_r($data['results']); exit();

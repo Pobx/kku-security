@@ -41,10 +41,10 @@
     ?>
 					<tr>
 						<td class="text-center">
-							<?php echo $value['checker_name']; ?>
+							<?php echo $value['inspector_name']; ?>
 						</td>
 						<td class="text-center">
-							<?php echo $value['zone']; ?>
+							<?php echo $value['zone_name']; ?>
 						</td>
 						<td class="text-center">
 							<?php echo $value['redboxname']; ?>

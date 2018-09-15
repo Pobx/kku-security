@@ -4,13 +4,9 @@ defined('BASEPATH') || exit('No direct script access allowed');
 class Redbox_place_model extends CI_Model
 {
 
-    private $table = 'eval_service';
+    private $table = 'redbox_place';
     private $id    = 'id';
-    private $items = '
-    id ,
-    eval_id ,
-    service_id
-    ';
+    private $items = 'id, name,';
 
     public function all($qstr = '')
     {

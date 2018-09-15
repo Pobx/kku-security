@@ -17,6 +17,7 @@ class Redbox_inspect_transaction_model extends CI_Model
     redbox_inspect_transaction.redbox_place_id,
     redbox_place.name AS place_name,
     users.name AS inspector_name,
+    redbox_zone.name AS zone_name,
     DATE(inspect_date) AS inspect_date_en,
     DATE_FORMAT(DATE_ADD(DATE(inspect_date), INTERVAL 543 YEAR),"%d/%m/%Y") as inspect_date_th,
     TIME(inspect_date) as inspect_date_time,
@@ -48,7 +49,9 @@ class Redbox_inspect_transaction_model extends CI_Model
         $query = $this->db->select($this->items)
         ->from($this->table)
         ->join('redbox_place', 'redbox_place.id = redbox_inspect_transaction.redbox_place_id', 'left')
-        ->join('users', 'users.id = redbox_inspect_transaction.user_id')
+        ->join('redbox_zone', 'redbox_zone.id = redbox_inspect_transaction.zone_id', 'left')
+        ->join('users', 'users.id = redbox_inspect_transaction.user_id', 'left')
+        
         ->get();
 
         $results['results'] = $query->result_array();
@@ -63,7 +66,8 @@ class Redbox_inspect_transaction_model extends CI_Model
         $query = $this->db->select($this->items)
         ->from($this->table)
         ->join('redbox_place', 'redbox_place.id = redbox_inspect_transaction.redbox_place_id', 'left')
-        ->join('users', 'users.id = redbox_inspect_transaction.user_id')
+        ->join('redbox_zone', 'redbox_zone.id = redbox_inspect_transaction.zone_id', 'left')
+        ->join('users', 'users.id = redbox_inspect_transaction.user_id', 'left')
         ->where('redbox_inspect_transaction.id', $id)
         ->get();
 
