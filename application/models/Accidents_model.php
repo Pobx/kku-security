@@ -69,8 +69,8 @@ class Accidents_model extends CI_Model
 
         $query = $this->db->select($this->items)
         ->from($this->table)
-        ->join('accident_place', 'accident_place.id = accidents.place')
-        ->join('accident_cause', 'accident_cause.id = accidents.accident_cause')
+        ->join('accident_place', 'accident_place.id = accidents.place', 'left')
+        ->join('accident_cause', 'accident_cause.id = accidents.accident_cause', 'left')
         ->get();
 
         $results['results'] = $query->result_array();

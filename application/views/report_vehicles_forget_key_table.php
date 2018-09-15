@@ -20,13 +20,13 @@
 
 						<div class="col-sm-2">
 							<input type="text" class="form-control datepicker" id="start_date" name="start_date" data-provide="datepicker"
-							data-date-language="th-th" placeholder="วันที่" value="<?php echo $start_date; ?>">
+							 data-date-language="th-th" placeholder="วันที่" value="<?php echo $start_date; ?>">
 						</div>
 						<label for="end_date" class="col-sm-1 control-label">ถึง</label>
 
 						<div class="col-sm-2">
 							<input type="text" class="form-control datepicker" id="end_date" name="end_date" data-provide="datepicker"
-							data-date-language="th-th" placeholder="ถึง" value="<?php echo $end_date; ?>">
+							 data-date-language="th-th" placeholder="ถึง" value="<?php echo $end_date; ?>">
 						</div>
 
 						<div class="col-sm-2">
@@ -99,8 +99,10 @@
 		<div class="box-footer">
 			<div class="row">
 				<div class="col-md-12 text-right">
-					<a href="<?php echo $link_excel;?>" target="_blank" class="btn btn-success"><i class="fa  fa-file-excel-o"></i>
-						Excel</a>
+					<a href="<?php echo $link_excel_monthly_summary;?>" target="_blank" class="btn btn-success"><i class="fa  fa-file-excel-o"></i>
+						Excel สรุปแต่ละพื้นที่</a>
+					<a href="<?php echo $link_excel_monthly;?>" target="_blank" class="btn btn-success"><i class="fa  fa-file-excel-o"></i>
+						Excel ทั้งหมด</a>
 				</div>
 			</div>
 		</div>
