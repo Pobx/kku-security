@@ -9,9 +9,6 @@ class Temp_accidents extends CI_Controller
 
         $this->load->model('Accidents_model');
         $this->load->model('Accidents_participate_model');
-
-        $this->load->library('Date_libs');
-        $this->load->library('FilterBarChartData');
     }
 
 
