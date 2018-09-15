@@ -57,8 +57,8 @@ class Report_redboxs extends CI_Controller
         $data['header_columns'] = $this->header_columns;
         $inputs = $this->session->userdata();
         $qstr = array(
-          'DATE(redbox_inspect_transaction.inspect_date) >=' => $this->date_libs->set_date_th($inputs['start_date']),
-          'DATE(redbox_inspect_transaction.inspect_date) <='   => $this->date_libs->set_date_th($inputs['end_date']),
+          'DATE(redbox_inspect_transaction.inspect_date) >=' => $inputs['start_date'],
+          'DATE(redbox_inspect_transaction.inspect_date) <='   => $inputs['end_date'],
           'redbox_inspect_transaction.status'     => 'active',
         );
 
