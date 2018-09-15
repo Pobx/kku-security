@@ -46,13 +46,14 @@ class Evaluation extends CI_Controller
     }
 
     public function store() {
-      $inptus = $this->input->post();
-      echo "<pre>", print_r($inptus); exit();
+      $inputs = $this->input->post();
+      // echo "<pre>", print_r($inputs); exit();
 
-      $services = $inptus['service'];
-      unset($inptus['service']);
+      $services = $inputs['service'];
+      unset($inputs['service']);
 
-      $results = $this->Evaluation_model->store($inptus);
+      $inputs['eval_date'] = date('Y-m-d H:i:s');
+      $results = $this->Evaluation_model->store($inputs);
       $evaluation_id = $results['lastID'];
       $this->store_services($evaluation_id, $services);
 
