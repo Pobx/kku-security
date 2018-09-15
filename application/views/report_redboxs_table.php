@@ -59,26 +59,26 @@
     ?>
 						<tr>
 							<td class="text-center">
-								<?php echo $value['checker_name']; ?>
+								<?php echo $value['inspector_name']; ?>
 							</td>
 							<td class="text-center">
-								<?php echo $value['zone']; ?>
+								<?php echo $value['zone_name']; ?>
 							</td>
 							<td class="text-center">
-								<?php echo $value['redboxname']; ?>
+								<?php echo $value['place_name']; ?>
 							</td>
 							<td class="text-center">
 								<?php  
-								echo $value['checked_datetime_th'];
+								echo $value['inspect_date_th'];
 							 ?>
 							</td>
 							<td class="text-center">
 								<?php  
-								echo $value['checked_datetime_time_only'];
+								echo $value['inspect_date_time'];
 							 ?>
 							</td>
 							<td>
-								<?php echo $value['status']==1 ? "ปกติ" : "ไม่ปกติ"; ?>
+								<?php echo $value['status_inspect_name']; ?>
 							</td>
 							<td>
 								<?php echo $value['comment']; ?>

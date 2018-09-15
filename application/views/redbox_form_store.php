@@ -22,7 +22,21 @@
 			<div class="box-footer">
 				<input type="hidden" name="id" value="<?php echo $id; ?>">
 				<input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
-				<?php $this->load->view('button_save_and_back_page_in_form');?>
+				<?php 
+          if ($permission !='security') {
+            $this->load->view('button_save_and_back_page_in_form');
+          }else {
+          ?>
+
+				<div class="row">
+					<div class="col-sm-12 text-center">
+						<button type="submit" class="btn btn-lg btn-block btn-success"><i class="fa fa-save"></i> บันทึกข้อมูล</button>
+					</div>
+				</div>
+
+				<?php
+          }
+        ?>
 			</div>
 			</form>
 
