@@ -7,7 +7,7 @@ class Report_redboxs extends CI_Controller
     {
         parent::__construct();
 
-        $this->load->model('Redbox_model');
+        $this->load->model('Redbox_inspect_transaction_model');
         $this->load->library('Date_libs');
         $this->load->library('FilterBarChartData');
     }
@@ -41,7 +41,7 @@ class Report_redboxs extends CI_Controller
 
         $this->session->set_userdata($sess_inputs);
 
-        $results = $this->Redbox_model->all($qstr);
+        $results = $this->Redbox_inspect_transaction_model->all($qstr);
         $data['results'] = $results['results'];
 
         $data['bar_chart_data'] = $this->filterbarchartdata->filter($results['results'], 'inspect_date_en');
@@ -62,7 +62,7 @@ class Report_redboxs extends CI_Controller
           'redbox_inspect_transaction.status'     => 'active',
         );
 
-        $results = $this->Redbox_model->all($qstr);
+        $results = $this->Redbox_inspect_transaction_model->all($qstr);
         $data['results'] = $results['results'];
         $data['fields'] = $results['fields'];
 
