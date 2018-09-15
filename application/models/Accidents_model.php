@@ -99,6 +99,35 @@ class Accidents_model extends CI_Model
         return $results;
     }
 
+    public function distinct_place($qstr) {
+        if (isset($qstr) && !empty($qstr))
+        {
+            $this->db->where($qstr);
+        }
+
+        $query = $this->db->distinct()->select('place')->from($this->table)->get();
+
+        $results['results'] = $query->result_array();
+        $results['rows'] = $query->num_rows();
+        $results['fields'] = $query->list_fields();
+
+        return $results;
+    }
+
+    public function count_accidents($qstr) {
+      if (isset($qstr) && !empty($qstr))
+      {
+          $this->db->where($qstr);
+      }
+
+      $query = $this->db->select('id')->from($this->table)->get();
+      
+      $results['results'] = $query->result_array();
+      $results['rows'] = $query->num_rows();
+      
+      return $results;
+    }
+
     public function find($id)
     {
         $query = $this->db->select($this->items2)->from($this->table)->where('id', $id)->get();
