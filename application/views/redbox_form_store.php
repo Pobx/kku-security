@@ -25,6 +25,7 @@
 				<?php 
           if ($permission !='security') {
             $this->load->view('button_save_and_back_page_in_form');
+            
           }else {
           ?>
 
