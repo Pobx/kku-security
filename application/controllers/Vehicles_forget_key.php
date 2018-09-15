@@ -9,6 +9,8 @@ class Vehicles_forget_key extends CI_Controller
 
         $this->load->model('Vehicles_forget_key_model');
         $this->load->model('Vehicles_forget_key_detective_model');
+        $this->load->model('Vehicles_forget_key_place_model');
+        
         $this->load->library('Date_libs');
         $this->load->library('FilterBarChartData');
     }
@@ -71,6 +73,8 @@ class Vehicles_forget_key extends CI_Controller
         $vehicles_forget_key_detective = $this->Vehicles_forget_key_detective_model->all($qstr);
         $data['vehicles_forget_key_detective'] = $vehicles_forget_key_detective['results'];
 
+        $qstr_forget_key_place = array('status'=>'active');
+        $resluts_forget_key_place = $this->
         $data['content'] = 'vehicles_forget_key_form_store';
 
         // echo "<pre>", print_r($data); exit();
