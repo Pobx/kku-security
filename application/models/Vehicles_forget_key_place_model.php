@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') || exit('No direct script access allowed');
 
-class Vehicles_forget_key_detective_model extends CI_Model
+class Vehicles_forget_key_place_model extends CI_Model
 {
 
     private $table = 'vehicles_forget_key_place';

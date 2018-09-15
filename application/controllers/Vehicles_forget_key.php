@@ -74,7 +74,9 @@ class Vehicles_forget_key extends CI_Controller
         $data['vehicles_forget_key_detective'] = $vehicles_forget_key_detective['results'];
 
         $qstr_forget_key_place = array('status'=>'active');
-        $resluts_forget_key_place = $this->
+        $resluts_forget_key_place = $this->Vehicles_forget_key_place_model->all($qstr_forget_key_place);
+        $data['resluts_forget_key_place'] = $resluts_forget_key_place['results'];
+        
         $data['content'] = 'vehicles_forget_key_form_store';
 
         // echo "<pre>", print_r($data); exit();
