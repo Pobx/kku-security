@@ -45,11 +45,11 @@ class Redbox_inspect_transaction_model extends CI_Model
             $this->db->where($qstr);
         }
 
-        $this->db->select($this->items);
-        $this->db->from($this->table);
-        $this->db->join('redbox_place', 'redbox_place.id = redbox_inspect_transaction.redbox_place_id', 'left');
-        $this->db->join('users', 'users.id = redbox_inspect_transaction.user_id');
-        $query = $this->db->get();
+        $query = $this->db->select($this->items)
+        ->from($this->table)
+        ->join('redbox_place', 'redbox_place.id = redbox_inspect_transaction.redbox_place_id', 'left')
+        ->join('users', 'users.id = redbox_inspect_transaction.user_id')
+        ->get();
 
         $results['results'] = $query->result_array();
         $results['rows'] = $query->num_rows();
@@ -60,22 +60,18 @@ class Redbox_inspect_transaction_model extends CI_Model
 
     public function find($id)
     {
-        $query = $this->db->select($this->items_for_form)->from($this->table)->where('rbp_id', $id)->get();
+        $query = $this->db->select($this->items)
+        ->from($this->table)
+        ->join('redbox_place', 'redbox_place.id = redbox_inspect_transaction.redbox_place_id', 'left')
+        ->join('users', 'users.id = redbox_inspect_transaction.user_id')
+        ->where('redbox_inspect_transaction.id', $id)
+        ->get();
 
         $results['rows'] = $query->num_rows();
         $results['results'] = $query->first_row();
         $results['fields'] = $query->list_fields();
         $results['result'] = $query->result();
 
-        return $results;
-    }
-
-    public function get_redbox_postion_list(){
-        $query = $this->db->select($this->redbox_lists)->from($this->redbox_table)->get();
-        $results['rows'] = $query->num_rows();
-        $results['results'] = $query->first_row();
-        $results['fields'] = $query->list_fields();
-        $results['result'] = $query->result();
         return $results;
     }
 
@@ -101,11 +97,12 @@ class Redbox_inspect_transaction_model extends CI_Model
     public function remove($id)
     {
         $inputs = array(
-            'rbp_id'      => $id,
-            'status'  => 0,
+            'id'      => $id,
+            'updated'=>date('Y-m-d H:i:s'),
+            'status'  => 'disabled',
         );
 
-        $results['query'] = $this->db->where($this->id, $inputs['rbp_id'])->update($this->table, $inputs);
+        $results['query'] = $this->db->where($this->id, $inputs['id'])->update($this->table, $inputs);
 
         return $results;
     }
