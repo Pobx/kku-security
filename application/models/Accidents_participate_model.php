@@ -28,6 +28,7 @@ class Accidents_participate_model extends CI_Model
     (
       CASE 
         WHEN injury_type = "injury" THEN "บาดเจ็บ"
+        WHEN injury_type = "injury_hard" THEN "สาหัส"
         WHEN injury_type = "dead" THEN "เสียชีวิต"
         ELSE ""
       END

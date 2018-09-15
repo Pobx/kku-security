@@ -26,40 +26,14 @@
 	<!-- <label class="col-sm-2 control-label">ความรุนแรง</label> -->
 
 	<div class="col-sm-4">
-		<!-- <label>
-			<input type="radio" name="injury_type" class="flat-red" value="injury">&nbsp;บาดเจ็บ
+		<label>
+			<input type="radio" name="injury_type" class="flat-red" value="injury">&nbsp;บาดเจ็บเล็กน้อย
+			<input type="radio" name="injury_type" class="flat-red" value="injury_hard">&nbsp;สาหัส
 			<input type="radio" name="injury_type" class="flat-red" value="dead">&nbsp;เสียชีวิต
-		</label> -->
+			<input type="radio" name="injury_type" class="flat-red" value="">&nbsp;ไม่มี
+		</label>
 
 	</div>
-</div>
-
-<div class="form-group">
-	<label class="col-sm-1 control-label">&nbsp;</label>
-	<label class="col-sm-2 control-label">บาดเจ็บเล็กน้อย</label>
-	<div class="col-sm-4">
-		<input type="number" class="form-control" id="injury_medium_amount" name="injury_medium_amount" placeholder="บาดเจ็บเล็กน้อย"
-		 value="">
-	</div>
-	<label class="col-sm-1 control-label">คน</label>
-</div>
-
-<div class="form-group">
-	<label class="col-sm-1 control-label">&nbsp;</label>
-	<label class="col-sm-2 control-label">สาหัส</label>
-	<div class="col-sm-4">
-		<input type="number" class="form-control" id="injury_hard_amount" name="injury_hard_amount" placeholder="สาหัส" value="">
-	</div>
-	<label class="col-sm-1 control-label">คน</label>
-</div>
-
-<div class="form-group">
-	<label class="col-sm-1 control-label">&nbsp;</label>
-	<label class="col-sm-2 control-label">เสียชีวิต</label>
-	<div class="col-sm-4">
-		<input type="text" class="form-control" id="dead_amount" name="dead_amount" placeholder="เสียชีวิต" value="">
-	</div>
-	<label class="col-sm-1 control-label">คน</label>
 </div>
 
 <div class="form-group">
