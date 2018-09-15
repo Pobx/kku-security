@@ -8,7 +8,7 @@ option { color: #000; }
 
 	<div class="col-sm-4">
 		<select class="form-control select2 select2-hidden-accessible" name="redbox_id" style="width: 100%;" tabindex="-1"
-		aria-hidden="true">
+		 aria-hidden="true">
 			<option>เลือก...</option>
 			<?php 
                     $zone ="";
@@ -17,6 +17,7 @@ option { color: #000; }
                         echo "</optgroup>";
                         $zone ="";
                       }
+                      
                       if($zone ==""){
                         echo '<optgroup label="'.$row->zone.'">';
                         $zone = $row->zone;
@@ -36,13 +37,15 @@ option { color: #000; }
 		<div class="form-group">
 			<div class="radio">
 				<label>
-					<input type="radio" name="status" id="status1" class="flat-red" value="1" checked="checked">
+					<input type="radio" name="status" id="status1" class="flat-red" value="1" <?php if($status=='1' ) {echo "checked"
+					 ; }?>>
 					ปกติ
 				</label>
 			</div>
 			<div class="radio">
 				<label>
-					<input type="radio" name="status" id="status2" class="flat-red" value="2">
+					<input type="radio" name="status" id="status2" class="flat-red" value="2" <?php if($status=='2' ) {echo "checked"
+					 ; }?>>
 					ไม่ปกติ
 				</label>
 			</div>
@@ -57,14 +60,6 @@ option { color: #000; }
 	<label for="remark" class="col-sm-2 control-label">หมายเหตุ</label>
 
 	<div class="col-sm-4">
-		<textarea class="form-control" id="comment" name="comment"></textarea>
+		<textarea class="form-control" id="comment" name="comment"><?php echo $comment;?></textarea>
 	</div>
 </div>
-
-
-<script>
-	$(document).ready(function () {
-		$("#e1").select2();
-	});
-
-</script>

@@ -31,7 +31,7 @@ class Red_box extends CI_Controller
 
         $qstr = array(
           'YEAR(checked_datetime)'=>date('Y'),
-          'redbox_positions.status !=' => 0
+          // 'redbox_positions.status !=' => 0
         );
 
         $results = $this->Redbox_model->all($qstr);
@@ -57,6 +57,7 @@ class Red_box extends CI_Controller
 
         $data['content'] = 'red_box/red_box_form_store';
 
+        // echo "<pre>", print_r($data); exit();
         $this->load->view('template_layout', $data);
     }
 
@@ -65,8 +66,8 @@ class Red_box extends CI_Controller
         $inputs = $this->input->post();
         $d=strtotime("now");
         $inputs['checked_datetime'] =date("Y-m-d H:i:s", $d);
-        $inputs['checker_id'] = 'sec001';
-        // unset($inputs['cheked_redbox_date']);
+        $inputs['checker_id'] = '2';
+
         // echo "<pre>", print_r($inputs); exit();
         $results = $this->Redbox_model->store($inputs);
 

@@ -1,9 +1,16 @@
 <div class="form-group">
 	<label for="accident_date" class="col-sm-2 control-label">วันที่</label>
 
-	<div class="col-sm-4">
+	<div class="col-sm-2">
 		<input type="text" class="form-control datepicker" id="accident_date" name="accident_date" data-provide="datepicker"
-		data-date-language="th-th" placeholder="วันที่" value="<?php echo $accident_date; ?>">
+		 data-date-language="th-th" placeholder="วันที่" value="<?php echo $accident_date; ?>">
+	</div>
+
+	<label for="date_break" class="col-sm-1 control-label">เวลา</label>
+
+	<div class="col-sm-2">
+		<input type="text" class="form-control" id="accident_time" name="accident_time" placeholder="เวลา" value="<?php echo $accident_time; ?>"
+		 data-inputmask='"mask": "99:99"' data-mask>
 	</div>
 </div>
 
@@ -13,11 +20,11 @@
 	<div class="col-sm-4">
 		<label>
 			<input type="radio" name="period_time" class="flat-red" value="morning" <?php if ($period_time=='morning' ) { echo
-			"checked" ;}?>>&nbsp;เช้า
+			 "checked" ;}?>>&nbsp;เช้า
 			<input type="radio" name="period_time" class="flat-red" value="afternoon" <?php if ($period_time=='afternoon' ) {
-			echo "checked" ;}?>>&nbsp;บ่าย
+			 echo "checked" ;}?>>&nbsp;บ่าย
 			<input type="radio" name="period_time" class="flat-red" value="night" <?php if ($period_time=='night' ) { echo
-			"checked" ;}?>>&nbsp;ดึก
+			 "checked" ;}?>>&nbsp;ดึก
 		</label>
 	</div>
 </div>
@@ -59,5 +66,25 @@
 
 	<div class="col-sm-1">
 		<input type="checkbox" class="flat-red" name="chk_accident_cause" value="checked_new_accident_cause">&nbsp;สาเหตุ(อื่นๆ)
+	</div>
+</div>
+
+<div class="form-group">
+	<label for="" class="col-sm-2 control-label">ทรัพย์สินราชการเสียหาย</label>
+	<label for="assets_name" class="col-sm-1 control-label">ชื่อทรัพย์สิน</label>
+	<div class="col-sm-2">
+		<input type="text" class="form-control" id="assets_name" name="assets_name" placeholder="ชื่อทรัพย์สิน" value="<?php echo $assets_name; ?>">
+	</div>
+
+	<label for="assets_amount" class="col-sm-1 control-label">จำนวน</label>
+
+	<div class="col-sm-1">
+		<input type="number" class="form-control" id="assets_amount" name="assets_amount" placeholder="จำนวน" value="<?php echo $assets_amount; ?>">
+	</div>
+
+	<label for="assets_remark" class="col-sm-1 control-label">หมายเหตุ</label>
+
+	<div class="col-sm-2">
+		<input type="text" class="form-control" id="assets_remark" name="assets_remark" placeholder="หมายเหตุ" value="<?php echo $assets_remark; ?>">
 	</div>
 </div>

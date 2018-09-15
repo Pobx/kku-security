@@ -45,11 +45,11 @@ class Accidents extends CI_Controller
 
         $data['results'] = $results['results'];
         
-        $data['bar_chart_data'] = $this->filterbarchartdata->filter($results['results'], 'accident_date');
+        $data['bar_chart_data'] = $this->filterbarchartdata->filter($results['results'], 'accident_date_en');
         $data['fields'] = $results['fields'];
         $data['content'] = 'accidents_table';
 
-        // echo "<pre>", print_r($data_monthly); exit();
+        // echo "<pre>", print_r($data['bar_chart_data']); exit();
         $this->load->view('template_layout', $data);
     }
 
@@ -81,7 +81,7 @@ class Accidents extends CI_Controller
         $data['accident_participate'] = $accident_participate['results'];
         
         $data['content'] = 'accidents_form_store';
-
+        
         // echo "<pre>", print_r($data); exit();
         $this->load->view('template_layout', $data);
     }

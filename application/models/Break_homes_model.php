@@ -31,7 +31,6 @@ class Break_homes_model extends CI_Model {
         WHEN staff_process = "no" THEN "จับไม่ได้"
       END
     ) ,
-    staff_process_note,
     remark,
     status,
     (

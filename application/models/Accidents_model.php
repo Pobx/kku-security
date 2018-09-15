@@ -18,7 +18,12 @@ class Accidents_model extends CI_Model
     private $items = '
     accidents.id,
     period_time,
+    accident_date AS accident_date_en,
     DATE_FORMAT(DATE_ADD(accident_date, INTERVAL 543 YEAR),"%d/%m/%Y") as accident_date,
+    accident_time,
+    assets_name,
+    assets_amount,
+    assets_remark,
     (
       CASE 
         WHEN period_time = "morning" THEN "เช้า"
@@ -38,6 +43,10 @@ class Accidents_model extends CI_Model
     accidents.id,
     period_time,
     DATE_FORMAT(DATE_ADD(accident_date, INTERVAL 543 YEAR),"%d/%m/%Y") as accident_date,
+    accident_time,
+    assets_name,
+    assets_amount,
+    assets_remark,
     (
       CASE 
         WHEN period_time = "morning" THEN "เช้า"
@@ -60,8 +69,8 @@ class Accidents_model extends CI_Model
 
         $query = $this->db->select($this->items)
         ->from($this->table)
-        ->join('accident_place', 'accident_place.id = accidents.place')
-        ->join('accident_cause', 'accident_cause.id = accidents.accident_cause')
+        ->join('accident_place', 'accident_place.id = accidents.place', 'left')
+        ->join('accident_cause', 'accident_cause.id = accidents.accident_cause', 'left')
         ->get();
 
         $results['results'] = $query->result_array();
@@ -88,6 +97,35 @@ class Accidents_model extends CI_Model
         }
 
         return $results;
+    }
+
+    public function distinct_place($qstr) {
+        if (isset($qstr) && !empty($qstr))
+        {
+            $this->db->where($qstr);
+        }
+
+        $query = $this->db->distinct()->select('place')->from($this->table)->get();
+
+        $results['results'] = $query->result_array();
+        $results['rows'] = $query->num_rows();
+        $results['fields'] = $query->list_fields();
+
+        return $results;
+    }
+
+    public function count_accidents($qstr) {
+      if (isset($qstr) && !empty($qstr))
+      {
+          $this->db->where($qstr);
+      }
+
+      $query = $this->db->select('id')->from($this->table)->get();
+      
+      $results['results'] = $query->result_array();
+      $results['rows'] = $query->num_rows();
+      
+      return $results;
     }
 
     public function find($id)

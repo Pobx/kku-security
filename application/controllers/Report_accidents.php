@@ -8,6 +8,7 @@ class Report_accidents extends CI_Controller
         parent::__construct();
 
         $this->load->model('Accidents_model');
+        $this->load->model('Accidents_place_model');
         $this->load->library('Date_libs');
         $this->load->library('FilterBarChartData');
     }
@@ -15,7 +16,7 @@ class Report_accidents extends CI_Controller
     private $head_topic_label           = 'สถิติอุบัติเหตุ';
     private $head_sub_topic_label_table = 'รายงาน สถิติอุบัติเหตุ';
     private $header_columns             = array('วันที่', 'ช่วงเวลา', 'สถานที่เกิดเหตุ', 'รถยนต์', 'รถจักรยานยนต์', 'รถที่เกิดเหตุ', 'สาเหตุ', 'บาดเจ็บ', 'เสียชีวิต', 'ผู้ประสบเหตุ / คู่กรณี', 'หน่วยงาน', 'บุคลากร', 'นักศึกษา', 'บุคคลภายใน');
-
+    private $header_excel_monthly_summary_columns = array('ลำดับ', 'สถานที่เกิดเหตุ', 'จำนวน(ครั้ง)');
     public function index()
     {
         $inputs = $this->input->post();
@@ -26,8 +27,9 @@ class Report_accidents extends CI_Controller
         $data['head_sub_topic_label'] = $this->head_sub_topic_label_table;
         $data['header_columns'] = $this->header_columns;
         $data['form_search_data_url'] =  site_url('report_accidents');
-        $data['link_excel'] =  site_url('report_accidents/export_excel');
-
+        $data['link_excel_monthly_summary'] =  site_url('report_accidents/export_excel_monthly_summary');
+        $data['link_excel_monthly'] =  site_url('report_accidents/export_excel');
+        
         $qstr = array(
           'accidents.accident_date >=' => $this->date_libs->set_date_th( $data['start_date']),
           'accidents.accident_date <=' => $this->date_libs->set_date_th($data['end_date']),
@@ -44,7 +46,7 @@ class Report_accidents extends CI_Controller
         $results = $this->Accidents_model->all($qstr);
         $data['results'] = $results['results'];
 
-        $data['bar_chart_data'] = $this->filterbarchartdata->filter($results['results'], 'accident_date');
+        $data['bar_chart_data'] = $this->filterbarchartdata->filter($results['results'], 'accident_date_en');
         $data['fields'] = $results['fields'];
         $data['content'] = 'report_accidents_table';
 
@@ -67,7 +69,39 @@ class Report_accidents extends CI_Controller
 
         // echo "<pre>", print_r($data['results']); exit();
         $this->load->view('excel_accidents_table', $data);
+    }
 
+    public function export_excel_monthly_summary() {
+      $data['header_columns'] = $this->header_excel_monthly_summary_columns;
+      $inputs = $this->session->userdata();
+
+      $qstr = array(
+        'accidents.accident_date >=' =>$inputs['start_date'],
+        'accidents.accident_date <=' =>$inputs['end_date'],
+        'accidents.status !=' => 'disabled'
+      );
+
+        $distinct_place = $this->Accidents_model->distinct_place($qstr);
+        $data['place'] = $distinct_place['results'];
+     
+        $results = array();
+        foreach ($data['place'] as $key => $value) {
+          $qstr['place'] = $value['place'];
+          $results_count_accidents = $this->Accidents_model->count_accidents($qstr);
+
+          $qstr_place = array('id'=>$value['place']);
+          $results_place = $this->Accidents_place_model->all($qstr_place);
+          $place_name = (isset($results_place['results'][0]['name'])? $results_place['results'][0]['name'] : '');
+
+          $results[] = array(
+            'results_count_accidents'=>$results_count_accidents['rows'],
+            'place_name'=>$place_name
+          );
+        }
+
+        $data['results'] = $results;
+        // echo "<pre>", print_r($data['results']); exit();
+        $this->load->view('excel_accidents_monthly_summary_table', $data);
     }
 
 }

@@ -7,6 +7,8 @@ class Evaluation extends CI_Controller
     parent::__construct();
 
     $this->load->model('Evaluation_model');
+    $this->load->model('Evaluation_services_model');
+    
     $this->load->model('Services_model');
     $this->load->model('Faculty_model');
     $this->load->model('Personals_model');
@@ -22,30 +24,7 @@ class Evaluation extends CI_Controller
   private $warning_message = 'ไม่สามารถทำรายการ กรุณลองใหม่อีกครั้ง';
   private $danger_message = 'ลบข้อมูลสำเร็จ';
 
-    public function index()
-    {
-      $data['form_submit_data_url_modal'] =site_url('evaluation/store');
-      $data['head_topic_label'] = $this->head_topic_label;
-      $data['head_sub_topic_label'] = $this->head_sub_topic_label_table;
-      $data['link_go_to_form'] = site_url('evaluation/form_store');
-      $data['link_go_to_remove'] = site_url('evaluation/remove');
-      $data['header_columns'] = $this->header_columns;
-      
-      $qstr = array('faculty.status !='=>'disabled');
-      $results = $this->Evaluation_model->all($qstr);
-      $data['results'] = $results['results'];
-      $data['fields'] = $results['fields'];
-      $data['content'] = 'evaluation_table';
-
-
-      // echo "<pre>", print_r($data['results']); exit();
-      $this->load->view('template_layout', $data);
-    }
-
     public function form_store() {
-
-      $id = $this->uri->segment(3);
-      $data = $this->find($id);
  
       $data['head_topic_label'] = $this->head_topic_label;
       $data['head_sub_topic_label'] = $this->head_sub_topic_label_form;
@@ -59,19 +38,24 @@ class Evaluation extends CI_Controller
       $faculty = $this->Faculty_model->all();
       $data['faculty'] = $faculty['results'];
 
-      $service = $this->Services_model->all();
-      $data['service'] = $service['results'];
-      
+      $services = $this->Services_model->all();
+      $data['services'] = $services['results'];
 
     //  echo "<pre>", print_r($data); exit();
-      $this->load->view('template_layout', $data);
+      $this->load->view('template_layout_evaluation', $data);
     }
 
     public function store() {
-      $inptus = $this->input->post();
-     // $inptus['eval_date'] = $this->date_libs->set_date_th($inptus['eval_date']);
-     //echo "<pre>", print_r($inptus); exit();
-      $results = $this->Evaluation_model->store($inptus);
+      $inputs = $this->input->post();
+      // echo "<pre>", print_r($inputs); exit();
+
+      $services = $inputs['service'];
+      unset($inputs['service']);
+
+      $inputs['eval_date'] = date('Y-m-d H:i:s');
+      $results = $this->Evaluation_model->store($inputs);
+      $evaluation_id = $results['lastID'];
+      $this->store_services($evaluation_id, $services);
 
       $alert_type = ($results['query']? 'success' : 'warning');
       $alert_icon = ($results['query']? 'check' : 'warning');
@@ -80,41 +64,20 @@ class Evaluation extends CI_Controller
       $this->session->set_flashdata('alert_icon', $alert_icon);
       $this->session->set_flashdata('alert_message', $alert_message);
 
-      redirect('evaluation');
+      redirect('evaluation/form_store');
+      
     }
 
-    private function find($id = 0) {
-      $results = $this->Evaluation_model->find($id);
-      $values = $results['results'];
-      $service = $results['service'];
-      $fields = $results['fields'];
-      $rows = $results['rows'];
-      $data = array();
+    private function store_services($evaluation_id, $services) {
+      foreach ($services as $key => $value) {
+        $inputs = array(
+          'id'=>'',
+          'evaluation_id'=>$evaluation_id,
+          'service_id'=>$value,
+          'status'=>'active'
+        );
 
-      foreach ($fields as $key => $value) {
-        if ($rows <= 0) {
-          $data[$value] = '';
-        } else {
-          $data[$value] = $values->$value;
-        }
-      }  
-      $arr['fields'] = $data; 
-      $arr['service_array'] = $service; 
-      //echo "<pre>"; print_r($arr['service_array']); die();
-      return $arr;
-    }
-    
-    public function remove() {
-      $id = $this->uri->segment(3);
-      $results = $this->Evaluation_model->remove($id);
-
-      $alert_type = ($results['query']? 'danger' : 'warning');
-      $alert_icon = ($results['query']? 'trash' : 'warning');
-      $alert_message = ($results['query']? $this->danger_message : $this->warning_message);
-      $this->session->set_flashdata('alert_type', $alert_type);
-      $this->session->set_flashdata('alert_icon', $alert_icon);
-      $this->session->set_flashdata('alert_message', $alert_message);
-
-      redirect('evaluation');
+        $this->Evaluation_services_model->store($inputs);
+      }
     }
 }

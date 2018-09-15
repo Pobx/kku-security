@@ -1,57 +1,14 @@
 <?php
 defined('BASEPATH') || exit('No direct script access allowed');
 
-class Accidents_participate_model extends CI_Model
+class Vehicles_forget_key_place_model extends CI_Model
 {
-    private $table = 'accident_participate';
+
+    private $table = 'vehicles_forget_key_place';
     private $id    = 'id';
     private $items = '
     id,
-    accident_id,
-    people_name,
-    people_department_name,
-    car_type,
-    (
-      CASE 
-        WHEN car_type = "car" THEN "รถยนต์"
-        WHEN car_type = "motorcycle" THEN "รถจักรยานยนต์"
-        ELSE ""
-      END
-    ) AS car_type_name,
-    car_model,
-    car_brand,
-    car_color,
-    car_license_plate,
-    CONCAT(car_license_plate, " ", car_color, " ", car_brand, " ", car_model) as car_body,
-
-    injury_type,
-    (
-      CASE 
-        WHEN injury_type = "injury" THEN "บาดเจ็บ"
-        WHEN injury_type = "injury_hard" THEN "สาหัส"
-        WHEN injury_type = "dead" THEN "เสียชีวิต"
-        ELSE ""
-      END
-    ) AS injury_type_name,
-    victim_type,
-    (
-      CASE 
-        WHEN victim_type = "victim" THEN "ผู้ประสบเหตุ"
-        WHEN victim_type = "parties" THEN "คู่กรณี"
-        ELSE ""
-      END
-    ) AS victim_type_name,
-    people_type,
-    (
-      CASE 
-        WHEN people_type = "officer" THEN "บุคลากร"
-        WHEN people_type = "student" THEN "นักศึกษา"
-        WHEN people_type = "staff" THEN "บุคลากร"
-        WHEN people_type = "people_inside" THEN "บุคคลภายใน"
-        ELSE ""
-      END
-    ) AS people_type_name,
-
+    name,
     status,
     (
       CASE

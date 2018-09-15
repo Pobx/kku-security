@@ -40,9 +40,10 @@
 	<a href="<?php echo site_url('student_do_not_wear_helmet'); ?>"><i class="fa fa-motorcycle"></i> <span>สถิติไม่สวมหมวกนิรภัย</span></a>
 </li>
 
-<li>
-	<a href="<?php echo site_url('evaluation'); ?>"><i class="fa fa-book"></i> <span>แบบประเมิณ</span></a>
-</li>
+<!-- <li>
+	<a href="<?php //echo site_url('evaluation'); ?>"><i class="fa fa-book"></i> <span>แบบประเมิณ</span></a>
+</li> -->
+
 <li class="treeview">
 	<a href="#">
 		<i class="fa fa-book"></i> <span>รายงาน</span>

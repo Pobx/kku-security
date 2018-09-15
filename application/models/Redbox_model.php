@@ -26,10 +26,22 @@ class Redbox_model extends CI_Model
     redbox_positions.status,
     comment
     ';
+
     private $redbox_lists = '
         redbox_id,
         redboxname,
         zone
+    ';
+
+    private $items_for_form = '
+    rbp_id,
+    redbox_id,
+    checker_id,
+    DATE(checked_datetime) AS checked_datetime_en,
+    DATE_FORMAT(DATE_ADD(DATE(checked_datetime), INTERVAL 543 YEAR),"%d/%m/%Y") as checked_datetime_th,
+    TIME(checked_datetime) as checked_datetime_time_only,
+    redbox_positions.status,
+    comment
     ';
 
     public function all($qstr = '')
@@ -54,7 +66,7 @@ class Redbox_model extends CI_Model
 
     public function find($id)
     {
-        $query = $this->db->select($this->items)->from($this->table)->where('rbp_id', $id)->get();
+        $query = $this->db->select($this->items_for_form)->from($this->table)->where('rbp_id', $id)->get();
 
         $results['rows'] = $query->num_rows();
         $results['results'] = $query->first_row();
@@ -79,12 +91,12 @@ class Redbox_model extends CI_Model
         if ($inputs['rbp_id'] != '')
         {
             $inputs['updated'] = date('Y-m-d H:i:s');
-            $results['query'] = $this->db->where($this->id, $inputs['id'])->update($this->table, $inputs);
-            $results['lastID'] = $inputs['id'];
+            $results['query'] = $this->db->where($this->id, $inputs['rbp_id'])->update($this->table, $inputs);
+            $results['lastID'] = $inputs['rbp_id'];
         }
         else
         {
-            // $inputs['created'] = date('Y-m-d H:i:s');
+            $inputs['created'] = date('Y-m-d H:i:s');
             $results['query'] = $this->db->insert($this->table, $inputs);
             $results['lastID'] = $this->db->insert_id();
         }

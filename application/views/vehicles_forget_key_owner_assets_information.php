@@ -5,7 +5,7 @@
 
 	<div class="col-sm-4">
 		<input type="text" class="form-control datepicker" id="date_forget_key" name="date_forget_key" data-provide="datepicker"
-		data-date-language="th-th" placeholder="วันที่" value="<?php echo $date_forget_key; ?>">
+		 data-date-language="th-th" placeholder="วันที่" value="<?php echo $date_forget_key; ?>">
 	</div>
 </div>
 
@@ -16,7 +16,7 @@
 
 	<div class="col-sm-4">
 		<input type="text" class="form-control" id="owner_assets_name" name="owner_assets_name" placeholder="ชื่อ - สกุล"
-		value="<?php echo $owner_assets_name; ?>">
+		 value="<?php echo $owner_assets_name; ?>">
 	</div>
 </div>
 
@@ -25,7 +25,7 @@
 
 	<div class="col-sm-4">
 		<input type="text" class="form-control" id="owner_assets_department" name="owner_assets_department" placeholder="สังกัดหน่วยงาน"
-		value="<?php echo $owner_assets_department; ?>">
+		 value="<?php echo $owner_assets_department; ?>">
 	</div>
 </div>
 
@@ -42,7 +42,7 @@
 
 	<div class="col-sm-4">
 		<input type="text" class="form-control" id="owner_assets_phone" name="owner_assets_phone" placeholder="เบอร์ติดต่อ"
-		value="<?php echo $owner_assets_phone; ?>">
+		 value="<?php echo $owner_assets_phone; ?>">
 	</div>
 </div>
 
@@ -50,8 +50,20 @@
 	<label for="owner_assets_forget_key_place" class="col-sm-2 control-label">สถานที่ลืม</label>
 
 	<div class="col-sm-4">
-		<input type="text" class="form-control" id="owner_assets_forget_key_place" name="owner_assets_forget_key_place"
-		placeholder="สถานที่ลืม" value="<?php echo $owner_assets_forget_key_place; ?>">
+		<select class="form-control select2" name="vehicles_forget_key_place_id" id="vehicles_forget_key_place_id">
+			<option>เลือก</option>
+			<?php foreach ($resluts_forget_key_place as $key => $value) {?>
+			<option value="<?php echo $value['id'];?>">
+				<?php echo $value['name'];?>
+			</option>
+			<?php }?>
+		</select>
+
+		<input type="text" class="form-control" id="place_text" name="place_text" placeholder="สถานที่ลืม" value="">
+	</div>
+
+	<div class="col-sm-1">
+		<input type="checkbox" class="flat-red" name="chk_place" value="checked_new_place">&nbsp;สถานที่(อื่นๆ)
 	</div>
 </div>
 
@@ -62,7 +74,7 @@
 		<label>
 			<input type="radio" name="car_type" class="flat-red" value="car" <?php if ($car_type=='car' ) { echo "checked" ;}?>>&nbsp;รถยนต์
 			<input type="radio" name="car_type" class="flat-red" value="motorcycle" <?php if ($car_type=='motorcycle' ||
-			$car_type=='' ) { echo "checked" ;}?>>&nbsp;รถจักรยานยนต์
+			 $car_type=='' ) { echo "checked" ;}?>>&nbsp;รถจักรยานยนต์
 		</label>
 	</div>
 </div>

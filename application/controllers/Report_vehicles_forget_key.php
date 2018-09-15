@@ -8,6 +8,7 @@ class Report_vehicles_forget_key extends CI_Controller
         parent::__construct();
 
         $this->load->model('Vehicles_forget_key_model');
+        $this->load->model('Vehicles_forget_key_place_model');
         $this->load->library('Date_libs');
         $this->load->library('FilterBarChartData');
     }
@@ -15,6 +16,7 @@ class Report_vehicles_forget_key extends CI_Controller
     private $head_topic_label           = 'สถิติการลืมกุญแจ';
     private $head_sub_topic_label_table = 'รายงาน สถิติการลืมกุญแจ';
     private $header_columns             = array('วันที่', 'ชื่อ - สกุล', 'สังกัดหน่วยงาน', 'อายุ(ปี)', 'เบอร์ติดต่อ', 'สถานที่ลืมกุญแจ');
+    private $header_excel_monthly_summary_columns = array('ลำดับ', 'สถานที่', 'จำนวน(ครั้ง)');
 
     public function index()
     {
@@ -26,12 +28,13 @@ class Report_vehicles_forget_key extends CI_Controller
         $data['head_sub_topic_label'] = $this->head_sub_topic_label_table;
         $data['header_columns'] = $this->header_columns;
         $data['form_search_data_url'] =  site_url('report_vehicles_forget_key');
-        $data['link_excel'] =  site_url('report_vehicles_forget_key/export_excel');
+        $data['link_excel_monthly_summary'] =  site_url('report_vehicles_forget_key/export_excel_monthly_summary');
+        $data['link_excel_monthly'] =  site_url('report_vehicles_forget_key/export_excel');
 
         $qstr = array(
-          'date_forget_key >=' => $this->date_libs->set_date_th( $data['start_date']),
-          'date_forget_key <=' => $this->date_libs->set_date_th($data['end_date']),
-          'status !=' => 'disabled'
+          'vehicles_forget_key.date_forget_key >=' => $this->date_libs->set_date_th( $data['start_date']),
+          'vehicles_forget_key.date_forget_key <=' => $this->date_libs->set_date_th($data['end_date']),
+          'vehicles_forget_key.status !=' => 'disabled'
         );
 
         $sess_inputs = array(
@@ -55,9 +58,9 @@ class Report_vehicles_forget_key extends CI_Controller
       $data['header_columns'] = $this->header_columns;
       $inputs = $this->session->userdata();
       $qstr = array(
-        'date_forget_key >=' =>$inputs['start_date'],
-        'date_forget_key <=' =>$inputs['end_date'],
-        'status !=' => 'disabled'
+        'vehicles_forget_key.date_forget_key >=' =>$inputs['start_date'],
+        'vehicles_forget_key.date_forget_key <=' =>$inputs['end_date'],
+        'vehicles_forget_key.status !=' => 'disabled'
       );
 
         $results = $this->Vehicles_forget_key_model->all($qstr);
@@ -67,6 +70,39 @@ class Report_vehicles_forget_key extends CI_Controller
         // echo "<pre>", print_r($data['results']); exit();
         $this->load->view('excel_vehicles_forget_key', $data);
 
+    }
+
+    public function export_excel_monthly_summary() {
+      $data['header_columns'] = $this->header_excel_monthly_summary_columns;
+      $inputs = $this->session->userdata();
+
+      $qstr = array(
+        'vehicles_forget_key.date_forget_key >=' =>$inputs['start_date'],
+        'vehicles_forget_key.date_forget_key <=' =>$inputs['end_date'],
+        'vehicles_forget_key.status !=' => 'disabled'
+      );
+
+        $distinct_place = $this->Vehicles_forget_key_model->distinct_place($qstr);
+        $data['place'] = $distinct_place['results'];
+     
+        $results = array();
+        foreach ($data['place'] as $key => $value) {
+          $qstr['vehicles_forget_key_place_id'] = $value['vehicles_forget_key_place_id'];
+          $results_count = $this->Vehicles_forget_key_model->all($qstr);
+
+          $qstr_place = array('id'=>$value['vehicles_forget_key_place_id']);
+          $results_place = $this->Vehicles_forget_key_place_model->all($qstr_place);
+          $place_name = (isset($results_place['results'][0]['name'])? $results_place['results'][0]['name'] : '');
+
+          $results[] = array(
+            'results_count'=>$results_count['rows'],
+            'place_name'=>$place_name
+          );
+        }
+
+        $data['results'] = $results;
+        // echo "<pre>", print_r($data['results']); exit();
+        $this->load->view('excel_vehicles_forget_key_monthly_summary_table', $data);
     }
 
 }

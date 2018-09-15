@@ -47,6 +47,7 @@
 			var owner_assets_department = '<?php echo $owner_assets_department;?>';
 			var car_state = '<?php echo $car_state;?>';
 			var state_comment = '<?php echo $state_comment;?>';
+			var vehicles_forget_key_place_id = '<?php echo $vehicles_forget_key_place_id;?>';
 
 			if (people_type == 'student' || people_type == 'staff') {
 				$('#div_owner_assets_department').show();
@@ -90,6 +91,19 @@
 			});
 
 			$('[name=car_state]').val(car_state);
+
+			$('#place_text').val('').hide();
+			$('input[name="chk_place"]').on('ifClicked', function () {
+				$('#vehicles_forget_key_place_id').next(".select2").hide();
+				$('#place_text').val('').show();
+			});
+
+			$('input[name="chk_place"]').on('ifUnchecked', function () {
+				$('#vehicles_forget_key_place_id').next(".select2").show();
+				$('#place_text').val('').hide();
+			});
+			$('[name=vehicles_forget_key_place_id]').val(vehicles_forget_key_place_id);
+
 		});
 
 	</script>

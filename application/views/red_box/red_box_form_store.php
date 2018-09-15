@@ -10,7 +10,7 @@
 
 			<!-- <form class="form-horizontal form_submit_data"> -->
 			<?php $this->load->view('header_form_submit_data');?>
-			
+
 			<div class="box-body">
 				<?php 
           $this->load->view('red_box/red_box_details_information');
@@ -28,3 +28,13 @@
 		</div>
 
 	</div>
+
+	<script>
+		$(document).ready(function () {
+
+			// $("#e1").select2();
+			var redbox_id = '<?php echo $redbox_id;?>';
+			$('[name=redbox_id]').val(redbox_id);
+		});
+
+	</script>
