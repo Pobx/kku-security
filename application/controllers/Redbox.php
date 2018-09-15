@@ -73,9 +73,9 @@ class Redbox extends CI_Controller
 
     public function store()
     {
+        $sess_data = $this->session->userdata();
         $inputs = $this->input->post();
         $inputs['inspect_date'] = date("Y-m-d H:i:s");
-        // $inputs['user_id'] = '2';
 
         // echo "<pre>", print_r($inputs); exit();
         $results = $this->Redbox_inspect_transaction_model->store($inputs);
@@ -86,8 +86,9 @@ class Redbox extends CI_Controller
         $this->session->set_flashdata('alert_type', $alert_type);
         $this->session->set_flashdata('alert_icon', $alert_icon);
         $this->session->set_flashdata('alert_message', $alert_message);
-
-        redirect('redbox');
+      
+        $redirect_page = ($sess_data['permission'] =='security'? 'redbox/form_store' : 'redbox');
+        redirect($redirect_page);
     }
 
     private function find($id = 0)
