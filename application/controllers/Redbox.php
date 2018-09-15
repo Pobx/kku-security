@@ -33,14 +33,14 @@ class Redbox extends CI_Controller
 
         $qstr = array(
           'YEAR(redbox_inspect_transaction.inspect_date)'=>date('Y'),
-          'redbox_inspect_transaction.status !=' => 'active'
+          'redbox_inspect_transaction.status' => 'active'
         );
 
         $results = $this->Redbox_inspect_transaction_model->all($qstr);
         $data['results'] = $results['results'];
 
         $data['bar_chart_data'] = $this->filterbarchartdata->filter($results['results'], 'inspect_date_en');
-        $data['content'] = 'redbox/redbox_table';
+        $data['content'] = 'redbox_table';
         
         // echo "<pre>", print_r($data['results']); exit();
         $this->load->view('template_layout', $data);
@@ -50,13 +50,16 @@ class Redbox extends CI_Controller
     {
         $id = $this->uri->segment(3);
         $data = $this->find($id);
-        $data['redbox_lists'] = $this->Redbox_inspect_transaction_model->get_redbox_postion_list();
+        $qstr_redbox_place = array('status'=>'active');
+        $results_redbox_place = $this->Redbox_place_model->all($qstr_redbox_place);
+        $data['results_redbox_place'] = $results_redbox_place['results'];
+
         $data['head_topic_label'] = $this->head_topic_label;
         $data['head_sub_topic_label'] = $this->head_sub_topic_label_form;
         $data['link_back_to_table'] = site_url('redbox');
         $data['form_submit_data_url'] = site_url('redbox/store');
 
-        $data['content'] = 'redbox/red_box_form_store';
+        $data['content'] = 'redbox_form_store';
 
         // echo "<pre>", print_r($data); exit();
         $this->load->view('template_layout', $data);
@@ -65,8 +68,7 @@ class Redbox extends CI_Controller
     public function store()
     {
         $inputs = $this->input->post();
-        $d=strtotime("now");
-        $inputs['inspect_date'] = date("Y-m-d H:i:s", $d);
+        $inputs['inspect_date'] = date("Y-m-d H:i:s");
         $inputs['user_id'] = '2';
 
         // echo "<pre>", print_r($inputs); exit();

@@ -13,14 +13,14 @@
 
 			<div class="box-body">
 				<?php 
-          $this->load->view('red_box/red_box_details_information');
+          $this->load->view('redbox_details_information');
           //   $this->load->view('break_motorcycle_pad/break_motorcycle_pad_information');
         ?>
 
 			</div>
 
 			<div class="box-footer">
-				<input type="hidden" name="rbp_id" value="<?php echo $rbp_id; ?>">
+				<input type="hidden" name="id" value="<?php echo $id; ?>">
 				<?php $this->load->view('button_save_and_back_page_in_form');?>
 			</div>
 			</form>
@@ -33,8 +33,8 @@
 		$(document).ready(function () {
 
 			// $("#e1").select2();
-			var redbox_id = '<?php echo $redbox_id;?>';
-			$('[name=redbox_id]').val(redbox_id);
+			var redbox_place_id = '<?php echo $redbox_place_id;?>';
+			$('[name=redbox_place_id]').val(redbox_place_id);
 		});
 
 	</script>

@@ -15,6 +15,7 @@ class Redbox_inspect_transaction_model extends CI_Model
     private $items = '
     redbox_inspect_transaction.id,
     redbox_inspect_transaction.redbox_place_id,
+    redbox_inspect_transaction.user_id,
     redbox_place.name AS place_name,
     users.name AS inspector_name,
     redbox_zone.name AS zone_name,
@@ -28,7 +29,7 @@ class Redbox_inspect_transaction_model extends CI_Model
         ELSE ""
       END
     ) AS status_name,
-
+    redbox_inspect_transaction.status_inspect,
     (
       CASE 
         WHEN redbox_inspect_transaction.status_inspect = "normal" THEN "ปกติ"
@@ -49,7 +50,7 @@ class Redbox_inspect_transaction_model extends CI_Model
         $query = $this->db->select($this->items)
         ->from($this->table)
         ->join('redbox_place', 'redbox_place.id = redbox_inspect_transaction.redbox_place_id', 'left')
-        ->join('redbox_zone', 'redbox_zone.id = redbox_inspect_transaction.zone_id', 'left')
+        ->join('redbox_zone', 'redbox_zone.id = redbox_place.zone_id', 'left')
         ->join('users', 'users.id = redbox_inspect_transaction.user_id', 'left')
         
         ->get();
@@ -66,7 +67,7 @@ class Redbox_inspect_transaction_model extends CI_Model
         $query = $this->db->select($this->items)
         ->from($this->table)
         ->join('redbox_place', 'redbox_place.id = redbox_inspect_transaction.redbox_place_id', 'left')
-        ->join('redbox_zone', 'redbox_zone.id = redbox_inspect_transaction.zone_id', 'left')
+        ->join('redbox_zone', 'redbox_zone.id = redbox_place.zone_id', 'left')
         ->join('users', 'users.id = redbox_inspect_transaction.user_id', 'left')
         ->where('redbox_inspect_transaction.id', $id)
         ->get();
@@ -82,11 +83,11 @@ class Redbox_inspect_transaction_model extends CI_Model
     public function store($inputs)
     {
         // echo "<pre>", print_r($inputs); exit();
-        if ($inputs['rbp_id'] != '')
+        if ($inputs['id'] != '')
         {
             $inputs['updated'] = date('Y-m-d H:i:s');
-            $results['query'] = $this->db->where($this->id, $inputs['rbp_id'])->update($this->table, $inputs);
-            $results['lastID'] = $inputs['rbp_id'];
+            $results['query'] = $this->db->where($this->id, $inputs['id'])->update($this->table, $inputs);
+            $results['lastID'] = $inputs['id'];
         }
         else
         {
