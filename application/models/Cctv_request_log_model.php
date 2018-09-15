@@ -7,6 +7,7 @@ class Cctv_request_log_model extends CI_Model
     private $id           = 'id';
     private $items        = '
     cctv_request_log.id,
+    name,
     gender,
     (
       CASE
@@ -15,11 +16,14 @@ class Cctv_request_log_model extends CI_Model
         ELSE ""
       END
     ) AS gender_name,
+    area,
     operation_status,
     (
       CASE
         WHEN cctv_request_log.operation_status = "meet_event" THEN "พบเหตุการณ์"
         WHEN cctv_request_log.operation_status = "have_not_event" THEN "ไม่พบเหตุการณ์"
+        WHEN cctv_request_log.operation_status = "other" THEN "อื่นๆ"
+
         ELSE ""
       END
     ) AS operation_status_name,
@@ -38,7 +42,7 @@ class Cctv_request_log_model extends CI_Model
         ELSE ""
       END
     ) AS people_type_name,
-    
+   
     cctv_request_log.status,
     (
       CASE

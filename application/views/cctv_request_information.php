@@ -1,9 +1,26 @@
+<style>
+	.hide{
+		display:none;
+	}
+	.show{
+		display:block;
+	}
+</style>
 <div class="form-group">
 	<label for="request_date" class="col-sm-2 control-label">วันที่</label>
 
 	<div class="col-sm-4">
 		<input type="text" class="form-control datepicker" id="request_date" name="request_date" data-provide="datepicker"
 		data-date-language="th-th" placeholder="วันที่" value="<?php echo $request_date; ?>">
+	</div>
+</div>
+
+<div class="form-group">
+	<label for="name" class="col-sm-2 control-label">ชื่อ-สกุล</label>
+	<div class="col-sm-4">
+		<label>
+			<input type="text" id="name" name="name" placeholder="ชื่อ-สกุล" class="form-control" value="" >
+		</label>
 	</div>
 </div>
 
@@ -36,38 +53,54 @@
 </div>
 
 <div class="form-group">
+	<label class="col-sm-2 control-label">บริเวณที่เกิดเหตุ</label>
+	<div class="col-sm-4">
+	<textarea class="form-control" rows="3" id="area" name="area" placeholder="area"></textarea>
+	</div>
+</div>
+
+<div class="form-group">
 	<label for="victim_address" class="col-sm-2 control-label">ผลการดำเนินการ</label>
 
 	<div class="col-sm-4">
 		<label>
-			<input type="radio" name="operation_status" class="flat-red" value="meet_event" <?php if ($operation_status=='meet_event'
+			<input type="radio" name="operation_status" id="operation_status1" class="flat-red" value="meet_event" <?php if ($operation_status=='meet_event'
 			) { echo "checked" ;}?>>&nbsp;พบเหตุการณ์
-			<input type="radio" name="operation_status" class="flat-red" value="have_not_event" <?php if ($operation_status=='have_not_event'
+			<input type="radio" name="operation_status" id="operation_status2" class="flat-red" value="have_not_event" <?php if ($operation_status=='have_not_event'
 			) { echo "checked" ;}?>>&nbsp;ไม่พบเหตุการณ์
+			<input type="radio" name="operation_status" id="operation_status3" class="flat-red" value="other" <?php if ($operation_status=='other'
+			) { echo "checked" ;}?>>&nbsp;อื่นๆ
+			<input type="text" name="operation_status_note" class="flat-red hide"  value="<?php $operation_status_note; ?>">
+
 		</label>
 	</div>
 </div>
 
 <div class="form-group">
-	<label for="link_copy_polic_doc" class="col-sm-2 control-label">สำเนาบันทึกแจ้งความประจำวัน</label>
-
+	<label class="col-sm-2 control-label">เอกสารแนบคำขอ</label>
 	<div class="col-sm-4">
-		<input class="form-control" type="file" name="link_copy_polic_doc" id="link_copy_polic_doc">
+	<input type="checkbox" name="checkbox1" class="flat-red" value="" >
+	<br><input type="checkbox" name="checkbox1" class="flat-red" value="" >
+	<br><input type="checkbox" name="checkbox1" class="flat-red" value="" >
+
+	<br><input type="checkbox" name="checkbox1" class="flat-red" value="" >
+
+	<br><input type="checkbox" name="checkbox1" class="flat-red" value="" >
+
+	<br><input type="checkbox" name="checkbox1" class="flat-red" value="" >
+
+
 	</div>
 </div>
 
-<div class="form-group">
-	<label for="link_copy_gov_doc" class="col-sm-2 control-label">สำเนาบัตรประจำตัวนักศึกษา/สำเนาบัตรประชาชน/สำเนาบัตรข้าราชการ</label>
+<script>
 
-	<div class="col-sm-4">
-		<input class="form-control" type="file" name="link_copy_gov_doc" id="link_copy_gov_doc">
-	</div>
-</div>
-
-<div class="form-group">
-	<label for="link_copy_other_gov_doc" class="col-sm-2 control-label">สำเนาบัตรอื่นๆ ที่หน่วยงานราชการออกให้</label>
-
-	<div class="col-sm-4">
-		<input class="form-control" type="file" name="link_copy_other_gov_doc" id="link_copy_other_gov_doc">
-	</div>
-</div>
+$('.operation_status3').click(function(){
+		 var operation_status =  $(this).val();
+		 if(operation_status == "other"){
+			$('#operation_status_note').attr('class', 'flat-red show');
+		 }else{
+			$('#operation_status_note').attr('class', 'flat-red hide');
+		 } 
+})
+</script>

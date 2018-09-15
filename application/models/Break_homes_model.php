@@ -24,15 +24,6 @@ class Break_homes_model extends CI_Model {
     ),
     address,
     assets_loses,
-    victim_process,
-    (
-      CASE 
-      WHEN victim_process = "bill" THEN "มีบันทึกประจำวัน"
-      WHEN victim_process = "camera" THEN "ขอดูกล้องวงจรปิด"
-      WHEN victim_process = "other" THEN "อื่นๆ"
-      END
-    ),
-    victim_process_note,
     staff_process,
     (
       CASE 
