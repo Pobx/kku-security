@@ -48,6 +48,7 @@ class Redbox extends CI_Controller
 
     public function form_store()
     {
+        $sess_data = $this->session->userdata();
         $id = $this->uri->segment(3);
         $data = $this->find($id);
         $qstr_redbox_place = array('status'=>'active');
@@ -59,6 +60,11 @@ class Redbox extends CI_Controller
         $data['link_back_to_table'] = site_url('redbox');
         $data['form_submit_data_url'] = site_url('redbox/store');
 
+        
+        if ($sess_data['permission'] =='security') {
+          $data['user_id'] = $sess_data['id'];
+        }
+
         $data['content'] = 'redbox_form_store';
 
         // echo "<pre>", print_r($data); exit();
@@ -69,7 +75,7 @@ class Redbox extends CI_Controller
     {
         $inputs = $this->input->post();
         $inputs['inspect_date'] = date("Y-m-d H:i:s");
-        $inputs['user_id'] = '2';
+        // $inputs['user_id'] = '2';
 
         // echo "<pre>", print_r($inputs); exit();
         $results = $this->Redbox_inspect_transaction_model->store($inputs);

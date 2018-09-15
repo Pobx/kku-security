@@ -21,6 +21,7 @@
 
 			<div class="box-footer">
 				<input type="hidden" name="id" value="<?php echo $id; ?>">
+				<input type="text" name="user_id" value="<?php echo $user_id; ?>">
 				<?php $this->load->view('button_save_and_back_page_in_form');?>
 			</div>
 			</form>
