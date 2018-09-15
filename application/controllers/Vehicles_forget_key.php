@@ -34,8 +34,8 @@ class Vehicles_forget_key extends CI_Controller
         $data['header_columns'] = $this->header_columns;
 
         $qstr = array(
-          'YEAR(date_forget_key)'=>date('Y'),
-          'status !=' => 'disabled'
+          'YEAR(vehicles_forget_key.date_forget_key)'=>date('Y'),
+          'vehicles_forget_key.status !=' => 'disabled'
         );
 
         $results = $this->Vehicles_forget_key_model->all($qstr);

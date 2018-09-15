@@ -29,9 +29,9 @@ class Report_vehicles_forget_key extends CI_Controller
         $data['link_excel'] =  site_url('report_vehicles_forget_key/export_excel');
 
         $qstr = array(
-          'date_forget_key >=' => $this->date_libs->set_date_th( $data['start_date']),
-          'date_forget_key <=' => $this->date_libs->set_date_th($data['end_date']),
-          'status !=' => 'disabled'
+          'vehicles_forget_key.date_forget_key >=' => $this->date_libs->set_date_th( $data['start_date']),
+          'vehicles_forget_key.date_forget_key <=' => $this->date_libs->set_date_th($data['end_date']),
+          'vehicles_forget_key.status !=' => 'disabled'
         );
 
         $sess_inputs = array(
@@ -55,9 +55,9 @@ class Report_vehicles_forget_key extends CI_Controller
       $data['header_columns'] = $this->header_columns;
       $inputs = $this->session->userdata();
       $qstr = array(
-        'date_forget_key >=' =>$inputs['start_date'],
-        'date_forget_key <=' =>$inputs['end_date'],
-        'status !=' => 'disabled'
+        'vehicles_forget_key.date_forget_key >=' =>$inputs['start_date'],
+        'vehicles_forget_key.date_forget_key <=' =>$inputs['end_date'],
+        'vehicles_forget_key.status !=' => 'disabled'
       );
 
         $results = $this->Vehicles_forget_key_model->all($qstr);

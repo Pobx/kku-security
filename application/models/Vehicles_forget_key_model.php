@@ -7,7 +7,7 @@ class Vehicles_forget_key_model extends CI_Model
     private $table = 'vehicles_forget_key';
     private $id    = 'id';
     private $items = '
-    id,
+    vehicles_forget_key.id,
     period_time,
     people_type,
     date_forget_key AS date_forget_key_en,
@@ -16,7 +16,8 @@ class Vehicles_forget_key_model extends CI_Model
     owner_assets_department,
     owner_assets_age,
     owner_assets_phone,
-    owner_assets_forget_key_place,
+    vehicles_forget_key_place_id,
+    vehicles_forget_key_place.name AS owner_assets_forget_key_place,
     car_type,
     (
       CASE 
@@ -31,11 +32,11 @@ class Vehicles_forget_key_model extends CI_Model
     license_plate,
     car_state,
     state_comment,
-    status,
+    vehicles_forget_key.status,
     (
       CASE 
-        WHEN status = "active" THEN "ACTIVE"
-        WHEN status = "disabled" THEN "ลบรายการ"
+        WHEN vehicles_forget_key.status = "active" THEN "ACTIVE"
+        WHEN vehicles_forget_key.status = "disabled" THEN "ลบรายการ"
         ELSE ""
       END
     ) AS status_name,
@@ -48,7 +49,9 @@ class Vehicles_forget_key_model extends CI_Model
             $this->db->where($qstr);
         }
 
-        $query = $this->db->select($this->items)->from($this->table)->get();
+        $query = $this->db->select($this->items)->from($this->table)
+        ->join('vehicles_forget_key_place', 'vehicles_forget_key_place.id = vehicles_forget_key.vehicles_forget_key_place_id', 'left')
+        ->get();
 
         $results['results'] = $query->result_array();
         $results['rows'] = $query->num_rows();
@@ -59,7 +62,9 @@ class Vehicles_forget_key_model extends CI_Model
 
     public function find($id)
     {
-        $query = $this->db->select($this->items)->from($this->table)->where('id', $id)->get();
+        $query = $this->db->select($this->items)->from($this->table)->where('vehicles_forget_key.id', $id)
+        ->join('vehicles_forget_key_place', 'vehicles_forget_key_place.id = vehicles_forget_key.vehicles_forget_key_place_id', 'left')
+        ->get();
 
         $results['rows'] = $query->num_rows();
         $results['results'] = $query->first_row();
