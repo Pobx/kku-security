@@ -14,7 +14,6 @@ class Student_do_not_wear_helmet_model extends CI_Model
     place,
     people_name,
     people_code,
-    id_card,
     department_name,
     model,
     people_type,

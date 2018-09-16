@@ -63,7 +63,7 @@
 	<div id="officer_info" class="hide">
 		<label for="id_card" class="col-sm-2 control-label">บัตรประจำตัวประชาชน</label>
 		<div class="col-sm-2">
-			<input type="text" class="form-control" id="id_card" name="id_card" placeholder="เลขบัตรประชาชน" value="<?php echo $id_card;?>">
+			<input type="text" class="form-control" id="people_code" name="people_code" placeholder="บัตรประจำตัวประชาชน" value="<?php echo $people_code; ?>">
 		</div>
 
 		<label for="department_name" class="col-sm-1 control-label">สังกัด</label>

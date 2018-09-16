@@ -41,6 +41,9 @@
     ?>
 					<tr>
 						<td class="text-center">
+							<?php echo $value['period_time_name'];?>
+						</td>
+						<td class="text-center">
 							<?php echo $value['inspect_date']; ?>
 						</td>
 						<td class="text-center">
@@ -52,45 +55,18 @@
 							?>
 						</td>
 						<td class="text-center">
-							<?php echo $value['student_name']; ?>
+							<?php echo $value['people_name']; ?>
 						</td>
 						<td class="text-center">
-							<?php 
-								if($value['man_type'] == "student"){
-									echo $value['student_code'];
-								}else if($value['man_type'] == "officer"){
-									echo $value['officer_card_id'];
-								}else if($value['man_type'] == "external_person"){
-									echo $value['ex_person_card_id'];
-								}   
-							?>
-
+							<?php echo $value['people_code']; ?>
 						</td>
 						<td class="text-center">
-							<?php echo $value['period_time_name'];?>
+							<?php echo $value['department_name']; ?>
 						</td>
-
-						<td>
-							<?php 
-								$user_address ="";
-								if($value['man_type'] == "student"){
-									$user_address = $value['student_faculty'];
-								}else if($value['man_type'] == "officer"){
-									$user_address = $value['officer_office'];
-								}else if($value['man_type'] == "external_person"){
-									$user_address = $value['ex_person_address'];
-								}
-								echo $user_address; 
-							?>
-						</td>
-
 						<td>
 							<?php echo $value['car_body']; ?>
 						</td>
 
-						<!-- <td class="text-center">
-							<php echo $value['status_name']; ?>
-						</td> -->
 						<td class="text-center">
 							<a href="<?php echo $link_go_to_form . '/' . $value['id']; ?>" class="btn btn-warning">
 								<i class="fa fa-pencil"></i>

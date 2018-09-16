@@ -56,7 +56,6 @@
 		function reset_people_info() {
 			$('[name=people_code]').val('');
 			$('[name=department_name]').val('');
-			$('[name=id_card]').val('');
 		}
 
 	</script>
