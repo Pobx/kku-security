@@ -25,29 +25,26 @@ set_time_limit(0);
 {
     ?>
 		<tr>
-						<td class="text-center">
-							<?php echo $value['inspect_date']; ?>
-						</td>
-						<td class="text-center">
-							<?php echo $value['place']; ?>
-						</td>
-						<td class="text-center">
-							<?php echo $value['student_name']; ?>
-						</td>
-						<td class="text-center">
-							<?php echo $value['student_code']; ?>
-						</td>
-						<td class="text-center">
-							<?php echo $value['id_card']; ?>
-						</td>
-						<td>
-							<?php echo $value['department_name']; ?>
-						</td>
+			<td class="text-center">
+				<?php echo $value['inspect_date']; ?>
+			</td>
+			<td class="text-center">
+				<?php echo $value['place']; ?>
+			</td>
+			<td class="text-center">
+				<?php echo $value['people_name']; ?>
+			</td>
+			<td class="text-center">
+				<?php echo $value['people_code']; ?>
+			</td>
+			<td>
+				<?php echo $value['department_name']; ?>
+			</td>
 
-						<td>
-							<?php echo $value['car_body']; ?>
-						</td>
-				</tr>
+			<td>
+				<?php echo $value['car_body']; ?>
+			</td>
+		</tr>
 		<?php }?>
 	</tbody>
 	<tfoot>
