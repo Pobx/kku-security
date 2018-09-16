@@ -8,7 +8,6 @@ class Student_do_not_wear_helmet extends CI_Controller
         parent::__construct();
 
         $this->load->model('Student_do_not_wear_helmet_model');
-        $this->load->model('Faculty_model');
         
         $this->load->library('Date_libs');
         $this->load->library('FilterBarChartData');
@@ -56,10 +55,6 @@ class Student_do_not_wear_helmet extends CI_Controller
         $data['link_back_to_table'] = site_url('student_do_not_wear_helmet');
         $data['form_submit_data_url'] = site_url('student_do_not_wear_helmet/store');
 
-        $qstr_faculty = array('status'=>'active');
-        $results_faculty = $this->Faculty_model->all($qstr_faculty);
-        $data['results_faculty'] = $results_faculty['results'];
-        
         $data['content'] = 'student_do_not_wear_helmet_form_store';
 
         // echo "<pre>", print_r($data); exit();

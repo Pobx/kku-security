@@ -39,10 +39,7 @@ class Student_do_not_wear_helmet_model extends CI_Model
     ) AS period_time_name,
     brand,
     color,
-    student_faculty,
     license_plate,
-    officer_office,
-    officer_card_id,
     status,
     (
       CASE 

@@ -31,39 +31,32 @@
 	</div>
 
 	<script>
-		$('#man_type').change(function () {
-			console.log('dfdf')
-			var mantype = $(this).val();
-			console.log(mantype)
-			if (mantype == "student") {
+		var people_type = '<?php echo $people_type;?>';
+		$('[name=people_type]').val(people_type);
+		people_info(people_type);
+
+		$('#people_type').change(function () {
+			people_type = $(this).val();
+			console.log(people_type);
+			people_info(people_type);
+			reset_people_info();
+		});
+
+		function people_info(people_type) {
+			if (people_type == 'student') {
 				$('#student_info').attr('class', 'show');
 				$('#officer_info').attr('class', 'hide');
-				$('#external_person_info').attr('class', 'hide');
-
-				$('#officer_card_id').val("");
-				$('#officer_office').val("");
-				$('#ex_person_address').val("");
-				$('#ex_person_card_id').val("")
-
-			} else if (mantype == "officer") {
+			} else if (people_type == 'officer' || people_type == 'people_outside') {
 				$('#student_info').attr('class', 'hide');
 				$('#officer_info').attr('class', 'show');
-				$('#external_person_info').attr('class', 'hide');
-
-				$('#student_code').val("");
-				$('#student_faculty').val("");
-				$('#ex_person_address').val("");
-				$('#ex_person_card_id').val("")
-			} else if (mantype == "external_person") {
-				$('#student_info').attr('class', 'hide');
-				$('#officer_info').attr('class', 'hide');
-				$('#external_person_info').attr('class', 'show');
-
-				$('#student_code').val("");
-				$('#student_faculty').val("");
-				('#officer_card_id').val("");
-				$('#officer_office').val("");
 			}
-		});
+
+		}
+
+		function reset_people_info() {
+			$('[name=people_code]').val('');
+			$('[name=department_name]').val('');
+			$('[name=id_card]').val('');
+		}
 
 	</script>
