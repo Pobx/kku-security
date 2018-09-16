@@ -41,7 +41,7 @@ class Temp_security_cards extends CI_Controller
               'expire_date'=>(date('Y') + 1).'-'.$months.'-'.$days,
             );
 
-            $this->Security_cards_model->store($inputs);
+            // $this->Security_cards_model->store($inputs);
             echo "<pre>", print_r($inputs);
          }
        }

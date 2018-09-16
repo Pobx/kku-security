@@ -35,7 +35,7 @@ class Temp_security_homes extends CI_Controller
                 'status'=>$status[array_rand($status, 1)],
               );
   
-              $this->Security_home_model->store($inputs);
+              // $this->Security_home_model->store($inputs);
               echo "<pre>", print_r($inputs);
            }
          }
