@@ -5,6 +5,12 @@
 	.show{
 		display:block;
 	}
+	input[type="radio"] {
+    -ms-transform: scale(1.8); /* IE 9 */
+    -webkit-transform: scale(1.8); /* Chrome, Safari, Opera */
+    transform: scale(1.8);
+	margin:3px;
+}
 </style>
 <div class="form-group">
 	<label for="request_date" class="col-sm-2 control-label">วันที่</label>
@@ -16,16 +22,16 @@
 </div>
 
 <div class="form-group">
-	<label for="name" class="col-sm-2 control-label">ชื่อ-สกุล</label>
+	<label for="victim_name" class="col-sm-2 control-label">ชื่อ-สกุล</label>
 	<div class="col-sm-4">
 		<label>
-			<input type="text" id="name" name="name" placeholder="ชื่อ-สกุล" class="form-control" value="" >
+			<input type="text" id="victim_name" name="victim_name" placeholder="ชื่อ-สกุล" class="form-control" value="<?php echo $victim_name; ?>">
 		</label>
 	</div>
 </div>
 
 <div class="form-group">
-	<label for="victim_name" class="col-sm-2 control-label">เพศ</label>
+	<label for="gender" class="col-sm-2 control-label">เพศ</label>
 
 	<div class="col-sm-4">
 		<label>
@@ -55,7 +61,7 @@
 <div class="form-group">
 	<label class="col-sm-2 control-label">บริเวณที่เกิดเหตุ</label>
 	<div class="col-sm-4">
-	<textarea class="form-control" rows="3" id="area" name="area" placeholder="area"></textarea>
+	<textarea class="form-control" rows="3" id="area" name="area" placeholder="area">  <?php  echo $area; ?>  </textarea>
 	</div>
 </div>
 
@@ -64,39 +70,165 @@
 
 	<div class="col-sm-4">
 		<label>
-			<input type="radio" name="operation_status" id="operation_status1" class="flat-red" value="meet_event" <?php if ($operation_status=='meet_event'
-			) { echo "checked" ;}?>>&nbsp;พบเหตุการณ์
-			<input type="radio" name="operation_status" id="operation_status2" class="flat-red" value="have_not_event" <?php if ($operation_status=='have_not_event'
-			) { echo "checked" ;}?>>&nbsp;ไม่พบเหตุการณ์
-			<input type="radio" name="operation_status" id="operation_status3" class="flat-red" value="other" <?php if ($operation_status=='other'
-			) { echo "checked" ;}?>>&nbsp;อื่นๆ
-			<input type="text" name="operation_status_note" class="flat-red hide"  value="<?php $operation_status_note; ?>">
+			<input type="radio" name="operation_status" id="operation_status1" class="form-check-input operation_status" value="meet_event" <?php if ($operation_status=='meet_event'
+			) { echo "checked" ;}?>>&nbsp;พบเหตุการณ์ <br/>
+			<input type="radio" name="operation_status" id="operation_status2" class="form-check-input operation_status" value="have_not_event" <?php if ($operation_status=='have_not_event'
+			) { echo "checked" ;}?>>&nbsp;ไม่พบเหตุการณ์ <br/>
+			<input type="radio" name="operation_status" id="operation_status3" class="form-check-input operation_status" value="other" <?php if ($operation_status=='other'
+			) { echo "checked" ;}?>>&nbsp;อื่นๆ <br/>
+			<input type="text" placeholder="อื่นๆ" id="operation_status_note" name="operation_status_note" class="<?php  echo $operation_status == 'other' ? 'flat-red show' : 'flat-red hide';?>"  value="<?php $operation_status_note; ?>">
 
 		</label>
 	</div>
 </div>
 
 <div class="form-group">
+
 	<label class="col-sm-2 control-label">เอกสารแนบคำขอ</label>
-	<div class="col-sm-4">
-	<input type="checkbox" name="checkbox1" class="flat-red" value="" >
-	<br><input type="checkbox" name="checkbox1" class="flat-red" value="" >
-	<br><input type="checkbox" name="checkbox1" class="flat-red" value="" >
+	<div class="col-sm-9">
+		<div class="row">
+			<div class="col-sm-1">
+				<input type="checkbox"  class="flat-red" <?php if($picture!=""){ echo "checked"; } ?> >	
+			</div>
+			<div class="col-sm-6">
+			สำรองข้อมูลไฟล์ภาพ (.jpg, .gif,.tif)  จำนวน
+			</div>
+			<div class="col-sm-2">
+			<input type="text" id="picture" name="picture"  class="form-control" 
+			style="border-top:none; border-left:none; border-right:none;"	value="<?php echo $picture; ?>"> 
+			</div>
+			<div class="col-sm-1">
+			ไฟล์
+			</div>
+		</div>
 
-	<br><input type="checkbox" name="checkbox1" class="flat-red" value="" >
+		<div class="row">
+			<div class="col-sm-1">
+				<input type="checkbox"  class="flat-red" <?php if($vedio!=""){ echo "checked"; } ?> >	
+			</div>
+			<div class="col-sm-6">
+			สำรองข้อมูลไฟล์วีดีโอ (.avi, .mov, .wav, .mpeg2)  จำนวน
+			</div>
+			<div class="col-sm-2">
+			<input type="text" id="vedio" name="vedio"  class="form-control" 
+				style="border-top:none; border-left:none; border-right:none;"	value="<?php echo $vedio; ?>"> 
+			</div>
+			<div class="col-sm-1">
+			ไฟล์
+			</div>
+		</div>
+		<br>
+	 
+	    <div class="row">
+			<div class="col-sm-1">
+				<input type="checkbox"  class="flat-red" <?php if($printpicture!=""){ echo "checked"; } ?> >	
+			</div>
+			<div class="col-sm-6">
+			พิมพ์รูปภาพ จำนวน 
+			</div>
+			<div class="col-sm-2">
+			<input type="text" id="printpicture" name="printpicture"  class="form-control" 
+				style="border-top:none; border-left:none; border-right:none;"	value="<?php echo $printpicture; ?>"> 
+			</div>
+			<div class="col-sm-1">
+			แผ่น
+			</div>
+		</div>
+		<br>
+	
+		<div class="row">
+			<div class="col-sm-1">
+				<input type="checkbox"  class="flat-red" <?php if($cd_vcd!=""){ echo "checked"; } ?> >	
+			</div>
+			<div class="col-sm-6">
+			สำรองข้อมูลบนแผ่นบันทึกข้อมูล CD , VCD  จำนวน 
+			</div>
+			<div class="col-sm-2">
+			<input type="text" id="cd_vcd" name="cd_vcd"  class="form-control" 
+				style="border-top:none; border-left:none; border-right:none;"	value="<?php echo $cd_vcd; ?>"> 
+			</div>
+			<div class="col-sm-1">
+			แผ่น
+			</div>
+		</div>
+		<br>
+	
+		<div class="row">
+			<div class="col-sm-1">
+				<input type="checkbox"  class="flat-red" <?php if($flash_drive!=""){ echo "checked"; } ?> >	
+			</div>
+			<div class="col-sm-6">
+			สำรองข้อมูลลงอุปกรณ์เก็บข้อมูล (Flash Drive) จำนวน 
+			</div>
+			<div class="col-sm-2">
+			<input type="text" id="flash_drive" name="flash_drive"  class="form-control" 
+				style="border-top:none; border-left:none; border-right:none;"	value="<?php echo $flash_drive; ?>"> 
+			</div>
+			<div class="col-sm-1">
+			อัน
+			</div>
+		</div>
+		<br>
 
-	<br><input type="checkbox" name="checkbox1" class="flat-red" value="" >
 
-	<br><input type="checkbox" name="checkbox1" class="flat-red" value="" >
+	<div class="row">
+			<div class="col-sm-1">
+				<input type="checkbox"  class="flat-red" <?php if($computer_name!=""){ echo "checked"; } ?> >	
+			</div>
+			<div class="col-sm-6">
+			ระบุที่เก็บเครื่อง 
+			</div>
+			<div class="col-sm-2">
+			<input type="text" id="computer_name" name="computer_name"  class="form-control" 
+				style="border-top:none; border-left:none; border-right:none;"	value="<?php echo $computer_name; ?>"> 
+			</div>
+			<div class="col-sm-1">
+			
+			</div>
+		</div>
+		<br>
 
+	  <div class="row">
+			<div class="col-sm-1">
+				<input type="checkbox"  class="flat-red" <?php if($drive!=""){ echo "checked"; } ?> >	
+			</div>
+			<div class="col-sm-6">
+			ไดร์    
+			</div>
+			<div class="col-sm-2">
+			<input type="text" id="drive" name="drive"  class="form-control" 
+				style="border-top:none; border-left:none; border-right:none;"	value="<?php echo $drive; ?>"> 
+			</div>
+			<div class="col-sm-1">
+			
+			</div>
+		</div>
+		<br>
+
+      <div class="row">
+			<div class="col-sm-1">
+				<input type="checkbox"  class="flat-red" <?php if($folder!=""){ echo "checked"; } ?> >	
+			</div>
+			<div class="col-sm-6">
+			โฟร์เดอร์    
+			</div>
+			<div class="col-sm-2">
+			<input type="text" id="folder" name="folder"  class="form-control" 
+				style="border-top:none; border-left:none; border-right:none;"	value="<?php echo $folder; ?>"> 
+			</div>
+			<div class="col-sm-1">
+			
+			</div>
+		</div>
+		<br>
 
 	</div>
 </div>
 
 <script>
 
-$('.operation_status3').click(function(){
-		 var operation_status =  $(this).val();
+$('.operation_status').click(function(){
+		var operation_status =  $(this).val();
 		 if(operation_status == "other"){
 			$('#operation_status_note').attr('class', 'flat-red show');
 		 }else{

@@ -17,7 +17,7 @@ class Cctv_request_log extends CI_Controller
     private $head_topic_label           = 'สถิติขอความอนุเคราะห์ดูภาพเหตุการณ์ ';
     private $head_sub_topic_label_table = 'รายการ สถิติขอความอนุเคราะห์ดูภาพเหตุการณ์ ';
     private $head_sub_topic_label_form  = 'ฟอร์มบันทึกข้อมูล สถิติขอความอนุเคราะห์ดูภาพเหตุการณ์ ';
-    private $header_columns             = array('วันที่', 'ประเภทบุคลากร', 'เหตุการณ์', 'สำเนาบันทึกแจ้งความประจำวัน', 'สำเนาบัตรประจำตัวนักศึกษา/สำเนาบัตรประชาชน/สำเนาบัตรข้าราชการ	', 'สำเนาบัตรอื่นๆ ที่หน่วยงานราชการออกให้', 'แก้ไข', 'ลบ');
+    private $header_columns             = array('วันที่', 'ชื่อ-สกุล','เพศ','ประเภทบุคลากร', 'เหตุการณ์','บริเวณที่เกิดเหตุ','แก้ไข', 'ลบ');
     private $success_message            = 'บันทึกข้อมูลสำเร็จ';
     private $warning_message            = 'ไม่สามารถทำรายการ กรุณลองใหม่อีกครั้ง';
     private $danger_message             = 'ลบข้อมูลสำเร็จ';
@@ -57,10 +57,11 @@ class Cctv_request_log extends CI_Controller
 
         $qstr = array('status'=>'active');
         $results_cctv_event = $this->Cctv_events_model->all($qstr);
-        $data['results_cctv_event'] = $results_cctv_event['results'];
-        
-        $data['content'] = 'cctv_request_log_form_store';
 
+        $data['results_cctv_event'] = $results_cctv_event['results'];
+
+        $data['content'] = 'cctv_request_log_form_store';
+        
         $this->load->view('template_layout', $data);
     }
 
@@ -74,25 +75,7 @@ class Cctv_request_log extends CI_Controller
           , 'txt_upload'=>'link_copy_polic_doc'
         );
 
-        $inputs['link_copy_polic_doc']=$this->upload($prop);
-        
-        $prop['txt_upload'] = 'link_copy_gov_doc';
-        $inputs['link_copy_gov_doc']=$this->upload($prop);
-
-        $prop['txt_upload'] = 'link_copy_other_gov_doc';
-        $inputs['link_copy_other_gov_doc']=$this->upload($prop);
-
-        if ($inputs['link_copy_polic_doc'] =='not-file') {
-          unset($inputs['link_copy_polic_doc']);
-        }
-
-        if ($inputs['link_copy_gov_doc'] =='not-file') {
-          unset($inputs['link_copy_gov_doc']);
-        }
-
-        if ($inputs['link_copy_other_gov_doc'] =='not-file') {
-          unset($inputs['link_copy_other_gov_doc']);
-        }
+       
 
         $results = $this->Cctv_request_log_model->store($inputs);
 

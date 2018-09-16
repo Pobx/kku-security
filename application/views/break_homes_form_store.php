@@ -10,13 +10,8 @@
 		<div class="box-body">
 
 			<?php $this->load->view('header_form_submit_data');?>
-<<<<<<< HEAD
 			<div class="box-header">
 			</div>
-=======
-			<div class="box-header"></div>
-
->>>>>>> bddd57d95a51b4bb4cd37fecadc66bc48337f4a9
 			<div class="box-body">
 				<div class="form-group">
 					<label for="date_break" class="col-sm-2 control-label">วันที่</label>
@@ -84,27 +79,7 @@
 						<textarea class="form-control" rows="3" id="assets_loses" name="assets_loses" placeholder="ทรัพย์สินที่เสียหาย"><?php echo $assets_loses;?></textarea>
 					</div>
 				</div>
-<<<<<<< HEAD
 				
-=======
-				<!-- <div class="form-group">
-					<label for="victim_process" class="col-sm-2 control-label">การดำเนินการ</label>
-					<div class="col-sm-4">
-						<input type="radio" id="victim_process1" class="victim_process" name="victim_process" value="bill" <?php
-						//  if($victim_process=="bill" ){ echo "checked" ; } ?>>
-						<label for="victim_process">มีบันทึกประจำวัน</label><br>
-						<input type="radio" id="victim_process2" class="victim_process" name="victim_process" value="camera" <?php
-						//  if($victim_process=="amera" ){ echo "checked" ; } ?>>
-						<label for="victim_process">ขอดูกล้องวงจรปิด</label><br>
-						<input type="radio" id="victim_process3" class="victim_process" name="victim_process" value="other" <?php
-						//  if($victim_process=="other" ){ echo "checked" ; } ?>>
-						<label for="victim_process">อื่นๆ</label>
-						<input type="text" class="<?php //  echo $victim_process == 'other' ? 'form-control show' : 'form-control hide';?>"
-						 id="victim_process_note" name="victim_process_note" placeholder="" value="<?php // echo $victim_process_note;?>">
-					</div>
-				</div> -->
-
->>>>>>> bddd57d95a51b4bb4cd37fecadc66bc48337f4a9
 				<div class="form-group">
 					<label for="staff_process" class="col-sm-2 control-label">การติดตามจับกุม</label>
 					<div class="col-sm-4">
@@ -135,27 +110,3 @@
 			</form>
 		</div>
 	</div>
-<<<<<<< HEAD
-=======
-	<script>
-		/*
-	 $('#type_address').change(function(){
-		 var address =  $(this).val();
-		 if(address == ""){
-			$('#adress_info').attr('class', 'form-group hide');
-		 }else{
-			$('#adress_info').attr('class', 'form-group show');
-		 } 
-	 })
-*/
-		$('.victim_process').click(function () {
-			var vprocess = $(this).val();
-			if (vprocess == "other") {
-				$('#victim_process_note').attr('class', 'form-control show');
-			} else {
-				$('#victim_process_note').attr('class', 'form-control hide');
-			}
-		})
-
-	</script>
->>>>>>> bddd57d95a51b4bb4cd37fecadc66bc48337f4a9

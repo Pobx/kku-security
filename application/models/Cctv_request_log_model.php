@@ -7,7 +7,7 @@ class Cctv_request_log_model extends CI_Model
     private $id           = 'id';
     private $items        = '
     cctv_request_log.id,
-    name,
+    victim_name,
     gender,
     (
       CASE
@@ -29,9 +29,7 @@ class Cctv_request_log_model extends CI_Model
     ) AS operation_status_name,
     request_date AS request_date_en,
     DATE_FORMAT(DATE_ADD(request_date, INTERVAL 543 YEAR),"%d/%m/%Y") as request_date,
-    link_copy_polic_doc,
-    link_copy_gov_doc,
-    link_copy_other_gov_doc,
+    
     people_type,
     (
       CASE 
@@ -58,12 +56,20 @@ class Cctv_request_log_model extends CI_Model
     id,
     DATE_FORMAT(DATE_ADD(request_date, INTERVAL 543 YEAR),"%d/%m/%Y") as request_date,
     people_type,
+    victim_name,
+    area,
     cctv_event_id,
-    link_copy_polic_doc,
-    link_copy_gov_doc,
-    link_copy_other_gov_doc,
     gender,
     operation_status,
+    operation_status_note,
+    picture,
+    vedio,
+    printpicture,
+    cd_vcd,
+    flash_drive,
+    computer_name,
+    drive,
+    folder,
     ';
 
     public function all($qstr = '')
@@ -100,7 +106,6 @@ class Cctv_request_log_model extends CI_Model
 
     public function store($inputs)
     {
-        // echo "<pre>", print_r($inputs); exit();
         if ($inputs['id'] != '')
         {
             $inputs['updated'] = date('Y-m-d H:i:s');

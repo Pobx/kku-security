@@ -29,7 +29,7 @@
 </li>
 
 <li>
-	<a href="<?php echo site_url('cctv_request_log'); ?>"><i class="fa fa-camera"></i> <span>สถิติขอความอนุเคราะห์<br />ดูภาพเหตุการณ์</span></a>
+	<a href="<?php echo site_url('cctv_request_log'); ?>"><i class="fa fa-camera"></i> <span>สถิติขอดูภาพเหตุการณ์</span></a>
 </li>
 
 <li>
