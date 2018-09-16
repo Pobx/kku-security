@@ -69,13 +69,6 @@ class Cctv_request_log extends CI_Controller
     {
         $inputs = $this->input->post();
         $inputs['request_date'] = $this->date_libs->set_date_th($inputs['request_date']);
-        $prop=array(
-          'upload_path'=>'./assets/files/'
-          , 'allowed_types'=>'*'
-          , 'txt_upload'=>'link_copy_polic_doc'
-        );
-
-       
 
         $results = $this->Cctv_request_log_model->store($inputs);
 

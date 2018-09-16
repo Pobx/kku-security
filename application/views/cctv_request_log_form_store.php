@@ -32,7 +32,25 @@
 	<script>
 		$(document).ready(function () {
 			var cctv_event_id = '<?php echo $cctv_event_id;?>';
+			var operation_status = '<?php echo $operation_status;?>';
 			$('[name=cctv_event_id]').val(cctv_event_id);
+			$('#div_other_textbox').hide();
+
+			if (operation_status == 'other') {
+				$('#div_other_textbox').show();
+			}
+
+			$('input[name="operation_status"]').on('ifClicked', function () {
+				operation_status = this.value;
+				console.log(operation_status);
+				$('[name=operation_status_note]').val('');
+				if (operation_status == 'other') {
+					$('#div_other_textbox').show();
+				} else {
+					$('#div_other_textbox').hide();
+				}
+			});
+
 		});
 
 	</script>
