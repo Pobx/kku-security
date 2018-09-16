@@ -40,7 +40,7 @@
 		<tr>
 			<td class="text-left text-green"><i class="fa fa-home"></i> โครงการฝากบ้าน</td>
 			<td class="text-center">
-				<?php echo $count_break_homes;?>
+				<?php echo $count_security_home;?>
 			</td>
 			<td class="text-center">0</td>
 			<td class="text-center">0</td>
