@@ -4,14 +4,14 @@
 
 	<div class="col-sm-2">
 		<input type="text" class="form-control datepicker" id="date_break" name="date_break" data-provide="datepicker"
-		data-date-language="th-th" placeholder="วันที่" value="<?php echo $date_break_only; ?>">
+		 data-date-language="th-th" placeholder="วันที่" value="<?php echo $date_break; ?>">
 	</div>
 
 	<label for="date_break" class="col-sm-1 control-label">เวลา</label>
 
 	<div class="col-sm-2">
 		<input type="text" class="form-control" id="time_break" name="time_break" placeholder="เวลา" value="<?php echo $date_break_time_only; ?>"
-		data-inputmask='"mask": "99:99"' data-mask>
+		 data-inputmask='"mask": "99:99"' data-mask>
 	</div>
 </div>
 
@@ -29,7 +29,7 @@
 
 	<div class="col-sm-4">
 		<input type="text" class="form-control" id="victim_department_name" name="victim_department_name" placeholder="สังกัดหน่วยงาน"
-		value="<?php echo $victim_department_name; ?>">
+		 value="<?php echo $victim_department_name; ?>">
 	</div>
 </div>
 
