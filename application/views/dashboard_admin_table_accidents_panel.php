@@ -101,12 +101,16 @@
 			<td class="text-center">
 				<?php echo $count_student_do_not_wear_helmet;?>
 			</td>
-			<td class="text-center">0</td>
 			<td class="text-center">
-				<?php echo $count_student_do_not_wear_helmet;?>
+				<?php echo $count_student_do_not_wear_helmet_officer;?>
+			</td>
+			<td class="text-center">
+				<?php echo $count_student_do_not_wear_helmet_students;?>
 			</td>
 			<td class="text-center">0</td>
-			<td class="text-center">0</td>
+			<td class="text-center">
+				<?php echo $count_student_do_not_wear_helmet_people_outside;?>
+			</td>
 		</tr>
 
 	</table>

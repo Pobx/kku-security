@@ -102,8 +102,16 @@ class Dashboard extends CI_Controller
 
         $results_student_do_not_wear_helmet = $this->Student_do_not_wear_helmet_model->all($qstr_student_do_not_wear_helmet);
         $data['count_student_do_not_wear_helmet'] = $results_student_do_not_wear_helmet['rows'];
+        
+        $data['count_student_do_not_wear_helmet_morning'] = $this->filterperiodtimes->filter($results_student_do_not_wear_helmet['results'], 'morning', 'period_time');
+        $data['count_student_do_not_wear_helmet_afternoon'] = $this->filterperiodtimes->filter($results_student_do_not_wear_helmet['results'], 'afternoon', 'period_time');
+        $data['count_student_do_not_wear_helmet_night'] = $this->filterperiodtimes->filter($results_student_do_not_wear_helmet['results'], 'night', 'period_time');
 
-        // echo "<pre>", print_r($data['count_break_motorcycle_pad_afternoon']); exit();
+        $data['count_student_do_not_wear_helmet_students'] = $this->filterpeoples->filter($results_student_do_not_wear_helmet['results'], 'student', 'people_type');
+        $data['count_student_do_not_wear_helmet_officer'] = $this->filterpeoples->filter($results_student_do_not_wear_helmet['results'], 'officer', 'people_type');
+        $data['count_student_do_not_wear_helmet_people_outside'] = $this->filterpeoples->filter($results_student_do_not_wear_helmet['results'], 'people_outside', 'people_type');
+
+        // echo "<pre>", print_r($results_student_do_not_wear_helmet['results']); exit();
         $data['content'] = 'dashboard_admin';
         $this->load->view('template_layout', $data);
     }

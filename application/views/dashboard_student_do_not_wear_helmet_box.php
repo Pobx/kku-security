@@ -29,9 +29,12 @@
 					<span class="description-text">ช่วงเวลาเกิดเหตุ</span>
 					<div class="box-footer no-padding">
 						<ul class="nav nav-stacked">
-							<li><a href="#">เช้า <span class="pull-right badge bg-blue">0</span></a></li>
-							<li><a href="#">บ่าย <span class="pull-right badge bg-aqua">0</span></a></li>
-							<li><a href="#">ดึก <span class="pull-right badge bg-red">0</span></a></li>
+							<li><a href="#">เช้า <span class="pull-right badge bg-blue">
+										<?php echo $count_student_do_not_wear_helmet_morning;?></span></a></li>
+							<li><a href="#">บ่าย <span class="pull-right badge bg-aqua">
+										<?php echo $count_student_do_not_wear_helmet_afternoon;?></span></a></li>
+							<li><a href="#">ดึก <span class="pull-right badge bg-red">
+										<?php echo $count_student_do_not_wear_helmet_night;?></span></a></li>
 						</ul>
 					</div>
 				</div>
@@ -42,9 +45,11 @@
 					<div class="box-footer no-padding">
 						<ul class="nav nav-stacked">
 							<li><a href="#">นักศึกษา <span class="pull-right badge bg-blue">
-										<?php echo $count_student_do_not_wear_helmet;?></span></a></li>
-							<li><a href="#">บุคลากร <span class="pull-right badge bg-aqua">0</span></a></li>
-							<li><a href="#">คนภายนอก <span class="pull-right badge bg-red">0</span></a></li>
+										<?php echo $count_student_do_not_wear_helmet_students;?></span></a></li>
+							<li><a href="#">บุคลากร <span class="pull-right badge bg-aqua">
+										<?php echo $count_student_do_not_wear_helmet_officer;?></span></a></li>
+							<li><a href="#">คนภายนอก <span class="pull-right badge bg-red">
+										<?php echo $count_student_do_not_wear_helmet_people_outside;?></span></a></li>
 						</ul>
 					</div>
 				</div>
