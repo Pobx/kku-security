@@ -48,13 +48,7 @@
 						</td>
 						<td class="text-center">
 							<?php 
-								if($value['man_type'] == "student"){
-									echo "นักศึกษา";
-								}else if($value['man_type'] == "officer"){
-									echo "บุคลาการมหาวิทยาลัย";
-								}else if($value['man_type'] == "external_person"){
-									echo "บุคคลภายนอก";
-								}   
+								echo $value['people_type_name'];
 							?>
 						</td>
 						<td class="text-center">
