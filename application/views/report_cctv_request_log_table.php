@@ -62,30 +62,19 @@
 								<?php echo $value['request_date']; ?>
 							</td>
 							<td class="text-center">
+								<?php echo $value['victim_name']; ?>
+							</td>
+							<td class="text-center">
+								<?php echo $value['gender_name']; ?>
+							</td>
+							<td class="text-center">
 								<?php echo $value['people_type_name']; ?>
 							</td>
 							<td class="text-center">
 								<?php echo $value['cctv_event_name']; ?>
 							</td>
 							<td class="text-center">
-								<?php if ($value['link_copy_polic_doc'] !='') {?>
-								<a href="<?php echo base_url('assets/files/'.$value['link_copy_polic_doc']); ?>" target="_blank" class="btn btn-primary"><i
-									 class="fa fa-download"></i></button>
-									<?php }?>
-							</td>
-
-							<td class="text-center">
-								<?php if ($value['link_copy_gov_doc'] !='') {?>
-								<a href="<?php echo base_url('assets/files/'.$value['link_copy_gov_doc']); ?>" target="_blank" class="btn btn-primary"><i
-									 class="fa fa-download"></i></button>
-									<?php }?>
-							</td>
-
-							<td class="text-center">
-								<?php if ($value['link_copy_other_gov_doc'] !='') {?>
-								<a href="<?php echo base_url('assets/files/'.$value['link_copy_other_gov_doc']); ?>" target="_blank" class="btn btn-primary"><i
-									 class="fa fa-download"></i></button>
-									<?php }?>
+								<?php echo $value['area']; ?>
 							</td>
 						</tr>
 						<?php }?>
@@ -106,12 +95,12 @@
 		</div>
 
 		<div class="box-footer">
-			<!-- <div class="row">
+			<div class="row">
 				<div class="col-md-12 text-right">
-					<a href="<?php //echo $link_excel; ?>" target="_blank" class="btn btn-success"><i class="fa  fa-file-excel-o"></i>
+					<a href="<?php echo $link_excel; ?>" target="_blank" class="btn btn-success"><i class="fa  fa-file-excel-o"></i>
 						Excel</a>
 				</div>
-			</div> -->
+			</div>
 		</div>
 	</div>
 

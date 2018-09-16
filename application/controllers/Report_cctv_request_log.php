@@ -14,7 +14,7 @@ class Report_cctv_request_log extends CI_Controller
 
     private $head_topic_label           = 'สถิติขอความอนุเคราะห์ดูภาพเหตุการณ์';
     private $head_sub_topic_label_table = 'รายงาน สถิติขอความอนุเคราะห์ดูภาพเหตุการณ์';
-    private $header_columns             = array('วันที่', 'ประเภทบุคลากร', 'เหตุการณ์', 'สำเนาบันทึกแจ้งความประจำวัน', 'สำเนาบัตรประจำตัวนักศึกษา/สำเนาบัตรประชาชน/สำเนาบัตรข้าราชการ	', 'สำเนาบัตรอื่นๆ ที่หน่วยงานราชการออกให้');
+    private $header_columns             = array('วันที่', 'ชื่อ-สกุล','เพศ','ประเภทบุคลากร', 'เหตุการณ์','บริเวณที่เกิดเหตุ');
 
     public function index()
     {
@@ -31,7 +31,7 @@ class Report_cctv_request_log extends CI_Controller
         $qstr = array(
             'DATE(cctv_request_log.request_date) >='  => $this->date_libs->set_date_th($data['start_date']),
             'DATE(cctv_request_log.request_date) <='  => $this->date_libs->set_date_th($data['end_date']),
-            'cctv_request_log.status !=' => 'disabled',
+            'cctv_request_log.status' => 'active',
         );
 
         $sess_inputs = array(
@@ -44,7 +44,7 @@ class Report_cctv_request_log extends CI_Controller
         $results = $this->Cctv_request_log_model->all($qstr);
         $data['results'] = $results['results'];
 
-        $data['bar_chart_data'] = $this->filterbarchartdata->filter($results['results'], 'request_date');
+        $data['bar_chart_data'] = $this->filterbarchartdata->filter($results['results'], 'request_date_en');
         $data['fields'] = $results['fields'];
         $data['content'] = 'report_cctv_request_log_table';
 
@@ -57,9 +57,9 @@ class Report_cctv_request_log extends CI_Controller
         $data['header_columns'] = $this->header_columns;
         $inputs = $this->session->userdata();
         $qstr = array(
-          'DATE(cctv_request_log.request_date) >='  => $this->date_libs->set_date_th($inputs['start_date']),
-          'DATE(cctv_request_log.request_date) <='  => $this->date_libs->set_date_th($inputs['end_date']),
-          'cctv_request_log.status !=' => 'disabled',
+          'DATE(cctv_request_log.request_date) >='  => $inputs['start_date'],
+          'DATE(cctv_request_log.request_date) <='  => $inputs['end_date'],
+          'cctv_request_log.status' => 'active',
         );
 
         $results = $this->Cctv_request_log_model->all($qstr);

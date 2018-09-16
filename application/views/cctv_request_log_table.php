@@ -47,7 +47,7 @@
 							<?php echo $value['victim_name']; ?>
 						</td>
 						<td class="text-center">
-							<?php echo $value['gender']; ?>
+							<?php echo $value['gender_name']; ?>
 						</td>
 						<td class="text-center">
 							<?php echo $value['people_type_name']; ?>

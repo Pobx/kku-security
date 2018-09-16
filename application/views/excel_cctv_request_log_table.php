@@ -26,29 +26,22 @@ set_time_limit(0);
     ?>
 		<tr>
 			<td class="text-center">
-				<?php echo $value['checker_name']; ?>
+				<?php echo $value['request_date']; ?>
 			</td>
 			<td class="text-center">
-				<?php echo $value['zone']; ?>
+				<?php echo $value['victim_name']; ?>
 			</td>
 			<td class="text-center">
-				<?php echo $value['redboxname']; ?>
+				<?php echo $value['gender_name']; ?>
 			</td>
 			<td class="text-center">
-				<?php
-echo $value['checked_datetime_th'];
-    ?>
+				<?php echo $value['people_type_name']; ?>
 			</td>
 			<td class="text-center">
-				<?php
-echo $value['checked_datetime_time_only'];
-    ?>
+				<?php echo $value['cctv_event_name']; ?>
 			</td>
-			<td>
-				<?php echo $value['status'] == 1 ? 'ปกติ' : 'ไม่ปกติ'; ?>
-			</td>
-			<td>
-				<?php echo $value['comment']; ?>
+			<td class="text-center">
+				<?php echo $value['area']; ?>
 			</td>
 		</tr>
 		<?php }?>

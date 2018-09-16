@@ -49,7 +49,7 @@ class Temp_cctv_request_log extends CI_Controller
                 'status'=>'active'
               );
   
-              $results = $this->Cctv_request_log_model->store($inputs);
+              // $results = $this->Cctv_request_log_model->store($inputs);
               echo "<pre>", print_r($inputs);
            }
          }
