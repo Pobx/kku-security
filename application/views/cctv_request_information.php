@@ -24,9 +24,7 @@
 <div class="form-group">
 	<label for="victim_name" class="col-sm-2 control-label">ชื่อ-สกุล</label>
 	<div class="col-sm-4">
-		<label>
-			<input type="text" id="victim_name" name="victim_name" placeholder="ชื่อ-สกุล" class="form-control" value="<?php echo $victim_name; ?>">
-		</label>
+		<input type="text" id="victim_name" name="victim_name" placeholder="ชื่อ-สกุล" class="form-control" value="<?php echo $victim_name;?>">
 	</div>
 </div>
 
@@ -61,7 +59,7 @@
 <div class="form-group">
 	<label class="col-sm-2 control-label">บริเวณที่เกิดเหตุ</label>
 	<div class="col-sm-4">
-		<textarea class="form-control" rows="3" id="area" name="area" placeholder="area">  <?php  echo $area; ?>  </textarea>
+		<textarea class="form-control" rows="3" id="area" name="area" placeholder="บริเวณที่เกิดเหตุ"><?php  echo $area;?></textarea>
 	</div>
 </div>
 
@@ -83,7 +81,7 @@
 <div class="form-group" id="div_other_textbox">
 	<label class="col-sm-2 control-label">&nbsp;</label>
 	<div class="col-sm-4">
-		<textarea class="form-control" rows="3" id="operation_status_note" name="operation_status_note" placeholder="อื่นๆ">  <?php  echo $operation_status_note; ?>  </textarea>
+		<textarea class="form-control" rows="3" id="operation_status_note" name="operation_status_note" placeholder="อื่นๆ"><?php  echo $operation_status_note; ?></textarea>
 	</div>
 </div>
 
