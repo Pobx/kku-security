@@ -14,7 +14,7 @@ class Report_do_not_wear_helmet extends CI_Controller
 
     private $head_topic_label           = 'สถิติไม่สวมหมวกนิรภัย';
     private $head_sub_topic_label_table = 'รายงาน สถิติไม่สวมหมวกนิรภัย';
-    private $header_columns             = array('วันที่', 'สถานที่', 'ชื่อ - สกุล', 'รหัสนักศึกษา', 'บัตรประชาชน', 'สังกัด / คณะ', 'จักยานยนต์');
+    private $header_columns             = array('วันที่', 'สถานที่', 'ชื่อ - สกุล', 'รหัสนักศึกษา/บัตรประชาชน', 'สังกัด / คณะ', 'จักยานยนต์');
 
     public function index()
     {

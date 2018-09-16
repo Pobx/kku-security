@@ -20,13 +20,13 @@
 
 						<div class="col-sm-2">
 							<input type="text" class="form-control datepicker" id="start_date" name="start_date" data-provide="datepicker"
-							data-date-language="th-th" placeholder="วันที่" value="<?php echo $start_date; ?>">
+							 data-date-language="th-th" placeholder="วันที่" value="<?php echo $start_date; ?>">
 						</div>
 						<label for="end_date" class="col-sm-1 control-label">ถึง</label>
 
 						<div class="col-sm-2">
 							<input type="text" class="form-control datepicker" id="end_date" name="end_date" data-provide="datepicker"
-							data-date-language="th-th" placeholder="ถึง" value="<?php echo $end_date; ?>">
+							 data-date-language="th-th" placeholder="ถึง" value="<?php echo $end_date; ?>">
 						</div>
 
 						<div class="col-sm-2">
@@ -66,13 +66,10 @@
 								<?php echo $value['place']; ?>
 							</td>
 							<td class="text-center">
-								<?php echo $value['student_name']; ?>
+								<?php echo $value['people_name']; ?>
 							</td>
 							<td class="text-center">
-								<?php echo $value['student_code']; ?>
-							</td>
-							<td class="text-center">
-								<?php echo $value['id_card']; ?>
+								<?php echo $value['people_code']; ?>
 							</td>
 							<td>
 								<?php echo $value['department_name']; ?>

@@ -30,8 +30,8 @@ class Report_security_cards extends CI_Controller
 
         $qstr = array(
             'issue_date >=' => $this->date_libs->set_date_th($data['start_date']),
-            'expire_date <='   => $this->date_libs->set_date_th($data['end_date']),
-            'status !='     => 'disabled',
+            'issue_date <='   => $this->date_libs->set_date_th($data['end_date']),
+            'status'     => 'active',
         );
 
         $sess_inputs = array(
@@ -58,8 +58,8 @@ class Report_security_cards extends CI_Controller
         $inputs = $this->session->userdata();
         $qstr = array(
           'issue_date >=' => $this->date_libs->set_date_th($inputs['start_date']),
-          'expire_date <='   => $this->date_libs->set_date_th($inputs['end_date']),
-          'status !='     => 'disabled',
+          'issue_date <='   => $this->date_libs->set_date_th($inputs['end_date']),
+          'status'     => 'active',
         );
 
         $results = $this->Security_cards_model->all($qstr);

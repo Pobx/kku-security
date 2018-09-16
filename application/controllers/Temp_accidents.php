@@ -9,9 +9,6 @@ class Temp_accidents extends CI_Controller
 
         $this->load->model('Accidents_model');
         $this->load->model('Accidents_participate_model');
-
-        $this->load->library('Date_libs');
-        $this->load->library('FilterBarChartData');
     }
 
 
@@ -36,8 +33,8 @@ class Temp_accidents extends CI_Controller
               'status'=>'active'
             );
 
-            $results = $this->Accidents_model->store($inputs);
-            $this->store_participate($results['lastID']);
+            // $results = $this->Accidents_model->store($inputs);
+            // $this->store_participate($results['lastID']);
             echo "<pre>", print_r($inputs);
          }
        }
@@ -76,7 +73,8 @@ class Temp_accidents extends CI_Controller
           'created'=>date('Y-m-d H:i:s'),
           'status'=>'active'
         );
-        $results = $this->Accidents_participate_model->store($inputs);
+
+        // $results = $this->Accidents_participate_model->store($inputs);
         // echo "<pre>", print_r($inputs);
       }
     }

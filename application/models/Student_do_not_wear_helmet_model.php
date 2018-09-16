@@ -12,12 +12,21 @@ class Student_do_not_wear_helmet_model extends CI_Model
     DATE_FORMAT(DATE_ADD(inspect_date, INTERVAL 543 YEAR),"%d/%m/%Y") as inspect_date,
     CONCAT(license_plate, " ", color, " ", brand, " ", model) as car_body,
     place,
-    student_name,
-    student_code,
-    id_card,
+    people_name,
+    people_code,
     department_name,
     model,
-    man_type,
+    people_type,
+    (
+      CASE 
+        WHEN people_type = "officer" THEN "บุคลากร"
+        WHEN people_type = "staff" THEN "บุคลากร"
+        WHEN people_type = "student" THEN "นักศึกษา"
+        WHEN people_type = "people_inside" THEN "บุคคลภายใน"
+        WHEN people_type = "people_outside" THEN "บุคคลภายนอก"
+        ELSE ""
+      END
+    ) AS people_type_name,
     period_time,
     (
       CASE 
@@ -29,10 +38,7 @@ class Student_do_not_wear_helmet_model extends CI_Model
     ) AS period_time_name,
     brand,
     color,
-    student_faculty,
     license_plate,
-    officer_office,
-    officer_card_id,
     status,
     (
       CASE 
