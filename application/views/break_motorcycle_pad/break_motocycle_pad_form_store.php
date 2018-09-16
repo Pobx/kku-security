@@ -10,9 +10,7 @@
 
 			<!-- <form class="form-horizontal form_submit_data"> -->
 			<?php $this->load->view('header_form_submit_data');?>
-			<div class="box-header">
-				<?php $this->load->view('button_save_and_back_page_in_form');?>
-			</div>
+			<div class="box-header"></div>
 			<div class="box-body">
 				<?php 
           $this->load->view('break_motorcycle_pad/break_motorcycle_pad_details_information');

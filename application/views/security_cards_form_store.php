@@ -16,7 +16,6 @@
 			<div class="box-body">
 				<?php
 $this->load->view('header_form_submit_data');
-$this->load->view('button_save_and_back_page_in_form');
 $this->load->view('security_cards_information');
 ?>
 
