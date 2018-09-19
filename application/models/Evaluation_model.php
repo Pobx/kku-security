@@ -24,7 +24,6 @@ class Evaluation_model extends CI_Model {
     followup,
     comment,
     gender,
-    
   ';
 
   public function all($qstr = '')

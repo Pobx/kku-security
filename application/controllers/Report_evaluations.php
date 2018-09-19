@@ -45,10 +45,10 @@ class Report_evaluations extends CI_Controller
 
         $this->session->set_userdata($sess_inputs);
 
-        $results = $this->Redbox_inspect_transaction_model->all($qstr);
+        $results = $this->Evaluation_model->all($qstr);
         $data['results'] = $results['results'];
 
-        $data['bar_chart_data'] = $this->filterbarchartdata->filter($results['results'], 'inspect_date_en');
+        // $data['bar_chart_data'] = $this->filterbarchartdata->filter($results['results'], 'inspect_date_en');
         $data['fields'] = $results['fields'];
         $data['content'] = 'report_evaluations_table';
 
@@ -66,7 +66,7 @@ class Report_evaluations extends CI_Controller
             'redbox_inspect_transaction.status'                => 'active',
         );
 
-        $results = $this->Redbox_inspect_transaction_model->all($qstr);
+        $results = $this->Evaluation_model->all($qstr);
         $data['results'] = $results['results'];
         $data['fields'] = $results['fields'];
 
