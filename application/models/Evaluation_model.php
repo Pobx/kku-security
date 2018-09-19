@@ -23,7 +23,6 @@ class Evaluation_model extends CI_Model {
     questions,
     followup,
     comment,
-    gender,
   ';
 
   public function all($qstr = '')
