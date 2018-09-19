@@ -50,11 +50,13 @@ class Redbox_security_only extends CI_Controller
         $inputs['user_id'] = $user_id;
         // echo "<pre>", print_r($results); exit();
         unset($inputs['username']);
-        $results = $this->Redbox_inspect_transaction_model->store($inputs);
+        if ($user_id != NULL) {
+          $results = $this->Redbox_inspect_transaction_model->store($inputs);
+        }
 
-        $alert_type = ($results['query'] ? 'success' : 'warning');
-        $alert_icon = ($results['query'] ? 'check' : 'warning');
-        $alert_message = ($results['query'] ? $this->success_message : $this->warning_message);
+        $alert_type = ((isset($results['query']) && $results['query']) ? 'success' : 'warning');
+        $alert_icon = ((isset($results['query']) && $results['query']) ? 'check' : 'warning');
+        $alert_message = ((isset($results['query']) && $results['query']) ? $this->success_message : $this->warning_message);
         $this->session->set_flashdata('alert_type', $alert_type);
         $this->session->set_flashdata('alert_icon', $alert_icon);
         $this->session->set_flashdata('alert_message', $alert_message);
