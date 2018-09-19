@@ -37,12 +37,19 @@
 	</div>
 </div>
 
-
-
 <div class="form-group">
 	<label for="remark" class="col-sm-2 control-label">หมายเหตุ</label>
 
 	<div class="col-sm-4">
 		<textarea class="form-control" id="comment" name="comment"></textarea>
 	</div>
+</div>
+
+<div class="form-group">
+	<label for="username" class="col-sm-2 control-label">รหัส</label>
+
+	<div class="col-sm-4">
+		<input type="text" class="form-control" id="username" name="username" placeholder="รหัส" value="">
+	</div>
+
 </div>

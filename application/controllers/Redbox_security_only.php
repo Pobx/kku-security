@@ -9,6 +9,7 @@ class Redbox_security_only extends CI_Controller
 
         $this->load->model('Redbox_inspect_transaction_model');
         $this->load->model('Redbox_place_model');
+        $this->load->model('Users_model');
 
         $this->load->library('Date_libs');
         $this->load->library('FilterBarChartData');
@@ -41,20 +42,23 @@ class Redbox_security_only extends CI_Controller
 
     public function store()
     {
-        $sess_data = $this->session->userdata();
         $inputs = $this->input->post();
         $inputs['inspect_date'] = date('Y-m-d H:i:s');
+        $qstr_users = array('username'=>$inputs['username']);
+        $results = $this->Users_model->all($qstr_users);
+        $user_id = (isset($results['results'][0]['id'])? $results['results'][0]['id'] : NULL);
+        $inputs['user_id'] = $user_id;
+        // echo "<pre>", print_r($results); exit();
+        unset($inputs['username']);
+        $results = $this->Redbox_inspect_transaction_model->store($inputs);
 
-        // echo "<pre>", print_r($inputs); exit();
-        // $results = $this->Redbox_inspect_transaction_model->store($inputs);
+        $alert_type = ($results['query'] ? 'success' : 'warning');
+        $alert_icon = ($results['query'] ? 'check' : 'warning');
+        $alert_message = ($results['query'] ? $this->success_message : $this->warning_message);
+        $this->session->set_flashdata('alert_type', $alert_type);
+        $this->session->set_flashdata('alert_icon', $alert_icon);
+        $this->session->set_flashdata('alert_message', $alert_message);
 
-        // $alert_type = ($results['query'] ? 'success' : 'warning');
-        // $alert_icon = ($results['query'] ? 'check' : 'warning');
-        // $alert_message = ($results['query'] ? $this->success_message : $this->warning_message);
-        // $this->session->set_flashdata('alert_type', $alert_type);
-        // $this->session->set_flashdata('alert_icon', $alert_icon);
-        // $this->session->set_flashdata('alert_message', $alert_message);
-
-        // redirect('redbox_security_only/form_store');
+        redirect('redbox_security_only/form_store');
     }
 }
