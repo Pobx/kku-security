@@ -25,61 +25,58 @@ set_time_limit(0);
 {
     ?>
 		<tr>
-			<td>
+			<td class="text-center">
 				<?php echo $value['accident_date']; ?>
 			</td>
-			<td>
-				<?php echo $value['period_time']; ?>
+			<td class="text-center">
+				<?php echo $value['period_time_name']; ?>
 			</td>
-			<td>
-				<?php echo $value['place']; ?>
+			<td class="text-center">
+				<?php echo $value['accident_place_name']; ?>
 			</td>
-			<td>
+			<td class="text-center">
 				<?php echo $value['count_car']; ?>
 			</td>
-			<td>
+			<td class="text-center">
 				<?php echo $value['count_motocycles']; ?>
 			</td>
-			<td>
-				<?php
-foreach ($value['results_vehicles'] as $car)
-    {
-        echo $car['car_body'] . '<hr />';
-    }
-    ?>
+			<td class="text-center">
+				<?php 
+                  foreach ($value['results_participate'] as $car) {
+                    echo $car['car_body']."<hr />";
+                  }
+                ?>
 			</td>
-			<td>
+			<td class="text-center">
 				<?php echo $value['accident_cause']; ?>
 			</td>
-			<td>
+			<td class="text-center">
 				<?php echo $value['count_injury']; ?>
 			</td>
-			<td>
+			<td class="text-center">
 				<?php echo $value['count_dead']; ?>
 			</td>
-			<td>
-				<?php
-foreach ($value['results_peoples'] as $people)
-    {
-        echo $people['people_name'] . '<hr />';
-    }
-    ?>
+			<td class="text-center">
+				<?php 
+                  foreach ($value['results_participate'] as $people) {
+                    echo $people['people_name']."<hr />";
+                  }
+                ?>
 			</td>
-			<td>
-				<?php
-foreach ($value['results_peoples'] as $people)
-    {
-        echo $people['people_department_name'] . '<hr />';
-    }
-    ?>
+			<td class="text-center">
+				<?php 
+                  foreach ($value['results_participate'] as $people) {
+                    echo $people['people_department_name']."<hr />";
+                  }
+                ?>
 			</td>
-			<td>
+			<td class="text-center">
 				<?php echo $value['count_officer']; ?>
 			</td>
-			<td>
+			<td class="text-center">
 				<?php echo $value['count_student']; ?>
 			</td>
-			<td>
+			<td class="text-center">
 				<?php echo $value['count_people_inside']; ?>
 			</td>
 		</tr>
