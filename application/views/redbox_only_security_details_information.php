@@ -43,6 +43,6 @@
 	<label for="remark" class="col-sm-2 control-label">หมายเหตุ</label>
 
 	<div class="col-sm-4">
-		<textarea class="form-control" id="comment" name="comment"><?php echo $comment; ?></textarea>
+		<textarea class="form-control" id="comment" name="comment"></textarea>
 	</div>
 </div>

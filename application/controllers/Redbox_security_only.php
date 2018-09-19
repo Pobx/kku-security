@@ -22,7 +22,6 @@ class Redbox_security_only extends CI_Controller
     private $warning_message            = 'ไม่สามารถทำรายการ กรุณลองใหม่อีกครั้ง';
     private $danger_message             = 'ลบข้อมูลสำเร็จ';
 
-
     public function form_store()
     {
         $qstr_redbox_place = array('status' => 'active');
@@ -33,7 +32,6 @@ class Redbox_security_only extends CI_Controller
         $data['head_sub_topic_label'] = $this->head_sub_topic_label_form;
         $data['link_back_to_table'] = site_url('redbox');
         $data['form_submit_data_url'] = site_url('redbox_security_only/store');
-        $data['permission'] = $sess_data['permission'];
 
         $data['content'] = 'redbox_only_security_form_store';
 
