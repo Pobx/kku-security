@@ -47,10 +47,8 @@ class Report_evaluations extends CI_Controller
 
         $results = $this->Evaluation_model->all($qstr);
         $data['results'] = $results['results'];
-        $data['fields'] = $results['fields'];
-
+        // $data['fields'] = $results['fields'];
         // $data['bar_chart_data'] = $this->filterbarchartdata->filter($results['results'], 'inspect_date_en');
-        
 
         $data['content'] = 'report_evaluations_table';
         
@@ -70,10 +68,11 @@ class Report_evaluations extends CI_Controller
 
         $results = $this->Evaluation_model->all($qstr);
         $data['results'] = $results['results'];
-        $data['fields'] = $results['fields'];
-        $this->summary_counts_for_evaluations_report($data);
-        echo "<pre>", print_r($data); exit();
-        $this->load->view('excel_redboxs_table', $data);
+        // $data['fields'] = $results['fields'];
+        $data['rows'] = $results['rows'];
+        $data = $this->summary_counts_for_evaluations_report($data);
+        // echo "<pre>", print_r($data); exit();
+        $this->load->view('excel_evaluations_table', $data);
     }
 
     private function summary_counts_for_evaluations_report($data)
