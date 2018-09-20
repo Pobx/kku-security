@@ -7,6 +7,8 @@ class Evaluation_model extends CI_Model {
   private $id    = 'id';
   private $items = '
     id, 
+    eval_date AS eval_date_en,
+    DATE_FORMAT(DATE_ADD(eval_date, INTERVAL 543 YEAR),"%d/%m/%Y") as eval_date,
     gender,
     age,
     personal_id,

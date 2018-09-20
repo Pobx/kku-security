@@ -13,9 +13,9 @@ class Report_evaluations extends CI_Controller
         $this->load->library('FilterPeoples');
     }
 
-    private $head_topic_label           = 'สถิติกล่องแดง';
-    private $head_sub_topic_label_table = 'รายงาน สถิติกล่องแดง';
-    private $header_columns             = array('ชื่อ - สกุล', 'โซน', 'ชื่อตู้แดง', 'วันที่บันทึก', 'เวลา', 'สถานะ', 'หมายเหตุ');
+    private $head_topic_label           = 'ข้อมูลสถานทั่วไปของผู้ตอบแบบสอบถาม';
+    private $head_sub_topic_label_table = 'รายงาน ข้อมูลสถานทั่วไปของผู้ตอบแบบสอบถาม';
+    private $header_columns             = array('', 'อายุ', 'ชื่อตู้แดง', 'วันที่บันทึก', 'เวลา', 'สถานะ', 'หมายเหตุ');
 
     public function index()
     {

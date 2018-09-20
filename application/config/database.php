@@ -75,10 +75,10 @@ $query_builder = true;
 
 $db['default'] = array(
     'dsn'          => '',
-    'hostname'     => 'mysql',
+    'hostname'     => 'my-mariadb',
     // 'hostname'     => 'localhost',
     'username'     => 'root',
-    'password'     => '111111',
+    'password'     => '1234',
     'database'     => 'kku_securitys',
     'dbdriver'     => 'mysqli',
     'dbprefix'     => '',
