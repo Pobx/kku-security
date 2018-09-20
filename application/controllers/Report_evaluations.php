@@ -47,12 +47,15 @@ class Report_evaluations extends CI_Controller
 
         $results = $this->Evaluation_model->all($qstr);
         $data['results'] = $results['results'];
+        $data['fields'] = $results['fields'];
 
         // $data['bar_chart_data'] = $this->filterbarchartdata->filter($results['results'], 'inspect_date_en');
-        $data['fields'] = $results['fields'];
+        $data['count_male'] = $this->filterpeoples->filter($data['results'], 'male', 'gender');
+        $data['count_female'] = $this->filterpeoples->filter($data['results'], 'female', 'gender');
+        
         $data['content'] = 'report_evaluations_table';
-
-        echo "<pre>", print_r($data['results']); exit();
+        
+        echo "<pre>", print_r($data); exit();
         $this->load->view('template_layout', $data);
     }
 
