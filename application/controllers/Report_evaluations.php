@@ -115,6 +115,21 @@ class Report_evaluations extends CI_Controller
         $data['count_communication_good'] = $this->filterpeoples->filter($data['results'], 4, 'communication');
         $data['count_communication_normal'] = $this->filterpeoples->filter($data['results'], 3, 'communication');
         
+        // ความรอบรู้ทักษะ องค์ความรู้และการแนะนำให้ทราบถึงการใช้บริการด้านการรักษาความปลอดภัยและการจราจร
+        $data['count_knowlage_very_good'] = $this->filterpeoples->filter($data['results'], 5, 'knowlage');
+        $data['count_knowlage_good'] = $this->filterpeoples->filter($data['results'], 4, 'knowlage');
+        $data['count_knowlage_normal'] = $this->filterpeoples->filter($data['results'], 3, 'knowlage');
+
+        // การรับฟัง ปัญหา ข้อซักถาม และการแสดงความคิดเห็นต่าง ๆ ต่อการใช้บริการด้านการรักษาความปลอดภัย มข. โดยภาพรวม
+        $data['count_questions_very_good'] = $this->filterpeoples->filter($data['results'], 5, 'questions');
+        $data['count_questions_good'] = $this->filterpeoples->filter($data['results'], 4, 'questions');
+        $data['count_questions_normal'] = $this->filterpeoples->filter($data['results'], 3, 'questions');
+
+        // การให้คำแนะนำ เสนอแนวทาง การแก้ไขปัญหาและติดตามความคืบหน้าจากการขอใช้บริกา
+        $data['count_followup_very_good'] = $this->filterpeoples->filter($data['results'], 5, 'followup');
+        $data['count_followup_good'] = $this->filterpeoples->filter($data['results'], 4, 'followup');
+        $data['count_followup_normal'] = $this->filterpeoples->filter($data['results'], 3, 'followup');
+
         $data['content'] = 'report_evaluations_table';
         
         echo "<pre>", print_r($data); exit();
