@@ -105,4 +105,4 @@ echo $value['comment'];
 		</div>
 	</div>
 
-	<?php $this->load->view('dashboard_admin_bar_chart_monthly');?>
+	<?php //$this->load->view('dashboard_admin_bar_chart_monthly');?>

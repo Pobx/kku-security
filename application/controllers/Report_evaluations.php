@@ -50,7 +50,35 @@ class Report_evaluations extends CI_Controller
         $data['fields'] = $results['fields'];
 
         // $data['bar_chart_data'] = $this->filterbarchartdata->filter($results['results'], 'inspect_date_en');
-        $data['count_male'] = $this->filterpeoples->filter($data['results'], 'male', 'gender');
+        
+
+        $data['content'] = 'report_evaluations_table';
+        
+        // echo "<pre>", print_r($data); exit();
+        $this->load->view('template_layout', $data);
+    }
+
+    public function export_excel()
+    {
+        $data['header_columns'] = $this->header_columns;
+        $inputs = $this->session->userdata();
+        $qstr = array(
+            'DATE(evaluations.eval_date) >=' => $inputs['start_date'],
+            'DATE(evaluations.eval_date) <=' => $inputs['end_date'],
+            'evaluations.status'             => 'active',
+        );
+
+        $results = $this->Evaluation_model->all($qstr);
+        $data['results'] = $results['results'];
+        $data['fields'] = $results['fields'];
+        $this->summary_counts_for_evaluations_report($data);
+        echo "<pre>", print_r($data); exit();
+        $this->load->view('excel_redboxs_table', $data);
+    }
+
+    private function summary_counts_for_evaluations_report($data)
+    {
+      $data['count_male'] = $this->filterpeoples->filter($data['results'], 'male', 'gender');
         $data['count_female'] = $this->filterpeoples->filter($data['results'], 'female', 'gender');
 
         $data['count_less_than_20'] = $this->filterpeoples->filter($data['results'], 'less_than_20', 'age');
@@ -61,7 +89,7 @@ class Report_evaluations extends CI_Controller
         $data['count_between_41_and_45'] = $this->filterpeoples->filter($data['results'], 'between_41_and_45', 'age');
         $data['count_between_46_and_50'] = $this->filterpeoples->filter($data['results'], 'between_46_and_50', 'age');
         $data['count_more_than_50'] = $this->filterpeoples->filter($data['results'], 'more_than_50', 'age');
-        $data['count_all_age'] = $results['rows'];
+        $data['count_all_age'] = $data['rows'];
         
         // นักเรียน        
         $data['count_student'] = $this->filterpeoples->filter($data['results'], 1, 'personal_id');
@@ -130,29 +158,7 @@ class Report_evaluations extends CI_Controller
         $data['count_followup_good'] = $this->filterpeoples->filter($data['results'], 4, 'followup');
         $data['count_followup_normal'] = $this->filterpeoples->filter($data['results'], 3, 'followup');
 
-        $data['content'] = 'report_evaluations_table';
-        
-        // echo "<pre>", print_r($data); exit();
-        $this->load->view('template_layout', $data);
-    }
-
-    public function export_excel()
-    {
-        $data['header_columns'] = $this->header_columns;
-        $inputs = $this->session->userdata();
-        $qstr = array(
-            'DATE(evaluations.eval_date) >=' => $inputs['start_date'],
-            'DATE(evaluations.eval_date) <=' => $inputs['end_date'],
-            'evaluations.status'             => 'active',
-        );
-
-        $results = $this->Evaluation_model->all($qstr);
-        $data['results'] = $results['results'];
-        $data['fields'] = $results['fields'];
-
-        // echo "<pre>", print_r($data['results']); exit();
-        $this->load->view('excel_redboxs_table', $data);
-
+        return $data;
     }
 
 }
