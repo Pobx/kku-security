@@ -53,6 +53,15 @@ class Report_evaluations extends CI_Controller
         $data['count_male'] = $this->filterpeoples->filter($data['results'], 'male', 'gender');
         $data['count_female'] = $this->filterpeoples->filter($data['results'], 'female', 'gender');
         
+        $data['count_less_than_20'] = $this->filterpeoples->filter($data['results'], 'less_than_20', 'age');
+        $data['count_between_21_and_25'] = $this->filterpeoples->filter($data['results'], 'between_21_and_25', 'age');
+        $data['count_between_26_and_30'] = $this->filterpeoples->filter($data['results'], 'between_26_and_30', 'age');
+        $data['count_between_31_and_35'] = $this->filterpeoples->filter($data['results'], 'between_31_and_35', 'age');
+        $data['count_between_36_and_40'] = $this->filterpeoples->filter($data['results'], 'between_36_and_40', 'age');
+        $data['count_between_41_and_45'] = $this->filterpeoples->filter($data['results'], 'between_41_and_45', 'age');
+        $data['count_between_46_and_50'] = $this->filterpeoples->filter($data['results'], 'between_46_and_50', 'age');
+        $data['count_more_than_50'] = $this->filterpeoples->filter($data['results'], 'more_than_50', 'age');
+        
         $data['content'] = 'report_evaluations_table';
         
         echo "<pre>", print_r($data); exit();
