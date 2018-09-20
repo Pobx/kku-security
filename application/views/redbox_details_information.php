@@ -20,15 +20,15 @@
 		<div class="form-group">
 			<div class="radio">
 				<label>
-					<input type="radio" name="status_inspect" id="status_inspect" class="flat-red" value="1" <?php if($status_inspect=='normal'
-					 ) {echo "checked" ; }?>>
+					<input type="radio" name="status_inspect" id="status_inspect" class="flat-red" value="normal" <?php
+					 if($status_inspect=='normal' ) {echo "checked" ; }?>>
 					ปกติ
 				</label>
 			</div>
 			<div class="radio">
 				<label>
-					<input type="radio" name="status_inspect" id="status_inspect2" class="flat-red" value="2" <?php if($status_inspect=='abnormal'
-					 ) {echo "checked" ; }?>>
+					<input type="radio" name="status_inspect" id="status_inspect2" class="flat-red" value="abnormal" <?php
+					 if($status_inspect=='abnormal' ) {echo "checked" ; }?>>
 					ไม่ปกติ
 				</label>
 			</div>

@@ -18,7 +18,6 @@ class Dashboard extends CI_Controller
         $this->load->library('Date_libs');
         $this->load->library('FilterPeriodTimes');
         $this->load->library('FilterPeoples');
-
     }
 
     private $head_topic_label = 'Dashboard';

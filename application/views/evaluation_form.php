@@ -45,7 +45,7 @@
 						<select class="form-control select2" id="personal_id" name="personal_id">
 							<option value="">สถานะ</option>
 							<?php foreach ($personals as $key => $value) {?>
-							<option value="<?php echo $value['id']; ?>">
+							<option value="<?php echo $value['id'];?>">
 								<?php echo $value['name']; ?>
 							</option>
 							<?php } ?>
@@ -56,7 +56,7 @@
 				<div class="form-group">
 					<label for="faculty" class="col-sm-2 control-label">สังกัด</label>
 					<div class="col-sm-4">
-						<select class="form-control select2" id="ddl_car_state" name="department_id">
+						<select class="form-control select2" id="ddl_car_state" name="faculty_id">
 							<option value="">สังกัด</option>
 							<?php foreach ($faculty as $key => $value) {?>
 							<option value="<?php echo $value['id']; ?>">
