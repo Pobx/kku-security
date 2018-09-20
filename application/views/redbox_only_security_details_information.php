@@ -49,7 +49,7 @@
 	<label for="username" class="col-sm-2 control-label">รหัส</label>
 
 	<div class="col-sm-4">
-		<input type="text" class="form-control" id="username" name="username" placeholder="รหัส" value="">
+		<input type="number" class="form-control" id="username" name="username" placeholder="รหัส" value="">
 	</div>
 
 </div>
