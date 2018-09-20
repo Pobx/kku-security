@@ -18,6 +18,7 @@ class Redbox_inspect_transaction_model extends CI_Model
     redbox_inspect_transaction.user_id,
     redbox_place.name AS place_name,
     users.name AS inspector_name,
+    users.username AS inspector_username,
     redbox_zone.name AS zone_name,
     DATE(inspect_date) AS inspect_date_en,
     DATE_FORMAT(DATE_ADD(DATE(inspect_date), INTERVAL 543 YEAR),"%d/%m/%Y") as inspect_date_th,
