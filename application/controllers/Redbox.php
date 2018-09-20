@@ -9,6 +9,7 @@ class Redbox extends CI_Controller
 
         $this->load->model('Redbox_inspect_transaction_model');
         $this->load->model('Redbox_place_model');
+        $this->load->model('Users_model');
         
         $this->load->library('Date_libs');
         $this->load->library('FilterBarChartData');
@@ -53,7 +54,6 @@ class Redbox extends CI_Controller
         $data = $this->find($id);
         $qstr_redbox_place = array('status'=>'active');
         $results_redbox_place = $this->Redbox_place_model->all($qstr_redbox_place);
-        $results = $this->Redbox_inspect_transaction_model->all($qstr);
         
         $data['results_redbox_place'] = $results_redbox_place['results'];
 
