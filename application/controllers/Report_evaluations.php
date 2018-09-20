@@ -79,7 +79,21 @@ class Report_evaluations extends CI_Controller
         $data['count_inside_people'] = $this->filterpeoples->filter($data['results'], 7, 'personal_id');
         // บุคลากรภายนอก
         $data['count_outside_people'] = $this->filterpeoples->filter($data['results'], 8, 'personal_id');
+        
+        // ประสิทธิภาพและสมรรถนะการปฏิบัติหน้าที่
+        $data['count_performance_very_good'] = $this->filterpeoples->filter($data['results'], 5, 'performance');
+        $data['count_performance_good'] = $this->filterpeoples->filter($data['results'], 4, 'performance');
+        $data['count_performance_normal'] = $this->filterpeoples->filter($data['results'], 3, 'performance');
+        
+        // สำเร็จลุล่วง บรรลุตามวัตถุประสงค์
+        $data['count_success_very_good'] = $this->filterpeoples->filter($data['results'], 5, 'success');
+        $data['count_success_good'] = $this->filterpeoples->filter($data['results'], 4, 'success');
+        $data['count_success_normal'] = $this->filterpeoples->filter($data['results'], 3, 'success');
 
+        // รวดเร็ว ตรงตามเวลาที่กำหนด
+        $data['count_timeline_very_good'] = $this->filterpeoples->filter($data['results'], 5, 'timeline');
+        $data['count_timeline_good'] = $this->filterpeoples->filter($data['results'], 4, 'timeline');
+        $data['count_timeline_normal'] = $this->filterpeoples->filter($data['results'], 3, 'timeline');
 
         $data['content'] = 'report_evaluations_table';
         
