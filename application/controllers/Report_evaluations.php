@@ -15,7 +15,7 @@ class Report_evaluations extends CI_Controller
 
     private $head_topic_label           = 'ข้อมูลสถานทั่วไปของผู้ตอบแบบสอบถาม';
     private $head_sub_topic_label_table = 'รายงาน ข้อมูลสถานทั่วไปของผู้ตอบแบบสอบถาม';
-    private $header_columns             = array('', 'อายุ', 'ชื่อตู้แดง', 'วันที่บันทึก', 'เวลา', 'สถานะ', 'หมายเหตุ');
+    private $header_columns             = array('อายุ', 'จำนคน', 'วันที่บันทึก', 'เวลา', 'สถานะ', 'หมายเหตุ');
 
     public function index()
     {
@@ -141,9 +141,9 @@ class Report_evaluations extends CI_Controller
         $data['header_columns'] = $this->header_columns;
         $inputs = $this->session->userdata();
         $qstr = array(
-            'DATE(redbox_inspect_transaction.inspect_date) >=' => $inputs['start_date'],
-            'DATE(redbox_inspect_transaction.inspect_date) <=' => $inputs['end_date'],
-            'redbox_inspect_transaction.status'                => 'active',
+            'DATE(evaluations.eval_date) >=' => $inputs['start_date'],
+            'DATE(evaluations.eval_date) <=' => $inputs['end_date'],
+            'evaluations.status'             => 'active',
         );
 
         $results = $this->Evaluation_model->all($qstr);
