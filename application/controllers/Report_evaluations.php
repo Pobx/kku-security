@@ -100,6 +100,11 @@ class Report_evaluations extends CI_Controller
         $data['count_service_clear_good'] = $this->filterpeoples->filter($data['results'], 4, 'service_clear');
         $data['count_service_clear_normal'] = $this->filterpeoples->filter($data['results'], 3, 'service_clear');
         
+        // วัสดุ อุปกรณ์ เครื่องมือ ในการให้บริการครบครัน
+        
+        $data['count_materials_very_good'] = $this->filterpeoples->filter($data['results'], 5, 'materials');
+        $data['count_materials_good'] = $this->filterpeoples->filter($data['results'], 4, 'materials');
+        $data['count_materials_normal'] = $this->filterpeoples->filter($data['results'], 3, 'materials');
         $data['content'] = 'report_evaluations_table';
         
         echo "<pre>", print_r($data); exit();
