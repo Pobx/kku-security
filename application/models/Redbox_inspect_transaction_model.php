@@ -16,6 +16,7 @@ class Redbox_inspect_transaction_model extends CI_Model
     redbox_inspect_transaction.id,
     redbox_inspect_transaction.redbox_place_id,
     redbox_inspect_transaction.user_id,
+    redbox_inspect_transaction.inspect_date,
     redbox_place.name AS place_name,
     users.name AS inspector_name,
     redbox_zone.name AS zone_name,

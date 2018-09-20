@@ -7,7 +7,7 @@
 		</div>
 
 		<div class="box-body">
-
+			<?="xzczc".$inspect_date;?>
 			<!-- <form class="form-horizontal form_submit_data"> -->
 			<?php $this->load->view('header_form_submit_data');?>
 

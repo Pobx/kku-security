@@ -29,7 +29,7 @@
 						<?php foreach ($header_columns as $key => $value)
 {
     ?>
-						<th class="text-center">
+						<th>
 							<?php echo $value; ?>
 						</th>
 						<?php }?>
