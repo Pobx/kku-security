@@ -1,13 +1,3 @@
-<?php
-// header('Content-type: application/vnd.ms-excel');
-// header('Content-Disposition: attachment; filename=excel.xls');
-// header('Pragma: public');
-// header('Cache-Control: max-age=0');
-// set_time_limit(0);
-?>
-
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
 <table border="1">
 	<thead>
 		<tr>

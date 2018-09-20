@@ -17,5 +17,14 @@ $this->load->view('excel_evaluations_status_table');
 echo "<br>";
 echo "<br>";
 echo "<br>";
-$this->load->view('excel_evaluations_status_table');
+$this->load->view('excel_evaluations_performance_table');
+echo "<br>";
+echo "<br>";
+echo "<br>";
+$this->load->view('excel_evaluations_success_table');
+echo "<br>";
+echo "<br>";
+echo "<br>";
+$this->load->view('excel_evaluations_timeline_table');
+
 ?>
