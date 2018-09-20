@@ -52,7 +52,7 @@ class Report_evaluations extends CI_Controller
         // $data['bar_chart_data'] = $this->filterbarchartdata->filter($results['results'], 'inspect_date_en');
         $data['count_male'] = $this->filterpeoples->filter($data['results'], 'male', 'gender');
         $data['count_female'] = $this->filterpeoples->filter($data['results'], 'female', 'gender');
-        
+
         $data['count_less_than_20'] = $this->filterpeoples->filter($data['results'], 'less_than_20', 'age');
         $data['count_between_21_and_25'] = $this->filterpeoples->filter($data['results'], 'between_21_and_25', 'age');
         $data['count_between_26_and_30'] = $this->filterpeoples->filter($data['results'], 'between_26_and_30', 'age');
@@ -61,7 +61,26 @@ class Report_evaluations extends CI_Controller
         $data['count_between_41_and_45'] = $this->filterpeoples->filter($data['results'], 'between_41_and_45', 'age');
         $data['count_between_46_and_50'] = $this->filterpeoples->filter($data['results'], 'between_46_and_50', 'age');
         $data['count_more_than_50'] = $this->filterpeoples->filter($data['results'], 'more_than_50', 'age');
+        $data['count_all_age'] = $results['rows'];
         
+        // นักเรียน        
+        $data['count_student'] = $this->filterpeoples->filter($data['results'], 1, 'personal_id');
+        // นักศึกษา
+        $data['count_student'] = $this->filterpeoples->filter($data['results'], 2, 'personal_id');
+        // ข้าราชการ/พนักงาน/ลูกจ้าง
+        $data['count_student2'] = $this->filterpeoples->filter($data['results'], 3, 'personal_id');
+        // อาจารย์
+        $data['count_teacher'] = $this->filterpeoples->filter($data['results'], 4, 'personal_id');
+        // คณะผู้บริหาร
+        $data['count_management'] = $this->filterpeoples->filter($data['results'], 5, 'personal_id');
+        // บุคคลทั่วไป
+        $data['count_general_people'] = $this->filterpeoples->filter($data['results'], 6, 'personal_id');
+        // บุคลากรภายใน
+        $data['count_inside_people'] = $this->filterpeoples->filter($data['results'], 7, 'personal_id');
+        // บุคลากรภายนอก
+        $data['count_outside_people'] = $this->filterpeoples->filter($data['results'], 8, 'personal_id');
+
+
         $data['content'] = 'report_evaluations_table';
         
         echo "<pre>", print_r($data); exit();
