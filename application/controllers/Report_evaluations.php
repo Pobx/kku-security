@@ -95,6 +95,11 @@ class Report_evaluations extends CI_Controller
         $data['count_timeline_good'] = $this->filterpeoples->filter($data['results'], 4, 'timeline');
         $data['count_timeline_normal'] = $this->filterpeoples->filter($data['results'], 3, 'timeline');
 
+        // มีขั้นตอนการให้บริการและการจัดการที่ชัดเจน
+        $data['count_service_clear_very_good'] = $this->filterpeoples->filter($data['results'], 5, 'service_clear');
+        $data['count_service_clear_good'] = $this->filterpeoples->filter($data['results'], 4, 'service_clear');
+        $data['count_service_clear_normal'] = $this->filterpeoples->filter($data['results'], 3, 'service_clear');
+        
         $data['content'] = 'report_evaluations_table';
         
         echo "<pre>", print_r($data); exit();
