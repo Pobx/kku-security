@@ -8,6 +8,8 @@ class Temp_evaluations extends CI_Controller
         parent::__construct();
 
         $this->load->model('Evaluation_model');
+        $this->load->model('Evaluation_services_model');
+
     }
 
     public function store()
@@ -43,10 +45,30 @@ class Temp_evaluations extends CI_Controller
                     'status'          => 'active',
                 );
 
-                // $results = $this->Redbox_inspect_transaction_model->store($inputs);
+                $results = $this->Evaluation_model->store($inputs);
+                $this->store_services($results['lastID']);
                 echo '<pre>', print_r($inputs);
             }
         }
     }
+
+    private function store_services($evaluation_id ='') 
+        {
+          $rand_numbers = rand(1,5);
+      for ($init_numbers=0; $init_numbers <=$rand_numbers ; $init_numbers++) {
+        $inputs = array(
+                  
+          'id'              => '',
+          'evaluation_id'=>$evaluation_id,
+          'service_id'    => rand(1, 14),
+          'created'         => date('Y-m-d H:i:s'),
+          'status'          => 'active',
+      );
+
+      $this->Evaluation_services_model->store($inputs);
+      // echo '<pre>', print_r($inputs);
+      }
+          
+        }
 
 }
