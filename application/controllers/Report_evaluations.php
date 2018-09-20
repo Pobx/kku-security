@@ -15,7 +15,7 @@ class Report_evaluations extends CI_Controller
 
     private $head_topic_label           = 'ข้อมูลสถานทั่วไปของผู้ตอบแบบสอบถาม';
     private $head_sub_topic_label_table = 'รายงาน ข้อมูลสถานทั่วไปของผู้ตอบแบบสอบถาม';
-    private $header_columns             = array('อายุ', 'จำนคน', 'วันที่บันทึก', 'เวลา', 'สถานะ', 'หมายเหตุ');
+    private $header_columns             = array('วันที่', 'อายุ', 'จำนคน', 'วันที่บันทึก', 'เวลา', 'สถานะ', 'หมายเหตุ');
 
     public function index()
     {
