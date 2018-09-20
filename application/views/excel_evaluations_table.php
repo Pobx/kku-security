@@ -26,5 +26,9 @@ echo "<br>";
 echo "<br>";
 echo "<br>";
 $this->load->view('excel_evaluations_timeline_table');
+echo "<br>";
+echo "<br>";
+echo "<br>";
+$this->load->view('excel_evaluations_service_clear_table');
 
 ?>
