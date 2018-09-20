@@ -15,7 +15,7 @@ class Report_evaluations extends CI_Controller
 
     private $head_topic_label           = 'ข้อมูลสถานทั่วไปของผู้ตอบแบบสอบถาม';
     private $head_sub_topic_label_table = 'รายงาน ข้อมูลสถานทั่วไปของผู้ตอบแบบสอบถาม';
-    private $header_columns             = array('วันที่', 'อายุ', 'จำนคน', 'วันที่บันทึก', 'เวลา', 'สถานะ', 'หมายเหตุ');
+    private $header_columns             = array('วันที่', 'เพศ', 'ช่วงอายุ', 'สังกัด', 'หมายเหตุ');
 
     public function index()
     {
@@ -132,7 +132,7 @@ class Report_evaluations extends CI_Controller
 
         $data['content'] = 'report_evaluations_table';
         
-        echo "<pre>", print_r($data); exit();
+        // echo "<pre>", print_r($data); exit();
         $this->load->view('template_layout', $data);
     }
 

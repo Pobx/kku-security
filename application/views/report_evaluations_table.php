@@ -59,29 +59,23 @@
     ?>
 						<tr>
 							<td class="text-center">
-								<?php echo $value['inspector_name']; ?>
+								<?php echo $value['eval_date']; ?>
 							</td>
 							<td class="text-center">
-								<?php echo $value['zone_name']; ?>
+								<?php echo $value['gender_name']; ?>
 							</td>
 							<td class="text-center">
-								<?php echo $value['place_name']; ?>
+								<?php echo $value['age_between_name']; ?>
 							</td>
 							<td class="text-center">
 								<?php
-echo $value['inspect_date_th'];
+echo $value['faculty_name'];
     ?>
 							</td>
 							<td class="text-center">
 								<?php
-echo $value['inspect_date_time'];
+echo $value['comment'];
     ?>
-							</td>
-							<td>
-								<?php echo $value['status_inspect_name']; ?>
-							</td>
-							<td>
-								<?php echo $value['comment']; ?>
 							</td>
 						</tr>
 						<?php }?>

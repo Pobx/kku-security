@@ -29,7 +29,7 @@ class Temp_evaluations extends CI_Controller
                     'gender' => $genders[array_rand($genders, 1)],
                     'age'         => $ages[array_rand($ages, 1)],
                     'personal_id'    => rand(1, 8),
-                    'department_id'=> rand(1, 27), // this is faculty
+                    'faculty_id'=> rand(1, 27), 
                     'performance'=>rand(1, 5),
                     'success'=>rand(1, 5),
                     'timeline'=>rand(1, 5),
