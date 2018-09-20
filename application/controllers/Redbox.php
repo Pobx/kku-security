@@ -80,6 +80,13 @@ class Redbox extends CI_Controller
         $inputs = $this->input->post();
         $inputs['inspect_date'] = date("Y-m-d H:i:s");
 
+        $qstr_users = array('username'=>$inputs['username']);
+        $results = $this->Users_model->all($qstr_users);
+        $user_id = (isset($results['results'][0]['id'])? $results['results'][0]['id'] : NULL);
+        $inputs['user_id'] = $user_id;
+        // echo "<pre>", print_r($results); exit();
+        unset($inputs['username']);
+        
         // echo "<pre>", print_r($inputs); exit();
         $results = $this->Redbox_inspect_transaction_model->store($inputs);
 
