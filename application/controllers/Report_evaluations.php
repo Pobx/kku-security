@@ -93,9 +93,9 @@ class Report_evaluations extends CI_Controller
         // นักเรียน        
         $data['count_student'] = $this->filterpeoples->filter($data['results'], 1, 'personal_id');
         // นักศึกษา
-        $data['count_student'] = $this->filterpeoples->filter($data['results'], 2, 'personal_id');
+        $data['count_student2'] = $this->filterpeoples->filter($data['results'], 2, 'personal_id');
         // ข้าราชการ/พนักงาน/ลูกจ้าง
-        $data['count_student2'] = $this->filterpeoples->filter($data['results'], 3, 'personal_id');
+        $data['count_gov_officer'] = $this->filterpeoples->filter($data['results'], 3, 'personal_id');
         // อาจารย์
         $data['count_teacher'] = $this->filterpeoples->filter($data['results'], 4, 'personal_id');
         // คณะผู้บริหาร
