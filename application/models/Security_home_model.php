@@ -16,6 +16,15 @@ class Security_home_model extends CI_Model {
     owner_home_department_name, 
     owner_home_office_name, 
     address, 
+    period,
+    (
+      CASE 
+        WHEN status = "normal" THEN "ปกติ"
+        WHEN status = "disabled" THEN "ลบรายการ"
+        WHEN status = "festival" THEN "เทศกาล"
+        ELSE ""
+      END
+    ) AS status_name,
     status,
     (
       CASE 

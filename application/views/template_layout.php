@@ -198,7 +198,8 @@ echo $head_sub_topic_label;
         
 if (isset($content))
 {
-    $this->load->view($content);
+	$this->load->view($content);
+	
 }
 else
 {
@@ -234,7 +235,6 @@ echo 'ขณะนี้เวลา  ' . $now_date;
 		$.widget.bridge('uibutton', $.ui.button);
 
 	</script>
-
 	<!-- Morris.js charts -->
 	<script src="<?php //echo base_url('bower_components/raphael/raphael.min.js'); ?>"></script>
 	<script src="<?php //echo base_url('bower_components/morris.js/morris.min.js'); ?>"></script>
@@ -302,6 +302,7 @@ echo 'ขณะนี้เวลา  ' . $now_date;
 
 				pie_chart_summary_incidence(pie_chart_data)
 			}
+
 
 			var bar_chart_data = '<?php echo $bar_chart_data;?>';
 
@@ -385,3 +386,30 @@ echo 'ขณะนี้เวลา  ' . $now_date;
 </body>
 
 </html>
+
+
+<script>
+$( document ).ready(function() {
+	data = {
+    datasets: [{
+        data: [10, 20, 30]
+    }],
+
+    // These labels appear in the legend and in the tooltips when hovering different arcs
+    labels: [
+        'Red',
+        'Yellow',
+        'Blue'
+    ]
+};
+
+	var pieChartCanvas = $('#myChart').get(0).getContext('2d');
+	var myPieChart = new Chart(pieChartCanvas,{
+    type: 'pie',
+    data: data,
+    options: options
+});
+
+})
+</script>
+

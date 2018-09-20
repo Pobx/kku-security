@@ -15,16 +15,29 @@
 				<div class="form-group">
 					<label for="start_date" class="col-sm-2 control-label">วันที่</label>
 
-					<div class="col-sm-4">
+					<div class="col-sm-2">
 						<input type="text" class="form-control datepicker" id="start_date" name="start_date" data-provide="datepicker"
 						 data-date-language="th-th" placeholder="วันที่" value="<?php echo $start_date;?>">
 					</div>
 
 					<label for="end_date" class="col-sm-1 control-label">ถึง</label>
 
-					<div class="col-sm-4">
+					<div class="col-sm-2">
 						<input type="text" class="form-control datepicker" id="end_date" name="end_date" data-provide="datepicker"
 						 data-date-language="th-th" placeholder="ถึง" value="<?php echo $end_date;?>">
+					</div>
+				</div>
+
+								<div class="form-group">
+					<label class="col-sm-2 control-label">ช่วง</label>
+
+					<div class="col-sm-4">
+						<label>
+							<input type="radio" name="period" class="flat-red" value="normal" <?php if ($status=='nornal' ) { echo "checked"
+							 ;}?>>&nbsp;ปกติ
+							<input type="radio" name="period" class="flat-red" value="festival" <?php if ($status=='festival' ) { echo
+							 "checked" ;}?>>&nbsp;เทศกาล
+						</label>
 					</div>
 				</div>
 
