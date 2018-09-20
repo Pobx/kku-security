@@ -54,8 +54,7 @@ class Redbox extends CI_Controller
         $qstr_redbox_place = array('status'=>'active');
         $results_redbox_place = $this->Redbox_place_model->all($qstr_redbox_place);
         $results = $this->Redbox_inspect_transaction_model->all($qstr);
-        echo "<pre>";
-        print_r($results);die();
+        
         $data['results_redbox_place'] = $results_redbox_place['results'];
 
         $data['head_topic_label'] = $this->head_topic_label;
@@ -86,7 +85,7 @@ class Redbox extends CI_Controller
         $inputs['user_id'] = $user_id;
         // echo "<pre>", print_r($results); exit();
         unset($inputs['username']);
-        
+
         // echo "<pre>", print_r($inputs); exit();
         $results = $this->Redbox_inspect_transaction_model->store($inputs);
 
