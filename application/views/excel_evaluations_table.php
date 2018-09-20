@@ -38,5 +38,26 @@ echo "<br>";
 echo "<br>";
 echo "<br>";
 $this->load->view('excel_evaluations_servicemind_table');
+echo "<br>";
+echo "<br>";
+echo "<br>";
+$this->load->view('excel_evaluations_communication_table');
+echo "<br>";
+echo "<br>";
+echo "<br>";
+$this->load->view('excel_evaluations_knowlage_table');
+echo "<br>";
+echo "<br>";
+echo "<br>";
+$this->load->view('excel_evaluations_questions_table');
+echo "<br>";
+echo "<br>";
+echo "<br>";
+$this->load->view('excel_evaluations_followup_table');
 
+echo "<h4>ข้อเสนอแนะ</h4>";
+
+foreach ($results as $key => $value) {
+  echo "<p>".($key + 1).'. '.$value['comment']."</p>";
+}
 ?>
