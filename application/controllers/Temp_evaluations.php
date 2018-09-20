@@ -45,8 +45,8 @@ class Temp_evaluations extends CI_Controller
                     'status'          => 'active',
                 );
 
-                $results = $this->Evaluation_model->store($inputs);
-                $this->store_services($results['lastID']);
+                // $results = $this->Evaluation_model->store($inputs);
+                // $this->store_services($results['lastID']);
                 echo '<pre>', print_r($inputs);
             }
         }
