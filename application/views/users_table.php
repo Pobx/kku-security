@@ -76,5 +76,3 @@
 		<div class="box-footer">
 		</div>
 	</div>
-
-	<?php $this->load->view('dashboard_admin_bar_chart_monthly');?>

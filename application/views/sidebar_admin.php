@@ -105,7 +105,7 @@
 
 	<ul class="treeview-menu">
 		<li>
-			<a href="<?php echo site_url('evaluation'); ?>"><i class="fa fa-users"></i> <span>ผู้ใช้งาน</span></a>
+			<a href="<?php echo site_url('users'); ?>"><i class="fa fa-users"></i> <span>ผู้ใช้งาน</span></a>
 		</li>
 	</ul>
 </li>
