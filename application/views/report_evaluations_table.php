@@ -1,4 +1,5 @@
 <section class="content">
+	<?php $this->load->view('report_evaluations_bar_chart');?>
 	<div class="box box-primary">
 		<div class="box-header with-border">
 			<h3 class="box-title">
@@ -107,4 +108,5 @@ echo $value['comment'];
 
 	<?php 
     $this->load->view('report_evaluations_donut_chart');
+    // $this->load->view('report_evaluations_bar_chart');
   ?>

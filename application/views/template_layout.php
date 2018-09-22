@@ -189,6 +189,7 @@ echo $head_sub_topic_label;
         $bar_chart_data = (isset($bar_chart_data)? $bar_chart_data : json_encode(array()));
         $pie_chart_display = (isset($pie_chart_display)? $pie_chart_display : 'off');
         $my_pie_chart = (isset($my_pie_chart)? $my_pie_chart : 'off');
+        $piechart_values_between_ages = (isset($piechart_values_between_ages)? $piechart_values_between_ages : json_encode(array()));
 
         $count_accidents = (isset($count_accidents)? $count_accidents : 0);
         $count_break_homes = (isset($count_break_homes)? $count_break_homes : 0);
@@ -282,10 +283,14 @@ echo 'ขณะนี้เวลา  ' . $now_date;
 	<!-- Select2 -->
 	<script src="<?php echo base_url('bower_components/select2/dist/js/select2.full.min.js'); ?>"></script>
 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+
 	<!-- my demo -->
 	<script src="<?php echo base_url('assets/demo/dashboard_admin_donut_chart.js'); ?>"></script>
 	<script src="<?php echo base_url('assets/demo/dashboard_admin_bar_chart_monthly.js'); ?>"></script>
 	<script src="<?php echo base_url('assets/demo/piechart.js'); ?>"></script>
+	<script src="<?php echo base_url('assets/demo/barchart.js'); ?>"></script>
+
 
 	<!-- AdminLTE App -->
 	<script src="<?php echo base_url('dist/js/adminlte.min.js'); ?>"></script>
@@ -303,7 +308,7 @@ echo 'ขณะนี้เวลา  ' . $now_date;
 					count_student_do_not_wear_helmet: '<?php echo $count_student_do_not_wear_helmet;?>',
 				}
 
-				pie_chart_summary_incidence(pie_chart_data)
+				// pie_chart_summary_incidence(pie_chart_data)
 			}
 
 			var bar_chart_data = '<?php echo $bar_chart_data;?>';
@@ -318,9 +323,11 @@ echo 'ขณะนี้เวลา  ' . $now_date;
 			if (my_pie_chart == 'on') {
 				var piechart_values_between_ages = '<?php echo $piechart_values_between_ages;?>';
 				piechart_values_between_ages = JSON.parse(piechart_values_between_ages);
+				console.log(piechart_values_between_ages);
 				myPieChart(piechart_values_between_ages, '#pieChartEvaluations');
 			}
 
+			myBarChart('', '#barChart');
 			// $('.mydataTable tfoot th').each(function () {
 			// 	var title = $(this).text();
 			// 	$(this).append('<br /><input type="text" class="form-control" placeholder="ค้นหา... ' + title + '" />');
