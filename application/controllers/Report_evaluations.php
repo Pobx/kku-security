@@ -24,7 +24,7 @@ class Report_evaluations extends CI_Controller
         $data['reports_evaluations_dispaly'] = 'on';
         $data['start_date'] = '01/01/2561';
         $data['end_date'] = '01/01/2562';
-        
+
         // $data['start_date'] = (isset($inputs['start_date']) ? $inputs['start_date'] : $this->date_libs->get_date_th(date('Y-m-d')));
         // $data['end_date'] = (isset($inputs['end_date']) ? $inputs['end_date'] : $this->date_libs->get_date_th(date('Y-m-d')));
 
@@ -37,7 +37,7 @@ class Report_evaluations extends CI_Controller
         $qstr = array(
             'DATE(evaluations.eval_date) >=' => $this->date_libs->set_date_th($data['start_date']),
             'DATE(evaluations.eval_date) <=' => $this->date_libs->set_date_th($data['end_date']),
-            'evaluations.status'                => 'active',
+            'evaluations.status'             => 'active',
         );
 
         $sess_inputs = array(
@@ -54,7 +54,7 @@ class Report_evaluations extends CI_Controller
         // $data['bar_chart_data'] = $this->filterbarchartdata->filter($results['results'], 'inspect_date_en');
         $data = $this->summary_counts_for_evaluations_report($data);
         $data['content'] = 'report_evaluations_table';
-        
+
         // echo "<pre>", print_r($data); exit();
         $this->load->view('template_layout', $data);
     }
@@ -78,43 +78,46 @@ class Report_evaluations extends CI_Controller
         $this->load->view('excel_evaluations_table', $data);
     }
 
-    private function set_piechart_values($data) {
-      $results = array(
-        'data' =>array($data['count_between_21_and_25'], $data['count_between_26_and_30'], $data['count_between_31_and_35'], $data['count_between_36_and_40'], $data['count_more_than_50'], $data['count_less_than_20']),
-        'backgroundColor' => array('#0073b7', '#ff851b', '#d2d6de', '#f39c12', '#001f3f', '#00a65a'),
-        'labels'             => array('21 - 25 ปี', '26 - 30 ปี', '31 - 35 ปี', '36 - 40 ปี', '51 ปี ขึ้นไป', 'ต่ำกว่า 20 ปี'),
-    );
+    private function set_piechart_values($data)
+    {
+        $results = array(
+            'data'            => array($data['count_between_21_and_25'], $data['count_between_26_and_30'], $data['count_between_31_and_35'], $data['count_between_36_and_40'], $data['count_more_than_50'], $data['count_less_than_20']),
+            'backgroundColor' => array('#0073b7', '#ff851b', '#d2d6de', '#f39c12', '#001f3f', '#00a65a'),
+            'labels'          => array('21 - 25 ปี', '26 - 30 ปี', '31 - 35 ปี', '36 - 40 ปี', '51 ปี ขึ้นไป', 'ต่ำกว่า 20 ปี'),
+        );
 
-      return json_encode($results);
+        return json_encode($results);
     }
 
-    private function set_barchart_values_status($data) {
-      $results = array(
-        'data' =>array($data['count_gov_officer'], $data['count_student'], $data['count_student2'], $data['count_general_people'], $data['count_teacher']),
-        'labels'             => array('ข้าราชการ/พนักงาน/ลูกจ้าง', 'นักเรียน', 'นักศึกษา', 'บุคคลทั่วไป', 'อาจารย์'),
-        'type'=>'horizontalBar',
-        'dataset_label'=>'สถานะ',
-        'backgroundColor'=>'#0073b7'
-      );
-          
-      return json_encode($results);
+    private function set_barchart_values_status($data)
+    {
+        $results = array(
+            'data'            => array($data['count_gov_officer'], $data['count_student'], $data['count_student2'], $data['count_general_people'], $data['count_teacher']),
+            'labels'          => array('ข้าราชการ/พนักงาน/ลูกจ้าง', 'นักเรียน', 'นักศึกษา', 'บุคคลทั่วไป', 'อาจารย์'),
+            'type'            => 'horizontalBar',
+            'dataset_label'   => 'สถานะ',
+            'backgroundColor' => '#0073b7',
+        );
+
+        return json_encode($results);
     }
 
-    private function set_barchart_values_points($data) {
-      $results = array(
-        'data' =>array($data['very_good'], $data['good'], $data['normal']),
-        'labels'             => array('มากที่สุด', 'มาก', 'ปานกลาง'),
-        'type'=>'bar',
-        'dataset_label'=>$data['dataset_label'],
-        'backgroundColor'=>'#0073b7'
-      );
-      
-      return json_encode($results);
+    private function set_barchart_values_points($data)
+    {
+        $results = array(
+            'data'            => array($data['very_good'], $data['good'], $data['normal']),
+            'labels'          => array('มากที่สุด', 'มาก', 'ปานกลาง'),
+            'type'            => 'bar',
+            'dataset_label'   => $data['dataset_label'],
+            'backgroundColor' => '#0073b7',
+        );
+
+        return json_encode($results);
     }
 
     private function summary_counts_for_evaluations_report($data)
     {
-      $data['count_male'] = $this->filterpeoples->filter($data['results'], 'male', 'gender');
+        $data['count_male'] = $this->filterpeoples->filter($data['results'], 'male', 'gender');
         $data['count_female'] = $this->filterpeoples->filter($data['results'], 'female', 'gender');
 
         $data['count_less_than_20'] = $this->filterpeoples->filter($data['results'], 'less_than_20', 'age');
@@ -127,7 +130,7 @@ class Report_evaluations extends CI_Controller
         $data['count_more_than_50'] = $this->filterpeoples->filter($data['results'], 'more_than_50', 'age');
         $data['count_all_age'] = $data['rows'];
         $data['piechart_values_between_ages'] = $this->set_piechart_values($data);
-        
+
         // นักเรียน
         $data['count_student'] = $this->filterpeoples->filter($data['results'], 1, 'personal_id');
         // นักศึกษา
@@ -145,16 +148,16 @@ class Report_evaluations extends CI_Controller
         // บุคลากรภายนอก
         $data['count_outside_people'] = $this->filterpeoples->filter($data['results'], 8, 'personal_id');
         $data['barchart_values_status'] = $this->set_barchart_values_status($data);
-        
+
         // ประสิทธิภาพและสมรรถนะการปฏิบัติหน้าที่
         $data['count_performance_very_good'] = $this->filterpeoples->filter($data['results'], 5, 'performance');
         $data['count_performance_good'] = $this->filterpeoples->filter($data['results'], 4, 'performance');
         $data['count_performance_normal'] = $this->filterpeoples->filter($data['results'], 3, 'performance');
         $obj_performance = array(
-          'very_good'=>$data['count_performance_very_good'],
-          'good'=>$data['count_performance_good'],
-          'normal'=>$data['count_performance_very_good'],
-          'dataset_label'=>'ประสิทธิภาพและสมรรถนะการปฏิบัติหน้าที่',
+            'very_good'     => $data['count_performance_very_good'],
+            'good'          => $data['count_performance_good'],
+            'normal'        => $data['count_performance_very_good'],
+            'dataset_label' => 'ประสิทธิภาพและสมรรถนะการปฏิบัติหน้าที่',
         );
 
         $data['barchart_values_performance'] = $this->set_barchart_values_points($obj_performance);
@@ -164,10 +167,10 @@ class Report_evaluations extends CI_Controller
         $data['count_success_good'] = $this->filterpeoples->filter($data['results'], 4, 'success');
         $data['count_success_normal'] = $this->filterpeoples->filter($data['results'], 3, 'success');
         $obj_success = array(
-          'very_good'=>$data['count_success_very_good'],
-          'good'=>$data['count_success_good'],
-          'normal'=>$data['count_success_normal'],
-          'dataset_label'=>'สำเร็จลุล่วง บรรลุตามวัตถุประสงค์',
+            'very_good'     => $data['count_success_very_good'],
+            'good'          => $data['count_success_good'],
+            'normal'        => $data['count_success_normal'],
+            'dataset_label' => 'สำเร็จลุล่วง บรรลุตามวัตถุประสงค์',
         );
 
         $data['barchart_values_success'] = $this->set_barchart_values_points($obj_success);
@@ -176,27 +179,52 @@ class Report_evaluations extends CI_Controller
         $data['count_timeline_very_good'] = $this->filterpeoples->filter($data['results'], 5, 'timeline');
         $data['count_timeline_good'] = $this->filterpeoples->filter($data['results'], 4, 'timeline');
         $data['count_timeline_normal'] = $this->filterpeoples->filter($data['results'], 3, 'timeline');
+        $obj_timeline = array(
+            'very_good'     => $data['count_timeline_very_good'],
+            'good'          => $data['count_timeline_good'],
+            'normal'        => $data['count_timeline_normal'],
+            'dataset_label' => 'รวดเร็ว ตรงตามเวลาที่กำหนด',
+        );
+
+        $data['barchart_values_timeline'] = $this->set_barchart_values_points($obj_timeline);
 
         // มีขั้นตอนการให้บริการและการจัดการที่ชัดเจน
         $data['count_service_clear_very_good'] = $this->filterpeoples->filter($data['results'], 5, 'service_clear');
         $data['count_service_clear_good'] = $this->filterpeoples->filter($data['results'], 4, 'service_clear');
         $data['count_service_clear_normal'] = $this->filterpeoples->filter($data['results'], 3, 'service_clear');
-        
+        $obj_service_clear = array(
+          'very_good'     => $data['count_service_clear_very_good'],
+          'good'          => $data['count_service_clear_good'],
+          'normal'        => $data['count_service_clear_normal'],
+          'dataset_label' => 'มีขั้นตอนการให้บริการและการจัดการที่ชัดเจน',
+        );
+
+        $data['barchart_values_service_clear'] = $this->set_barchart_values_points($obj_service_clear);
+
         // วัสดุ อุปกรณ์ เครื่องมือ ในการให้บริการครบครัน
         $data['count_materials_very_good'] = $this->filterpeoples->filter($data['results'], 5, 'materials');
         $data['count_materials_good'] = $this->filterpeoples->filter($data['results'], 4, 'materials');
         $data['count_materials_normal'] = $this->filterpeoples->filter($data['results'], 3, 'materials');
 
+        $obj_materials = array(
+          'very_good'     => $data['count_materials_very_good'],
+          'good'          => $data['count_materials_good'],
+          'normal'        => $data['count_materials_normal'],
+          'dataset_label' => 'มีขั้นตอนการให้บริการและการจัดการที่ชัดเจน',
+        );
+
+        $data['barchart_values_materials'] = $this->set_barchart_values_points($obj_materials);
+        
         // การให้บริการกริยา วาจา ที่เป็นมิตร
         $data['count_servicemind_very_good'] = $this->filterpeoples->filter($data['results'], 5, 'servicemind');
         $data['count_servicemind_good'] = $this->filterpeoples->filter($data['results'], 4, 'servicemind');
         $data['count_servicemind_normal'] = $this->filterpeoples->filter($data['results'], 3, 'servicemind');
-        
+
         // ความสามารถในการถ่ายทอดและการแนะนำให้ทราบถึงการใช้บริการด้านการรักษาความปลอดภัยและการจราจร
         $data['count_communication_very_good'] = $this->filterpeoples->filter($data['results'], 5, 'communication');
         $data['count_communication_good'] = $this->filterpeoples->filter($data['results'], 4, 'communication');
         $data['count_communication_normal'] = $this->filterpeoples->filter($data['results'], 3, 'communication');
-        
+
         // ความรอบรู้ทักษะ องค์ความรู้และการแนะนำให้ทราบถึงการใช้บริการด้านการรักษาความปลอดภัยและการจราจร
         $data['count_knowlage_very_good'] = $this->filterpeoples->filter($data['results'], 5, 'knowlage');
         $data['count_knowlage_good'] = $this->filterpeoples->filter($data['results'], 4, 'knowlage');

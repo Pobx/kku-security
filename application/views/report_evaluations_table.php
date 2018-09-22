@@ -107,7 +107,10 @@ echo $value['comment'];
 
 	<?php 
     $this->load->view('report_evaluations_donut_chart');
-    $this->load->view('report_evaluations_status_bar_chart');
-    $this->load->view('report_evaluations_performance_bar_chart');
-    $this->load->view('report_evaluations_success_bar_chart');
+    $this->load->view('report_evaluations_bar_chart_status');
+    $this->load->view('report_evaluations_bar_chart_performance');
+    $this->load->view('report_evaluations_bar_chart_success');
+    $this->load->view('report_evaluations_bar_chart_timeline');
+    $this->load->view('report_evaluations_bar_chart_service_clear');
+    $this->load->view('report_evaluations_bar_chart_materials');
   ?>
