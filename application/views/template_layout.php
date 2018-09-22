@@ -308,6 +308,7 @@ echo 'ขณะนี้เวลา  ' . $now_date;
 	<script src="<?php echo base_url('dist/js/adminlte.min.js'); ?>"></script>
 	<script>
 		$(function () {
+			Chart.defaults.global.defaultFontFamily = "'Kanit', sans-serif";
 			var pie_chart_display = '<?php echo $pie_chart_display;?>';
 
 			if (pie_chart_display == 'on') {

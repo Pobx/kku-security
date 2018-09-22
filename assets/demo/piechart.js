@@ -2,6 +2,7 @@
 // - PIE CHART -
 // -------------
 function myPieChart(data, render) {
+  var maxValue = Math.max.apply(null, data.data);
 	var ctx = $(render).get(0).getContext('2d');
 	var config = {
 		type: 'pie',
@@ -12,9 +13,19 @@ function myPieChart(data, render) {
 				label: 'Dataset 1'
 			}],
 			labels: data.labels
-		},
+    },
+    
 		options: {
-			responsive: true
+      responsive: true,
+      // scales: {
+			// 	yAxes: [{
+			// 		ticks: {
+			// 			max: maxValue,
+			// 			min: 0,
+			// 			stepSize: 10
+			// 		}
+			// 	}]
+			// },
 		}
 	};
 	new Chart(ctx, config);
