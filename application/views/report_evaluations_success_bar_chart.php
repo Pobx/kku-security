@@ -9,7 +9,7 @@
 	</div>
 	<div class="box-body">
 		<div class="chart">
-			<canvas id="bar_chart_performance" style="height:250px"></canvas>
+			<canvas id="bar_chart_success" style="height:250px"></canvas>
 		</div>
 	</div>
 </div>

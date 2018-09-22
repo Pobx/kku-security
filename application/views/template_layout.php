@@ -192,6 +192,7 @@ echo $head_sub_topic_label;
         $piechart_values_between_ages = (isset($piechart_values_between_ages)? $piechart_values_between_ages : json_encode(array()));
         $barchart_values_status = (isset($barchart_values_status)? $barchart_values_status : json_encode(array()));
         $barchart_values_performance = (isset($barchart_values_performance)? $barchart_values_performance : json_encode(array()));
+        $barchart_values_success = (isset($barchart_values_success)? $barchart_values_success : json_encode(array()));
         
         $count_accidents = (isset($count_accidents)? $count_accidents : 0);
         $count_break_homes = (isset($count_break_homes)? $count_break_homes : 0);
@@ -326,12 +327,15 @@ echo 'ขณะนี้เวลา  ' . $now_date;
 				var piechart_values_between_ages = '<?php echo $piechart_values_between_ages;?>';
 				var barchart_values_status = '<?php echo $barchart_values_status;?>';
 				var barchart_values_performance = '<?php echo $barchart_values_performance;?>';
+				var barchart_values_success = '<?php echo $barchart_values_success;?>';
+
 				// piechart_values_between_ages = JSON.parse(piechart_values_between_ages);
 
 				console.log(JSON.parse(barchart_values_status));
 				myPieChart(JSON.parse(piechart_values_between_ages), '#pieChartEvaluations');
 				myBarChart(JSON.parse(barchart_values_status), '#barChart');
 				myBarChart(JSON.parse(barchart_values_performance), '#bar_chart_performance');
+				myBarChart(JSON.parse(barchart_values_success), '#bar_chart_success');
 
 			}
 

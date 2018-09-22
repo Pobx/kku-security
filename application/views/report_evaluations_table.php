@@ -109,4 +109,5 @@ echo $value['comment'];
     $this->load->view('report_evaluations_donut_chart');
     $this->load->view('report_evaluations_status_bar_chart');
     $this->load->view('report_evaluations_performance_bar_chart');
+    $this->load->view('report_evaluations_success_bar_chart');
   ?>

@@ -150,19 +150,27 @@ class Report_evaluations extends CI_Controller
         $data['count_performance_very_good'] = $this->filterpeoples->filter($data['results'], 5, 'performance');
         $data['count_performance_good'] = $this->filterpeoples->filter($data['results'], 4, 'performance');
         $data['count_performance_normal'] = $this->filterpeoples->filter($data['results'], 3, 'performance');
-        $obj = array(
+        $obj_performance = array(
           'very_good'=>$data['count_performance_very_good'],
           'good'=>$data['count_performance_good'],
           'normal'=>$data['count_performance_very_good'],
           'dataset_label'=>'ประสิทธิภาพและสมรรถนะการปฏิบัติหน้าที่',
         );
 
-        $data['barchart_values_performance'] = $this->set_barchart_values_points($obj);
+        $data['barchart_values_performance'] = $this->set_barchart_values_points($obj_performance);
 
         // สำเร็จลุล่วง บรรลุตามวัตถุประสงค์
         $data['count_success_very_good'] = $this->filterpeoples->filter($data['results'], 5, 'success');
         $data['count_success_good'] = $this->filterpeoples->filter($data['results'], 4, 'success');
         $data['count_success_normal'] = $this->filterpeoples->filter($data['results'], 3, 'success');
+        $obj_success = array(
+          'very_good'=>$data['count_success_very_good'],
+          'good'=>$data['count_success_good'],
+          'normal'=>$data['count_success_normal'],
+          'dataset_label'=>'สำเร็จลุล่วง บรรลุตามวัตถุประสงค์',
+        );
+
+        $data['barchart_values_performance'] = $this->set_barchart_values_points($obj_success);
 
         // รวดเร็ว ตรงตามเวลาที่กำหนด
         $data['count_timeline_very_good'] = $this->filterpeoples->filter($data['results'], 5, 'timeline');
