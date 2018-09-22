@@ -257,6 +257,14 @@ class Report_evaluations extends CI_Controller
         $data['count_questions_very_good'] = $this->filterpeoples->filter($data['results'], 5, 'questions');
         $data['count_questions_good'] = $this->filterpeoples->filter($data['results'], 4, 'questions');
         $data['count_questions_normal'] = $this->filterpeoples->filter($data['results'], 3, 'questions');
+        $obj_questions = array(
+          'very_good'     => $data['count_questions_very_good'],
+          'good'          => $data['count_questions_good'],
+          'normal'        => $data['count_questions_normal'],
+          'dataset_label' => 'การรับฟัง ปัญหา ข้อซักถาม และการแสดงความคิดเห็นต่าง ๆ ต่อการใช้บริการด้านการรักษาความปลอดภัย มข. โดยภาพรวม',
+        );
+
+        $data['barchart_values_questions'] = $this->set_barchart_values_points($obj_questions);
 
         // การให้คำแนะนำ เสนอแนวทาง การแก้ไขปัญหาและติดตามความคืบหน้าจากการขอใช้บริกา
         $data['count_followup_very_good'] = $this->filterpeoples->filter($data['results'], 5, 'followup');

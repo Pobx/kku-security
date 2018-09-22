@@ -116,5 +116,6 @@ echo $value['comment'];
     $this->load->view('report_evaluations_bar_chart_servicemind');
     $this->load->view('report_evaluations_bar_chart_communication');
     $this->load->view('report_evaluations_bar_chart_knowlage');
+    $this->load->view('report_evaluations_bar_chart_questions');
     
   ?>
