@@ -290,6 +290,7 @@ echo 'ขณะนี้เวลา  ' . $now_date;
 	<script>
 		$(function () {
 			var pie_chart_display = '<?php echo $pie_chart_display;?>';
+
 			if (pie_chart_display == 'on') {
 				var pie_chart_data = {
 					count_accidents: '<?php echo $count_accidents;?>',
@@ -303,11 +304,10 @@ echo 'ขณะนี้เวลา  ' . $now_date;
 				pie_chart_summary_incidence(pie_chart_data)
 			}
 
-
 			var bar_chart_data = '<?php echo $bar_chart_data;?>';
 
 			bar_chart_data = JSON.parse(bar_chart_data);
-			// console.log(bar_chart_data);
+			// console.log(bar_chart_data.length);
 			if (bar_chart_data.length > 0) {
 				bar_chart_monthly(bar_chart_data);
 			}
@@ -369,8 +369,21 @@ echo 'ขณะนี้เวลา  ' . $now_date;
 			// Input mask
 			$('[data-mask]').inputmask();
 
-			//Initialize Select2 Elements
-			$('.select2').select2()
+			// Initialize Select2 Elements
+			$('.select2').select2();
+
+			// active side menu
+			var controller_link = '<?php echo $this->uri->segment(1);?>';
+
+			console.log(controller_link);
+			$('li#' + controller_link).addClass('active');
+
+			if (controller_link.search('report') != -1) {
+				$('#reports').addClass('active');
+			} else if (controller_link.search('users') != -1) {
+				$('#setting').addClass('active');
+			}
+
 		});
 
 		function removeItem(id, url, flag = '') {
@@ -386,30 +399,3 @@ echo 'ขณะนี้เวลา  ' . $now_date;
 </body>
 
 </html>
-
-
-<script>
-	$(document).ready(function () {
-		data = {
-			datasets: [{
-				data: [10, 20, 30]
-			}],
-
-			// These labels appear in the legend and in the tooltips when hovering different arcs
-			labels: [
-				'Red',
-				'Yellow',
-				'Blue'
-			]
-		};
-
-		var pieChartCanvas = $('#myChart').get(0).getContext('2d');
-		var myPieChart = new Chart(pieChartCanvas, {
-			type: 'pie',
-			data: data,
-			options: options
-		});
-
-	})
-
-</script>
