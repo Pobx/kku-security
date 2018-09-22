@@ -20,6 +20,7 @@ class Report_evaluations extends CI_Controller
     public function index()
     {
         $inputs = $this->input->post();
+        $data['my_pie_chart'] = 'on';
         $data['start_date'] = '01/01/2561';
         $data['end_date'] = '01/01/2562';
         

@@ -188,6 +188,7 @@ echo $head_sub_topic_label;
 				<?php
         $bar_chart_data = (isset($bar_chart_data)? $bar_chart_data : json_encode(array()));
         $pie_chart_display = (isset($pie_chart_display)? $pie_chart_display : 'off');
+        $my_pie_chart = (isset($my_pie_chart)? $my_pie_chart : 'off');
 
         $count_accidents = (isset($count_accidents)? $count_accidents : 0);
         $count_break_homes = (isset($count_break_homes)? $count_break_homes : 0);
@@ -284,6 +285,7 @@ echo 'ขณะนี้เวลา  ' . $now_date;
 	<!-- my demo -->
 	<script src="<?php echo base_url('assets/demo/dashboard_admin_donut_chart.js'); ?>"></script>
 	<script src="<?php echo base_url('assets/demo/dashboard_admin_bar_chart_monthly.js'); ?>"></script>
+	<script src="<?php echo base_url('assets/demo/piechart.js'); ?>"></script>
 
 	<!-- AdminLTE App -->
 	<script src="<?php echo base_url('dist/js/adminlte.min.js'); ?>"></script>
@@ -312,6 +314,10 @@ echo 'ขณะนี้เวลา  ' . $now_date;
 				bar_chart_monthly(bar_chart_data);
 			}
 
+			var my_pie_chart = '<?php echo $my_pie_chart;?>';
+			if (my_pie_chart == 'on') {
+
+			}
 			// $('.mydataTable tfoot th').each(function () {
 			// 	var title = $(this).text();
 			// 	$(this).append('<br /><input type="text" class="form-control" placeholder="ค้นหา... ' + title + '" />');
