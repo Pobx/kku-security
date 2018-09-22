@@ -312,14 +312,14 @@ echo 'ขณะนี้เวลา  ' . $now_date;
 
 			if (pie_chart_display == 'on') {
 				var pie_chart_data = {
-					data: {
-						count_accidents: '<?php echo $count_accidents;?>',
-						count_break_homes: '<?php echo $count_break_homes;?>',
-						count_security_home: '<?php echo $count_security_home;?>',
-						count_vehicles_forget_key: '<?php echo $count_vehicles_forget_key;?>',
-						count_break_motorcycle_pad: '<?php echo $count_break_motorcycle_pad;?>',
-						count_student_do_not_wear_helmet: '<?php echo $count_student_do_not_wear_helmet;?>',
-					},
+					data: [
+						'<?php echo $count_accidents;?>',
+						'<?php echo $count_break_homes;?>',
+						'<?php echo $count_security_home;?>',
+						'<?php echo $count_vehicles_forget_key;?>',
+						'<?php echo $count_break_motorcycle_pad;?>',
+						'<?php echo $count_student_do_not_wear_helmet;?>'
+					],
 					backgroundColor: [
 						'#dd4b39',
 						'#00a65a',
@@ -337,9 +337,9 @@ echo 'ขณะนี้เวลา  ' . $now_date;
 						'สถิติไม่สวมหมวกนิรภัย',
 					]
 				}
-
+				console.log(pie_chart_data)
 				// pie_chart_summary_incidence(pie_chart_data)
-				myPieChart(pie_chart_data, '#pieChart');
+				myPieChart(pie_chart_data, '#dashboard_piechart');
 			}
 
 			var bar_chart_data = '<?php echo $bar_chart_data;?>';

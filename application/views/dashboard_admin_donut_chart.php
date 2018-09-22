@@ -14,20 +14,10 @@
 
 			<div class="box-body">
 				<div class="row">
-					<div class="col-md-8">
-						<div class="chart-responsive">
-							<canvas id="pieChart" height="250"></canvas>
+					<div class="col-md-12">
+						<div class="chart">
+							<canvas id="dashboard_piechart" style="height:250px"></canvas>
 						</div>
-					</div>
-					<div class="col-md-4">
-						<ul class="chart-legend clearfix">
-							<li><i class="fa fa-circle-o text-red"></i> สถิติอุบัติเหตุ</li>
-							<li><i class="fa fa-circle-o text-green"></i> โครงการฝากบ้าน</li>
-							<li><i class="fa fa-circle-o text-aqua"></i> สถิติการลืมกุญแจ</li>
-							<li><i class="fa fa-circle-o text-yellow"></i> สถิติเหตุทรัพย์งัดที่พักอาศัย</li>
-							<li><i class="fa fa-circle-o text-orange"></i> สถิติงัดเบาะรถจักยานยนต์</li>
-							<li><i class="fa fa-circle-o text-blue"></i> สถิติไม่สวมหมวกนิรภัย</li>
-						</ul>
 					</div>
 				</div>
 			</div>
