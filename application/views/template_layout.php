@@ -186,7 +186,7 @@ echo $head_sub_topic_label;
 				<?php }?>
 
 				<?php
-        $bar_chart_data = (isset($bar_chart_data)? $bar_chart_data : json_encode(array()));
+        $bar_chart_data = (isset($bar_chart_data)? $bar_chart_data : 'off');
         $pie_chart_display = (isset($pie_chart_display)? $pie_chart_display : 'off');
         $reports_evaluations_dispaly = (isset($reports_evaluations_dispaly)? $reports_evaluations_dispaly : 'off');
         $piechart_values_between_ages = (isset($piechart_values_between_ages)? $piechart_values_between_ages : json_encode(array()));
@@ -324,11 +324,11 @@ echo 'ขณะนี้เวลา  ' . $now_date;
 			}
 
 			var bar_chart_data = '<?php echo $bar_chart_data;?>';
-
 			bar_chart_data = JSON.parse(bar_chart_data);
+			console.log(bar_chart_data)
 			// console.log(bar_chart_data.length);
-			if (bar_chart_data.length > 0) {
-				bar_chart_monthly(bar_chart_data);
+			if (bar_chart_data != 'off') {
+				myBarChart(bar_chart_data, '#barChart');
 			}
 
 			var reports_evaluations_dispaly = '<?php echo $reports_evaluations_dispaly;?>';

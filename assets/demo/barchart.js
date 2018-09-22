@@ -24,6 +24,7 @@ function myBarChart(data, render) {
 			},
 			responsive: true,
 			legend: {
+        display: false,
 				position: 'bottom',
 			},
 			title: {
