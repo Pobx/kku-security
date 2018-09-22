@@ -318,7 +318,6 @@ echo 'ขณะนี้เวลา  ' . $now_date;
 			if (my_pie_chart == 'on') {
 				var piechart_values_between_ages = '<?php echo $piechart_values_between_ages;?>';
 				piechart_values_between_ages = JSON.parse(piechart_values_between_ages);
-				console.log(piechart_values_between_ages);
 				myPieChart(piechart_values_between_ages, '#pieChartEvaluations');
 			}
 
@@ -385,7 +384,6 @@ echo 'ขณะนี้เวลา  ' . $now_date;
 			// active side menu
 			var controller_link = '<?php echo $this->uri->segment(1);?>';
 
-			console.log(controller_link);
 			$('li#' + controller_link).addClass('active');
 
 			if (controller_link.search('report') != -1) {
