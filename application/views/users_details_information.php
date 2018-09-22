@@ -7,8 +7,8 @@
 			<?php foreach ($roles_lists as $key => $value)
 {
     ?>
-			<option value="<?php echo $value['id']; ?>">
-				<?php echo $value['name']; ?>
+			<option value="<?php echo $value;?>">
+				<?php echo $value;?>
 			</option>
 			<?php }?>
 		</select>
@@ -16,42 +16,25 @@
 </div>
 
 <div class="form-group">
-	<label for="status_inspect" class="col-sm-2 control-label">สถานะ</label>
+	<label for="name" class="col-sm-2 control-label">ชื่อ - สกุล</label>
 
 	<div class="col-sm-4">
-		<div class="form-group">
-			<div class="radio">
-				<label>
-					<input type="radio" name="status_inspect" id="status_inspect" class="flat-red" value="normal" <?php if
-					 ($status_inspect=='normal' ) { echo 'checked' ;}?>>
-					ปกติ
-				</label>
-			</div>
-			<div class="radio">
-				<label>
-					<input type="radio" name="status_inspect" id="status_inspect2" class="flat-red" value="abnormal" <?php if
-					 ($status_inspect=='abnormal' ) { echo 'checked' ;}?>>
-					ไม่ปกติ
-				</label>
-			</div>
-
-		</div>
+		<input type="text" class="form-control" id="name" name="name" placeholder="ชื่อ - สกุล" value="<?php echo $name; ?>">
 	</div>
 </div>
 
 <div class="form-group">
-	<label for="remark" class="col-sm-2 control-label">หมายเหตุ</label>
+	<label for="username" class="col-sm-2 control-label">Username</label>
 
 	<div class="col-sm-4">
-		<textarea class="form-control" id="comment" name="comment"><?php echo $comment; ?></textarea>
+		<input type="text" class="form-control" id="username" name="username" placeholder="Username" value="<?php echo $username; ?>">
 	</div>
 </div>
 
 <div class="form-group">
-	<label for="username" class="col-sm-2 control-label">รหัส</label>
+	<label for="passwords" class="col-sm-2 control-label">Passwords</label>
 
 	<div class="col-sm-4">
-		<input type="number" class="form-control" id="username" name="username" placeholder="รหัส" value="<?php echo $inspector_username; ?>">
+		<input type="text" class="form-control" id="passwords" name="passwords" placeholder="Passwords" value="">
 	</div>
-
 </div>

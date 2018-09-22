@@ -20,7 +20,7 @@ class Users extends CI_Controller
     private $success_message            = 'บันทึกข้อมูลสำเร็จ';
     private $warning_message            = 'ไม่สามารถทำรายการ กรุณลองใหม่อีกครั้ง';
     private $danger_message             = 'ลบข้อมูลสำเร็จ';
-    
+    private $roles_lists = array('admin', 'security');
 
     public function index()
     {
@@ -48,20 +48,12 @@ class Users extends CI_Controller
         $sess_data = $this->session->userdata();
         $id = $this->uri->segment(3);
         $data = $this->find($id);
-        $qstr_redbox_place = array('status'=>'active');
-        $results_redbox_place = $this->Redbox_place_model->all($qstr_redbox_place);
-        
-        $data['results_redbox_place'] = $results_redbox_place['results'];
 
+        $data['roles_lists'] = $this->roles_lists;
         $data['head_topic_label'] = $this->head_topic_label;
         $data['head_sub_topic_label'] = $this->head_sub_topic_label_form;
-        $data['link_back_to_table'] = site_url('redbox');
-        $data['form_submit_data_url'] = site_url('redbox/store');
-        $data['roles'] = $sess_data['roles'];
-        
-        if ($sess_data['roles'] =='security') {
-          $data['user_id'] = $sess_data['id'];
-        }
+        $data['link_back_to_table'] = site_url('users');
+        $data['form_submit_data_url'] = site_url('users/store');
 
         $data['content'] = 'users_form_store';
 
@@ -71,19 +63,12 @@ class Users extends CI_Controller
 
     public function store()
     {
-        $sess_data = $this->session->userdata();
+        
         $inputs = $this->input->post();
         $inputs['inspect_date'] = date("Y-m-d H:i:s");
 
-        $qstr_users = array('username'=>$inputs['username']);
-        $results = $this->Users_model->all($qstr_users);
-        $user_id = (isset($results['results'][0]['id'])? $results['results'][0]['id'] : NULL);
-        $inputs['user_id'] = $user_id;
-        // echo "<pre>", print_r($results); exit();
-        unset($inputs['username']);
-
         // echo "<pre>", print_r($inputs); exit();
-        $results = $this->Redbox_inspect_transaction_model->store($inputs);
+        $results = $this->Users_model->store($inputs);
 
         $alert_type = ($results['query'] ? 'success' : 'warning');
         $alert_icon = ($results['query'] ? 'check' : 'warning');
@@ -92,13 +77,12 @@ class Users extends CI_Controller
         $this->session->set_flashdata('alert_icon', $alert_icon);
         $this->session->set_flashdata('alert_message', $alert_message);
       
-        $redirect_page = ($sess_data['roles'] =='security'? 'redbox/form_store' : 'redbox');
-        redirect($redirect_page);
+        redirect('users');
     }
 
     private function find($id = 0)
     {
-        $results = $this->Redbox_inspect_transaction_model->find($id);
+        $results = $this->Users_model->find($id);
         $values = $results['results'];
         $fields = $results['fields'];
         $rows = $results['rows'];
@@ -122,7 +106,7 @@ class Users extends CI_Controller
     public function remove()
     {
         $id = $this->uri->segment(3);
-        $results = $this->Redbox_inspect_transaction_model->remove($id);
+        $results = $this->Users_model->remove($id);
 
         $alert_type = ($results['query'] ? 'danger' : 'warning');
         $alert_icon = ($results['query'] ? 'trash' : 'warning');
