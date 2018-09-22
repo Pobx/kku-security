@@ -90,6 +90,30 @@ class Report_evaluations extends CI_Controller
         'color'=>'#ff851b',
         'highlight'=>'#ff851b',
         'label'=>'26 - 30 ปี'
+        ),
+        array(
+          'value'=>$data['count_between_31_and_35'],
+        'color'=>'#d2d6de',
+        'highlight'=>'#d2d6de',
+        'label'=>'31 - 35 ปี'
+        ),
+        array(
+          'value'=>$data['count_between_36_and_40'],
+        'color'=>'#f39c12',
+        'highlight'=>'#f39c12',
+        'label'=>'36 - 40 ปี'
+        ),
+        array(
+          'value'=>$data['count_more_than_50'],
+        'color'=>'#001f3f',
+        'highlight'=>'#001f3f',
+        'label'=>'51 ปี ขึ้นไป'
+        ),
+        array(
+          'value'=>$data['count_less_than_20'],
+        'color'=>'#00a65a',
+        'highlight'=>'#00a65a',
+        'label'=>'ต่ำกว่า 20 ปี'
         )
       );
 

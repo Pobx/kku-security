@@ -6,13 +6,6 @@
 var pieChartCanvas = $(render).get(0).getContext('2d');
 var pieChart = new Chart(pieChartCanvas);
 var PieData = data;
-// var PieData = [{
-//     value: pie_chart_data.count_accidents,
-//     color: '#dd4b39',
-//     highlight: '#dd4b39',
-//     label: 'สถิติอุบัติเหตุ'
-//   }
-// ];
 
 var pieOptions = {
   // Boolean - Whether we should show a stroke on each segment
