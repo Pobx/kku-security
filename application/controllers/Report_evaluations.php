@@ -21,6 +21,7 @@ class Report_evaluations extends CI_Controller
     {
         $inputs = $this->input->post();
         $data['my_pie_chart'] = 'on';
+        $data['reports_evaluations_dispaly'] = 'on';
         $data['start_date'] = '01/01/2561';
         $data['end_date'] = '01/01/2562';
         
@@ -87,6 +88,15 @@ class Report_evaluations extends CI_Controller
       return json_encode($results);
     }
 
+    private function set_barchart_values_status($data) {
+      $results = array(
+        'data' =>array($data['count_gov_officer'], $data['count_student'], $data['count_student2'], $data['count_general_people'], $data['count_teacher']),
+        'labels'             => array('ข้าราชการ/พนักงาน/ลูกจ้าง', 'นักเรียน', 'นักศึกษา', 'บุคคลทั่วไป', 'อาจารย์'),
+      );
+          
+      return json_encode($results);
+    }
+
     private function summary_counts_for_evaluations_report($data)
     {
       $data['count_male'] = $this->filterpeoples->filter($data['results'], 'male', 'gender');
@@ -103,7 +113,7 @@ class Report_evaluations extends CI_Controller
         $data['count_all_age'] = $data['rows'];
         $data['piechart_values_between_ages'] = $this->set_piechart_values($data);
         
-        // นักเรียน        
+        // นักเรียน
         $data['count_student'] = $this->filterpeoples->filter($data['results'], 1, 'personal_id');
         // นักศึกษา
         $data['count_student2'] = $this->filterpeoples->filter($data['results'], 2, 'personal_id');
@@ -119,6 +129,7 @@ class Report_evaluations extends CI_Controller
         $data['count_inside_people'] = $this->filterpeoples->filter($data['results'], 7, 'personal_id');
         // บุคลากรภายนอก
         $data['count_outside_people'] = $this->filterpeoples->filter($data['results'], 8, 'personal_id');
+        $data['barchart_values_status'] = $this->set_barchart_values_status($data);
         
         // ประสิทธิภาพและสมรรถนะการปฏิบัติหน้าที่
         $data['count_performance_very_good'] = $this->filterpeoples->filter($data['results'], 5, 'performance');

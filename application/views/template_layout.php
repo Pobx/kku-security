@@ -188,9 +188,10 @@ echo $head_sub_topic_label;
 				<?php
         $bar_chart_data = (isset($bar_chart_data)? $bar_chart_data : json_encode(array()));
         $pie_chart_display = (isset($pie_chart_display)? $pie_chart_display : 'off');
-        $my_pie_chart = (isset($my_pie_chart)? $my_pie_chart : 'off');
+        $reports_evaluations_dispaly = (isset($reports_evaluations_dispaly)? $reports_evaluations_dispaly : 'off');
         $piechart_values_between_ages = (isset($piechart_values_between_ages)? $piechart_values_between_ages : json_encode(array()));
-
+        $barchart_values_status = (isset($barchart_values_status)? $barchart_values_status : json_encode(array()));
+        
         $count_accidents = (isset($count_accidents)? $count_accidents : 0);
         $count_break_homes = (isset($count_break_homes)? $count_break_homes : 0);
         $count_security_home = (isset($count_security_home)? $count_security_home : 0);
@@ -319,15 +320,17 @@ echo 'ขณะนี้เวลา  ' . $now_date;
 				bar_chart_monthly(bar_chart_data);
 			}
 
-			var my_pie_chart = '<?php echo $my_pie_chart;?>';
-			if (my_pie_chart == 'on') {
+			var reports_evaluations_dispaly = '<?php echo $reports_evaluations_dispaly;?>';
+			if (reports_evaluations_dispaly == 'on') {
 				var piechart_values_between_ages = '<?php echo $piechart_values_between_ages;?>';
-				piechart_values_between_ages = JSON.parse(piechart_values_between_ages);
-				console.log(piechart_values_between_ages);
-				myPieChart(piechart_values_between_ages, '#pieChartEvaluations');
+				var barchart_values_status = '<?php echo $barchart_values_status;?>';
+				// piechart_values_between_ages = JSON.parse(piechart_values_between_ages);
+
+				console.log(JSON.parse(piechart_values_between_ages));
+				myPieChart(JSON.parse(piechart_values_between_ages), '#pieChartEvaluations');
+				myBarChart(JSON.parse(barchart_values_status), '#barChart');
 			}
 
-			myBarChart('', '#barChart');
 			// $('.mydataTable tfoot th').each(function () {
 			// 	var title = $(this).text();
 			// 	$(this).append('<br /><input type="text" class="form-control" placeholder="ค้นหา... ' + title + '" />');

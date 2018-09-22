@@ -4,7 +4,8 @@
 function myBarChart(data, render) {
   // function myBarChart(data, render, type) {
   var areaChartData = {
-    labels: ['มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน', 'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'],
+    // labels: ['มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน', 'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'],
+    labels: data.labels,
     datasets: [{
         // label: 'Electronics',
         // fillColor: 'rgba(60,141,188,0.9)',
@@ -13,8 +14,8 @@ function myBarChart(data, render) {
         // pointStrokeColor: '#c1c7d1',
         // pointHighlightFill: '#fff',
         // pointHighlightStroke: 'rgba(220,220,220,1)',
-        // data: bar_chart_data,
-        data: [65, 59, 80, 81, 56, 55, 40, 32, 59, 34, 90, 10],
+        // data: [65, 59, 80, 81, 56, 55, 40, 32, 59, 34, 90, 10],
+        data: data.data,
       },
     ],
   }
