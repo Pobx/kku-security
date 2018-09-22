@@ -197,8 +197,9 @@ echo $head_sub_topic_label;
         $barchart_values_service_clear = (isset($barchart_values_service_clear)? $barchart_values_service_clear : json_encode(array()));
         $barchart_values_materials = (isset($barchart_values_materials)? $barchart_values_materials : json_encode(array()));
         $barchart_values_servicemind = (isset($barchart_values_servicemind)? $barchart_values_servicemind : json_encode(array()));
+        $barchart_values_communication = (isset($barchart_values_communication)? $barchart_values_communication : json_encode(array()));
         
-
+        
         $count_accidents = (isset($count_accidents)? $count_accidents : 0);
         $count_break_homes = (isset($count_break_homes)? $count_break_homes : 0);
         $count_security_home = (isset($count_security_home)? $count_security_home : 0);
@@ -337,6 +338,7 @@ echo 'ขณะนี้เวลา  ' . $now_date;
 				var barchart_values_service_clear = '<?php echo $barchart_values_service_clear;?>';
 				var barchart_values_materials = '<?php echo $barchart_values_materials;?>';
 				var barchart_values_servicemind = '<?php echo $barchart_values_servicemind;?>';
+				var barchart_values_communication = '<?php echo $barchart_values_communication;?>';
 
 				// piechart_values_between_ages = JSON.parse(piechart_values_between_ages);
 
@@ -349,6 +351,8 @@ echo 'ขณะนี้เวลา  ' . $now_date;
 				myBarChart(JSON.parse(barchart_values_service_clear), '#bar_chart_service_clear');
 				myBarChart(JSON.parse(barchart_values_materials), '#bar_chart_materials');
 				myBarChart(JSON.parse(barchart_values_servicemind), '#bar_chart_servicemind');
+				myBarChart(JSON.parse(barchart_values_communication), '#bar_chart_communication');
+
 
 
 			}

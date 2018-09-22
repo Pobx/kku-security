@@ -231,7 +231,15 @@ class Report_evaluations extends CI_Controller
         $data['count_communication_very_good'] = $this->filterpeoples->filter($data['results'], 5, 'communication');
         $data['count_communication_good'] = $this->filterpeoples->filter($data['results'], 4, 'communication');
         $data['count_communication_normal'] = $this->filterpeoples->filter($data['results'], 3, 'communication');
+        $obj_communication = array(
+          'very_good'     => $data['count_communication_very_good'],
+          'good'          => $data['count_communication_good'],
+          'normal'        => $data['count_communication_normal'],
+          'dataset_label' => 'ความสามารถในการถ่ายทอดและการแนะนำให้ทราบถึงการใช้บริการด้านการรักษาความปลอดภัยและการจราจร',
+        );
 
+        $data['barchart_values_communication'] = $this->set_barchart_values_points($obj_communication);
+        
         // ความรอบรู้ทักษะ องค์ความรู้และการแนะนำให้ทราบถึงการใช้บริการด้านการรักษาความปลอดภัยและการจราจร
         $data['count_knowlage_very_good'] = $this->filterpeoples->filter($data['results'], 5, 'knowlage');
         $data['count_knowlage_good'] = $this->filterpeoples->filter($data['results'], 4, 'knowlage');
