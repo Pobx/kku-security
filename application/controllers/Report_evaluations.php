@@ -244,6 +244,14 @@ class Report_evaluations extends CI_Controller
         $data['count_knowlage_very_good'] = $this->filterpeoples->filter($data['results'], 5, 'knowlage');
         $data['count_knowlage_good'] = $this->filterpeoples->filter($data['results'], 4, 'knowlage');
         $data['count_knowlage_normal'] = $this->filterpeoples->filter($data['results'], 3, 'knowlage');
+        $obj_knowlage = array(
+          'very_good'     => $data['count_knowlage_very_good'],
+          'good'          => $data['count_knowlage_good'],
+          'normal'        => $data['count_knowlage_normal'],
+          'dataset_label' => 'ความรอบรู้ทักษะ องค์ความรู้และการแนะนำให้ทราบถึงการใช้บริการด้านการรักษาความปลอดภัยและการจราจร',
+        );
+
+        $data['barchart_values_knowlage'] = $this->set_barchart_values_points($obj_knowlage);
 
         // การรับฟัง ปัญหา ข้อซักถาม และการแสดงความคิดเห็นต่าง ๆ ต่อการใช้บริการด้านการรักษาความปลอดภัย มข. โดยภาพรวม
         $data['count_questions_very_good'] = $this->filterpeoples->filter($data['results'], 5, 'questions');
