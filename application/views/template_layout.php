@@ -312,22 +312,40 @@ echo 'ขณะนี้เวลา  ' . $now_date;
 
 			if (pie_chart_display == 'on') {
 				var pie_chart_data = {
-					count_accidents: '<?php echo $count_accidents;?>',
-					count_break_homes: '<?php echo $count_break_homes;?>',
-					count_security_home: '<?php echo $count_security_home;?>',
-					count_vehicles_forget_key: '<?php echo $count_vehicles_forget_key;?>',
-					count_break_motorcycle_pad: '<?php echo $count_break_motorcycle_pad;?>',
-					count_student_do_not_wear_helmet: '<?php echo $count_student_do_not_wear_helmet;?>',
+					data: {
+						count_accidents: '<?php echo $count_accidents;?>',
+						count_break_homes: '<?php echo $count_break_homes;?>',
+						count_security_home: '<?php echo $count_security_home;?>',
+						count_vehicles_forget_key: '<?php echo $count_vehicles_forget_key;?>',
+						count_break_motorcycle_pad: '<?php echo $count_break_motorcycle_pad;?>',
+						count_student_do_not_wear_helmet: '<?php echo $count_student_do_not_wear_helmet;?>',
+					},
+					backgroundColor: [
+						'#dd4b39',
+						'#00a65a',
+						'#00c0ef',
+						'#f39c12',
+						'#ff851b',
+						'#0073b7',
+					],
+					labels: [
+						'สถิติอุบัติเหตุ',
+						'โครงการฝากบ้าน',
+						'สถิติการลืมกุญแจ',
+						'สถิติเหตุทรัพย์งัดที่พักอาศัย',
+						'สถิติงัดเบาะรถจักยานยนต์',
+						'สถิติไม่สวมหมวกนิรภัย',
+					]
 				}
 
 				// pie_chart_summary_incidence(pie_chart_data)
+				myPieChart(pie_chart_data, '#pieChart');
 			}
 
 			var bar_chart_data = '<?php echo $bar_chart_data;?>';
-			bar_chart_data = JSON.parse(bar_chart_data);
-			console.log(bar_chart_data)
-			// console.log(bar_chart_data.length);
+			// console.log(bar_chart_data)
 			if (bar_chart_data != 'off') {
+				bar_chart_data = JSON.parse(bar_chart_data);
 				myBarChart(bar_chart_data, '#barChart');
 			}
 
