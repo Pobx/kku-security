@@ -205,7 +205,6 @@ class Report_evaluations extends CI_Controller
         $data['count_materials_very_good'] = $this->filterpeoples->filter($data['results'], 5, 'materials');
         $data['count_materials_good'] = $this->filterpeoples->filter($data['results'], 4, 'materials');
         $data['count_materials_normal'] = $this->filterpeoples->filter($data['results'], 3, 'materials');
-
         $obj_materials = array(
           'very_good'     => $data['count_materials_very_good'],
           'good'          => $data['count_materials_good'],
@@ -214,11 +213,19 @@ class Report_evaluations extends CI_Controller
         );
 
         $data['barchart_values_materials'] = $this->set_barchart_values_points($obj_materials);
-        
+
         // การให้บริการกริยา วาจา ที่เป็นมิตร
         $data['count_servicemind_very_good'] = $this->filterpeoples->filter($data['results'], 5, 'servicemind');
         $data['count_servicemind_good'] = $this->filterpeoples->filter($data['results'], 4, 'servicemind');
         $data['count_servicemind_normal'] = $this->filterpeoples->filter($data['results'], 3, 'servicemind');
+        $obj_servicemind = array(
+          'very_good'     => $data['count_servicemind_very_good'],
+          'good'          => $data['count_servicemind_good'],
+          'normal'        => $data['count_servicemind_normal'],
+          'dataset_label' => 'การให้บริการกริยา วาจา ที่เป็นมิตร',
+        );
+
+        $data['barchart_values_servicemind'] = $this->set_barchart_values_points($obj_servicemind);
 
         // ความสามารถในการถ่ายทอดและการแนะนำให้ทราบถึงการใช้บริการด้านการรักษาความปลอดภัยและการจราจร
         $data['count_communication_very_good'] = $this->filterpeoples->filter($data['results'], 5, 'communication');
