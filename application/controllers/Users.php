@@ -16,7 +16,7 @@ class Users extends CI_Controller
     private $head_topic_label           = 'ข้อมูลผู้ใช้งาน ';
     private $head_sub_topic_label_table = 'รายการ ข้อมูลผู้ใช้งาน ';
     private $head_sub_topic_label_form  = 'ฟอร์มบันทึกข้อมูล ข้อมูลผู้ใช้งาน ';
-    private $header_columns             = array('Username', 'ชื่อ - สกุล', 'Role', 'สถานะ', 'แก้ไข', 'ลบ');
+    private $header_columns             = array('Username', 'ชื่อ - สกุล', 'สิทธิ์การใช้งาน', 'สถานะ', 'แก้ไข', 'ลบ');
     private $success_message            = 'บันทึกข้อมูลสำเร็จ';
     private $warning_message            = 'ไม่สามารถทำรายการ กรุณลองใหม่อีกครั้ง';
     private $danger_message             = 'ลบข้อมูลสำเร็จ';
@@ -65,8 +65,9 @@ class Users extends CI_Controller
     {
         
         $inputs = $this->input->post();
-        $inputs['inspect_date'] = date("Y-m-d H:i:s");
-
+        if ($inputs['passwords'] =='') {
+          unset($inputs['passwords']);
+        }
         // echo "<pre>", print_r($inputs); exit();
         $results = $this->Users_model->store($inputs);
 
@@ -115,6 +116,6 @@ class Users extends CI_Controller
         $this->session->set_flashdata('alert_icon', $alert_icon);
         $this->session->set_flashdata('alert_message', $alert_message);
 
-        redirect('redbox');
+        redirect('users');
     }
 }
