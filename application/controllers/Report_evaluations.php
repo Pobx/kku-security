@@ -270,6 +270,14 @@ class Report_evaluations extends CI_Controller
         $data['count_followup_very_good'] = $this->filterpeoples->filter($data['results'], 5, 'followup');
         $data['count_followup_good'] = $this->filterpeoples->filter($data['results'], 4, 'followup');
         $data['count_followup_normal'] = $this->filterpeoples->filter($data['results'], 3, 'followup');
+        $obj_followup = array(
+          'very_good'     => $data['count_followup_very_good'],
+          'good'          => $data['count_followup_good'],
+          'normal'        => $data['count_followup_normal'],
+          'dataset_label' => 'การให้คำแนะนำ เสนอแนวทาง การแก้ไขปัญหาและติดตามความคืบหน้าจากการขอใช้บริกา',
+        );
+
+        $data['barchart_values_followup'] = $this->set_barchart_values_points($obj_followup);
 
         return $data;
     }

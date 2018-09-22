@@ -200,6 +200,7 @@ echo $head_sub_topic_label;
         $barchart_values_communication = (isset($barchart_values_communication)? $barchart_values_communication : json_encode(array()));
         $barchart_values_knowlage = (isset($barchart_values_knowlage)? $barchart_values_knowlage : json_encode(array()));
         $barchart_values_questions = (isset($barchart_values_questions)? $barchart_values_questions : json_encode(array()));
+        $barchart_values_followup = (isset($barchart_values_followup)? $barchart_values_followup : json_encode(array()));
         
         
         $count_accidents = (isset($count_accidents)? $count_accidents : 0);
@@ -343,6 +344,7 @@ echo 'ขณะนี้เวลา  ' . $now_date;
 				var barchart_values_communication = '<?php echo $barchart_values_communication;?>';
 				var barchart_values_knowlage = '<?php echo $barchart_values_knowlage;?>';
 				var barchart_values_questions = '<?php echo $barchart_values_questions;?>';
+				var barchart_values_followup = '<?php echo $barchart_values_followup;?>';
 
 				// piechart_values_between_ages = JSON.parse(piechart_values_between_ages);
 
@@ -358,10 +360,7 @@ echo 'ขณะนี้เวลา  ' . $now_date;
 				myBarChart(JSON.parse(barchart_values_communication), '#bar_chart_communication');
 				myBarChart(JSON.parse(barchart_values_knowlage), '#bar_chart_knowlage');
 				myBarChart(JSON.parse(barchart_values_questions), '#bar_chart_questions');
-
-
-
-
+				myBarChart(JSON.parse(barchart_values_followup), '#bar_chart_followup');
 			}
 
 			// $('.mydataTable tfoot th').each(function () {
