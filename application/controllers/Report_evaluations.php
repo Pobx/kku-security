@@ -100,6 +100,18 @@ class Report_evaluations extends CI_Controller
       return json_encode($results);
     }
 
+    private function set_barchart_values_points($data) {
+      $results = array(
+        'data' =>array($data['very_good'], $data['good'], $data['normal']),
+        'labels'             => array('มากที่สุด', 'มาก', 'ปานกลาง'),
+        'type'=>'bar',
+        'dataset_label'=>$data['dataset_label'],
+        'backgroundColor'=>'#0073b7'
+      );
+      
+      return json_encode($results);
+    }
+
     private function summary_counts_for_evaluations_report($data)
     {
       $data['count_male'] = $this->filterpeoples->filter($data['results'], 'male', 'gender');
@@ -138,7 +150,15 @@ class Report_evaluations extends CI_Controller
         $data['count_performance_very_good'] = $this->filterpeoples->filter($data['results'], 5, 'performance');
         $data['count_performance_good'] = $this->filterpeoples->filter($data['results'], 4, 'performance');
         $data['count_performance_normal'] = $this->filterpeoples->filter($data['results'], 3, 'performance');
-        
+        $obj = array(
+          'very_good'=>$data['count_performance_very_good'],
+          'good'=>$data['count_performance_good'],
+          'normal'=>$data['count_performance_very_good'],
+          'dataset_label'=>'ประสิทธิภาพและสมรรถนะการปฏิบัติหน้าที่',
+        );
+
+        $data['barchart_values_performance'] = $this->set_barchart_values_points($obj);
+
         // สำเร็จลุล่วง บรรลุตามวัตถุประสงค์
         $data['count_success_very_good'] = $this->filterpeoples->filter($data['results'], 5, 'success');
         $data['count_success_good'] = $this->filterpeoples->filter($data['results'], 4, 'success');
