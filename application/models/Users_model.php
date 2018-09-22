@@ -10,16 +10,16 @@ class Users_model extends CI_Model
     id,
     username,
     name,
-    permission,
+    roles,
     (
       CASE
-        WHEN permission = "admin" THEN "ผู้ดูแลระบบ"
-        WHEN permission = "operation" THEN "เจ้าหน้าที่"
-        WHEN permission = "management" THEN "ผู้บริหาร"
-        WHEN permission = "security" THEN "เจ้าหน้าที่รักษาความปลอดภัย"
+        WHEN roles = "admin" THEN "ผู้ดูแลระบบ"
+        WHEN roles = "operation" THEN "เจ้าหน้าที่"
+        WHEN roles = "management" THEN "ผู้บริหาร"
+        WHEN roles = "security" THEN "เจ้าหน้าที่รักษาความปลอดภัย"
         ELSE ""
       END
-    ) AS permission_name,
+    ) AS roles_name,
     status,
     (
       CASE

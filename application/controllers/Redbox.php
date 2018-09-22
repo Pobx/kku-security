@@ -61,9 +61,9 @@ class Redbox extends CI_Controller
         $data['head_sub_topic_label'] = $this->head_sub_topic_label_form;
         $data['link_back_to_table'] = site_url('redbox');
         $data['form_submit_data_url'] = site_url('redbox/store');
-        $data['permission'] = $sess_data['permission'];
+        $data['roles'] = $sess_data['roles'];
         
-        if ($sess_data['permission'] =='security') {
+        if ($sess_data['roles'] =='security') {
           $data['user_id'] = $sess_data['id'];
         }
 
@@ -96,7 +96,7 @@ class Redbox extends CI_Controller
         $this->session->set_flashdata('alert_icon', $alert_icon);
         $this->session->set_flashdata('alert_message', $alert_message);
       
-        $redirect_page = ($sess_data['permission'] =='security'? 'redbox/form_store' : 'redbox');
+        $redirect_page = ($sess_data['roles'] =='security'? 'redbox/form_store' : 'redbox');
         redirect($redirect_page);
     }
 

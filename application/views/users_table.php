@@ -47,7 +47,7 @@
 							<?php echo $value['name']; ?>
 						</td>
 						<td class="text-center">
-							<?php echo $value['permission_name']; ?>
+							<?php echo $value['roles_name']; ?>
 						</td>
 						<td class="text-center">
 							<?php  

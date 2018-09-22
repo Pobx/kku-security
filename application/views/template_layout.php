@@ -135,7 +135,7 @@ if (!isset($sess_userprofile['logged']) || $sess_userprofile['logged'] == false)
 				<ul class="sidebar-menu" data-widget="tree">
 					<li class="header">MAIN NAVIGATION</li>
 					<?php
-if ($sess_userprofile['permission'] != 'security')
+if ($sess_userprofile['roles'] != 'security')
 {
     $this->load->view('sidebar_admin');
 }
@@ -389,27 +389,27 @@ echo 'ขณะนี้เวลา  ' . $now_date;
 
 
 <script>
-$( document ).ready(function() {
-	data = {
-    datasets: [{
-        data: [10, 20, 30]
-    }],
+	$(document).ready(function () {
+		data = {
+			datasets: [{
+				data: [10, 20, 30]
+			}],
 
-    // These labels appear in the legend and in the tooltips when hovering different arcs
-    labels: [
-        'Red',
-        'Yellow',
-        'Blue'
-    ]
-};
+			// These labels appear in the legend and in the tooltips when hovering different arcs
+			labels: [
+				'Red',
+				'Yellow',
+				'Blue'
+			]
+		};
 
-	var pieChartCanvas = $('#myChart').get(0).getContext('2d');
-	var myPieChart = new Chart(pieChartCanvas,{
-    type: 'pie',
-    data: data,
-    options: options
-});
+		var pieChartCanvas = $('#myChart').get(0).getContext('2d');
+		var myPieChart = new Chart(pieChartCanvas, {
+			type: 'pie',
+			data: data,
+			options: options
+		});
 
-})
+	})
+
 </script>
-
