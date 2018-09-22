@@ -22,11 +22,11 @@ class Report_evaluations extends CI_Controller
         $inputs = $this->input->post();
         $data['my_pie_chart'] = 'on';
         $data['reports_evaluations_dispaly'] = 'on';
-        $data['start_date'] = '01/01/2561';
-        $data['end_date'] = '01/01/2562';
+        // $data['start_date'] = '01/01/2561';
+        // $data['end_date'] = '01/01/2562';
 
-        // $data['start_date'] = (isset($inputs['start_date']) ? $inputs['start_date'] : $this->date_libs->get_date_th(date('Y-m-d')));
-        // $data['end_date'] = (isset($inputs['end_date']) ? $inputs['end_date'] : $this->date_libs->get_date_th(date('Y-m-d')));
+        $data['start_date'] = (isset($inputs['start_date']) ? $inputs['start_date'] : $this->date_libs->get_date_th(date('Y-m-d')));
+        $data['end_date'] = (isset($inputs['end_date']) ? $inputs['end_date'] : $this->date_libs->get_date_th(date('Y-m-d')));
 
         $data['head_topic_label'] = $this->head_topic_label;
         $data['head_sub_topic_label'] = $this->head_sub_topic_label_table;

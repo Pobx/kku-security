@@ -45,7 +45,7 @@ function myBarChart(data, render) {
 				// enabled: false
 				callbacks: {
 					label: function (tooltipItem) {
-            console.log(tooltipItem)
+            // console.log(tooltipItem)
             var point = 0;
             if (Number.isInteger(tooltipItem.yLabel)) {
               point = tooltipItem.yLabel;
