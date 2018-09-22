@@ -284,7 +284,7 @@ echo 'ขณะนี้เวลา  ' . $now_date;
 	<!-- Select2 -->
 	<script src="<?php echo base_url('bower_components/select2/dist/js/select2.full.min.js'); ?>"></script>
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+	<script src="<?php echo base_url('assets/demo/Chart.bundle.min.js');?>"></script>
 
 	<!-- my demo -->
 	<script src="<?php echo base_url('assets/demo/dashboard_admin_donut_chart.js'); ?>"></script>
@@ -326,7 +326,7 @@ echo 'ขณะนี้เวลา  ' . $now_date;
 				var barchart_values_status = '<?php echo $barchart_values_status;?>';
 				// piechart_values_between_ages = JSON.parse(piechart_values_between_ages);
 
-				console.log(JSON.parse(piechart_values_between_ages));
+				console.log(JSON.parse(barchart_values_status));
 				myPieChart(JSON.parse(piechart_values_between_ages), '#pieChartEvaluations');
 				myBarChart(JSON.parse(barchart_values_status), '#barChart');
 			}

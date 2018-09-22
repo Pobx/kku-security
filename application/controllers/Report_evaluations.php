@@ -92,6 +92,7 @@ class Report_evaluations extends CI_Controller
       $results = array(
         'data' =>array($data['count_gov_officer'], $data['count_student'], $data['count_student2'], $data['count_general_people'], $data['count_teacher']),
         'labels'             => array('ข้าราชการ/พนักงาน/ลูกจ้าง', 'นักเรียน', 'นักศึกษา', 'บุคคลทั่วไป', 'อาจารย์'),
+        'type'=>'horizontalBar'
       );
           
       return json_encode($results);

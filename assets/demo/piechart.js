@@ -3,9 +3,6 @@
   // -------------
   function myPieChart(data, render) {
 // Get context with jQuery - using jQuery's .get() method.
-var randomScalingFactor = function() {
-  return Math.round(Math.random() * 100);
-};
 var ctx = $(render).get(0).getContext('2d');
 var config = {
   type: 'pie',
@@ -13,7 +10,7 @@ var config = {
     datasets: [{
       data:data.data,
       backgroundColor: data.backgroundColor,
-      // label: 'Dataset 1'
+      label: 'Dataset 1'
     }],
     labels: data.labels
   },

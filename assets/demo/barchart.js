@@ -5,23 +5,15 @@ function myBarChart(data, render) {
   // function myBarChart(data, render, type) {
   var areaChartData = {
     // labels: ['มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน', 'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'],
-    labels: data.labels,
+    labels: 'ข้อมูล',
     datasets: [{
-        // label: 'Electronics',
-        // fillColor: 'rgba(60,141,188,0.9)',
-        // strokeColor: 'rgba(60,141,188,0.8)',
-        // pointColor: '#3b8bba',
-        // pointStrokeColor: '#c1c7d1',
-        // pointHighlightFill: '#fff',
-        // pointHighlightStroke: 'rgba(220,220,220,1)',
-        // data: [65, 59, 80, 81, 56, 55, 40, 32, 59, 34, 90, 10],
         data: data.data,
       },
     ],
   }
   var ctx = $(render).get(0).getContext('2d');
   new Chart(ctx, {
-    type: 'horizontalBar',
+    type: data.type,
     data: areaChartData,
     options: {
       // Elements options apply to all of the options unless overridden in a dataset
@@ -33,7 +25,7 @@ function myBarChart(data, render) {
       },
       responsive: true,
       legend: {
-        position: 'right',
+        position: 'bottom',
       },
       title: {
         display: true,
