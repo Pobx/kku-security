@@ -48,9 +48,10 @@ class Report_evaluations extends CI_Controller
 
         $results = $this->Evaluation_model->all($qstr);
         $data['results'] = $results['results'];
+        $data['rows'] = $results['rows'];
         // $data['fields'] = $results['fields'];
         // $data['bar_chart_data'] = $this->filterbarchartdata->filter($results['results'], 'inspect_date_en');
-
+        $data = $this->summary_counts_for_evaluations_report($data);
         $data['content'] = 'report_evaluations_table';
         
         // echo "<pre>", print_r($data); exit();
@@ -76,6 +77,25 @@ class Report_evaluations extends CI_Controller
         $this->load->view('excel_evaluations_table', $data);
     }
 
+    private function set_piechart_values($data) {
+      $results = array(
+        array(
+          'value'=>$data['count_between_21_and_25'],
+        'color'=>'#0073b7',
+        'highlight'=>'#0073b7',
+        'label'=>'21 - 25 ปี'
+        ),
+        array(
+          'value'=>$data['count_between_26_and_30'],
+        'color'=>'#ff851b',
+        'highlight'=>'#ff851b',
+        'label'=>'26 - 30 ปี'
+        )
+      );
+
+      return json_encode($results);
+    }
+
     private function summary_counts_for_evaluations_report($data)
     {
       $data['count_male'] = $this->filterpeoples->filter($data['results'], 'male', 'gender');
@@ -90,6 +110,7 @@ class Report_evaluations extends CI_Controller
         $data['count_between_46_and_50'] = $this->filterpeoples->filter($data['results'], 'between_46_and_50', 'age');
         $data['count_more_than_50'] = $this->filterpeoples->filter($data['results'], 'more_than_50', 'age');
         $data['count_all_age'] = $data['rows'];
+        $data['piechart_values_between_ages'] = $this->set_piechart_values($data);
         
         // นักเรียน        
         $data['count_student'] = $this->filterpeoples->filter($data['results'], 1, 'personal_id');

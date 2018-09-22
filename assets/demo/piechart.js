@@ -1,17 +1,19 @@
 // -------------
 	// - PIE CHART -
   // -------------
-  function myPieChart(pie_chart_data) {
+  function myPieChart(data, render) {
 // Get context with jQuery - using jQuery's .get() method.
-var pieChartCanvas = $('#pieChart').get(0).getContext('2d');
+var pieChartCanvas = $(render).get(0).getContext('2d');
 var pieChart = new Chart(pieChartCanvas);
-var PieData = [{
-    value: pie_chart_data.count_accidents,
-    color: '#dd4b39',
-    highlight: '#dd4b39',
-    label: 'สถิติอุบัติเหตุ'
-  }
-];
+var PieData = data;
+// var PieData = [{
+//     value: pie_chart_data.count_accidents,
+//     color: '#dd4b39',
+//     highlight: '#dd4b39',
+//     label: 'สถิติอุบัติเหตุ'
+//   }
+// ];
+
 var pieOptions = {
   // Boolean - Whether we should show a stroke on each segment
   segmentShowStroke: true,

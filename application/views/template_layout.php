@@ -316,8 +316,12 @@ echo 'ขณะนี้เวลา  ' . $now_date;
 
 			var my_pie_chart = '<?php echo $my_pie_chart;?>';
 			if (my_pie_chart == 'on') {
-
+				var piechart_values_between_ages = '<?php echo $piechart_values_between_ages;?>';
+				piechart_values_between_ages = JSON.parse(piechart_values_between_ages);
+				console.log(piechart_values_between_ages);
+				myPieChart(piechart_values_between_ages, '#pieChartEvaluations');
 			}
+
 			// $('.mydataTable tfoot th').each(function () {
 			// 	var title = $(this).text();
 			// 	$(this).append('<br /><input type="text" class="form-control" placeholder="ค้นหา... ' + title + '" />');

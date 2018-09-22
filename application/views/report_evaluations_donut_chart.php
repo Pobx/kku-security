@@ -21,8 +21,8 @@
 
 				<div class="row">
 					<div class="col-md-12 text-center">
-						<i class="fa fa-square text-blue"></i> 21 - 25 ปี #0073b7
-						<i class="fa fa-square text-orange"></i> 26 - 30 ปี #ff851b
+						<i class="fa fa-square text-blue"></i> 21 - 25 ปี
+						<i class="fa fa-square text-orange"></i> 26 - 30 ปี
 						<i class="fa fa-square text-gray"></i> 31 - 35 ปี #d2d6de
 						<i class="fa fa-square text-yellow"></i> 36 - 40 ปี #f39c12
 						<i class="fa fa-square text-navy"></i> 51 ปี ขึ้นไป #001f3f
