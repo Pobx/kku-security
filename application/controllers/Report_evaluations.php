@@ -170,7 +170,7 @@ class Report_evaluations extends CI_Controller
           'dataset_label'=>'สำเร็จลุล่วง บรรลุตามวัตถุประสงค์',
         );
 
-        $data['barchart_values_performance'] = $this->set_barchart_values_points($obj_success);
+        $data['barchart_values_success'] = $this->set_barchart_values_points($obj_success);
 
         // รวดเร็ว ตรงตามเวลาที่กำหนด
         $data['count_timeline_very_good'] = $this->filterpeoples->filter($data['results'], 5, 'timeline');

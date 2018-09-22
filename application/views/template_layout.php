@@ -331,7 +331,7 @@ echo 'ขณะนี้เวลา  ' . $now_date;
 
 				// piechart_values_between_ages = JSON.parse(piechart_values_between_ages);
 
-				console.log(JSON.parse(barchart_values_status));
+				console.log(JSON.parse(barchart_values_success));
 				myPieChart(JSON.parse(piechart_values_between_ages), '#pieChartEvaluations');
 				myBarChart(JSON.parse(barchart_values_status), '#barChart');
 				myBarChart(JSON.parse(barchart_values_performance), '#bar_chart_performance');
