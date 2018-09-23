@@ -13,6 +13,7 @@ class Report_accidents extends CI_Controller
         $this->load->library('FilterBarChartData');
         $this->load->library('FilterPeriodTimes');
         $this->load->library('FilterPeoples');
+        $this->load->library('FilterVehicles');
     }
 
     private $head_topic_label                     = 'สถิติอุบัติเหตุ';
@@ -56,8 +57,15 @@ class Report_accidents extends CI_Controller
         $results_participate = $this->mapPartitipate($results_accidents['results']);
         $data['count_accidents_students'] = $this->filterpeoples->filter($results_participate, 'student', 'people_type');
         $data['count_accidents_officer'] = $this->filterpeoples->filter($results_participate, 'officer', 'people_type');
-        $data['count_accidents_people_inside'] = $this->filterpeoples->filter($results_participate, 'people_inside', 'people_type');
+        $data['count_accidents_people_outside'] = $this->filterpeoples->filter($results_participate, 'people_outside', 'people_type');
+        $data['count_accidents_injury'] = $this->filterpeoples->filter($results_participate, 'injury', 'injury_type');
+        $data['count_accidents_injury_hard'] = $this->filterpeoples->filter($results_participate, 'injury_hard', 'injury_type');
+        $data['count_accidents_injury'] += $data['count_accidents_injury_hard'];
+        $data['count_accidents_dead'] = $this->filterpeoples->filter($results_participate, 'dead', 'injury_type');
         
+        $data['count_accidents_car'] = $this->filtervehicles->filter($results_participate, 'car', 'car_type');
+        $data['count_accidents_motorcycle'] = $this->filtervehicles->filter($results_participate, 'motorcycle', 'car_type');
+
         $data['bar_chart_data'] = $this->filterbarchartdata->filter($results['results'], 'accident_date_en');
         $data['fields'] = $results['fields'];
         $data['content'] = 'report_accidents_table';
