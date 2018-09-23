@@ -31,7 +31,9 @@ class Report_accidents extends CI_Controller
         $data['head_sub_topic_label'] = $this->head_sub_topic_label_table;
         $data['header_columns'] = $this->header_columns;
         $data['form_search_data_url'] = site_url('report_accidents');
-        $data['link_excel_monthly_summary'] = site_url('report_accidents/export_excel_monthly_summary');
+        $data['link_excel_monthly_summary_place_of_months'] = site_url('report_accidents/export_excel_summary_place_of_months');
+        $data['link_excel_monthly_summary_accidents_type_of_months'] = site_url('report_accidents/excel_summary_accidents_type_of_monthss');
+        
         $data['link_excel_monthly'] = site_url('report_accidents/export_excel');
 
         $qstr = array(
@@ -118,7 +120,7 @@ class Report_accidents extends CI_Controller
         $this->load->view('excel_accidents_table', $data);
     }
 
-    public function export_excel_monthly_summary()
+    public function export_excel_summary_place_of_months()
     {
         $data['header_columns'] = $this->header_excel_monthly_summary_columns;
         $inputs = $this->session->userdata();
@@ -153,13 +155,10 @@ class Report_accidents extends CI_Controller
         $this->load->view('excel_accidents_monthly_summary_table', $data);
     }
 
-    // private function set_values_summary_months($results) {
-    //   $data['count_morning'] = $this->filterperiodtimes->filter($results, 'morning', 'period_time');
-    //   $data['count_afternoon'] = $this->filterperiodtimes->filter($results, 'afternoon', 'period_time');
-    //   $data['count_night'] = $this->filterperiodtimes->filter($results, 'night', 'period_time');
+    public function excel_summary_accidents_type_of_monthss() 
+    {
 
-    //   return $data;
-    // }
+    }
 
     private function mapPartitipate($data)
     {
