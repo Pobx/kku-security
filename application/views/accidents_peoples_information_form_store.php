@@ -12,7 +12,7 @@
 <div class="form-group">
 	<label class="col-sm-2 control-label">ประเภทบุคคล</label>
 
-	<div class="col-sm-4">
+	<div class="col-sm-6">
 		<label>
 			<input type="radio" name="people_type" class="flat-red" value="officer">&nbsp;บุคลากร
 			<input type="radio" name="people_type" class="flat-red" value="student">&nbsp;นักศึกษา
