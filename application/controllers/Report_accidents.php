@@ -32,7 +32,7 @@ class Report_accidents extends CI_Controller
         $data['header_columns'] = $this->header_columns;
         $data['form_search_data_url'] = site_url('report_accidents');
         $data['link_excel_monthly_summary_place_of_months'] = site_url('report_accidents/export_excel_summary_place_of_months');
-        $data['link_excel_monthly_summary_accidents_type_of_months'] = site_url('report_accidents/excel_summary_accidents_type_of_monthss');
+        $data['link_excel_monthly_summary_accidents_type_of_months'] = site_url('report_accidents/excel_summary_accidents_type_of_months');
         
         $data['link_excel_monthly'] = site_url('report_accidents/export_excel');
 
@@ -155,9 +155,49 @@ class Report_accidents extends CI_Controller
         $this->load->view('excel_accidents_monthly_summary_table', $data);
     }
 
-    public function excel_summary_accidents_type_of_monthss() 
+    public function excel_summary_accidents_type_of_months() 
     {
+      $inputs = $this->session->userdata();
 
+      $qstr = array(
+          'accidents.accident_date >=' => $inputs['start_date'],
+          'accidents.accident_date <=' => $inputs['end_date'],
+          'accidents.status !='        => 'disabled',
+      );
+
+      $results = $this->Accidents_model->all($qstr);
+      $data['results'] = $results['results'];
+
+      $results_participate = $this->mapPartitipate($results['results']);
+      $data['count_accidents_students'] = $this->filterpeoples->filter($results_participate, 'student', 'people_type');
+      $data['count_accidents_officer'] = $this->filterpeoples->filter($results_participate, 'officer', 'people_type');
+      $data['count_accidents_people_inside'] = $this->filterpeoples->filter($results_participate, 'people_inside', 'people_type');
+      $data['count_accidents_people_inside'] += $data['count_accidents_officer'];
+      $data['count_accidents_people_outside'] = $this->filterpeoples->filter($results_participate, 'people_outside', 'people_type');
+      $data['count_accidents_injury'] = $this->filterpeoples->filter($results_participate, 'injury', 'injury_type');
+      $data['count_accidents_injury_hard'] = $this->filterpeoples->filter($results_participate, 'injury_hard', 'injury_type');
+      $data['count_accidents_injury'] += $data['count_accidents_injury_hard'];
+      $data['count_accidents_dead'] = $this->filterpeoples->filter($results_participate, 'dead', 'injury_type');
+        
+      $data['count_accidents_car'] = $this->filtervehicles->filter($results_participate, 'car', 'car_type');
+      $data['count_accidents_motorcycle'] = $this->filtervehicles->filter($results_participate, 'motorcycle', 'car_type');
+      $data['month_accidents'] = $this->get_month_form_between_months($inputs);
+      $data['content'] = 'report_accidents_table';
+
+      $this->load->view('excel_summary_accidents_type_of_months_table', $data);
+    }
+
+    private function get_month_form_between_months($data)
+    {
+      $results = $this->date_libs->get_month_th_full_text($data['start_date']);
+      $start_date = date("m", strtotime($data['start_date']));
+      $end_date = date("m", strtotime($data['end_date']));
+
+      if ($start_date != $end_date) {
+        $results = $this->date_libs->get_month_th_full_text($data['start_date']).' - '.$this->date_libs->get_month_th_full_text($data['end_date']);
+      }
+
+      return $results;
     }
 
     private function mapPartitipate($data)
