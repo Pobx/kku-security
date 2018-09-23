@@ -50,13 +50,15 @@ class Report_accidents extends CI_Controller
         $results = $this->Accidents_model->all($qstr);
         $data['results'] = $results['results'];
 
-        $data['count_morning'] = $this->filterperiodtimes->filter($results['results'], 'morning', 'period_time');
-        $data['count_afternoon'] = $this->filterperiodtimes->filter($results['results'], 'afternoon', 'period_time');
-        $data['count_night'] = $this->filterperiodtimes->filter($results['results'], 'night', 'period_time');
+        $data['count_accidents_morning'] = $this->filterperiodtimes->filter($results['results'], 'morning', 'period_time');
+        $data['count_accidents_afternoon'] = $this->filterperiodtimes->filter($results['results'], 'afternoon', 'period_time');
+        $data['count_accidents_night'] = $this->filterperiodtimes->filter($results['results'], 'night', 'period_time');
 
-        $results_participate = $this->mapPartitipate($results_accidents['results']);
+        $results_participate = $this->mapPartitipate($results['results']);
         $data['count_accidents_students'] = $this->filterpeoples->filter($results_participate, 'student', 'people_type');
         $data['count_accidents_officer'] = $this->filterpeoples->filter($results_participate, 'officer', 'people_type');
+        $data['count_accidents_people_inside'] = $this->filterpeoples->filter($results_participate, 'people_inside', 'people_type');
+        $data['count_accidents_people_inside'] += $data['count_accidents_officer'];
         $data['count_accidents_people_outside'] = $this->filterpeoples->filter($results_participate, 'people_outside', 'people_type');
         $data['count_accidents_injury'] = $this->filterpeoples->filter($results_participate, 'injury', 'injury_type');
         $data['count_accidents_injury_hard'] = $this->filterpeoples->filter($results_participate, 'injury_hard', 'injury_type');
@@ -67,11 +69,35 @@ class Report_accidents extends CI_Controller
         $data['count_accidents_motorcycle'] = $this->filtervehicles->filter($results_participate, 'motorcycle', 'car_type');
 
         $data['bar_chart_data'] = $this->filterbarchartdata->filter($results['results'], 'accident_date_en');
-        $data['fields'] = $results['fields'];
+        $data['barchart_values_accidents_summary_of_months'] = $this->set_barchart_values_points($data);
         $data['content'] = 'report_accidents_table';
-
-        // echo "<pre>", print_r($results['results']); exit();
+        
+        // $data['fields'] = $results['fields'];
+        echo "<pre>", print_r($data['barchart_values_accidents_summary_of_months']); exit();
         $this->load->view('template_layout', $data);
+    }
+
+    private function set_barchart_values_points($data)
+    {
+        $results = array(
+            'data'            => array(
+              $data['count_accidents_morning'], $data['count_accidents_afternoon'], $data['count_accidents_night'],
+              $data['count_accidents_students'], $data['count_accidents_people_inside'], $data['count_accidents_people_outside'],
+              $data['count_accidents_car'], $data['count_accidents_motorcycle'], 
+              $data['count_accidents_injury'], $data['count_accidents_dead'], 
+            ),
+            'labels'          => array(
+              'ผลัดเช้า', 'ผลัดบ่าย', 'ผลัดดึก', 
+              'นักศึกษา', 'บุคลากร', 'บุคคลภายนอก', 
+              'รถจักรยานยนต์', 'รถยนต์', 
+              'บาดเจ็บ', 'เสียชีวิต'
+            ),
+            'type'            => 'bar',
+            'dataset_label'   => 'ข้อมูล',
+            'backgroundColor' => '#0073b7',
+        );
+
+        return json_encode($results);
     }
 
     public function export_excel()
