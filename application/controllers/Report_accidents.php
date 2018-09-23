@@ -53,6 +53,11 @@ class Report_accidents extends CI_Controller
         $data['count_afternoon'] = $this->filterperiodtimes->filter($results['results'], 'afternoon', 'period_time');
         $data['count_night'] = $this->filterperiodtimes->filter($results['results'], 'night', 'period_time');
 
+        $results_participate = $this->mapPartitipate($results_accidents['results']);
+        $data['count_accidents_students'] = $this->filterpeoples->filter($results_participate, 'student', 'people_type');
+        $data['count_accidents_officer'] = $this->filterpeoples->filter($results_participate, 'officer', 'people_type');
+        $data['count_accidents_people_inside'] = $this->filterpeoples->filter($results_participate, 'people_inside', 'people_type');
+        
         $data['bar_chart_data'] = $this->filterbarchartdata->filter($results['results'], 'accident_date_en');
         $data['fields'] = $results['fields'];
         $data['content'] = 'report_accidents_table';

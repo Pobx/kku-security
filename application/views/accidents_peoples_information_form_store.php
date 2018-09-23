@@ -17,6 +17,7 @@
 			<input type="radio" name="people_type" class="flat-red" value="officer">&nbsp;บุคลากร
 			<input type="radio" name="people_type" class="flat-red" value="student">&nbsp;นักศึกษา
 			<input type="radio" name="people_type" class="flat-red" value="people_inside">&nbsp;บุคลคลภายใน
+			<input type="radio" name="people_type" class="flat-red" value="people_outside">&nbsp;บุคลคลนอก
 		</label>
 	</div>
 </div>
