@@ -11,12 +11,15 @@ class Report_accidents extends CI_Controller
         $this->load->model('Accidents_place_model');
         $this->load->library('Date_libs');
         $this->load->library('FilterBarChartData');
+        $this->load->library('FilterPeriodTimes');
+        $this->load->library('FilterPeoples');
     }
 
     private $head_topic_label                     = 'สถิติอุบัติเหตุ';
     private $head_sub_topic_label_table           = 'รายงาน สถิติอุบัติเหตุ';
     private $header_columns                       = array('วันที่', 'ช่วงเวลา', 'สถานที่เกิดเหตุ', 'รถยนต์', 'รถจักรยานยนต์', 'รถที่เกิดเหตุ', 'สาเหตุ', 'บาดเจ็บ', 'เสียชีวิต', 'ผู้ประสบเหตุ / คู่กรณี', 'หน่วยงาน', 'บุคลากร', 'นักศึกษา', 'บุคคลภายใน');
     private $header_excel_monthly_summary_columns = array('ลำดับ', 'สถานที่เกิดเหตุ', 'จำนวน(ครั้ง)');
+
     public function index()
     {
         $inputs = $this->input->post();
@@ -46,11 +49,15 @@ class Report_accidents extends CI_Controller
         $results = $this->Accidents_model->all($qstr);
         $data['results'] = $results['results'];
 
+        $data['count_morning'] = $this->filterperiodtimes->filter($results['results'], 'morning', 'period_time');
+        $data['count_afternoon'] = $this->filterperiodtimes->filter($results['results'], 'afternoon', 'period_time');
+        $data['count_night'] = $this->filterperiodtimes->filter($results['results'], 'night', 'period_time');
+
         $data['bar_chart_data'] = $this->filterbarchartdata->filter($results['results'], 'accident_date_en');
         $data['fields'] = $results['fields'];
         $data['content'] = 'report_accidents_table';
 
-        // echo "<pre>", print_r($data['results']); exit();
+        // echo "<pre>", print_r($results['results']); exit();
         $this->load->view('template_layout', $data);
     }
 
@@ -105,6 +112,28 @@ class Report_accidents extends CI_Controller
         $data['results'] = $results;
         // echo "<pre>", print_r($data['results']); exit();
         $this->load->view('excel_accidents_monthly_summary_table', $data);
+    }
+
+    // private function set_values_summary_months($results) {
+    //   $data['count_morning'] = $this->filterperiodtimes->filter($results, 'morning', 'period_time');
+    //   $data['count_afternoon'] = $this->filterperiodtimes->filter($results, 'afternoon', 'period_time');
+    //   $data['count_night'] = $this->filterperiodtimes->filter($results, 'night', 'period_time');
+
+    //   return $data;
+    // }
+
+    private function mapPartitipate($data)
+    {
+        $results = array();
+        foreach ($data as $key => $value)
+        {
+            foreach ($value['results_participate'] as $key1 => $value1)
+            {
+                array_push($results, $value1);
+            }
+        }
+
+        return $results;
     }
 
 }

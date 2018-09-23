@@ -338,8 +338,8 @@ echo 'ขณะนี้เวลา  ' . $now_date;
 						'สถิติไม่สวมหมวกนิรภัย',
 					]
 				}
-				console.log(pie_chart_data)
-				// pie_chart_summary_incidence(pie_chart_data)
+
+				// console.log(pie_chart_data)
 				myPieChart(pie_chart_data, '#dashboard_piechart');
 			}
 
