@@ -168,6 +168,10 @@ class Report_accidents extends CI_Controller
       $results = $this->Accidents_model->all($qstr);
       $data['results'] = $results['results'];
 
+      $data['count_accidents_morning'] = $this->filterperiodtimes->filter($results['results'], 'morning', 'period_time');
+      $data['count_accidents_afternoon'] = $this->filterperiodtimes->filter($results['results'], 'afternoon', 'period_time');
+      $data['count_accidents_night'] = $this->filterperiodtimes->filter($results['results'], 'night', 'period_time');
+
       $results_participate = $this->mapPartitipate($results['results']);
       $data['count_accidents_students'] = $this->filterpeoples->filter($results_participate, 'student', 'people_type');
       $data['count_accidents_officer'] = $this->filterpeoples->filter($results_participate, 'officer', 'people_type');
