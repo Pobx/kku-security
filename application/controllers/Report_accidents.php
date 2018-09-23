@@ -73,7 +73,7 @@ class Report_accidents extends CI_Controller
         $data['content'] = 'report_accidents_table';
         
         // $data['fields'] = $results['fields'];
-        echo "<pre>", print_r($data['barchart_values_accidents_summary_of_months']); exit();
+        // echo "<pre>", print_r($data['barchart_values_accidents_summary_of_months']); exit();
         $this->load->view('template_layout', $data);
     }
 

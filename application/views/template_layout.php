@@ -187,6 +187,7 @@ echo $head_sub_topic_label;
 
 				<?php
         $bar_chart_data = (isset($bar_chart_data)? $bar_chart_data : 'off');
+        $barchart_values_accidents_summary_of_months = (isset($barchart_values_accidents_summary_of_months)? $barchart_values_accidents_summary_of_months : 'off');
         $pie_chart_display = (isset($pie_chart_display)? $pie_chart_display : 'off');
         $reports_evaluations_dispaly = (isset($reports_evaluations_dispaly)? $reports_evaluations_dispaly : 'off');
         $piechart_values_between_ages = (isset($piechart_values_between_ages)? $piechart_values_between_ages : json_encode(array()));
@@ -344,11 +345,20 @@ echo 'ขณะนี้เวลา  ' . $now_date;
 			}
 
 			var bar_chart_data = '<?php echo $bar_chart_data;?>';
+			var barchart_values_accidents_summary_of_months = '<?php echo $barchart_values_accidents_summary_of_months;?>';
+
 			// console.log(bar_chart_data)
 			if (bar_chart_data != 'off') {
 				bar_chart_data = JSON.parse(bar_chart_data);
 				myBarChart(bar_chart_data, '#barChart');
 			}
+
+			if (barchart_values_accidents_summary_of_months != 'off') {
+				barchart_values_accidents_summary_of_months = JSON.parse(barchart_values_accidents_summary_of_months);
+				myBarChart(barchart_values_accidents_summary_of_months, '#bar_chart_accidents_summary_of_months');
+			}
+
+
 
 			var reports_evaluations_dispaly = '<?php echo $reports_evaluations_dispaly;?>';
 			if (reports_evaluations_dispaly == 'on') {
