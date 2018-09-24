@@ -54,17 +54,19 @@ class Report_vehicles_forget_key extends CI_Controller
         $data['count_people_inside'] = $this->filterpeoples->filter($results['results'], 'people_inside', 'people_type');
         $data['count_staff'] = $this->filterpeoples->filter($results['results'], 'staff', 'people_type');
         $data['count_staff'] += $data['count_people_inside'];
-        $data['barchart_values_forget_keys'] = array(
+        $barchart_values_forget_keys = array(
           'data'=> array($data['count_students'], $data['count_people_outside'], $data['count_staff'],),
           'labels'          => array('นักศึกษา', 'บุคคลภายนอก', 'บุคลากร',),
           'type'            => 'bar',
           'dataset_label'   => 'ข้อมูล',
           'backgroundColor' => '#0073b7',
         );
+
+        $data['barchart_values_forget_keys'] = json_encode($barchart_values_forget_keys);
         
         $data['content'] = 'report_vehicles_forget_key_table';
 
-        echo "<pre>", print_r($data['barchart_values_forget_keys']); exit();
+        // echo "<pre>", print_r($data['barchart_values_forget_keys']); exit();
         $this->load->view('template_layout', $data);
     }
 

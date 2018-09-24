@@ -360,7 +360,7 @@ echo 'ขณะนี้เวลา  ' . $now_date;
 
 			if (barchart_values_forget_keys != 'off') {
 				barchart_values_forget_keys = JSON.parse(barchart_values_forget_keys);
-				// myBarChart(barchart_values_forget_keys_count_each_people_types, '#barChart');
+				myBarChart(barchart_values_forget_keys, '#barchart_values_forget_keys_count_each_people_types');
 			}
 
 			var reports_evaluations_dispaly = '<?php echo $reports_evaluations_dispaly;?>';
