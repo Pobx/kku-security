@@ -202,8 +202,8 @@ echo $head_sub_topic_label;
         $barchart_values_knowlage = (isset($barchart_values_knowlage)? $barchart_values_knowlage : json_encode(array()));
         $barchart_values_questions = (isset($barchart_values_questions)? $barchart_values_questions : json_encode(array()));
         $barchart_values_followup = (isset($barchart_values_followup)? $barchart_values_followup : json_encode(array()));
-        
-        
+        $barchart_values_forget_keys = (isset($barchart_values_forget_keys)? $barchart_values_forget_keys : 'off');
+
         $count_accidents = (isset($count_accidents)? $count_accidents : 0);
         $count_break_homes = (isset($count_break_homes)? $count_break_homes : 0);
         $count_security_home = (isset($count_security_home)? $count_security_home : 0);
@@ -346,8 +346,8 @@ echo 'ขณะนี้เวลา  ' . $now_date;
 
 			var bar_chart_data = '<?php echo $bar_chart_data;?>';
 			var barchart_values_accidents_summary_of_months = '<?php echo $barchart_values_accidents_summary_of_months;?>';
+			var barchart_values_forget_keys = '<?php echo $barchart_values_forget_keys;?>';
 
-			// console.log(bar_chart_data)
 			if (bar_chart_data != 'off') {
 				bar_chart_data = JSON.parse(bar_chart_data);
 				myBarChart(bar_chart_data, '#barChart');
@@ -356,6 +356,11 @@ echo 'ขณะนี้เวลา  ' . $now_date;
 			if (barchart_values_accidents_summary_of_months != 'off') {
 				barchart_values_accidents_summary_of_months = JSON.parse(barchart_values_accidents_summary_of_months);
 				myBarChart(barchart_values_accidents_summary_of_months, '#bar_chart_accidents_summary_of_months');
+			}
+
+			if (barchart_values_forget_keys != 'off') {
+				barchart_values_forget_keys = JSON.parse(barchart_values_forget_keys);
+				// myBarChart(barchart_values_forget_keys_count_each_people_types, '#barChart');
 			}
 
 			var reports_evaluations_dispaly = '<?php echo $reports_evaluations_dispaly;?>';
