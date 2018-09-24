@@ -358,8 +358,6 @@ echo 'ขณะนี้เวลา  ' . $now_date;
 				myBarChart(barchart_values_accidents_summary_of_months, '#bar_chart_accidents_summary_of_months');
 			}
 
-
-
 			var reports_evaluations_dispaly = '<?php echo $reports_evaluations_dispaly;?>';
 			if (reports_evaluations_dispaly == 'on') {
 				var piechart_values_between_ages = '<?php echo $piechart_values_between_ages;?>';
