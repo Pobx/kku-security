@@ -17,9 +17,6 @@
 <li id="vehicles_forget_key">
 	<a href="<?php echo site_url('vehicles_forget_key'); ?>"><i class="fa fa-key"></i> <span>สถิติการลืมกุญแจ</span></a>
 </li>
-<!-- <li>
-	<a href="<?php //echo site_url('break_homes_motorcycle_pad_theive');?>"><i class="fa fa-book"></i>ทะเบียนการจัดทําบัตร<br />ผ่านเข้า-ออก</a>
-</li> -->
 
 <li id="break_motorcycle_pad">
 	<a href="<?php echo site_url('break_motorcycle_pad'); ?>"><i class="fa fa-motorcycle"></i> <span>สถิติงัดเบาะรถจักยานยนต์</span></a>
@@ -27,6 +24,10 @@
 
 <li id="break_homes">
 	<a href="<?php echo site_url('break_homes'); ?>"><i class="fa fa-home"></i> <span>สถิติเหตุทรัพย์งัดที่พักอาศัย</span></a>
+</li>
+
+<li id="snatch_assets">
+	<a href="<?php echo site_url('snatch_assets'); ?>"><i class="fa fa-user-secret"></i> <span>วิ่งราวชิงทรัพย์</span></a>
 </li>
 
 <li id="cctv_request_log">

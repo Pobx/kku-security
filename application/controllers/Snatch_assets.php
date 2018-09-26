@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') || exit('No direct script access allowed');
 
-class Break_homes extends CI_Controller
+class Snatch_assets extends CI_Controller
 {
     public function __construct()
     {
