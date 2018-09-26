@@ -43,6 +43,12 @@ class Snatch_assets extends CI_Controller
 
         // $data = $this->find($id);
         $data['period_time'] = '';
+        $data['people_type'] = '';
+        $data['owner_assets_department'] = '';
+        $data['snatch_events'] = '';
+        $data['snatch_events_other'] = '';
+        $data['arrested_status_other'] = '';
+        
         $data['head_topic_label'] = $this->head_topic_label;
         $data['head_sub_topic_label'] = $this->head_sub_topic_label_form;
         $data['link_back_to_table'] = site_url('snatch_assets');

@@ -20,7 +20,10 @@
 					</div>
 				</div>
 
-				<?php $this->load->view('period_times');?>
+				<?php 
+          $this->load->view('period_times');
+          $this->load->view('people_type');
+        ?>
 
 				<div class="form-group">
 					<label for="owner_home_name" class="col-sm-2 control-label">ชื่อ&nbsp;-&nbsp;สกุล</label>
@@ -29,6 +32,7 @@
 						<input type="text" class="form-control" id="victim_name" name="victim_name" placeholder="ชื่อ - สกุล" value="<?php //echo $victim_name; ?>">
 					</div>
 				</div>
+
 				<div class="form-group">
 					<label for="victim_phone" class="col-sm-2 control-label">เบอร์ติดต่อ</label>
 
@@ -36,6 +40,7 @@
 						<input type="text" class="form-control" id="victim_phone" name="victim_phone" placeholder="เบอร์ติดต่อ" value="<?php //echo $victim_phone; ?>">
 					</div>
 				</div>
+
 				<div class="form-group">
 					<label for="department" class="col-sm-2 control-label">สังกัด/หน่วยงาน</label>
 					<div class="col-sm-4">
@@ -59,30 +64,107 @@
 				</div>
 
 				<div class="form-group">
-					<label for="staff_process" class="col-sm-2 control-label">การติดตามจับกุม</label>
-					<div class="col-sm-4">
-						<input type="radio" id="staff_process" name="staff_process" value="yes" class="flat-red">
-						<label for="staff_process">จับได้</label><br>
-						<input type="radio" id="staff_process" name="staff_process" value="no" class="flat-red">
-						<label for="staff_process">จับไม่ได้</label><br>
+					<label for="snatch_events" class="col-sm-2 control-label">การติดตามจับกุม</label>
+					<div class="col-sm-10">
+						<label>
+							<input type="radio" id="snatch_events" name="snatch_events" value="polic_daily" class="flat-red">&nbsp;มีบันทึกประจำวัน
+							<input type="radio" name="snatch_events" value="req_cctv" class="flat-red">&nbsp;ขอดูกล้องวงจรปิด
+							<input type="radio" name="snatch_events" value="snatch_events_other" class="flat-red">&nbsp;อื่นๆ
+						</label>
 					</div>
 				</div>
 
-				<div class="form-group">
-					<label for="remark" class="col-sm-2 control-label">หมายเหตุ</label>
-
+				<div class="form-group" id="div_snatch_events_other">
+					<label for="snatch_events_other" class="col-sm-2 control-label">อื่นๆ</label>
 					<div class="col-sm-4">
-						<input type="text" class="form-control" id="remark" name="remark" placeholder="หมายเหตุ" value="<?php //echo $remark; ?>">
+						<input type="text" class="form-control" id="snatch_events_other" name="snatch_events_other" placeholder="อื่นๆ"
+						 value="<?php //echo $snatch_events_other; ?>">
 					</div>
 				</div>
 
 			</div>
 
-			<div class="box-footer">
-				<input type="hidden" name="id" value="<?php //echo $id; ?>">
-				<input type="hidden" name="status" value="active">
-				<?php $this->load->view('button_save_and_back_page_in_form');?>
+			<div class="form-group">
+				<label for="arrested_status" class="col-sm-2 control-label">การติดตามจับกุม</label>
+				<div class="col-sm-4">
+					<label>
+						<input type="radio" id="arrested_status" name="arrested_status" value="arrested" class="flat-red">&nbsp;จับได้
+						<input type="radio" name="arrested_status" value="not_arrested" class="flat-red">&nbsp;ยังจับกุมไม่ได้
+						<input type="radio" name="arrested_status" value="arrested_other" class="flat-red">&nbsp;อื่นๆ
+					</label>
+				</div>
 			</div>
-			</form>
+
+			<div class="form-group" id="div_arrested_status_other">
+				<label for="arrested_status_other" class="col-sm-2 control-label">อื่นๆ</label>
+				<div class="col-sm-4">
+					<input type="text" class="form-control" id="arrested_status_other" name="arrested_status_other" placeholder="อื่นๆ"
+					 value="<?php //echo $arrested_status_other; ?>">
+				</div>
+			</div>
+
 		</div>
+
+		<div class="box-footer">
+			<input type="hidden" name="id" value="<?php //echo $id; ?>">
+			<input type="hidden" name="status" value="active">
+			<?php $this->load->view('button_save_and_back_page_in_form');?>
+		</div>
+		</form>
 	</div>
+	</div>
+
+	<script>
+		$(document).ready(function () {
+			var snatch_events = '';
+			var snatch_events_other = '<?php echo $snatch_events_other;?>';
+
+			$('#div_snatch_events_other').hide();
+
+			if (snatch_events == 'other') {
+				$('#div_snatch_events_other').show();
+				$('#snatch_events_other').val(snatch_events_other);
+			} else {
+				$('#div_snatch_events_other').hide();
+				$('#snatch_events_other').val('');
+			}
+
+			$('input[name="snatch_events"]').on('ifClicked', function (event) {
+				// alert("You clicked " + this.value);
+				if (this.value == 'snatch_events_other') {
+					$('#div_snatch_events_other').show();
+					$('#snatch_events_other').val('');
+				} else {
+					$('#div_snatch_events_other').hide();
+					$('#snatch_events_other').val('');
+				}
+			});
+
+			var arrested_status = '';
+			var arrested_status_other = '<?php echo $arrested_status_other;?>';
+
+
+			$('#div_arrested_status_other').hide();
+
+			if (snatch_events == 'other') {
+				$('#div_arrested_status_other').show();
+				$('#arrested_status_other').val(snatch_events_other);
+			} else {
+				$('#div_arrested_status_other').hide();
+				$('#arrested_status_other').val('');
+			}
+
+			$('input[name="arrested_status"]').on('ifClicked', function (event) {
+				// alert("You clicked " + this.value);
+				if (this.value == 'arrested_other') {
+					$('#div_arrested_status_other').show();
+					$('#arrested_status_other').val('');
+				} else {
+					$('#div_arrested_status_other').hide();
+					$('#arrested_status_other').val('');
+				}
+			});
+
+		});
+
+	</script>
