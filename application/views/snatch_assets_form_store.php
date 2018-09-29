@@ -64,7 +64,7 @@
 				</div>
 
 				<div class="form-group">
-					<label for="snatch_events" class="col-sm-2 control-label">การติดตามจับกุม</label>
+					<label for="snatch_events" class="col-sm-2 control-label">การดำเนินการ</label>
 					<div class="col-sm-10">
 						<label>
 							<input type="radio" id="snatch_events" name="snatch_events" value="polic_daily" class="flat-red">&nbsp;มีบันทึกประจำวัน
@@ -94,11 +94,10 @@
 				</div>
 			</div>
 
-			<div class="form-group" id="div_arrested_status_other">
-				<label for="arrested_status_other" class="col-sm-2 control-label">อื่นๆ</label>
+			<div class="form-group" id="div_arrested_other">
+				<label for="arrested_other" class="col-sm-2 control-label">อื่นๆ</label>
 				<div class="col-sm-4">
-					<input type="text" class="form-control" id="arrested_status_other" name="arrested_status_other" placeholder="อื่นๆ"
-					 value="<?php //echo $arrested_status_other; ?>">
+					<input type="text" class="form-control" id="arrested_other" name="arrested_other" placeholder="อื่นๆ" value="<?php //echo $arrested_other; ?>">
 				</div>
 			</div>
 
@@ -140,27 +139,27 @@
 			});
 
 			var arrested_status = '';
-			var arrested_status_other = '<?php echo $arrested_status_other;?>';
+			var arrested_other = '<?php echo $arrested_other;?>';
 
 
-			$('#div_arrested_status_other').hide();
+			$('#div_arrested_other').hide();
 
 			if (snatch_events == 'other') {
-				$('#div_arrested_status_other').show();
-				$('#arrested_status_other').val(events_other);
+				$('#div_arrested_other').show();
+				$('#arrested_other').val(events_other);
 			} else {
-				$('#div_arrested_status_other').hide();
-				$('#arrested_status_other').val('');
+				$('#div_arrested_other').hide();
+				$('#arrested_other').val('');
 			}
 
 			$('input[name="arrested_status"]').on('ifClicked', function (event) {
 				// alert("You clicked " + this.value);
 				if (this.value == 'arrested_other') {
-					$('#div_arrested_status_other').show();
-					$('#arrested_status_other').val('');
+					$('#div_arrested_other').show();
+					$('#arrested_other').val('');
 				} else {
-					$('#div_arrested_status_other').hide();
-					$('#arrested_status_other').val('');
+					$('#div_arrested_other').hide();
+					$('#arrested_other').val('');
 				}
 			});
 
