@@ -120,9 +120,9 @@
 
 	<script>
 		$(document).ready(function () {
-			var snatch_events = '';
+			var snatch_events = '<?php echo $snatch_events;?>';
 			var events_other = '<?php echo $events_other;?>';
-
+			console.log(events_other)
 			$('#div_events_other').hide();
 
 			if (snatch_events == 'other') {
@@ -144,7 +144,7 @@
 				}
 			});
 
-			var arrested_status = '';
+			var arrested_status = '<?php echo $arrested_status;?>';
 			var arrested_other = '<?php echo $arrested_other;?>';
 
 
@@ -152,7 +152,7 @@
 
 			if (snatch_events == 'other') {
 				$('#div_arrested_other').show();
-				$('#arrested_other').val(events_other);
+				$('#arrested_other').val(arrested_other);
 			} else {
 				$('#div_arrested_other').hide();
 				$('#arrested_other').val('');
