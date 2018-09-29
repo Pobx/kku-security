@@ -30,6 +30,10 @@
 	<a href="<?php echo site_url('snatch_assets'); ?>"><i class="fa fa-user-secret"></i> <span>วิ่งราวชิงทรัพย์</span></a>
 </li>
 
+<li id="steal_motorcycle">
+	<a href="<?php echo site_url('steal_motorcycle'); ?>"><i class="fa fa-motorcycle"></i> <span>ขโมยรถจักรยานยนต์</span></a>
+</li>
+
 <li id="cctv_request_log">
 	<a href="<?php echo site_url('cctv_request_log'); ?>"><i class="fa fa-camera"></i> <span>สถิติขอดูภาพเหตุการณ์</span></a>
 </li>
@@ -99,7 +103,7 @@
 
 <li class="treeview" id="setting">
 	<a href="#">
-		<i class="fa fa-book"></i> <span>Setting</span>
+		<i class="fa fa-database"></i> <span>Setting</span>
 		<span class="pull-right-container">
 			<i class="fa fa-angle-left pull-right"></i>
 		</span>
