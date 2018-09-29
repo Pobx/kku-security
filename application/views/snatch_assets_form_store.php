@@ -16,7 +16,7 @@
 					<label for="date_break" class="col-sm-2 control-label">วันที่</label>
 					<div class="col-sm-4">
 						<input type="text" class="form-control datepicker" id="date_break" name="date_break" data-provide="datepicker"
-						 data-date-language="th-th" placeholder="วันที่" value="">
+						 data-date-language="th-th" placeholder="วันที่" value="<?php echo $date_break_th;?>">
 					</div>
 				</div>
 

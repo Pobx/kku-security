@@ -19,6 +19,15 @@ class Snatch_assests_model extends CI_Model
         ELSE ""
       END
     ) AS period_time_name,
+    people_type,
+    (
+      CASE 
+        WHEN people_type = "student" THEN "นักศึกษา"
+        WHEN people_type = "staff" THEN "บุคลากร"
+        WHEN people_type = "people_outside" THEN "บุคคลภายนอก"
+        ELSE ""
+      END
+    ) AS people_type_name,
     victim_name,
     victim_phone,
     department,
