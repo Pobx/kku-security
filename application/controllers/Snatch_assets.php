@@ -7,7 +7,7 @@ class Snatch_assets extends CI_Controller
     {
         parent::__construct();
 
-        $this->load->model('Break_homes_model');
+        $this->load->model('Snatch_assests_model');
         $this->load->library('Date_libs');
     }
 
@@ -28,7 +28,7 @@ class Snatch_assets extends CI_Controller
         $data['header_columns'] = $this->header_columns;
 
         // $qstr = array('status !=' => 'disabled');
-        // $results = $this->Break_homes_model->all($qstr);
+        // $results = $this->Snatch_assests_model->all($qstr);
         // $data['results'] = $results['results'];
         $data['results'] = array();
         $data['content'] = 'break_homes_table';
@@ -39,15 +39,15 @@ class Snatch_assets extends CI_Controller
 
     public function form_store()
     {
-        // $id = $this->uri->segment(3);
+        $id = $this->uri->segment(3);
 
-        // $data = $this->find($id);
-        $data['period_time'] = '';
-        $data['people_type'] = '';
-        $data['owner_assets_department'] = '';
-        $data['snatch_events'] = '';
-        $data['events_other'] = '';
-        $data['arrested_other'] = '';
+        $data = $this->find($id);
+        // $data['period_time'] = '';
+        // $data['people_type'] = '';
+        // $data['owner_assets_department'] = '';
+        // $data['snatch_events'] = '';
+        // $data['events_other'] = '';
+        // $data['arrested_other'] = '';
         
         $data['head_topic_label'] = $this->head_topic_label;
         $data['head_sub_topic_label'] = $this->head_sub_topic_label_form;
@@ -64,7 +64,7 @@ class Snatch_assets extends CI_Controller
     {
         $inptus = $this->input->post();
         $inptus['date_break'] = $this->date_libs->set_date_th($inptus['date_break']);
-        $results = $this->Break_homes_model->store($inptus);
+        $results = $this->Snatch_assests_model->store($inptus);
 
         $alert_type = ($results['query'] ? 'success' : 'warning');
         $alert_icon = ($results['query'] ? 'check' : 'warning');
@@ -78,7 +78,7 @@ class Snatch_assets extends CI_Controller
 
     private function find($id = 0)
     {
-        $results = $this->Break_homes_model->find($id);
+        $results = $this->Snatch_assests_model->find($id);
         $values = $results['results'];
         $fields = $results['fields'];
         $rows = $results['rows'];
@@ -102,7 +102,7 @@ class Snatch_assets extends CI_Controller
     public function remove()
     {
         $id = $this->uri->segment(3);
-        $results = $this->Break_homes_model->remove($id);
+        $results = $this->Snatch_assests_model->remove($id);
 
         $alert_type = ($results['query'] ? 'danger' : 'warning');
         $alert_icon = ($results['query'] ? 'trash' : 'warning');
