@@ -46,7 +46,7 @@ class Snatch_assets extends CI_Controller
         $data['people_type'] = '';
         $data['owner_assets_department'] = '';
         $data['snatch_events'] = '';
-        $data['snatch_events_other'] = '';
+        $data['events_other'] = '';
         $data['arrested_status_other'] = '';
         
         $data['head_topic_label'] = $this->head_topic_label;

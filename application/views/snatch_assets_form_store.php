@@ -68,17 +68,16 @@
 					<div class="col-sm-10">
 						<label>
 							<input type="radio" id="snatch_events" name="snatch_events" value="polic_daily" class="flat-red">&nbsp;มีบันทึกประจำวัน
-							<input type="radio" name="snatch_events" value="req_cctv" class="flat-red">&nbsp;ขอดูกล้องวงจรปิด
-							<input type="radio" name="snatch_events" value="snatch_events_other" class="flat-red">&nbsp;อื่นๆ
+							<input type="radio" name="snatch_events" value="request_cctv" class="flat-red">&nbsp;ขอดูกล้องวงจรปิด
+							<input type="radio" name="snatch_events" value="other" class="flat-red">&nbsp;อื่นๆ
 						</label>
 					</div>
 				</div>
 
-				<div class="form-group" id="div_snatch_events_other">
-					<label for="snatch_events_other" class="col-sm-2 control-label">อื่นๆ</label>
+				<div class="form-group" id="div_events_other">
+					<label for="events_other" class="col-sm-2 control-label">อื่นๆ</label>
 					<div class="col-sm-4">
-						<input type="text" class="form-control" id="snatch_events_other" name="snatch_events_other" placeholder="อื่นๆ"
-						 value="<?php //echo $snatch_events_other; ?>">
+						<input type="text" class="form-control" id="events_other" name="events_other" placeholder="อื่นๆ" value="<?php //echo $events_other; ?>">
 					</div>
 				</div>
 
@@ -117,26 +116,26 @@
 	<script>
 		$(document).ready(function () {
 			var snatch_events = '';
-			var snatch_events_other = '<?php echo $snatch_events_other;?>';
+			var events_other = '<?php echo $events_other;?>';
 
-			$('#div_snatch_events_other').hide();
+			$('#div_events_other').hide();
 
 			if (snatch_events == 'other') {
-				$('#div_snatch_events_other').show();
-				$('#snatch_events_other').val(snatch_events_other);
+				$('#div_events_other').show();
+				$('#events_other').val(events_other);
 			} else {
-				$('#div_snatch_events_other').hide();
-				$('#snatch_events_other').val('');
+				$('#div_events_other').hide();
+				$('#events_other').val('');
 			}
 
 			$('input[name="snatch_events"]').on('ifClicked', function (event) {
 				// alert("You clicked " + this.value);
-				if (this.value == 'snatch_events_other') {
-					$('#div_snatch_events_other').show();
-					$('#snatch_events_other').val('');
+				if (this.value == 'other') {
+					$('#div_events_other').show();
+					$('#events_other').val('');
 				} else {
-					$('#div_snatch_events_other').hide();
-					$('#snatch_events_other').val('');
+					$('#div_events_other').hide();
+					$('#events_other').val('');
 				}
 			});
 
@@ -148,7 +147,7 @@
 
 			if (snatch_events == 'other') {
 				$('#div_arrested_status_other').show();
-				$('#arrested_status_other').val(snatch_events_other);
+				$('#arrested_status_other').val(events_other);
 			} else {
 				$('#div_arrested_status_other').hide();
 				$('#arrested_status_other').val('');
