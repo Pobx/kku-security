@@ -122,7 +122,7 @@
 		$(document).ready(function () {
 			var snatch_events = '<?php echo $snatch_events;?>';
 			var events_other = '<?php echo $events_other;?>';
-			console.log(events_other)
+
 			$('#div_events_other').hide();
 
 			if (snatch_events == 'other') {
@@ -146,7 +146,6 @@
 
 			var arrested_status = '<?php echo $arrested_status;?>';
 			var arrested_other = '<?php echo $arrested_other;?>';
-
 
 			$('#div_arrested_other').hide();
 
