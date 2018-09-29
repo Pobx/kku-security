@@ -14,7 +14,7 @@ class Snatch_assets extends CI_Controller
     private $head_topic_label           = 'วิ่งราวชิงทรัพย์';
     private $head_sub_topic_label_table = 'รายการวิ่งราวชิงทรัพย์';
     private $head_sub_topic_label_form  = 'ฟอร์มบันทึกข้อมูล วิ่งราวชิงทรัพย์';
-    private $header_columns             = array('วันที่', 'ชื่อ - สกุล', 'สถานที่เกิดเหตุ', 'ทรัพย์สินที่เสียหาย', 'หมายเหตุ', 'แก้ไข', 'ลบ');
+    private $header_columns             = array('วันที่', 'ชื่อ - สกุล', 'สถานที่เกิดเหตุ', 'ทรัพย์สินที่เสียหาย', 'แก้ไข', 'ลบ');
     private $success_message            = 'บันทึกข้อมูลสำเร็จ';
     private $warning_message            = 'ไม่สามารถทำรายการ กรุณลองใหม่อีกครั้ง';
     private $danger_message             = 'ลบข้อมูลสำเร็จ';
@@ -27,11 +27,10 @@ class Snatch_assets extends CI_Controller
         $data['link_go_to_remove'] = site_url('snatch_assets/remove');
         $data['header_columns'] = $this->header_columns;
 
-        // $qstr = array('status !=' => 'disabled');
-        // $results = $this->Snatch_assests_model->all($qstr);
-        // $data['results'] = $results['results'];
-        $data['results'] = array();
-        $data['content'] = 'break_homes_table';
+        $qstr = array('status !=' => 'disabled');
+        $results = $this->Snatch_assests_model->all($qstr);
+        $data['results'] = $results['results'];
+        $data['content'] = 'snatch_assets_table';
 
         // echo "<pre>", print_r($data['results']); exit();
         $this->load->view('template_layout', $data);
@@ -42,12 +41,6 @@ class Snatch_assets extends CI_Controller
         $id = $this->uri->segment(3);
 
         $data = $this->find($id);
-        // $data['period_time'] = '';
-        // $data['people_type'] = '';
-        // $data['owner_assets_department'] = '';
-        // $data['snatch_events'] = '';
-        // $data['events_other'] = '';
-        // $data['arrested_other'] = '';
         
         $data['head_topic_label'] = $this->head_topic_label;
         $data['head_sub_topic_label'] = $this->head_sub_topic_label_form;

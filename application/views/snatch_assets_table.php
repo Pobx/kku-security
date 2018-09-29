@@ -41,9 +41,7 @@
     ?>
 					<tr>
 						<td class="text-center">
-							<?php if ($value['date_break'] != '')
-{
-    echo $value['date_break'];}?>
+							<?php echo $value['date_break_th'];?>
 						</td>
 						<td class="text-center">
 							<?php echo $value['victim_name']; ?>
@@ -53,9 +51,6 @@
 						</td>
 						<td class="text-center">
 							<?php echo $value['assets_loses']; ?>
-						</td>
-						<td class="text-center">
-							<?php echo $value['remark']; ?>
 						</td>
 
 						<td class="text-center">
