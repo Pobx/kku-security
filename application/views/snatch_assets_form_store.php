@@ -29,7 +29,7 @@
 					<label for="owner_home_name" class="col-sm-2 control-label">ชื่อ&nbsp;-&nbsp;สกุล</label>
 
 					<div class="col-sm-4">
-						<input type="text" class="form-control" id="victim_name" name="victim_name" placeholder="ชื่อ - สกุล" value="<?php //echo $victim_name; ?>">
+						<input type="text" class="form-control" id="victim_name" name="victim_name" placeholder="ชื่อ - สกุล" value="<?php echo $victim_name; ?>">
 					</div>
 				</div>
 
@@ -37,21 +37,21 @@
 					<label for="victim_phone" class="col-sm-2 control-label">เบอร์ติดต่อ</label>
 
 					<div class="col-sm-4">
-						<input type="text" class="form-control" id="victim_phone" name="victim_phone" placeholder="เบอร์ติดต่อ" value="<?php //echo $victim_phone; ?>">
+						<input type="text" class="form-control" id="victim_phone" name="victim_phone" placeholder="เบอร์ติดต่อ" value="<?php echo $victim_phone; ?>">
 					</div>
 				</div>
 
 				<div class="form-group">
 					<label for="department" class="col-sm-2 control-label">สังกัด/หน่วยงาน</label>
 					<div class="col-sm-4">
-						<input type="text" class="form-control" id="department" name="department" placeholder="สังกัด/หน่วยงาน" value="<?php //echo $department; ?>">
+						<input type="text" class="form-control" id="department" name="department" placeholder="สังกัด/หน่วยงาน" value="<?php echo $department; ?>">
 					</div>
 				</div>
 
 				<div class="form-group">
 					<label for="address" class="col-sm-2 control-label">ที่อยู่สถานที่เกิดเหตุ</label>
 					<div class="col-sm-4">
-						<textarea class="form-control" rows="3" id="address" name="address" placeholder="สถานที่เกิดเหตุ"><?php //echo $address; ?></textarea>
+						<textarea class="form-control" rows="3" id="address" name="address" placeholder="สถานที่เกิดเหตุ"><?php echo $address; ?></textarea>
 					</div>
 				</div>
 
@@ -59,7 +59,7 @@
 					<label for="assets_loses" class="col-sm-2 control-label">ทรัพย์สินที่เสียหาย</label>
 
 					<div class="col-sm-4">
-						<textarea class="form-control" rows="3" id="assets_loses" name="assets_loses" placeholder="ทรัพย์สินที่เสียหาย"><?php //echo $assets_loses; ?></textarea>
+						<textarea class="form-control" rows="3" id="assets_loses" name="assets_loses" placeholder="ทรัพย์สินที่เสียหาย"><?php echo $assets_loses; ?></textarea>
 					</div>
 				</div>
 
@@ -67,9 +67,12 @@
 					<label for="snatch_events" class="col-sm-2 control-label">การดำเนินการ</label>
 					<div class="col-sm-10">
 						<label>
-							<input type="radio" id="snatch_events" name="snatch_events" value="polic_daily" class="flat-red">&nbsp;มีบันทึกประจำวัน
-							<input type="radio" name="snatch_events" value="request_cctv" class="flat-red">&nbsp;ขอดูกล้องวงจรปิด
-							<input type="radio" name="snatch_events" value="other" class="flat-red">&nbsp;อื่นๆ
+							<input type="radio" id="snatch_events" name="snatch_events" value="polic_daily" class="flat-red" <?php if
+							 ($snatch_events=='polic_daily' ) { echo 'checked' ;}?>>&nbsp;มีบันทึกประจำวัน
+							<input type="radio" name="snatch_events" value="request_cctv" class="flat-red" <?php if ($snatch_events=='request_cctv'
+							 ) { echo 'checked' ;}?>>&nbsp;ขอดูกล้องวงจรปิด
+							<input type="radio" name="snatch_events" value="other" class="flat-red" <?php if ($snatch_events=='other' ) {
+							 echo 'checked' ;}?>>&nbsp;อื่นๆ
 						</label>
 					</div>
 				</div>
@@ -77,7 +80,7 @@
 				<div class="form-group" id="div_events_other">
 					<label for="events_other" class="col-sm-2 control-label">อื่นๆ</label>
 					<div class="col-sm-4">
-						<input type="text" class="form-control" id="events_other" name="events_other" placeholder="อื่นๆ" value="<?php //echo $events_other; ?>">
+						<input type="text" class="form-control" id="events_other" name="events_other" placeholder="อื่นๆ" value="<?php echo $events_other; ?>">
 					</div>
 				</div>
 
@@ -87,9 +90,12 @@
 				<label for="arrested_status" class="col-sm-2 control-label">การติดตามจับกุม</label>
 				<div class="col-sm-4">
 					<label>
-						<input type="radio" id="arrested_status" name="arrested_status" value="arrested" class="flat-red">&nbsp;จับได้
-						<input type="radio" name="arrested_status" value="not_arrested" class="flat-red">&nbsp;ยังจับกุมไม่ได้
-						<input type="radio" name="arrested_status" value="arrested_other" class="flat-red">&nbsp;อื่นๆ
+						<input type="radio" id="arrested_status" name="arrested_status" value="arrested" class="flat-red" <?php if
+						 ($arrested_status=='arrested' ) { echo 'checked' ;}?>>&nbsp;จับได้
+						<input type="radio" name="arrested_status" value="not_arrested" class="flat-red" <?php if ($arrested_status=='not_arrested'
+						 ) { echo 'checked' ;}?>>&nbsp;ยังจับกุมไม่ได้
+						<input type="radio" name="arrested_status" value="arrested_other" class="flat-red" <?php if ($arrested_status=='arrested_other'
+						 ) { echo 'checked' ;}?>>&nbsp;อื่นๆ
 					</label>
 				</div>
 			</div>
@@ -97,7 +103,7 @@
 			<div class="form-group" id="div_arrested_other">
 				<label for="arrested_other" class="col-sm-2 control-label">อื่นๆ</label>
 				<div class="col-sm-4">
-					<input type="text" class="form-control" id="arrested_other" name="arrested_other" placeholder="อื่นๆ" value="<?php //echo $arrested_other; ?>">
+					<input type="text" class="form-control" id="arrested_other" name="arrested_other" placeholder="อื่นๆ" value="<?php echo $arrested_other; ?>">
 				</div>
 			</div>
 
