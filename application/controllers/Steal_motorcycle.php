@@ -1,20 +1,20 @@
 <?php
 defined('BASEPATH') || exit('No direct script access allowed');
 
-class Snatch_assets extends CI_Controller
+class Steal_motorcycle extends CI_Controller
 {
     public function __construct()
     {
         parent::__construct();
 
-        $this->load->model('Snatch_assests_model');
+        $this->load->model('Steal_motorcycle_model');
         $this->load->library('Date_libs');
     }
 
     private $head_topic_label           = 'ขโมยรถจักรยานยนต์';
     private $head_sub_topic_label_table = 'รายการขโมยรถจักรยานยนต์';
     private $head_sub_topic_label_form  = 'ฟอร์มบันทึกข้อมูล ขโมยรถจักรยานยนต์';
-    private $header_columns             = array('วันที่', 'ชื่อ - สกุล', 'สถานที่เกิดเหตุ', 'ทรัพย์สินที่เสียหาย', 'แก้ไข', 'ลบ');
+    private $header_columns             = array('วันที่', 'ชื่อ - สกุล', 'สถานที่เกิดเหตุ', 'ข้อมูลรถจักรยานยนต์', 'แก้ไข', 'ลบ');
     private $success_message            = 'บันทึกข้อมูลสำเร็จ';
     private $warning_message            = 'ไม่สามารถทำรายการ กรุณลองใหม่อีกครั้ง';
     private $danger_message             = 'ลบข้อมูลสำเร็จ';
@@ -23,14 +23,14 @@ class Snatch_assets extends CI_Controller
     {
         $data['head_topic_label'] = $this->head_topic_label;
         $data['head_sub_topic_label'] = $this->head_sub_topic_label_table;
-        $data['link_go_to_form'] = site_url('snatch_assets/form_store');
-        $data['link_go_to_remove'] = site_url('snatch_assets/remove');
+        $data['link_go_to_form'] = site_url('steal_motorcycle/form_store');
+        $data['link_go_to_remove'] = site_url('steal_motorcycle/remove');
         $data['header_columns'] = $this->header_columns;
 
         $qstr = array('status !=' => 'disabled');
-        $results = $this->Snatch_assests_model->all($qstr);
+        $results = $this->Steal_motorcycle_model->all($qstr);
         $data['results'] = $results['results'];
-        $data['content'] = 'snatch_assets_table';
+        $data['content'] = 'steal_motorcycle_table';
 
         // echo "<pre>", print_r($data['results']); exit();
         $this->load->view('template_layout', $data);
@@ -57,7 +57,7 @@ class Snatch_assets extends CI_Controller
     {
         $inptus = $this->input->post();
         $inptus['date_break'] = $this->date_libs->set_date_th($inptus['date_break']);
-        $results = $this->Snatch_assests_model->store($inptus);
+        $results = $this->Steal_motorcycle_model->store($inptus);
 
         $alert_type = ($results['query'] ? 'success' : 'warning');
         $alert_icon = ($results['query'] ? 'check' : 'warning');
@@ -71,7 +71,7 @@ class Snatch_assets extends CI_Controller
 
     private function find($id = 0)
     {
-        $results = $this->Snatch_assests_model->find($id);
+        $results = $this->Steal_motorcycle_model->find($id);
         $values = $results['results'];
         $fields = $results['fields'];
         $rows = $results['rows'];
@@ -95,7 +95,7 @@ class Snatch_assets extends CI_Controller
     public function remove()
     {
         $id = $this->uri->segment(3);
-        $results = $this->Snatch_assests_model->remove($id);
+        $results = $this->Steal_motorcycle_model->remove($id);
 
         $alert_type = ($results['query'] ? 'danger' : 'warning');
         $alert_icon = ($results['query'] ? 'trash' : 'warning');
