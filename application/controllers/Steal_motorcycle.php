@@ -27,7 +27,7 @@ class Steal_motorcycle extends CI_Controller
         $data['link_go_to_remove'] = site_url('steal_motorcycle/remove');
         $data['header_columns'] = $this->header_columns;
 
-        $qstr = array('status !=' => 'disabled');
+        $qstr = array('status' => 'active');
         $results = $this->Steal_motorcycle_model->all($qstr);
         $data['results'] = $results['results'];
         $data['content'] = 'steal_motorcycle_table';
@@ -47,7 +47,7 @@ class Steal_motorcycle extends CI_Controller
         $data['link_back_to_table'] = site_url('snatch_assets');
         $data['form_submit_data_url'] = site_url('snatch_assets/store');
 
-        $data['content'] = 'snatch_assets_form_store';
+        $data['content'] = 'steal_motocycle_form_store';
 
         // echo "<pre>", print_r($data); exit();
         $this->load->view('template_layout', $data);
