@@ -4,12 +4,12 @@ defined('BASEPATH') || exit('No direct script access allowed');
 class Steal_motorcycle_model extends CI_Model
 {
 
-    private $table = 'snatch_assets';
+    private $table = 'steal_motocycle';
     private $id    = 'id';
     private $items = '
     id,
-    date_break AS date_break_en,
-    DATE_FORMAT(DATE_ADD(date_break, INTERVAL 543 YEAR),"%d/%m/%Y") as date_break_th,
+    steal_date AS steal_date_en,
+    DATE_FORMAT(DATE_ADD(steal_date, INTERVAL 543 YEAR),"%d/%m/%Y") as steal_date_th,
     period_time,
     (
       CASE
@@ -32,7 +32,19 @@ class Steal_motorcycle_model extends CI_Model
     victim_phone,
     department,
     address,
-   
+    car_model,
+    car_brand,
+    car_color,
+    car_license_plate,
+    arrested_status,
+    (
+      CASE
+        WHEN arrested_status = "arrested" THEN "จับได้"
+        WHEN arrested_status = "not_arrested" THEN "ยังจับกุมไม่ได้"
+        WHEN arrested_status = "arrested_other" THEN "อื่นๆ"
+      END
+    ) AS arrested_status_name,
+    arrested_other,
     status,
     (
       CASE
