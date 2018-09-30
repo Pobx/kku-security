@@ -1,4 +1,3 @@
-
 <section class="content">
 	<div class="box box-primary">
 		<div class="box-header with-border">
@@ -65,7 +64,7 @@
 
 
 				<div class="<?php echo $address !="" ? 'form-group show' : 'form-group show';?>" id="adress_info">
-					<label for="address" class="col-sm-2 control-label">ที่อยู่สถานที่เกิดเหตุ</label>
+					<label for="address" class="col-sm-2 control-label">สถานที่เกิดเหตุ</label>
 					<div class="col-sm-4">
 						<textarea class="form-control" rows="3" id="address" name="address" placeholder="สถานที่เกิดเหตุ"><?php echo $address;?></textarea>
 					</div>
@@ -79,7 +78,7 @@
 						<textarea class="form-control" rows="3" id="assets_loses" name="assets_loses" placeholder="ทรัพย์สินที่เสียหาย"><?php echo $assets_loses;?></textarea>
 					</div>
 				</div>
-				
+
 				<div class="form-group">
 					<label for="staff_process" class="col-sm-2 control-label">การติดตามจับกุม</label>
 					<div class="col-sm-4">

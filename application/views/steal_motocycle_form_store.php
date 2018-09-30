@@ -49,7 +49,7 @@ $this->load->view('people_type');
 				</div>
 
 				<div class="form-group">
-					<label for="address" class="col-sm-2 control-label">ที่อยู่สถานที่เกิดเหตุ</label>
+					<label for="address" class="col-sm-2 control-label">สถานที่เกิดเหตุ</label>
 					<div class="col-sm-4">
 						<textarea class="form-control" rows="3" id="address" name="address" placeholder="สถานที่เกิดเหตุ"><?php echo $address; ?></textarea>
 					</div>
