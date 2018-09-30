@@ -13,9 +13,9 @@
 			</div>
 			<div class="box-body">
 				<div class="form-group">
-					<label for="date_break" class="col-sm-2 control-label">วันที่</label>
+					<label for="steal_date" class="col-sm-2 control-label">วันที่</label>
 					<div class="col-sm-4">
-						<input type="text" class="form-control datepicker" id="date_break" name="date_break" data-provide="datepicker"
+						<input type="text" class="form-control datepicker" id="steal_date" name="steal_date" data-provide="datepicker"
 						 data-date-language="th-th" placeholder="วันที่" value="<?php echo $steal_date_th; ?>">
 					</div>
 				</div>
@@ -41,7 +41,7 @@ $this->load->view('people_type');
 					</div>
 				</div>
 
-				<div class="form-group">
+				<div class="form-group" id="div_department">
 					<label for="department" class="col-sm-2 control-label">สังกัด/หน่วยงาน</label>
 					<div class="col-sm-4">
 						<input type="text" class="form-control" id="department" name="department" placeholder="สังกัด/หน่วยงาน" value="<?php echo $department; ?>">
@@ -145,6 +145,37 @@ $this->load->view('people_type');
 					$('#arrested_other').val('');
 				}
 			});
+
+			var people_type = '<?php echo $people_type;?>';
+			var department = '<?php echo $department; ?>';
+
+			show_div_department(people_type, department);
+			set_label_for_department(people_type);
+
+			$('input[name="people_type"]').on('ifClicked', function (event) {
+
+				set_label_for_department(this.value);
+				show_div_department(this.value, '');
+			});
+
+			function set_label_for_department(val) {
+				var result = 'สังกัด/หน่วยงาน';
+				if (val == 'student') {
+					result = 'คณะ';
+				}
+				$("label[for='department']").html(result);
+
+			}
+
+			function show_div_department(val, department) {
+				if (val != 'people_outside') {
+					$('#div_department').show();
+					$('#department').val(department);
+				} else {
+					$('#div_department').hide();
+					$('#department').val('');
+				}
+			}
 
 		});
 

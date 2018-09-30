@@ -44,8 +44,8 @@ class Steal_motorcycle extends CI_Controller
 
         $data['head_topic_label'] = $this->head_topic_label;
         $data['head_sub_topic_label'] = $this->head_sub_topic_label_form;
-        $data['link_back_to_table'] = site_url('snatch_assets');
-        $data['form_submit_data_url'] = site_url('snatch_assets/store');
+        $data['link_back_to_table'] = site_url('steal_motorcycle');
+        $data['form_submit_data_url'] = site_url('steal_motorcycle/store');
 
         $data['content'] = 'steal_motocycle_form_store';
 
@@ -56,7 +56,7 @@ class Steal_motorcycle extends CI_Controller
     public function store()
     {
         $inptus = $this->input->post();
-        $inptus['date_break'] = $this->date_libs->set_date_th($inptus['date_break']);
+        $inptus['steal_date'] = $this->date_libs->set_date_th($inptus['steal_date']);
         $results = $this->Steal_motorcycle_model->store($inptus);
 
         $alert_type = ($results['query'] ? 'success' : 'warning');
@@ -66,7 +66,7 @@ class Steal_motorcycle extends CI_Controller
         $this->session->set_flashdata('alert_icon', $alert_icon);
         $this->session->set_flashdata('alert_message', $alert_message);
 
-        redirect('snatch_assets');
+        redirect('steal_motorcycle');
     }
 
     private function find($id = 0)
@@ -104,6 +104,6 @@ class Steal_motorcycle extends CI_Controller
         $this->session->set_flashdata('alert_icon', $alert_icon);
         $this->session->set_flashdata('alert_message', $alert_message);
 
-        redirect('snatch_assets');
+        redirect('steal_motorcycle');
     }
 }
