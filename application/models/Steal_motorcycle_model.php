@@ -36,6 +36,7 @@ class Steal_motorcycle_model extends CI_Model
     car_brand,
     car_color,
     car_license_plate,
+    CONCAT(car_license_plate, " ", car_color, " ", car_brand, " ", car_model) as car_body,
     arrested_status,
     (
       CASE

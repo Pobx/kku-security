@@ -41,7 +41,7 @@
     ?>
 					<tr>
 						<td class="text-center">
-							<?php echo $value['date_break_th']; ?>
+							<?php echo $value['steal_date_th']; ?>
 						</td>
 						<td class="text-center">
 							<?php echo $value['victim_name']; ?>
@@ -50,7 +50,7 @@
 							<?php echo $value['address']; ?>
 						</td>
 						<td class="text-center">
-							<?php //echo $value['car_body']; ?>
+							<?php echo $value['car_body']; ?>
 						</td>
 
 						<td class="text-center">
