@@ -36,6 +36,9 @@ class Redbox_security_only extends CI_Controller
 
         $data['content'] = 'redbox_only_security_form_store';
 
+        $data['checked_redbox_place'] = $results_redbox_place['results2'];
+        $data['redbox_total_rows'] =  $results_redbox_place['rows'];
+        $data['redbox_checked_rows'] =  $results_redbox_place['rows2'];
         // echo "<pre>", print_r($data); exit();
         $this->load->view('template_layout_evaluation', $data);
     }

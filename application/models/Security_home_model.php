@@ -16,7 +16,6 @@ class Security_home_model extends CI_Model {
     owner_home_department_name, 
     owner_home_office_name, 
     address, 
-    period,
     (
       CASE 
         WHEN status = "normal" THEN "ปกติ"
