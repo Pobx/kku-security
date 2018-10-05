@@ -105,4 +105,17 @@ echo $value['comment'];
 		</div>
 	</div>
 
-	<?php //$this->load->view('dashboard_admin_bar_chart_monthly');?>
+	<?php 
+    $this->load->view('report_evaluations_donut_chart');
+    $this->load->view('report_evaluations_bar_chart_status');
+    $this->load->view('report_evaluations_bar_chart_performance');
+    $this->load->view('report_evaluations_bar_chart_success');
+    $this->load->view('report_evaluations_bar_chart_timeline');
+    $this->load->view('report_evaluations_bar_chart_service_clear');
+    $this->load->view('report_evaluations_bar_chart_materials');
+    $this->load->view('report_evaluations_bar_chart_servicemind');
+    $this->load->view('report_evaluations_bar_chart_communication');
+    $this->load->view('report_evaluations_bar_chart_knowlage');
+    $this->load->view('report_evaluations_bar_chart_questions');
+    $this->load->view('report_evaluations_bar_chart_followup');
+  ?>

@@ -135,7 +135,7 @@ if (!isset($sess_userprofile['logged']) || $sess_userprofile['logged'] == false)
 				<ul class="sidebar-menu" data-widget="tree">
 					<li class="header">MAIN NAVIGATION</li>
 					<?php
-if ($sess_userprofile['permission'] != 'security')
+if ($sess_userprofile['roles'] != 'security')
 {
     $this->load->view('sidebar_admin');
 }
@@ -186,8 +186,23 @@ echo $head_sub_topic_label;
 				<?php }?>
 
 				<?php
-        $bar_chart_data = (isset($bar_chart_data)? $bar_chart_data : json_encode(array()));
+        $bar_chart_data = (isset($bar_chart_data)? $bar_chart_data : 'off');
+        $barchart_values_accidents_summary_of_months = (isset($barchart_values_accidents_summary_of_months)? $barchart_values_accidents_summary_of_months : 'off');
         $pie_chart_display = (isset($pie_chart_display)? $pie_chart_display : 'off');
+        $reports_evaluations_dispaly = (isset($reports_evaluations_dispaly)? $reports_evaluations_dispaly : 'off');
+        $piechart_values_between_ages = (isset($piechart_values_between_ages)? $piechart_values_between_ages : json_encode(array()));
+        $barchart_values_status = (isset($barchart_values_status)? $barchart_values_status : json_encode(array()));
+        $barchart_values_performance = (isset($barchart_values_performance)? $barchart_values_performance : json_encode(array()));
+        $barchart_values_success = (isset($barchart_values_success)? $barchart_values_success : json_encode(array()));
+        $barchart_values_timeline = (isset($barchart_values_timeline)? $barchart_values_timeline : json_encode(array()));
+        $barchart_values_service_clear = (isset($barchart_values_service_clear)? $barchart_values_service_clear : json_encode(array()));
+        $barchart_values_materials = (isset($barchart_values_materials)? $barchart_values_materials : json_encode(array()));
+        $barchart_values_servicemind = (isset($barchart_values_servicemind)? $barchart_values_servicemind : json_encode(array()));
+        $barchart_values_communication = (isset($barchart_values_communication)? $barchart_values_communication : json_encode(array()));
+        $barchart_values_knowlage = (isset($barchart_values_knowlage)? $barchart_values_knowlage : json_encode(array()));
+        $barchart_values_questions = (isset($barchart_values_questions)? $barchart_values_questions : json_encode(array()));
+        $barchart_values_followup = (isset($barchart_values_followup)? $barchart_values_followup : json_encode(array()));
+        $barchart_values_forget_keys = (isset($barchart_values_forget_keys)? $barchart_values_forget_keys : 'off');
 
         $count_accidents = (isset($count_accidents)? $count_accidents : 0);
         $count_break_homes = (isset($count_break_homes)? $count_break_homes : 0);
@@ -281,35 +296,103 @@ echo 'ขณะนี้เวลา  ' . $now_date;
 	<!-- Select2 -->
 	<script src="<?php echo base_url('bower_components/select2/dist/js/select2.full.min.js'); ?>"></script>
 
+	<script src="<?php echo base_url('assets/demo/Chart.bundle.min.js');?>"></script>
+
 	<!-- my demo -->
 	<script src="<?php echo base_url('assets/demo/dashboard_admin_donut_chart.js'); ?>"></script>
 	<script src="<?php echo base_url('assets/demo/dashboard_admin_bar_chart_monthly.js'); ?>"></script>
+	<script src="<?php echo base_url('assets/demo/piechart.js'); ?>"></script>
+	<script src="<?php echo base_url('assets/demo/barchart.js'); ?>"></script>
+
 
 	<!-- AdminLTE App -->
 	<script src="<?php echo base_url('dist/js/adminlte.min.js'); ?>"></script>
 	<script>
 		$(function () {
+			Chart.defaults.global.defaultFontFamily = "'Kanit', sans-serif";
 			var pie_chart_display = '<?php echo $pie_chart_display;?>';
+
 			if (pie_chart_display == 'on') {
 				var pie_chart_data = {
-					count_accidents: '<?php echo $count_accidents;?>',
-					count_break_homes: '<?php echo $count_break_homes;?>',
-					count_security_home: '<?php echo $count_security_home;?>',
-					count_vehicles_forget_key: '<?php echo $count_vehicles_forget_key;?>',
-					count_break_motorcycle_pad: '<?php echo $count_break_motorcycle_pad;?>',
-					count_student_do_not_wear_helmet: '<?php echo $count_student_do_not_wear_helmet;?>',
+					data: [
+						'<?php echo $count_accidents;?>',
+						'<?php echo $count_break_homes;?>',
+						'<?php echo $count_security_home;?>',
+						'<?php echo $count_vehicles_forget_key;?>',
+						'<?php echo $count_break_motorcycle_pad;?>',
+						'<?php echo $count_student_do_not_wear_helmet;?>'
+					],
+					backgroundColor: [
+						'#dd4b39',
+						'#00a65a',
+						'#00c0ef',
+						'#f39c12',
+						'#ff851b',
+						'#0073b7',
+					],
+					labels: [
+						'สถิติอุบัติเหตุ',
+						'โครงการฝากบ้าน',
+						'สถิติการลืมกุญแจ',
+						'สถิติเหตุทรัพย์งัดที่พักอาศัย',
+						'สถิติงัดเบาะรถจักยานยนต์',
+						'สถิติไม่สวมหมวกนิรภัย',
+					]
 				}
 
-				pie_chart_summary_incidence(pie_chart_data)
+				// console.log(pie_chart_data)
+				myPieChart(pie_chart_data, '#dashboard_piechart');
 			}
 
-
 			var bar_chart_data = '<?php echo $bar_chart_data;?>';
+			var barchart_values_accidents_summary_of_months = '<?php echo $barchart_values_accidents_summary_of_months;?>';
+			var barchart_values_forget_keys = '<?php echo $barchart_values_forget_keys;?>';
 
-			bar_chart_data = JSON.parse(bar_chart_data);
-			// console.log(bar_chart_data);
-			if (bar_chart_data.length > 0) {
-				bar_chart_monthly(bar_chart_data);
+			if (bar_chart_data != 'off') {
+				bar_chart_data = JSON.parse(bar_chart_data);
+				myBarChart(bar_chart_data, '#barChart');
+			}
+
+			if (barchart_values_accidents_summary_of_months != 'off') {
+				barchart_values_accidents_summary_of_months = JSON.parse(barchart_values_accidents_summary_of_months);
+				myBarChart(barchart_values_accidents_summary_of_months, '#bar_chart_accidents_summary_of_months');
+			}
+
+			if (barchart_values_forget_keys != 'off') {
+				barchart_values_forget_keys = JSON.parse(barchart_values_forget_keys);
+				myBarChart(barchart_values_forget_keys, '#barchart_values_forget_keys_count_each_people_types');
+			}
+
+			var reports_evaluations_dispaly = '<?php echo $reports_evaluations_dispaly;?>';
+			if (reports_evaluations_dispaly == 'on') {
+				var piechart_values_between_ages = '<?php echo $piechart_values_between_ages;?>';
+				var barchart_values_status = '<?php echo $barchart_values_status;?>';
+				var barchart_values_performance = '<?php echo $barchart_values_performance;?>';
+				var barchart_values_success = '<?php echo $barchart_values_success;?>';
+				var barchart_values_timeline = '<?php echo $barchart_values_timeline;?>';
+				var barchart_values_service_clear = '<?php echo $barchart_values_service_clear;?>';
+				var barchart_values_materials = '<?php echo $barchart_values_materials;?>';
+				var barchart_values_servicemind = '<?php echo $barchart_values_servicemind;?>';
+				var barchart_values_communication = '<?php echo $barchart_values_communication;?>';
+				var barchart_values_knowlage = '<?php echo $barchart_values_knowlage;?>';
+				var barchart_values_questions = '<?php echo $barchart_values_questions;?>';
+				var barchart_values_followup = '<?php echo $barchart_values_followup;?>';
+
+				// piechart_values_between_ages = JSON.parse(piechart_values_between_ages);
+
+				// console.log(JSON.parse(barchart_values_success));
+				myPieChart(JSON.parse(piechart_values_between_ages), '#pieChartEvaluations');
+				myBarChart(JSON.parse(barchart_values_status), '#barChart');
+				myBarChart(JSON.parse(barchart_values_performance), '#bar_chart_performance');
+				myBarChart(JSON.parse(barchart_values_success), '#bar_chart_success');
+				myBarChart(JSON.parse(barchart_values_timeline), '#bar_chart_timeline');
+				myBarChart(JSON.parse(barchart_values_service_clear), '#bar_chart_service_clear');
+				myBarChart(JSON.parse(barchart_values_materials), '#bar_chart_materials');
+				myBarChart(JSON.parse(barchart_values_servicemind), '#bar_chart_servicemind');
+				myBarChart(JSON.parse(barchart_values_communication), '#bar_chart_communication');
+				myBarChart(JSON.parse(barchart_values_knowlage), '#bar_chart_knowlage');
+				myBarChart(JSON.parse(barchart_values_questions), '#bar_chart_questions');
+				myBarChart(JSON.parse(barchart_values_followup), '#bar_chart_followup');
 			}
 
 			// $('.mydataTable tfoot th').each(function () {
@@ -369,8 +452,20 @@ echo 'ขณะนี้เวลา  ' . $now_date;
 			// Input mask
 			$('[data-mask]').inputmask();
 
-			//Initialize Select2 Elements
-			$('.select2').select2()
+			// Initialize Select2 Elements
+			$('.select2').select2();
+
+			// active side menu
+			var controller_link = '<?php echo $this->uri->segment(1);?>';
+
+			$('li#' + controller_link).addClass('active');
+
+			if (controller_link.search('report') != -1) {
+				$('#reports').addClass('active');
+			} else if (controller_link.search('users') != -1) {
+				$('#setting').addClass('active');
+			}
+
 		});
 
 		function removeItem(id, url, flag = '') {
@@ -386,30 +481,3 @@ echo 'ขณะนี้เวลา  ' . $now_date;
 </body>
 
 </html>
-
-
-<script>
-$( document ).ready(function() {
-	data = {
-    datasets: [{
-        data: [10, 20, 30]
-    }],
-
-    // These labels appear in the legend and in the tooltips when hovering different arcs
-    labels: [
-        'Red',
-        'Yellow',
-        'Blue'
-    ]
-};
-
-	var pieChartCanvas = $('#myChart').get(0).getContext('2d');
-	var myPieChart = new Chart(pieChartCanvas,{
-    type: 'pie',
-    data: data,
-    options: options
-});
-
-})
-</script>
-

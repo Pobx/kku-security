@@ -23,7 +23,7 @@ class Evaluation_model extends CI_Model {
         WHEN evaluations.age = "less_than_20" THEN "ต่ำกว่า 20 ปี"
         WHEN evaluations.age = "between_21_and_25" THEN "21 - 25 ปี"
         WHEN evaluations.age = "between_26_and_30" THEN "26 - 30 ปี"
-        WHEN evaluations.age = "between_31_and_35" THEN "31 - 40 ปี"
+        WHEN evaluations.age = "between_31_and_35" THEN "31 - 35 ปี"
         WHEN evaluations.age = "between_36_and_40" THEN "36 - 40 ปี"
         WHEN evaluations.age = "between_41_and_45" THEN "41 - 45 ปี"
         WHEN evaluations.age = "between_46_and_50" THEN "46 - 50 ปี"

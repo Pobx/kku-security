@@ -1,25 +1,51 @@
 <?php
 defined('BASEPATH') || exit('No direct script access allowed');
 
-class Users_model extends CI_Model
+class Steal_motorcycle_model extends CI_Model
 {
 
-    private $table = 'users';
+    private $table = 'steal_motocycle';
     private $id    = 'id';
     private $items = '
     id,
-    username,
-    name,
-    roles,
+    steal_date AS steal_date_en,
+    DATE_FORMAT(DATE_ADD(steal_date, INTERVAL 543 YEAR),"%d/%m/%Y") as steal_date_th,
+    period_time,
     (
       CASE
-        WHEN roles = "admin" THEN "ผู้ดูแลระบบ"
-        WHEN roles = "operation" THEN "เจ้าหน้าที่"
-        WHEN roles = "management" THEN "ผู้บริหาร"
-        WHEN roles = "security" THEN "เจ้าหน้าที่รักษาความปลอดภัย"
+        WHEN period_time = "morning" THEN "เช้า"
+        WHEN period_time = "afternoon" THEN "บ่าย"
+        WHEN period_time = "night" THEN "ดึก"
         ELSE ""
       END
-    ) AS roles_name,
+    ) AS period_time_name,
+    people_type,
+    (
+      CASE
+        WHEN people_type = "student" THEN "นักศึกษา"
+        WHEN people_type = "staff" THEN "บุคลากร"
+        WHEN people_type = "people_outside" THEN "บุคคลภายนอก"
+        ELSE ""
+      END
+    ) AS people_type_name,
+    victim_name,
+    victim_phone,
+    department,
+    address,
+    car_model,
+    car_brand,
+    car_color,
+    car_license_plate,
+    CONCAT(car_license_plate, " ", car_color, " ", car_brand, " ", car_model) as car_body,
+    arrested_status,
+    (
+      CASE
+        WHEN arrested_status = "arrested" THEN "จับได้"
+        WHEN arrested_status = "not_arrested" THEN "ยังจับกุมไม่ได้"
+        WHEN arrested_status = "arrested_other" THEN "อื่นๆ"
+      END
+    ) AS arrested_status_name,
+    arrested_other,
     status,
     (
       CASE

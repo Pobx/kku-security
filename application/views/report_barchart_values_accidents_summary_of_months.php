@@ -9,7 +9,7 @@
 	</div>
 	<div class="box-body">
 		<div class="chart">
-			<canvas id="barChart" style="height:250px"></canvas>
+			<canvas id="bar_chart_accidents_summary_of_months" style="height:250px"></canvas>
 		</div>
 	</div>
 </div>

@@ -133,15 +133,21 @@
 		<div class="box-footer">
 			<div class="row">
 				<div class="col-md-12 text-right">
-					<a href="<?php echo $link_excel_monthly_summary;?>" target="_blank" class="btn btn-success"><i class="fa  fa-file-excel-o"></i>
+					<a href="<?php echo $link_excel_monthly_summary_accidents_type_of_months;?>" target="_blank" class="btn btn-success"><i
+						 class="fa  fa-file-excel-o"></i>
+						Excel สรุปแต่ละเดือน</a>
+					<a href="<?php echo $link_excel_monthly_summary_place_of_months;?>" target="_blank" class="btn btn-success"><i
+						 class="fa  fa-file-excel-o"></i>
 						Excel สรุปแต่ละพื้นที่</a>
 					<a href="<?php echo $link_excel_monthly;?>" target="_blank" class="btn btn-success"><i class="fa  fa-file-excel-o"></i>
 						Excel ทั้งหมด</a>
+
 				</div>
 			</div>
 		</div>
 	</div>
-	<?php $this->load->view('dashboard_admin_bar_chart_monthly');?>
 
-	
- 
+	<?php 
+    $this->load->view('dashboard_admin_bar_chart_monthly');
+    $this->load->view('report_barchart_values_accidents_summary_of_months');
+  ?>

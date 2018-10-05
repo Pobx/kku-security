@@ -1,47 +1,43 @@
 <?php
 // defined('BASEPATH') || exit('No direct script access allowed');
 
-class Redbox extends CI_Controller
+class Users extends CI_Controller
 {
     public function __construct()
     {
         parent::__construct();
 
-        $this->load->model('Redbox_inspect_transaction_model');
-        $this->load->model('Redbox_place_model');
         $this->load->model('Users_model');
         
         $this->load->library('Date_libs');
         $this->load->library('FilterBarChartData');
     }
 
-    private $head_topic_label           = 'จุดตรวจตู้แดง ';
-    private $head_sub_topic_label_table = 'รายการ จุดตรวจตู้แดง ';
-    private $head_sub_topic_label_form  = 'ฟอร์มบันทึกข้อมูล จุดตรวจตู้แดง ';
-    private $header_columns             = array('ชื่อ - สกุล', 'โซน', 'ชื่อตู้แดง', 'วันที่บันทึก', 'เวลา', 'สถานะ', 'หมายเหตุ', 'แก้ไข', 'ลบ');
+    private $head_topic_label           = 'ข้อมูลผู้ใช้งาน ';
+    private $head_sub_topic_label_table = 'รายการ ข้อมูลผู้ใช้งาน ';
+    private $head_sub_topic_label_form  = 'ฟอร์มบันทึกข้อมูล ข้อมูลผู้ใช้งาน ';
+    private $header_columns             = array('Username', 'ชื่อ - สกุล', 'สิทธิ์การใช้งาน', 'สถานะ', 'แก้ไข', 'ลบ');
     private $success_message            = 'บันทึกข้อมูลสำเร็จ';
     private $warning_message            = 'ไม่สามารถทำรายการ กรุณลองใหม่อีกครั้ง';
     private $danger_message             = 'ลบข้อมูลสำเร็จ';
-    
+    private $roles_lists = array('admin', 'security');
 
     public function index()
     {
         $data['head_topic_label'] = $this->head_topic_label;
         $data['head_sub_topic_label'] = $this->head_sub_topic_label_table;
-        $data['link_go_to_form'] = site_url('redbox/form_store');
-        $data['link_go_to_remove'] = site_url('redbox/remove');
+        $data['link_go_to_form'] = site_url('users/form_store');
+        $data['link_go_to_remove'] = site_url('users/remove');
         $data['header_columns'] = $this->header_columns;
 
         $qstr = array(
-          'YEAR(redbox_inspect_transaction.inspect_date)'=>date('Y'),
-          'redbox_inspect_transaction.status' => 'active'
+          'users.status' => 'active'
         );
 
-        $results = $this->Redbox_inspect_transaction_model->all($qstr);
+        $results = $this->Users_model->all($qstr);
         $data['results'] = $results['results'];
 
-        $data['bar_chart_data'] = $this->filterbarchartdata->filter($results['results'], 'inspect_date_en');
-        $data['content'] = 'redbox_table';
+        $data['content'] = 'users_table';
         
         // echo "<pre>", print_r($data['results']); exit();
         $this->load->view('template_layout', $data);
@@ -52,22 +48,14 @@ class Redbox extends CI_Controller
         $sess_data = $this->session->userdata();
         $id = $this->uri->segment(3);
         $data = $this->find($id);
-        $qstr_redbox_place = array('status'=>'active');
-        $results_redbox_place = $this->Redbox_place_model->all($qstr_redbox_place);
-       
-        $data['results_redbox_place'] = $results_redbox_place['results'];
 
+        $data['roles_lists'] = $this->roles_lists;
         $data['head_topic_label'] = $this->head_topic_label;
         $data['head_sub_topic_label'] = $this->head_sub_topic_label_form;
-        $data['link_back_to_table'] = site_url('redbox');
-        $data['form_submit_data_url'] = site_url('redbox/store');
-        $data['roles'] = $sess_data['roles'];
-        
-        if ($sess_data['roles'] =='security') {
-          $data['user_id'] = $sess_data['id'];
-        }
+        $data['link_back_to_table'] = site_url('users');
+        $data['form_submit_data_url'] = site_url('users/store');
 
-        $data['content'] = 'redbox_form_store';
+        $data['content'] = 'users_form_store';
 
         // echo "<pre>", print_r($data); exit();
         $this->load->view('template_layout', $data);
@@ -75,19 +63,13 @@ class Redbox extends CI_Controller
 
     public function store()
     {
-        $sess_data = $this->session->userdata();
+        
         $inputs = $this->input->post();
-        $inputs['inspect_date'] = date("Y-m-d H:i:s");
-
-        $qstr_users = array('username'=>$inputs['username']);
-        $results = $this->Users_model->all($qstr_users);
-        $user_id = (isset($results['results'][0]['id'])? $results['results'][0]['id'] : NULL);
-        $inputs['user_id'] = $user_id;
-        // echo "<pre>", print_r($results); exit();
-        unset($inputs['username']);
-
+        if ($inputs['passwords'] =='') {
+          unset($inputs['passwords']);
+        }
         // echo "<pre>", print_r($inputs); exit();
-        $results = $this->Redbox_inspect_transaction_model->store($inputs);
+        $results = $this->Users_model->store($inputs);
 
         $alert_type = ($results['query'] ? 'success' : 'warning');
         $alert_icon = ($results['query'] ? 'check' : 'warning');
@@ -96,13 +78,12 @@ class Redbox extends CI_Controller
         $this->session->set_flashdata('alert_icon', $alert_icon);
         $this->session->set_flashdata('alert_message', $alert_message);
       
-        $redirect_page = ($sess_data['roles'] =='security'? 'redbox/form_store' : 'redbox');
-        redirect($redirect_page);
+        redirect('users');
     }
 
     private function find($id = 0)
     {
-        $results = $this->Redbox_inspect_transaction_model->find($id);
+        $results = $this->Users_model->find($id);
         $values = $results['results'];
         $fields = $results['fields'];
         $rows = $results['rows'];
@@ -126,7 +107,7 @@ class Redbox extends CI_Controller
     public function remove()
     {
         $id = $this->uri->segment(3);
-        $results = $this->Redbox_inspect_transaction_model->remove($id);
+        $results = $this->Users_model->remove($id);
 
         $alert_type = ($results['query'] ? 'danger' : 'warning');
         $alert_icon = ($results['query'] ? 'trash' : 'warning');
@@ -135,6 +116,6 @@ class Redbox extends CI_Controller
         $this->session->set_flashdata('alert_icon', $alert_icon);
         $this->session->set_flashdata('alert_message', $alert_message);
 
-        redirect('redbox');
+        redirect('users');
     }
 }

@@ -9,7 +9,7 @@
 	</div>
 	<div class="box-body">
 		<div class="chart">
-			<canvas id="barChart" style="height:250px"></canvas>
+			<canvas id="barchart_values_forget_keys_count_each_people_types" style="height:250px"></canvas>
 		</div>
 	</div>
 </div>

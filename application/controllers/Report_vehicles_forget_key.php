@@ -10,6 +10,7 @@ class Report_vehicles_forget_key extends CI_Controller
         $this->load->model('Vehicles_forget_key_model');
         $this->load->model('Vehicles_forget_key_place_model');
         $this->load->library('Date_libs');
+        $this->load->library('FilterPeoples');
         $this->load->library('FilterBarChartData');
     }
 
@@ -47,10 +48,25 @@ class Report_vehicles_forget_key extends CI_Controller
         $data['results'] = $results['results'];
 
         $data['bar_chart_data'] = $this->filterbarchartdata->filter($results['results'], 'date_forget_key_en');
-        $data['fields'] = $results['fields'];
+        // $data['fields'] = $results['fields'];
+        $data['count_students'] = $this->filterpeoples->filter($results['results'], 'student', 'people_type');
+        $data['count_people_outside'] = $this->filterpeoples->filter($results['results'], 'people_outside', 'people_type');
+        $data['count_people_inside'] = $this->filterpeoples->filter($results['results'], 'people_inside', 'people_type');
+        $data['count_staff'] = $this->filterpeoples->filter($results['results'], 'staff', 'people_type');
+        $data['count_staff'] += $data['count_people_inside'];
+        $barchart_values_forget_keys = array(
+          'data'=> array($data['count_students'], $data['count_people_outside'], $data['count_staff'],),
+          'labels'          => array('นักศึกษา', 'บุคคลภายนอก', 'บุคลากร',),
+          'type'            => 'bar',
+          'dataset_label'   => 'ข้อมูล',
+          'backgroundColor' => '#0073b7',
+        );
+
+        $data['barchart_values_forget_keys'] = json_encode($barchart_values_forget_keys);
+        
         $data['content'] = 'report_vehicles_forget_key_table';
 
-        // echo "<pre>", print_r($data['results']); exit();
+        // echo "<pre>", print_r($data['barchart_values_forget_keys']); exit();
         $this->load->view('template_layout', $data);
     }
 

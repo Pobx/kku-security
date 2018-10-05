@@ -1,25 +1,56 @@
 <?php
 defined('BASEPATH') || exit('No direct script access allowed');
 
-class Users_model extends CI_Model
+class Snatch_assests_model extends CI_Model
 {
 
-    private $table = 'users';
+    private $table = 'snatch_assets';
     private $id    = 'id';
     private $items = '
     id,
-    username,
-    name,
-    roles,
+    date_break AS date_break_en,
+    DATE_FORMAT(DATE_ADD(date_break, INTERVAL 543 YEAR),"%d/%m/%Y") as date_break_th,
+    period_time,
     (
-      CASE
-        WHEN roles = "admin" THEN "ผู้ดูแลระบบ"
-        WHEN roles = "operation" THEN "เจ้าหน้าที่"
-        WHEN roles = "management" THEN "ผู้บริหาร"
-        WHEN roles = "security" THEN "เจ้าหน้าที่รักษาความปลอดภัย"
+      CASE 
+        WHEN period_time = "morning" THEN "เช้า"
+        WHEN period_time = "afternoon" THEN "บ่าย"
+        WHEN period_time = "night" THEN "ดึก"
         ELSE ""
       END
-    ) AS roles_name,
+    ) AS period_time_name,
+    people_type,
+    (
+      CASE 
+        WHEN people_type = "student" THEN "นักศึกษา"
+        WHEN people_type = "staff" THEN "บุคลากร"
+        WHEN people_type = "people_outside" THEN "บุคคลภายนอก"
+        ELSE ""
+      END
+    ) AS people_type_name,
+    victim_name,
+    victim_phone,
+    department,
+    address,
+    assets_loses,
+    snatch_events,
+    (
+      CASE
+        WHEN snatch_events = "polic_daily" THEN "มีบันทึกประจำวัน"
+        WHEN snatch_events = "request_cctv" THEN "ขอดูกล้องวงจรปิด"
+        WHEN snatch_events = "other" THEN "อื่นๆ"
+      END
+    ) AS snatch_events_name,
+    events_other,
+    arrested_status,
+    (
+      CASE
+        WHEN arrested_status = "arrested" THEN "จับได้"
+        WHEN arrested_status = "not_arrested" THEN "ยังจับกุมไม่ได้"
+        WHEN arrested_status = "arrested_other" THEN "อื่นๆ"
+      END
+    ) AS arrested_status_name,
+    arrested_other,
     status,
     (
       CASE

@@ -29,12 +29,12 @@ class Authen extends CI_Controller
 
       $results = $this->Users_model->all($inputs);
       
-      if ($results['rows'] > 0 && $results['results'][0]['permission'] =='admin') {
+      if ($results['rows'] > 0 && $results['results'][0]['roles'] =='admin') {
         $results['results'][0]['logged'] = true;
         $this->session->set_userdata($results['results'][0]);
         
         redirect('dashboard');
-      } else if ($results['rows'] > 0 && $results['results'][0]['permission'] =='security') {
+      } else if ($results['rows'] > 0 && $results['results'][0]['roles'] =='security') {
         $results['results'][0]['logged'] = true;
         $this->session->set_userdata($results['results'][0]);
         redirect('redbox/form_store');

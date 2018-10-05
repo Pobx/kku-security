@@ -15,7 +15,7 @@
 
 	<div class="col-sm-4">
 		<input type="text" class="form-control datepicker" id="detective_department_name" name="detective_department_name"
-		placeholder="สังกัดหน่วยงาน" value="<?php echo $detective_department_name; ?>">
+		 placeholder="สังกัดหน่วยงาน" value="<?php echo $detective_department_name; ?>">
 	</div>
 </div>
 
@@ -25,4 +25,13 @@
 	<div class="col-sm-4">
 		<textarea class="form-control" rows="3" id="remark" name="remark" placeholder="หมายเหตุ"><?php echo $remark;?></textarea>
 	</div>
+</div>
+
+<div class="form-group">
+	<label for="username" class="col-sm-2 control-label">รหัส</label>
+
+	<div class="col-sm-4">
+		<input type="number" class="form-control" id="username" name="username" placeholder="รหัส" value="<?php echo $inspector_username;?>">
+	</div>
+
 </div>
