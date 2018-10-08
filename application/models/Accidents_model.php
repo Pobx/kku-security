@@ -4,7 +4,7 @@ defined('BASEPATH') || exit('No direct script access allowed');
 class Accidents_model extends CI_Model
 {
 
-  public function __construct()
+    public function __construct()
     {
         parent::__construct();
 
@@ -25,7 +25,7 @@ class Accidents_model extends CI_Model
     assets_amount,
     assets_remark,
     (
-      CASE 
+      CASE
         WHEN period_time = "morning" THEN "เช้า"
         WHEN period_time = "afternoon" THEN "บ่าย"
         WHEN period_time = "night" THEN "ดึก"
@@ -48,7 +48,7 @@ class Accidents_model extends CI_Model
     assets_amount,
     assets_remark,
     (
-      CASE 
+      CASE
         WHEN period_time = "morning" THEN "เช้า"
         WHEN period_time = "afternoon" THEN "บ่าย"
         WHEN period_time = "night" THEN "ดึก"
@@ -68,38 +68,40 @@ class Accidents_model extends CI_Model
         }
 
         $query = $this->db->select($this->items)
-        ->from($this->table)
-        ->join('accident_place', 'accident_place.id = accidents.place', 'left')
-        ->join('accident_cause', 'accident_cause.id = accidents.accident_cause', 'left')
-        ->get();
+            ->from($this->table)
+            ->join('accident_place', 'accident_place.id = accidents.place', 'left')
+            ->join('accident_cause', 'accident_cause.id = accidents.accident_cause', 'left')
+            ->get();
 
         $results['results'] = $query->result_array();
         $results['rows'] = $query->num_rows();
         $results['fields'] = $query->list_fields();
 
-        foreach ($results['results'] as $key => $value) {
-          $conditions = array(
-            'status !=' => 'disabled',
-            'accident_id'=>$value['id']
-          );
+        foreach ($results['results'] as $key => $value)
+        {
+            $conditions = array(
+                'status !='   => 'disabled',
+                'accident_id' => $value['id'],
+            );
 
-          $results_participate = $this->Accidents_participate_model->all($conditions);
+            $results_participate = $this->Accidents_participate_model->all($conditions);
 
-          $results['results'][$key]['results_participate'] = $results_participate['results'];
-          $results['results'][$key]['count_car'] = $this->filtervehicles->filter($results['results'][$key]['results_participate'], 'car');
-          $results['results'][$key]['count_motocycles'] = $this->filtervehicles->filter($results['results'][$key]['results_participate'], 'motorcycle');
+            $results['results'][$key]['results_participate'] = $results_participate['results'];
+            $results['results'][$key]['count_car'] = $this->filtervehicles->filter($results['results'][$key]['results_participate'], 'car');
+            $results['results'][$key]['count_motocycles'] = $this->filtervehicles->filter($results['results'][$key]['results_participate'], 'motorcycle');
 
-          $results['results'][$key]['count_injury'] = $this->filterpeoples->filter($results['results'][$key]['results_participate'], 'injury');
-          $results['results'][$key]['count_dead'] = $this->filterpeoples->filter($results['results'][$key]['results_participate'], 'dead');
-          $results['results'][$key]['count_officer'] = $this->filterpeoples->filter($results['results'][$key]['results_participate'], 'officer', 'people_type');
-          $results['results'][$key]['count_student'] = $this->filterpeoples->filter($results['results'][$key]['results_participate'], 'student', 'people_type');
-          $results['results'][$key]['count_people_inside'] = $this->filterpeoples->filter($results['results'][$key]['results_participate'], 'people_inside', 'people_type');
+            $results['results'][$key]['count_injury'] = $this->filterpeoples->filter($results['results'][$key]['results_participate'], 'injury');
+            $results['results'][$key]['count_dead'] = $this->filterpeoples->filter($results['results'][$key]['results_participate'], 'dead');
+            $results['results'][$key]['count_officer'] = $this->filterpeoples->filter($results['results'][$key]['results_participate'], 'officer', 'people_type');
+            $results['results'][$key]['count_student'] = $this->filterpeoples->filter($results['results'][$key]['results_participate'], 'student', 'people_type');
+            $results['results'][$key]['count_people_inside'] = $this->filterpeoples->filter($results['results'][$key]['results_participate'], 'people_inside', 'people_type');
         }
-       
+
         return $results;
     }
 
-    public function distinct_place($qstr) {
+    public function distinct_place($qstr)
+    {
         if (isset($qstr) && !empty($qstr))
         {
             $this->db->where($qstr);
@@ -114,18 +116,19 @@ class Accidents_model extends CI_Model
         return $results;
     }
 
-    public function count_accidents($qstr) {
-      if (isset($qstr) && !empty($qstr))
-      {
-          $this->db->where($qstr);
-      }
+    public function count_accidents($qstr)
+    {
+        if (isset($qstr) && !empty($qstr))
+        {
+            $this->db->where($qstr);
+        }
 
-      $query = $this->db->select('id')->from($this->table)->get();
-      
-      $results['results'] = $query->result_array();
-      $results['rows'] = $query->num_rows();
-      
-      return $results;
+        $query = $this->db->select('id')->from($this->table)->get();
+
+        $results['results'] = $query->result_array();
+        $results['rows'] = $query->num_rows();
+
+        return $results;
     }
 
     public function find($id)
@@ -170,24 +173,30 @@ class Accidents_model extends CI_Model
 
         return $results;
     }
-    
-    public function accident_peroid(){
-        $a['m'] = $this->filter2("01", 'morning');
-        $a['af'] = $this->filter2("01", 'afternoon');
-        $a['n'] = $this->filter2("01", 'night');
-        $a['rows']= [$a['m']['rows'], $a['af']['rows'], $a['n']['rows']];
+
+    public function accident_peroid()
+    {
+        $a['m'] = $this->filter2('01', 'morning');
+        $a['af'] = $this->filter2('01', 'afternoon');
+        $a['n'] = $this->filter2('01', 'night');
+        $a['rows'] = [
+            $a['m']['rows'],
+            $a['af']['rows'],
+            $a['n']['rows'],
+        ];
+
         return $a;
     }
 
-    public function filter2($month,  $peroid)
+    public function filter2($month, $peroid)
     {
         $query = $this->db->select('accident_date')
-        ->from('accidents')
-        ->where('period_time', $peroid)
-        ->like('accident_date', '-'.$month.'-', 'both')
-        ->get();
-        
-        $arr['res']= $query->result_array(); 
+            ->from('accidents')
+            ->where('period_time', $peroid)
+            ->like('accident_date', '-' . $month . '-', 'both')
+            ->get();
+
+        $arr['res'] = $query->result_array();
         $arr['rows'] = $query->num_rows();
 
         return $arr;
