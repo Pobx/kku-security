@@ -174,32 +174,32 @@ class Accidents_model extends CI_Model
         return $results;
     }
 
-    public function accident_peroid()
-    {
-        $a['m'] = $this->filter2('01', 'morning');
-        $a['af'] = $this->filter2('01', 'afternoon');
-        $a['n'] = $this->filter2('01', 'night');
-        $a['rows'] = [
-            $a['m']['rows'],
-            $a['af']['rows'],
-            $a['n']['rows'],
-        ];
+    // public function accident_peroid()
+    // {
+    //     $a['m'] = $this->filter2('01', 'morning');
+    //     $a['af'] = $this->filter2('01', 'afternoon');
+    //     $a['n'] = $this->filter2('01', 'night');
+    //     $a['rows'] = [
+    //         $a['m']['rows'],
+    //         $a['af']['rows'],
+    //         $a['n']['rows'],
+    //     ];
 
-        return $a;
-    }
+    //     return $a;
+    // }
 
-    public function filter2($month, $peroid)
-    {
-        $query = $this->db->select('accident_date')
-            ->from('accidents')
-            ->where('period_time', $peroid)
-            ->like('accident_date', '-' . $month . '-', 'both')
-            ->get();
+    // public function filter2($month, $peroid)
+    // {
+    //     $query = $this->db->select('accident_date')
+    //         ->from('accidents')
+    //         ->where('period_time', $peroid)
+    //         ->like('accident_date', '-' . $month . '-', 'both')
+    //         ->get();
 
-        $arr['res'] = $query->result_array();
-        $arr['rows'] = $query->num_rows();
+    //     $arr['res'] = $query->result_array();
+    //     $arr['rows'] = $query->num_rows();
 
-        return $arr;
-    }
+    //     return $arr;
+    // }
 
 }
