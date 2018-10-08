@@ -54,7 +54,7 @@ class Redbox extends CI_Controller
         $data = $this->find($id);
         $qstr_redbox_place = array('status'=>'active');
         $results_redbox_place = $this->Redbox_place_model->all($qstr_redbox_place);
-        
+       
         $data['results_redbox_place'] = $results_redbox_place['results'];
 
         $data['head_topic_label'] = $this->head_topic_label;

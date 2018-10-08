@@ -16,11 +16,19 @@ class Redbox_place_model extends CI_Model
         }
 
         $query = $this->db->select($this->items)->from($this->table)->get();
-
+        $query2 = $this->db->select('
+            redbox_place.name
+        ')->from($this->table)
+        ->join('redbox_inspect_transaction','redbox_inspect_transaction.redbox_place_id = redbox_place.id', 'left')
+        ->where('redbox_inspect_transaction.user_id',2)
+        ->like('redbox_inspect_transaction.inspect_date', '2018-09-20', 'after')
+        ->get();
         $results['results'] = $query->result_array();
         $results['rows'] = $query->num_rows();
         $results['fields'] = $query->list_fields();
-
+        $results['results2'] = $query2->result_array();
+        $results['rows2'] = $query2->num_rows();
+        $results['fields2'] = $query2->list_fields();
         return $results;
     }
 
