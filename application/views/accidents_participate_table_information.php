@@ -25,9 +25,8 @@
 			<br />
 
 			<table class="table table-bordered table-striped mydataTable">
-				<thead>
 					<tr>
-						<?php foreach ($header_columns_participate as $key => $value)
+						<?php foreach ($header_columns_participate2 as $key => $value)
 {
     ?>
 						<th class="text-center">
@@ -83,15 +82,7 @@
 					</tr>
 					<?php }?>
 				</tbody>
-				<tfoot>
-					<?php foreach ($header_columns_participate as $key => $value)
-{
-    ?>
-					<th class="text-center">
-						<?php echo $value; ?>
-					</th>
-					<?php }?>
-				</tfoot>
+				
 			</table>
 
 		</div>

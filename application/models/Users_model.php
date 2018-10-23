@@ -59,7 +59,7 @@ class Users_model extends CI_Model
 
     public function store($inputs)
     {
-        // echo "<pre>", print_r($inputs); exit();
+        echo "<pre>", print_r($inputs); exit();
         if ($inputs['id'] != '')
         {
             $inputs['updated'] = date('Y-m-d H:i:s');

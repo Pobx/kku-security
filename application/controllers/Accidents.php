@@ -21,9 +21,10 @@ class Accidents extends CI_Controller
     private $head_sub_topic_label_form  = 'ฟอร์มบันทึกข้อมูล สถิติอุบัติเหตุ';
     private $head_topic_participate_label  = 'รายการ ผู้ประสบเหตุ / คู่กรณี';
     
-    private $header_columns             = array('วันที่', 'ช่วงเวลา', 'สถานที่เกิดเหตุ', 'รถยนต์', 'รถจักรยานยนต์', 'รถที่เกิดเหตุ', 'สาเหตุ', 'บาดเจ็บ', 'เสียชีวิต', 'ผู้ประสบเหตุ / คู่กรณี', 'หน่วยงาน', 'บุคลากร', 'นักศึกษา', 'บุคคลภายใน', 'แก้ไข', 'ลบ');
-    private $header_columns_participate = array('ผู้ประสบเหตุ / คู่กรณี', 'ประเภทบุคลากร', 'บาดเจ็บ / เสียชีวิต', 'ชื่อ - สกุล', 'หน่วยงาน', 'ประเภท', 'ทะเบียนรถ', 'สี', 'ยี่ห้อ', 'รุ่น', 'ลบ');
-    
+    private $header_columns             = array('วันที่', 'ช่วงเวลา', 'สถานที่เกิดเหตุ', 'รถยนต์', 'รถจักรยานยนต์', 'บาดเจ็บ', 'เสียชีวิต',  'บุคลากร', 'นักศึกษา', 'บุคคลภายนอก', 'ดูเพิ่มเติม','แก้ไข', 'ลบ');
+    private $header_columns_participate = array('บาดเจ็บ / เสียชีวิต', 'ชื่อ - สกุล', 'หน่วยงาน', 'ประเภท', 'ทะเบียนรถ', 'สี', 'ยี่ห้อ', 'รุ่น', 'ลบ');
+    private $header_columns_participate2 = array('ผู้ประสบเหตุ / คู่กรณี', 'ประเภทบุคลากร', 'บาดเจ็บ / เสียชีวิต', 'ชื่อ - สกุล', 'หน่วยงาน', 'ประเภท', 'ทะเบียนรถ', 'สี', 'ยี่ห้อ', 'รุ่น', 'ลบ');
+
     private $success_message            = 'บันทึกข้อมูลสำเร็จ';
     private $warning_message            = 'ไม่สามารถทำรายการ กรุณลองใหม่อีกครั้ง';
     private $danger_message             = 'ลบข้อมูลสำเร็จ';
@@ -49,7 +50,7 @@ class Accidents extends CI_Controller
         $data['fields'] = $results['fields'];
         $data['content'] = 'accidents_table';
 
-        // echo "<pre>", print_r($data['bar_chart_data']); exit();
+        // echo "<pre>", print_r($results); exit();
         $this->load->view('template_layout', $data);
     }
 
@@ -61,7 +62,7 @@ class Accidents extends CI_Controller
         $data['head_topic_label'] = $this->head_topic_label;
         $data['head_sub_topic_label'] = $this->head_sub_topic_label_form;
         $data['head_topic_participate_label'] = $this->head_topic_participate_label;
-        $data['header_columns_participate'] = $this->header_columns_participate;
+        $data['header_columns_participate2'] = $this->header_columns_participate2;
         $data['link_back_to_table'] = site_url('accidents');
         $data['form_submit_data_url'] = site_url('accidents/store');
         $data['form_submit_data_url_modal'] = site_url('accidents/store_participate');
@@ -78,6 +79,7 @@ class Accidents extends CI_Controller
 
         $qstr['accident_id'] = $id;
         $accident_participate = $this->Accidents_participate_model->all($qstr);
+       
         $data['accident_participate'] = $accident_participate['results'];
         
         $data['content'] = 'accidents_form_store';
@@ -115,6 +117,8 @@ class Accidents extends CI_Controller
 
     public function store_participate() {
         $inputs = $this->input->post();
+
+        
         $results = $this->Accidents_participate_model->store($inputs);
 
         $alert_type = ($results['query'] ? 'success' : 'warning');

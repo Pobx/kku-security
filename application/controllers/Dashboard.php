@@ -14,6 +14,7 @@ class Dashboard extends CI_Controller
         $this->load->model('Vehicles_forget_key_model');
         $this->load->model('Student_do_not_wear_helmet_model');
         $this->load->model('Break_motorcycle_pad_model');
+        $this->load->model('Users_model');
 
         $this->load->library('Date_libs');
         $this->load->library('FilterPeriodTimes');

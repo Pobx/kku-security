@@ -127,7 +127,7 @@ if (!isset($sess_userprofile['logged']) || $sess_userprofile['logged'] == false)
 						<img src="<?php echo base_url('dist/img/avatar04.png'); ?>" class="img-circle" alt="User Image">
 					</div>
 					<div class="pull-left info">
-						<p>Steve Jobs</p>
+						<p><?php echo $sess_userprofile['name']; ?></p>
 						<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
 					</div>
 				</div>
@@ -477,6 +477,19 @@ echo 'ขณะนี้เวลา  ' . $now_date;
 			}
 		}
 
+	</script>
+
+
+	<script>
+		function openInfo(id){
+			$('#'+id).toggle();
+		}
+
+		$('#chk_keeper').change(function(){
+				$('#keeper_no_as_security').val("")
+				$('#keeper_no_as_security').toggle()
+				$('#vehicles_forget_key_security_id').val("").change();
+		})
 	</script>
 </body>
 

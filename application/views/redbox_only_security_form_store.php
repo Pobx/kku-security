@@ -16,10 +16,7 @@
 						<?php
 							$this->load->view('redbox_only_security_details_information');
 						?>
-						<input type="hidden" name="id" value="">
-
-						<button type="submit" class="btn btn-lg  btn-block btn-success"><i class="fa fa-save"></i> บันทึกข้อมูล</button>
-	
+						
 					</div>
 					<div class="col-sm-12 col-md-2"></div>
 					<div class="col-sm-12 col-md-4">
@@ -40,7 +37,7 @@
 						<!-- /.widget-user-image -->
 					
 						<h4 class="widget-user-username" style="font-size:20px; font-weight:bold">จุดที่ตรวจสอบแล้ว</h4>
-						<h5 class="widget-user-desc">นายะธงชัย ชัยยา </h5>
+						<h5 class="widget-user-desc"><?php echo "kku".$user_id; ?></h5>
 						</div>
 						<div class="box-footer no-padding">
 						<ul class="nav nav-stacked">

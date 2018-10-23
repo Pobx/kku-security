@@ -15,10 +15,13 @@
 			<?php $this->load->view('header_form_submit_data');?>
 			<div class="box-header"></div>
 			<div class="box-body">
-				<?php 
-          $this->load->view('vehicles_forget_key_owner_assets_information');
-          //$this->load->view('vehicles_forget_key_detective_information');
-        ?>
+			<?php 
+				$this->load->view('vehicles_forget_key_owner_assets_information');
+			
+				// $this->load->view('vehicles_forget_key_table_detective_information');
+				// $this->load->view('vehicles_forget_key_detective_form_store_modal');
+
+		  	?>
 
 			</div>
 

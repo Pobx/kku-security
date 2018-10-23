@@ -10,6 +10,8 @@ class Vehicles_forget_key extends CI_Controller
         $this->load->model('Vehicles_forget_key_model');
         $this->load->model('Vehicles_forget_key_detective_model');
         $this->load->model('Vehicles_forget_key_place_model');
+        $this->load->model('Users_model');
+
         
         $this->load->library('Date_libs');
         $this->load->library('FilterBarChartData');
@@ -62,6 +64,7 @@ class Vehicles_forget_key extends CI_Controller
         $data['header_sub_topic_label_owner_assets'] = $this->header_sub_topic_label_owner_assets; 
         $data['header_sub_topic_label_detective'] = $this->header_sub_topic_label_detective;
         $data['header_columns_detective'] = $this->header_columns_detective;
+        
 
         $data['link_back_to_table'] = site_url('vehicles_forget_key');
         $data['form_submit_data_url'] = site_url('vehicles_forget_key/store');
@@ -77,9 +80,13 @@ class Vehicles_forget_key extends CI_Controller
         $resluts_forget_key_place = $this->Vehicles_forget_key_place_model->all($qstr_forget_key_place);
         $data['resluts_forget_key_place'] = $resluts_forget_key_place['results'];
 
+        $qstr_key_keeper = array('roles' => 'security');
+        $results_key_keeper = $this->Users_model->all($qstr_key_keeper);
+        $data['key_keeper'] = $results_key_keeper['results'];
+
         $data['content'] = 'vehicles_forget_key_form_store';
 
-        // echo "<pre>", print_r($data); exit();
+        // echo "<pre>", print_r($data['key_keeper']); exit();
         $this->load->view('template_layout', $data);
     }
 
@@ -93,7 +100,7 @@ class Vehicles_forget_key extends CI_Controller
         $inputs['date_forget_key'] = $this->date_libs->set_date_th($inputs['date_forget_key']);
         unset($inputs['chk_place'], $inputs['place_text']);
         $results = $this->Vehicles_forget_key_model->store($inputs);
-
+       
         $alert_type = ($results['query'] ? 'success' : 'warning');
         $alert_icon = ($results['query'] ? 'check' : 'warning');
         $alert_message = ($results['query'] ? $this->success_message : $this->warning_message);
@@ -101,7 +108,8 @@ class Vehicles_forget_key extends CI_Controller
         $this->session->set_flashdata('alert_icon', $alert_icon);
         $this->session->set_flashdata('alert_message', $alert_message);
 
-        redirect('vehicles_forget_key');
+        // redirect('vehicles_forget_key');
+        redirect('vehicles_forget_key/form_store/'.$results['lastID']);
     }
 
     private function create_new_place($inputs) {

@@ -6,22 +6,26 @@ class Redbox_place_model extends CI_Model
 
     private $table = 'redbox_place';
     private $id    = 'id';
-    private $items = 'id, name,';
+    private $items = 'redbox_place.id, redbox_place.name,redbox_place.zone_id, redbox_zone.name as zonename';
 
     public function all($qstr = '')
     {
         if (isset($qstr) && !empty($qstr))
         {
+            $this->db->join('redbox_zone', 'redbox_zone.id = redbox_place.zone_id');
             $this->db->where($qstr);
         }
 
         $query = $this->db->select($this->items)->from($this->table)->get();
+
+        $sess_data = $this->session->userdata();
+
         $query2 = $this->db->select('
-            redbox_place.name
+            redbox_place.name, redbox_place.id
         ')->from($this->table)
         ->join('redbox_inspect_transaction','redbox_inspect_transaction.redbox_place_id = redbox_place.id', 'left')
-        ->where('redbox_inspect_transaction.user_id',2)
-        ->like('redbox_inspect_transaction.inspect_date', '2018-09-20', 'after')
+        ->where('redbox_inspect_transaction.user_id',$sess_data['id'])
+        ->like('redbox_inspect_transaction.inspect_date', date('Y-m-d'), 'after')
         ->get();
         $results['results'] = $query->result_array();
         $results['rows'] = $query->num_rows();
@@ -45,7 +49,6 @@ class Redbox_place_model extends CI_Model
 
     public function store($inputs)
     {
-        // echo "<pre>", print_r($inputs); exit();
         if ($inputs['id'] != '')
         {
             $inputs['updated'] = date('Y-m-d H:i:s');

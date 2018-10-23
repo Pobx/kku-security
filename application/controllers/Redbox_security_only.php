@@ -25,7 +25,8 @@ class Redbox_security_only extends CI_Controller
 
     public function form_store()
     {
-        $qstr_redbox_place = array('status' => 'active');
+        $sess_data = $this->session->userdata();
+        $qstr_redbox_place = array('redbox_place.status' => 'active');
         $results_redbox_place = $this->Redbox_place_model->all($qstr_redbox_place);
         $data['results_redbox_place'] = $results_redbox_place['results'];
 
@@ -36,10 +37,18 @@ class Redbox_security_only extends CI_Controller
 
         $data['content'] = 'redbox_only_security_form_store';
 
+        $data['roles'] = $sess_data['roles'];
+        
+        if ($sess_data['roles'] =='security') {
+          $data['user_id'] = $sess_data['id'];
+          $data['name'] = $sess_data['name'];
+          $data['username'] = $sess_data['username'];
+        }
+
         $data['checked_redbox_place'] = $results_redbox_place['results2'];
         $data['redbox_total_rows'] =  $results_redbox_place['rows'];
         $data['redbox_checked_rows'] =  $results_redbox_place['rows2'];
-        // echo "<pre>", print_r($data); exit();
+        // echo "<pre>", print_r($results_redbox_place); exit();
         $this->load->view('template_layout_evaluation', $data);
     }
 
@@ -49,6 +58,8 @@ class Redbox_security_only extends CI_Controller
         $inputs['inspect_date'] = date('Y-m-d H:i:s');
         $qstr_users = array('username'=>$inputs['username']);
         $results = $this->Users_model->all($qstr_users);
+        // print_r($inputs);die();
+
         $user_id = (isset($results['results'][0]['id'])? $results['results'][0]['id'] : NULL);
         $inputs['user_id'] = $user_id;
         // echo "<pre>", print_r($results); exit();

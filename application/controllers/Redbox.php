@@ -65,7 +65,12 @@ class Redbox extends CI_Controller
         
         if ($sess_data['roles'] =='security') {
           $data['user_id'] = $sess_data['id'];
+          $data['name'] = $sess_data['name'];
         }
+        $data['checked_redbox_place'] = $results_redbox_place['results2'];
+        $data['redbox_total_rows'] =  $results_redbox_place['rows'];
+        $data['redbox_checked_rows'] =  $results_redbox_place['rows2'];
+        // echo "<pre>", print_r($data); exit();
 
         $data['content'] = 'redbox_form_store';
 

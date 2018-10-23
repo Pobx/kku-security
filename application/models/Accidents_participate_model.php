@@ -48,6 +48,7 @@ class Accidents_participate_model extends CI_Model
         WHEN people_type = "student" THEN "นักศึกษา"
         WHEN people_type = "staff" THEN "บุคลากร"
         WHEN people_type = "people_inside" THEN "บุคคลภายใน"
+        WHEN people_type = "people_outside" THEN "บุคคลภายนอก"
         ELSE ""
       END
     ) AS people_type_name,
