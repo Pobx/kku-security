@@ -36,7 +36,7 @@ class Accidents_model extends CI_Model
     accident_place.name as accident_place_name,
     accident_cause,
     accident_cause.name as accident_cause_name,
-    accidents.status
+    accidents.status,
     ';
 
     private $items2 = '

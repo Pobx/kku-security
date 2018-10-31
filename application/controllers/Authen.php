@@ -37,7 +37,7 @@ class Authen extends CI_Controller
       } else if ($results['rows'] > 0 && $results['results'][0]['roles'] =='security') {
         $results['results'][0]['logged'] = true;
         $this->session->set_userdata($results['results'][0]);
-        redirect('redbox/form_store');
+        redirect('dashboardsecurity');
       }else {
         redirect('authen');
       }

@@ -33,6 +33,8 @@ class Security_home_model extends CI_Model {
         ELSE ""
       END
     ) AS status_name,
+    recorder,
+    period
     ';
 
   public function all($qstr = '') {
@@ -73,6 +75,7 @@ class Security_home_model extends CI_Model {
       $results['query'] = $this->db->insert($this->table, $inputs);
 		  $results['lastID'] = $this->db->insert_id();
     }
+    // echo "<pre>", print_r($inputs); exit();
 
     return $results;
   }

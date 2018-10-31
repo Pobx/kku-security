@@ -20,6 +20,7 @@ class Vehicles_forget_key_detective_model extends CI_Model
         ELSE ""
       END
     ) AS status_name,
+    detective_id
     ';
 
     public function all($qstr = '')

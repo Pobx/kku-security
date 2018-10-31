@@ -31,6 +31,9 @@ class Security_homes extends CI_Controller
         'YEAR(start_date)'=>date('Y'),
         'status !='=>'disabled'
       );
+      if($this->session->userdata['roles'] == 'security'){
+        $qstr['recorder'] = $this->session->userdata['id'];
+      }
 
       $results = $this->Security_home_model->all($qstr);
       $data['results'] = $results['results'];
@@ -58,10 +61,16 @@ class Security_homes extends CI_Controller
     }
 
     public function store() {
-      $inptus = $this->input->post();
-      $inptus['start_date'] = $this->date_libs->set_date_th($inptus['start_date']);
-      $inptus['end_date'] = $this->date_libs->set_date_th($inptus['end_date']);
-      $results = $this->Security_home_model->store($inptus);
+      $inputs = $this->input->post();
+
+      $inputs['start_date'] = $this->date_libs->set_date_th($inputs['start_date']);
+      $inputs['end_date'] = $this->date_libs->set_date_th($inputs['end_date']);
+      
+      if($this->session->userdata['roles'] == 'security'){
+        $inputs['recorder'] = $this->session->userdata['id'];
+      }
+      // echo "<pre>", print_r($inputs); exit();
+      $results = $this->Security_home_model->store($inputs);
 
       $alert_type = ($results['query']? 'success' : 'warning');
       $alert_icon = ($results['query']? 'check' : 'warning');

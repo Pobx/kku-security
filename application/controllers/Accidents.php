@@ -37,11 +37,14 @@ class Accidents extends CI_Controller
         $data['link_go_to_remove'] = site_url('accidents/remove');
         $data['header_columns'] = $this->header_columns;
 
+        
         $qstr = array(
           'YEAR(accidents.accident_date)'=>date('Y'),
-          'accidents.status !=' => 'disabled'
+          'accidents.status !=' => 'disabled',
         );
-
+        if($this->session->userdata['roles'] == 'security'){
+            $qstr['recoder']  = $this->session->userdata['id'];
+        }
         $results = $this->Accidents_model->all($qstr);
 
         $data['results'] = $results['results'];
@@ -70,6 +73,9 @@ class Accidents extends CI_Controller
         $qstr = array(
           'status ='=>'active'
         );
+        // if($this->session->userdata['roles'] == 'security'){
+        //     $qstr['recoder']  = $this->session->userdata['id'];
+        // }
 
         $accident_place = $this->Accidents_place_model->all($qstr);
         $data['accident_place'] = $accident_place['results'];
@@ -102,6 +108,11 @@ class Accidents extends CI_Controller
         }
 
         unset($inputs['chk_place'], $inputs['place_text'], $inputs['chk_accident_cause'], $inputs['accident_cause_text']);
+        if($this->session->userdata['roles'] == 'security'){
+            $inputs['recoder']  = $this->session->userdata['id'];
+        }
+                // echo "<pre>", print_r($inputs); exit();
+
         $results = $this->Accidents_model->store($inputs);
 
         $alert_type = ($results['query'] ? 'success' : 'warning');
@@ -117,6 +128,7 @@ class Accidents extends CI_Controller
 
     public function store_participate() {
         $inputs = $this->input->post();
+                // echo "<pre>", print_r($inputs); exit();
 
         
         $results = $this->Accidents_participate_model->store($inputs);
@@ -137,6 +149,7 @@ class Accidents extends CI_Controller
         'name'=>$inputs['place_text'],
         'status'=>'active'
       );
+      
 
       $results = $this->Accidents_place_model->store($data);
       return $results['lastID'];

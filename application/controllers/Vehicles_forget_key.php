@@ -41,7 +41,7 @@ class Vehicles_forget_key extends CI_Controller
           'YEAR(vehicles_forget_key.date_forget_key)'=>date('Y'),
           'vehicles_forget_key.status !=' => 'disabled'
         );
-
+        
         $results = $this->Vehicles_forget_key_model->all($qstr);
         $data['results'] = $results['results'];
 
@@ -83,10 +83,13 @@ class Vehicles_forget_key extends CI_Controller
         $qstr_key_keeper = array('roles' => 'security');
         $results_key_keeper = $this->Users_model->all($qstr_key_keeper);
         $data['key_keeper'] = $results_key_keeper['results'];
+        
 
         $data['content'] = 'vehicles_forget_key_form_store';
-
-        // echo "<pre>", print_r($data['key_keeper']); exit();
+        
+        $qstr = array('status'=>'active');
+        $data['users'] = $this->Users_model->all($qstr);
+        // echo "<pre>", print_r($data['users']); exit();
         $this->load->view('template_layout', $data);
     }
 

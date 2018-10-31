@@ -46,6 +46,7 @@ class Vehicles_forget_key_model extends CI_Model
     {
         if (isset($qstr) && !empty($qstr))
         {
+
             $this->db->where($qstr);
         }
 

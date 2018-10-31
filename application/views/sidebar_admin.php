@@ -3,12 +3,14 @@
 </li>
 
 <li id="security_homes">
-	<a href="<?php echo site_url('security_homes'); ?>"><i class="fa fa-home"></i> <span>โครงการฝากบ้าน</span></a>
+		<a href="<?php echo site_url('security_homes'); ?>"><i class="fa fa-home"></i> <span>โครงการฝากบ้าน</span></a>
 </li>
+<?php if($this->session->userdata['roles'] == 'admin'){ ?>
 
 <li id="security_cards">
 	<a href="<?php echo site_url('security_cards'); ?>"><i class="fa fa-book"></i>ทะเบียนการจัดทําบัตร<br />ผ่านเข้า-ออก</a>
 </li>
+<?php } ?>
 
 <li id="accidents">
 	<a href="<?php echo site_url('accidents'); ?>"><i class="fa fa-warning"></i> <span>สถิติอุบัติเหตุ</span></a>
@@ -49,6 +51,7 @@
 <!-- <li>
 	<a href="<?php //echo site_url('evaluation'); ?>"><i class="fa fa-book"></i> <span>แบบประเมิณ</span></a>
 </li> -->
+<?php if($this->session->userdata['roles'] == 'admin'){ ?>
 
 <li class="treeview" id="reports">
 	<a href="#">
@@ -115,3 +118,4 @@
 		</li>
 	</ul>
 </li>
+<?php } ?>
