@@ -43,7 +43,7 @@ class Accidents extends CI_Controller
           'accidents.status !=' => 'disabled',
         );
         if($this->session->userdata['roles'] == 'security'){
-            $qstr['recoder']  = $this->session->userdata['id'];
+            $qstr['recorder']  = $this->session->userdata['id'];
         }
         $results = $this->Accidents_model->all($qstr);
 
@@ -53,7 +53,6 @@ class Accidents extends CI_Controller
         $data['fields'] = $results['fields'];
         $data['content'] = 'accidents_table';
 
-        // echo "<pre>", print_r($results); exit();
         $this->load->view('template_layout', $data);
     }
 
@@ -88,15 +87,22 @@ class Accidents extends CI_Controller
        
         $data['accident_participate'] = $accident_participate['results'];
         
-        $data['content'] = 'accidents_form_store';
+         $query = $this->db->select('*')
+                ->where(['accidents_id', $data['accident_id'], 'status' => 'active'])->get('accident_asset_affair_detroyed');
         
-        // echo "<pre>", print_r($data); exit();
+        $data['accident_asset_destroyed'] =  $query->result_array();
+        print_r($data['accident_asset_destroyed'] );
+        $data['accident_asset_destroyed']['numrows'] =   $query->num_rows();
+        $data['content'] = 'accidents_form_store';
+       
+        // echo "<pre>", print_r($data['accident_asset_destroyed'])->result(); exit();
         $this->load->view('template_layout', $data);
     }
 
     public function store()
     {
         $inputs = $this->input->post();
+        // echo "<pre>", print_r($inputs); exit();
 
         $inputs['accident_date'] = $this->date_libs->set_date_th($inputs['accident_date']);
         if (isset($inputs['chk_place']) && $inputs['chk_place'] == 'checked_new_place') {
@@ -109,7 +115,7 @@ class Accidents extends CI_Controller
 
         unset($inputs['chk_place'], $inputs['place_text'], $inputs['chk_accident_cause'], $inputs['accident_cause_text']);
         if($this->session->userdata['roles'] == 'security'){
-            $inputs['recoder']  = $this->session->userdata['id'];
+            $inputs['recorder']  = $this->session->userdata['id'];
         }
                 // echo "<pre>", print_r($inputs); exit();
 
@@ -204,6 +210,16 @@ class Accidents extends CI_Controller
         redirect('accidents');
     }
 
+    public function inactive(){
+        $inputs = $this->input->post();
+
+        $this->db->set('status', 'inactive');
+        $this->db->where('id', $inputs['id']);
+        $this->db->update('accident_asset_affair_detroyed');
+        echo $inputs['id'];
+
+    }
+
     public function remove_participate() {
         $accident_id = $this->uri->segment(3);
         $id = $this->uri->segment(4);
@@ -218,5 +234,109 @@ class Accidents extends CI_Controller
         $this->session->set_flashdata('alert_message', $alert_message);
         $redirect_page = 'accidents/form_store/';
         redirect($redirect_page.$accident_id);
+    }
+
+    public function get_accidents_cause(){
+      $accident_id = $this->uri->segment(3);
+
+      $qstr = array(
+        'accidents.id'  => $accident_id
+      );
+      $results = $this->Accidents_model->all($qstr);
+
+      $value = $results['results'];
+      $text = '<table>
+                <tr id="acc_info"'.$value[0]['id'] .'">
+				          <td>
+							      <div class="row">
+							        <div class="col-md-12">
+                        <div class="col-md-12 col-sm-12 col-xs-12 ">
+                          <div class="info-box bg-aqua">
+                            <span class="info-box-icon"><i class="fa fa-bookmark-o"></i></span>
+                            <div class="info-box-content">
+                            <span class="info-box-text">สาเหตู</span>
+                            <span class="info-box-number">'. $value[0]['accident_cause_name'] .'</span>
+
+                            <div class="progress">
+                              <div class="progress-bar" style="width: 70%"></div>
+                            </div>
+
+                          </div>
+								        </div>
+								      </div>
+							        <div class="box box-primary col-md-12">
+                          <div class="box-header with-border">
+                            <h3 class="box-title">รถที่เกิดเหตุ</h3>
+
+                            <div class="box-tools pull-right"></div>
+                            <div class="box-body"><div>
+                            <div class="direct-chat-msg">
+                              <div class="direct-chat-info clearfix"></div>
+      ';
+			foreach ($value[0]['results_participate'] as $car) { 
+        $text .='               <img class="direct-chat-img" src="../dist/img/user1-128x128.jpg" alt="Message User Image">
+                                  <div class="direct-chat-text">'. $car['car_body'].'</div>
+                                </div>
+        ';
+			}
+        $text .=              '</div>  
+                            </div>            
+                          </div>
+						
+							        </div>
+                      
+                      <div class="col-md-8">
+											  <div class="box box-danger">
+                          <div class="box-header with-border">
+                            <h3 class="box-title">ผู้ประสบเหตุ / คู่กรณี</h3>
+
+                            <div class="box-tools pull-right">
+                              <span class="label label-danger"></span>
+                              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                              </button>
+
+                            </div>
+                          </div>
+											    <div class="box-body no-padding">
+												    <div class="row">
+          ';
+          
+					foreach ($value[0]['results_participate'] as $people) {
+						$text .='
+												<div class="col-md-6">
+													<div class="box-body box-profile">
+													<img class="profile-user-img img-responsive img-circle" src="../dist/img/user4-128x128.jpg"  alt="User profile picture">
+
+													<h3 class="profile-username text-center">'. $people['people_name'] .'</h3>
+
+													<p class="text-muted text-center">'. $people['people_type_name'] .'></p>
+
+													<ul class="list-group list-group-unbordered">
+														<li class="list-group-item">
+														<b> หน่วยงานสังกัด</b> <a class="pull-right">'.$people['people_department_name'] .'></a>
+														</li>
+														<li class="list-group-item">
+														<b>ประเภทบุคคล</b> <a class="pull-right">'. $people['victim_type_name'] .'></a>
+														</li>
+														
+													</ul>
+
+													</div>
+												</div>
+							';						
+					  }
+            $text .='
+												</div>
+											</div>
+										</div>
+									</div>
+									
+								</div><!--row -->
+      				</td>
+
+      	</tr>
+      </table>
+      ';
+      echo $text;
     }
 }

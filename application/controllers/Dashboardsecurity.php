@@ -31,7 +31,7 @@ class Dashboardsecurity extends CI_Controller
         $qstr_accidents = array(
             'YEAR(accidents.accident_date)' => date('Y'),
             'accidents.status'              => 'active',
-            'recoder'          => $this->session->userdata('id'),
+            'recorder'          => $this->session->userdata('id'),
 
         );
 
@@ -48,7 +48,7 @@ class Dashboardsecurity extends CI_Controller
         $qstr_break_homes = array(
             'YEAR(date_break)' => date('Y'),
             'status'           => 'active',
-            'recoder'          => $this->session->userdata('id'),
+            'recorder'          => $this->session->userdata('id'),
         );
 
         $results_break_homes = $this->Break_homes_model->all($qstr_break_homes);
@@ -59,7 +59,7 @@ class Dashboardsecurity extends CI_Controller
         $qstr_security_home = array(
             'YEAR(start_date)' => date('Y'),
             // 'status'          => 'active',
-            'recoder'          => $this->session->userdata('id'),
+            'recorder'          => $this->session->userdata('id'),
         );
 
         $results_security_home = $this->Security_home_model->all($qstr_security_home);
@@ -68,7 +68,7 @@ class Dashboardsecurity extends CI_Controller
         $qstr_vehicles_forget_key = array(
             'YEAR(date_forget_key)'      => date('Y'),
             'vehicles_forget_key.status' => 'active',
-            // 'recoder'          => $this->session->userdata('id'),
+            // 'recorder'          => $this->session->userdata('id'),
         );
 
         $results_vehicles_forget_key = $this->Vehicles_forget_key_model->all($qstr_vehicles_forget_key);
@@ -85,7 +85,7 @@ class Dashboardsecurity extends CI_Controller
         $qstr_break_motorcycle_pad = array(
             'YEAR(date_break)' => date('Y'),
             'status'           => 'active',
-            'recoder'          => $this->session->userdata('id'),
+            'recorder'          => $this->session->userdata('id'),
 
         );
 
@@ -106,7 +106,7 @@ class Dashboardsecurity extends CI_Controller
         $qstr_student_do_not_wear_helmet = array(
             'YEAR(inspect_date)' => date('Y'),
             'status'             => 'active',
-            'recoder'          => $this->session->userdata('id'),
+            'recorder'          => $this->session->userdata('id'),
         );
 
         $results_student_do_not_wear_helmet = $this->Student_do_not_wear_helmet_model->all($qstr_student_do_not_wear_helmet);

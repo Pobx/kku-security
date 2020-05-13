@@ -11,13 +11,14 @@ class Accidents_model extends CI_Model
         $this->load->model('Accidents_participate_model');
         $this->load->library('FilterVehicles');
         $this->load->library('FilterPeoples');
+
     }
 
     private $table = 'accidents';
     private $id    = 'id';
     private $items = '
     accidents.id,
-    period_time,
+    accidents.period_time,
     accident_date AS accident_date_en,
     DATE_FORMAT(DATE_ADD(accident_date, INTERVAL 543 YEAR),"%d/%m/%Y") as accident_date,
     accident_time,
@@ -145,8 +146,8 @@ class Accidents_model extends CI_Model
     }
 
     public function store($inputs)
-    {
-        // echo "<pre>", print_r($inputs); exit();
+    {       
+
         if ($inputs['id'] != '')
         {
             $inputs['updated'] = date('Y-m-d H:i:s');
@@ -156,8 +157,36 @@ class Accidents_model extends CI_Model
         else
         {
             $inputs['created'] = date('Y-m-d H:i:s');
-            $results['query'] = $this->db->insert($this->table, $inputs);
+          
+            // $results['query'] = $this->db->insert($this->table, $inputs);
+            $myinputs = array(
+                'accident_date' => $inputs['accident_date'],
+                'accident_time' => $inputs['accident_time'],
+                'period_time' => $inputs['period_time'], 
+                'place' => $inputs['place'],
+                'accident_cause' => $inputs['accident_cause'],
+                'assets_name' => '0',
+                'assets_amount' => 0,
+                'assets_remark' => $inputs['assets_remark'],
+                'status' => $inputs['status'],
+                'recorder' => $inputs['recorder'],
+                'created' => date('Y-m-d H:i:s'),
+
+            );
+            $results['query'] = $this->db->insert($this->table, $myinputs);
             $results['lastID'] = $this->db->insert_id();
+            // echo "<pre>", print_r($inputs); exit();
+
+            if(count($inputs['assets_name']) > 0){
+                foreach($inputs['assets_name'] as $key => $data){
+                    $arr= array(
+                        'accidents_id' =>$results['lastID'],
+                        'asset_name' => $data,
+                        'asset_amount' => $inputs['assets_amount'][$key],
+                    );
+                    $this->db->insert('accident_asset_affair_detroyed', $arr);
+                }
+            }
         }
 
         return $results;
