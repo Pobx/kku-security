@@ -26,6 +26,24 @@ class Vehicles_forget_key_model extends CI_Model
         ELSE ""
       END
     ) AS car_type_name,
+    period_time,
+    (
+    CASE 
+        WHEN period_time = "morning" THEN "เช้า"
+        WHEN period_time = "afternoon" THEN "บ่าย"
+        WHEN period_time = "night" THEN "ดึก"
+        ELSE ""
+      END
+    ) AS period_time_name,
+    people_type,
+    (
+      CASE 
+        WHEN people_type = "student" THEN "นักศึกษา"
+        WHEN people_type = "staff" THEN "บุคลากร"
+        WHEN people_type = "people_outside" THEN "บุคคลภายนอก"
+        ELSE ""
+      END
+    ) AS people_type_name,
     model,
     brand,
     color,

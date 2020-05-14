@@ -74,7 +74,7 @@
 							</td>
 
 							<td class="text-center">
-							<a  href="javascript:void(0)" class="btn btn-info" onclick="get_accidents_cuase(<?=$value['id'];?>)"><i class="fa fa-eye"></i></a>
+							<a  href="javascript:void(0)" class="btn btn-info" onclick="get_accidents_cause(<?=$value['id'];?>)"><i class="fa fa-eye"></i></a>
 
 							</td>
 
@@ -126,7 +126,7 @@
 	<?php $this->load->view('dashboard_admin_bar_chart_monthly');?>
 
 <script>
-	function get_accidents_cuase(acc_id){
+	function get_accidents_cause(acc_id){
 		$.get( "accidents/get_accidents_cause/"+acc_id )
 			.done(function( data ) {
 				// console.log(data)
