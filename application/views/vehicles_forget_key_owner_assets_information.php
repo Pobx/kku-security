@@ -1,3 +1,11 @@
+<style>
+	.option-hide{
+		display:none;
+	}
+	.option-show{
+		display:block;
+	}
+</style>
 <div class="row">
 	<div class="form-group col-md-4">
 	<!-- <php $this->load->view('period_times');?> -->
@@ -27,22 +35,25 @@
 
 	<div class="form-group col-md-5">
 		<!-- <php $this->load->view('ppeople_type');?> -->
-
+		<div class="row">
 		<label class="col-sm-3 control-label">ประเภท</label>
-
-		<div class="col-sm-9">
-			<label>
-				<input type="radio" name="people_type" class="flat-red" value="student" <?php if ($people_type=='student' ) { echo
-				"checked" ;}?>>&nbsp;นักศึกษา
-				<input type="radio" name="people_type" class="flat-red" value="staff" <?php if ($people_type=='staff' ) { echo
-				"checked" ;}?>>&nbsp;บุคลากร
-				<input type="radio" name="people_type" class="flat-red" value="people_outside" <?php if ($people_type=='people_outside'
-				) { echo "checked" ;}?>>&nbsp;คนภายนอก
-			</label>
+			<div class="col-sm-9">	
+				<label>
+					<input type="radio" id="student_option" name="people_type" class="flat-red a" value="student" <?php if ($people_type=='student' ) { echo
+					"checked" ;}?>>&nbsp;นักศึกษา
+				</label>
+				<label>
+					<input type="radio" id="staff_option" name="people_type" class="flat-red a" value="staff" <?php if ($people_type=='staff' ) { echo
+					"checked" ;}?>>&nbsp;บุคลากร
+				</label>
+				<label>
+					<input type="radio" id="people_outside_option" name="people_type" class="flat-red a" value="people_outside" <?php if ($people_type=='people_outside'
+					) { echo "checked" ;}?>>&nbsp;คนภายนอก
+				</label>
+			</div>
 		</div>
 	</div>
 </div>
-
 
 <div class="row">
 	<div class="form-group col-md-6">
@@ -53,13 +64,22 @@
 			value="<?php echo $owner_assets_name; ?>">
 		</div>
 	</div>
-
+	
 	<div class="form-group col-md-6" id="">
 		<label for="owner_assets_department" class="col-sm-4 control-label">สังกัดหน่วยงาน</label>
-
-		<div class="col-sm-8">
-			<input type="text" class="form-control" id="owner_assets_department" name="owner_assets_department" placeholder="สังกัดหน่วยงาน"
+		
+		<div class="col-sm-8 option-show" id="owner_assets_department_general">
+			<input type="text" class="control" id="owner_assets_department" name="owner_assets_department" placeholder="สังกัดหน่วยงาน"
 			value="<?php echo $owner_assets_department; ?>">
+		</div>
+
+		<label for="owner_assets_department" class="col-sm-4 control-label"></label>
+		<div class="col-sm-8 option-hide" id="owner_assets_department_staff">
+			<select class="form-control" name="owner_assets_department_staff">
+					<option value="">1</option>
+					<option value="">2</option>
+					<option value="">3</option>
+			</select>
 		</div>
 	</div>
 
@@ -211,3 +231,33 @@
 	</div>
 </div>
 
+<script>
+	$("#student_option").click(function() {
+		if($("#owner_assets_department_staff").hasClass("option-show")){
+			$("#owner_assets_department_staff").removeClass("option-show");
+			$("#owner_assets_department_staff").addClass("option-hide");
+			$("#owner_assets_department_general").removeClass("option-hide");
+			$("#owner_assets_department_general").addClass("option-show");
+		}
+	});
+
+	$("#staff_option").click(function() {
+		if($("#owner_assets_department_staff").hasClass("option-hide")){
+			$("#owner_assets_department_staff").removeClass("option-hide");
+			$("#owner_assets_department_staff").addClass("option-show");
+			$("#owner_assets_department_general").removeClass("option-show");
+			$("#owner_assets_department_general").addClass("option-hide");
+		}
+	});
+	
+	$("#people_outside_option").click(function() {
+		if($("#owner_assets_department_staff").hasClass("option-hide")){
+			$("#owner_assets_department_staff").removeClass("option-hide");
+			$("#owner_assets_department_staff").addClass("option-show");
+			$("#owner_assets_department_general").removeClass("option-show");
+			$("#owner_assets_department_general").addClass("option-hide");
+		}
+	});
+	
+	
+</script>
