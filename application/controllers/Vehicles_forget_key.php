@@ -11,6 +11,8 @@ class Vehicles_forget_key extends CI_Controller
         $this->load->model('Vehicles_forget_key_detective_model');
         $this->load->model('Vehicles_forget_key_place_model');
         $this->load->model('Users_model');
+        $this->load->model('Faculty_model');
+        $this->load->model('Office_model');
 
         
         $this->load->library('Date_libs');
@@ -82,7 +84,6 @@ class Vehicles_forget_key extends CI_Controller
         $qstr_key_keeper = array('roles' => 'security');
         $results_key_keeper = $this->Users_model->all($qstr_key_keeper);
         $data['key_keeper'] = $results_key_keeper['results'];
-        
 
         $data['content'] = 'vehicles_forget_key_form_store';
         
@@ -251,7 +252,18 @@ class Vehicles_forget_key extends CI_Controller
         </div>
         ';
         echo $text;
-    
-    
-      }
+        
+    }
+    public function get_faculty(){
+      $results = $this->Faculty_model->all();
+      $value = $results['results'];
+      // print_r($value);
+      echo json_encode($value);
+    }
+    public function get_office(){
+      $results = $this->Office_model->all();
+      $value = $results['results'];
+      // print_r($value);
+      echo json_encode($value);
+    }
 }

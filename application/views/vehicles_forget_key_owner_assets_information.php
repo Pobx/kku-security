@@ -26,7 +26,6 @@
 
 	<div class="form-group col-md-3">
 		<label for="date_forget_key" class="col-sm-4 control-label">วันที่</label>
-
 		<div class="col-sm-8">
 			<input type="text" class="form-control datepicker" id="date_forget_key" name="date_forget_key" data-provide="datepicker"
 			data-date-language="th-th" placeholder="วันที่" value="<?php echo $date_forget_key; ?>">
@@ -37,17 +36,17 @@
 		<!-- <php $this->load->view('ppeople_type');?> -->
 		<div class="row">
 		<label class="col-sm-3 control-label">ประเภท</label>
-			<div class="col-sm-9">	
+			<div class="col-sm-9">
 				<label>
-					<input type="radio" id="student_option" name="people_type" class="flat-red a" value="student" <?php if ($people_type=='student' ) { echo
+					<input type="radio" id="student_option" name="people_type" class="flat-red" value="student" <?php if ($people_type=='student' ) { echo
 					"checked" ;}?>>&nbsp;นักศึกษา
 				</label>
 				<label>
-					<input type="radio" id="staff_option" name="people_type" class="flat-red a" value="staff" <?php if ($people_type=='staff' ) { echo
+					<input type="radio" id="staff_option" name="people_type" class="flat-red" value="staff" <?php if ($people_type=='staff' ) { echo
 					"checked" ;}?>>&nbsp;บุคลากร
 				</label>
 				<label>
-					<input type="radio" id="people_outside_option" name="people_type" class="flat-red a" value="people_outside" <?php if ($people_type=='people_outside'
+					<input type="radio" id="people_outside_option" name="people_type" class="flat-red" value="people_outside" <?php if ($people_type=='people_outside'
 					) { echo "checked" ;}?>>&nbsp;คนภายนอก
 				</label>
 			</div>
@@ -67,18 +66,23 @@
 	
 	<div class="form-group col-md-6" id="">
 		<label for="owner_assets_department" class="col-sm-4 control-label">สังกัดหน่วยงาน</label>
-		
+
 		<div class="col-sm-8 option-show" id="owner_assets_department_general">
-			<input type="text" class="control" id="owner_assets_department" name="owner_assets_department" placeholder="สังกัดหน่วยงาน"
+			<input type="text" class="form-control" id="owner_assets_department" name="owner_assets_department" placeholder="สังกัดหน่วยงาน"
 			value="<?php echo $owner_assets_department; ?>">
 		</div>
-
+		<label for="owner_assets_department" class="col-sm-4 control-label"></label>
+		<div class="col-sm-8 option-hide" id="owner_assets_department_student">
+			<select class="form-control" id="fac_select" name="owner_assets_department_student">
+				<option>1</option>
+				<option>2</option>
+			</select>
+		</div>
 		<label for="owner_assets_department" class="col-sm-4 control-label"></label>
 		<div class="col-sm-8 option-hide" id="owner_assets_department_staff">
-			<select class="form-control" name="owner_assets_department_staff">
-					<option value="">1</option>
-					<option value="">2</option>
-					<option value="">3</option>
+			<select class="form-control" id="office_select" name="owner_assets_department_staff">
+				<option>1</option>
+				<option>2</option>
 			</select>
 		</div>
 	</div>
@@ -129,39 +133,7 @@
 </div>
 
 
-<!-- <div class="form-group">
-	<label for="owner_assets_forget_key_place" class="col-sm-2 control-label">ผู้ที่เก็บได้</label>
 
-	<div class="col-sm-4">
-		<select class="form-control select2" name="vehicles_forget_key_security_id" style="display:block" id="vehicles_forget_key_security_id">
-			<option value="">เลือก</option>
-			<php foreach ($key_keeper as $key => $val) {?>
-			<option value="<php echo $val['id'];?>">
-				<php echo $val['name'];?>
-			</option>
-			<php }?>
-		</select>
-		
-	</div>
-
-	
-</div> -->
-<!-- <div class="form-group">
-	<label for="owner_assets_forget_key_place" class="col-sm-2 control-label">&nbsp;</label>
-	<div class="col-sm-4">
-		<div class="row">
-				<div class="col-sm-3">
-					<input type="checkbox"  name="chk_keeper" id="chk_keeper">บุคคลอื่น
-				</div>
-				<div class="col-sm-9">
-					<input type="text" name="keeper_no_as_security" id="keeper_no_as_security" 
-						placeholder="ใส่ชื่อผู้ที่เก็บได้ที่ไม่ใช่เจ้าที่ รปภ." class="form-control" style="display:none">
-
-				</div>
-		</div>
-		
-	</div>
-</div> -->
 
 <div class="row">
 	<div class="form-group col-md-6">
@@ -230,32 +202,55 @@
 		</div>
 	</div>
 </div>
-
 <script>
-	$("#student_option").click(function() {
-		if($("#owner_assets_department_staff").hasClass("option-show")){
+	$( "#student_option" ).click(function() {
+	if($("#owner_assets_department_student").hasClass("option-hide")){
+			$("#owner_assets_department_student").removeClass("option-hide");
+			$("#owner_assets_department_student").addClass("option-show");
+			$("#owner_assets_department_general").removeClass("option-show");
+			$("#owner_assets_department_general").addClass("option-hide");
 			$("#owner_assets_department_staff").removeClass("option-show");
 			$("#owner_assets_department_staff").addClass("option-hide");
-			$("#owner_assets_department_general").removeClass("option-hide");
-			$("#owner_assets_department_general").addClass("option-show");
 		}
+		$.get( "get_faculty" ).done(function(data){
+			var res = JSON.parse(data);
+			var text = "";
+			res.forEach(fac_name=>{
+				text += "<option>"+fac_name.name+"</option>";
+				$("#fac_select").html(text);
+				// console.log(fac_name.name);
+			});
+		});
 	});
 
-	$("#staff_option").click(function() {
-		if($("#owner_assets_department_staff").hasClass("option-hide")){
+	$( "#staff_option" ).click(function() {
+	if($("#owner_assets_department_staff").hasClass("option-hide")){
 			$("#owner_assets_department_staff").removeClass("option-hide");
 			$("#owner_assets_department_staff").addClass("option-show");
+			$("#owner_assets_department_student").removeClass("option-show");
+			$("#owner_assets_department_student").addClass("option-hide");
 			$("#owner_assets_department_general").removeClass("option-show");
 			$("#owner_assets_department_general").addClass("option-hide");
 		}
+		$.get( "get_office" ).done(function(data){
+			var res = JSON.parse(data);
+			var text = "";
+			res.forEach(office_name=>{
+				text += "<option>"+office_name.name+"</option>";
+				$("#office_select").html(text);
+				console.log(office_name.name);
+			});
+		});
 	});
-	
-	$("#people_outside_option").click(function() {
-		if($("#owner_assets_department_staff").hasClass("option-hide")){
-			$("#owner_assets_department_staff").removeClass("option-hide");
-			$("#owner_assets_department_staff").addClass("option-show");
-			$("#owner_assets_department_general").removeClass("option-show");
-			$("#owner_assets_department_general").addClass("option-hide");
+
+	$( "#people_outside_option" ).click(function() {
+	if($("#owner_assets_department_general").hasClass("option-hide")){
+			$("#owner_assets_department_general").removeClass("option-hide");
+			$("#owner_assets_department_general").addClass("option-show");
+			$("#owner_assets_department_student").removeClass("option-show");
+			$("#owner_assets_department_student").addClass("option-hide");
+			$("#owner_assets_department_staff").removeClass("option-show");
+			$("#owner_assets_department_staff").addClass("option-hide");
 		}
 	});
 	
