@@ -89,7 +89,7 @@
 
 													<ul class="list-group list-group-unbordered">
 														<li class="list-group-item">
-														<b> หน่วยงานสังกัด</b> <a class="pull-right"><?=$people['people_department_name'];?></a>
+														<b> หน่วยงานสังกัด</b> <a class="pull-right"><?php echo $people['people_department_name'];?></a>
 														</li>
 														<li class="list-group-item">
 														<b>ประเภทบุคคล</b> <a class="pull-right"><?php echo $people['victim_type_name'];?></a>
