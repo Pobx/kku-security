@@ -254,7 +254,7 @@ class Accidents extends CI_Controller
                           <div class="info-box bg-aqua">
                             <span class="info-box-icon"><i class="fa fa-bookmark-o"></i></span>
                             <div class="info-box-content">
-                            <span class="info-box-text">สาเหตู</span>
+                            <span class="info-box-text">สาเหตุ</span>
                             <span class="info-box-number">'. $value[0]['accident_cause_name'] .'</span>
 
                             <div class="progress">
