@@ -254,7 +254,7 @@ class Accidents extends CI_Controller
                           <div class="info-box bg-aqua">
                             <span class="info-box-icon"><i class="fa fa-bookmark-o"></i></span>
                             <div class="info-box-content">
-                            <span class="info-box-text">สาเหตู</span>
+                            <span class="info-box-text">สาเหตุ</span>
                             <span class="info-box-number">'. $value[0]['accident_cause_name'] .'</span>
 
                             <div class="progress">
@@ -309,14 +309,14 @@ class Accidents extends CI_Controller
 
 													<h3 class="profile-username text-center">'. $people['people_name'] .'</h3>
 
-													<p class="text-muted text-center">'. $people['people_type_name'] .'></p>
+													<p class="text-muted text-center">'. $people['people_type_name'] .'</p>
 
 													<ul class="list-group list-group-unbordered">
 														<li class="list-group-item">
-														<b> หน่วยงานสังกัด</b> <a class="pull-right">'.$people['people_department_name'] .'></a>
+														<b> หน่วยงานสังกัด</b> <a class="pull-right">'.$people['people_department_name'] .'</a>
 														</li>
 														<li class="list-group-item">
-														<b>ประเภทบุคคล</b> <a class="pull-right">'. $people['victim_type_name'] .'></a>
+														<b>ประเภทบุคคล</b> <a class="pull-right">'. $people['victim_type_name'] .'</a>
 														</li>
 														
 													</ul>

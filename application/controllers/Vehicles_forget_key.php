@@ -11,6 +11,8 @@ class Vehicles_forget_key extends CI_Controller
         $this->load->model('Vehicles_forget_key_detective_model');
         $this->load->model('Vehicles_forget_key_place_model');
         $this->load->model('Users_model');
+        $this->load->model('Faculty_model');
+        $this->load->model('Office_model');
 
         
         $this->load->library('Date_libs');
@@ -23,7 +25,7 @@ class Vehicles_forget_key extends CI_Controller
     private $header_sub_topic_label_owner_assets = 'ข้อมูลเจ้าของทรัพย์สิน';
     private $header_sub_topic_label_detective = 'ข้อมูลผู้ตรวจพบ';
     
-    private $header_columns             = array('วันที่', 'ชื่อ - สกุล', 'สังกัดหน่วยงาน', 'อายุ(ปี)', 'เบอร์ติดต่อ', 'สถานที่ลืมกุญแจ', 'สถานะ', 'แก้ไข', 'ลบ');
+    private $header_columns             = array('วันที่', 'ชื่อ - สกุล', 'สังกัดหน่วยงาน', 'อายุ(ปี)', 'เบอร์ติดต่อ', 'สถานที่ลืมกุญแจ', 'สถานะ', 'ดูเพิ่มเติม', 'แก้ไข', 'ลบ');
     private $header_columns_detective   = array('ชื่อ - สกุล', 'สังกัดหน่วยงาน','หมายเหตุ', 'ลบ');
     private $success_message            = 'บันทึกข้อมูลสำเร็จ';
     private $warning_message            = 'ไม่สามารถทำรายการ กรุณลองใหม่อีกครั้ง';
@@ -56,7 +58,6 @@ class Vehicles_forget_key extends CI_Controller
     public function form_store()
     {
         $id = $this->uri->segment(3);
-
         $data = $this->find($id);
         $data['vehicles_forget_key_id'] = $id;
         $data['head_topic_label'] = $this->head_topic_label;
@@ -83,7 +84,6 @@ class Vehicles_forget_key extends CI_Controller
         $qstr_key_keeper = array('roles' => 'security');
         $results_key_keeper = $this->Users_model->all($qstr_key_keeper);
         $data['key_keeper'] = $results_key_keeper['results'];
-        
 
         $data['content'] = 'vehicles_forget_key_form_store';
         
@@ -180,7 +180,7 @@ class Vehicles_forget_key extends CI_Controller
       redirect($redirect_page.$vehicles_forget_key_id);
   }
 
-  public function store_detective() {
+    public function store_detective() {
     $inputs = $this->input->post();
     $results = $this->Vehicles_forget_key_detective_model->store($inputs);
 
@@ -193,4 +193,77 @@ class Vehicles_forget_key extends CI_Controller
 
     redirect('vehicles_forget_key/form_store/'.$inputs['vehicles_forget_key_id']);
 }
+    
+    public function get_forgetkeys_detail() {
+        $vehicles_forget_key_id = $this->uri->segment(3);
+        
+        $qstr = array(
+            'vehicles_forget_key.id'  => $vehicles_forget_key_id
+          );
+          $results = $this->Vehicles_forget_key_model->all($qstr);
+        //print_r($results['results'][0]);
+        //print_r($results['results'][0]['owner_assets_name']);
+          $value = $results['results'];
+          $text = '<div class="box box-primary">
+          <div class="box-body box-profile">
+            <img class="profile-user-img img-responsive img-circle" src="..\dist\img\user8-128x128.jpg" alt="User profile picture" >
+
+            <h3 class="profile-name text-center">'.$value[0]['owner_assets_name'].'</h3>         
+            
+            <h4 class="text-muted text-center">'.$value[0]['people_type_name'].'</h4>                  
+
+            <ul class="list-group list-group-unbordered">
+              <li class="list-group-item ">
+                <b>วันที่</b> <a class="pull-right">'.$value[0]['date_forget_key'].'</a>
+              </li>
+              <li class="list-group-item">
+                <b>ช่วงเวลา</b> <a class="pull-right">'.$value[0]['period_time_name'].'</a>
+              </li>
+              <li class="list-group-item">
+                <b>สังกัดหน่วยงาน</b> <a class="pull-right">'.$value[0]['owner_assets_department'].'</a>
+              </li>
+              <li class="list-group-item">
+                <b>อายุ(ปี)</b> <a class="pull-right">'.$value[0]['owner_assets_age'].'</a>
+              </li>
+              <li class="list-group-item">
+                <b>เบอร์ติดต่อ</b> <a class="pull-right">'.$value[0]['owner_assets_phone'].'</a>
+              </li>
+              <li class="list-group-item">
+                <b>สถานที่ลืมกุญแจ</b> <a class="pull-right">'.$value[0]['owner_assets_forget_key_place'].'</a>
+              </li>
+              <li class="list-group-item">
+                <b>ประเภทรถ</b> <a class="pull-right">'.$value[0]['car_type_name'].'</a>
+              </li>
+              <li class="list-group-item">
+                <b>รุ่น</b> <a class="pull-right">'.$value[0]['model'].'</a>
+              </li>
+              <li class="list-group-item">
+                <b>ยี่ห้อ</b> <a class="pull-right">'.$value[0]['brand'].'</a>
+              </li>
+              <li class="list-group-item">
+                <b>สี</b> <a class="pull-right">'.$value[0]['color'].'</a>
+              </li>
+              <li class="list-group-item">
+                <b>ทะเบียนรถ</b> <a class="pull-right">'.$value[0]['license_plate'].'</a>
+              </li>
+            </ul>
+          </div>
+          <!-- /.box-body -->
+        </div>
+        ';
+        echo $text;
+        
+    }
+    public function get_faculty(){
+      $results = $this->Faculty_model->all();
+      $value = $results['results'];
+      // print_r($value);
+      echo json_encode($value);
+    }
+    public function get_office(){
+      $results = $this->Office_model->all();
+      $value = $results['results'];
+      // print_r($value);
+      echo json_encode($value);
+    }
 }

@@ -64,7 +64,7 @@ class Temp_accidents extends CI_Controller
           'victim_type'=>$victim_type[array_rand($victim_type, 1)],
           'people_type'=>$people_type[array_rand($people_type, 1)],
           'people_name'=>$people_name[array_rand($people_name, 1)],
-          'people_department_name'=>$people_department_name[array_rand($people_department_name, 1)],
+          'people_department_name'=>$people_department_name[array_rand($, 1)],
           'car_type'=>$car_type[array_rand($car_type, 1)],
           'car_model'=>$car_model[array_rand($car_model, 1)],
           'car_brand'=>$car_brand[array_rand($car_brand, 1)],

@@ -7,7 +7,7 @@
 									<span class="info-box-icon"><i class="fa fa-bookmark-o"></i></span>
 
 									<div class="info-box-content">
-									<span class="info-box-text">สาเหตู</span>
+									<span class="info-box-text">สาเหตุ</span>
 									<span class="info-box-number"><?php echo $value['accident_cause_name']; ?></span>
 
 									<div class="progress">
@@ -89,7 +89,7 @@
 
 													<ul class="list-group list-group-unbordered">
 														<li class="list-group-item">
-														<b> หน่วยงานสังกัด</b> <a class="pull-right"><?=$people['people_department_name'];?></a>
+														<b> หน่วยงานสังกัด</b> <a class="pull-right"><?php echo $people['people_department_name'];?></a>
 														</li>
 														<li class="list-group-item">
 														<b>ประเภทบุคคล</b> <a class="pull-right"><?php echo $people['victim_type_name'];?></a>

@@ -15,7 +15,7 @@ class Break_motorcycle_pad extends CI_Controller
     private $head_topic_label           = 'สาเหตุงัดเบาะรถจักยานยนต์ ';
     private $head_sub_topic_label_table = 'รายการ สาเหตุงัดเบาะรถจักยานยนต์ ';
     private $head_sub_topic_label_form  = 'ฟอร์มบันทึกข้อมูล สาเหตุงัดเบาะรถจักยานยนต์ ';
-    private $header_columns             = array('ช่วงเวลา', 'วันที่', 'ชื่อ - สกุล', 'สังกัดหน่วยงาน/คณะ', 'สถานที่เกิดเหตุ', 'รายการของที่สูญหาย', 'หมายเหตุ', 'สถานะ', 'แก้ไข', 'ลบ');
+    private $header_columns             = array('ช่วงเวลา', 'วันที่', 'ชื่อ - สกุล', 'สังกัดหน่วยงาน/คณะ', 'สถานที่เกิดเหตุ', 'รายการของที่สูญหาย', 'หมายเหตุ', 'สถานะ', 'ดูเพิ่มเติม', 'แก้ไข', 'ลบ');
     private $success_message            = 'บันทึกข้อมูลสำเร็จ';
     private $warning_message            = 'ไม่สามารถทำรายการ กรุณลองใหม่อีกครั้ง';
     private $danger_message             = 'ลบข้อมูลสำเร็จ';
@@ -115,5 +115,62 @@ class Break_motorcycle_pad extends CI_Controller
         $this->session->set_flashdata('alert_message', $alert_message);
 
         redirect('break_motorcycle_pad');
+    }
+    public function get_break_pad_detail(){
+      $break_pad_id = $this->uri->segment(3);
+
+      $qstr = array(
+        'break_motorcycle_pad.id'  => $break_pad_id
+      );
+      $results = $this->Break_motorcycle_pad_model->all($qstr);
+    //   print_r($results);
+
+      $value = $results['results'];
+      if($value[0]['people_type'] == "officer"){
+        $value[0]['people_type'] = "บุคลากร";
+      }elseif($value[0]['people_type'] == "student"){
+        $value[0]['people_type'] ="นักศึกษา";
+      }elseif($value[0]['people_type'] == "people_inside"){
+        $value[0]['people_type'] = "บุคคลภายใน";
+      }elseif($value[0]['people_type'] == "people_outside"){
+        $value[0]['people_type'] = "บุคคลภายนอก";
+      }elseif($value[0]['people_type'] == "staff"){
+        $value[0]['people_type'] = "พนักงาน";
+      }
+      echo json_encode($value); 
+    //   $text = '
+    // <div class="col-md">
+        
+    //     <div class="box box-widget widget-user-2">
+            
+    //         <div class="widget-user-header bg-aqua-active">
+    //             <div class="widget-user-image">
+    //                 <img class="img-circle" src="../dist/img/woman.png" alt="User Avatar">
+    //             </div>
+                
+    //             <h3 class="widget-user-username">'.$value[0]['victim_name'].'</h3>
+    //             <h5 class="widget-user-desc">'.$value[0]['people_type'].'</h5>
+    //         </div>
+    //         <div class="box-footer no-padding">
+    //             <ul class="nav nav-stacked">
+    //                 <li>
+    //                     <h3><img class="img-circle" src="../dist/img/interface.png" width="25" alt="Lost-items Icon"> รายการของที่สูญหาย</h3>
+    //                     <div class="">'.$value[0]['assets_loses'].'</div>
+    //                 </li>
+    //                 <li>
+    //                     <h3><img class="img-circle" src="../dist/img/letter.png" width="25" alt="Lost-items Icon"> สถานที่เกิดเหตุ</h3>
+    //                     <div class="">'.$value[0]['place'].'</div>
+    //                 </li>
+    //                 <li>
+    //                     <h3><img class="img-circle" src="../dist/img/hour.png" width="25" alt="Lost-items Icon"> วันที่</h3>
+    //                     <div class="">'.$value[0]['date_break'].'</div>
+    //                 </li>
+    //             </ul>
+
+    //         </div>
+    //     </div>
+        
+    // </div>';
+    // echo $text;
     }
 }
