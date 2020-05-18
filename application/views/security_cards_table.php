@@ -32,7 +32,9 @@
     					?>
 								<th class="text-center">
 									<?php echo $value[0]; ?>
-									<input type="text" class="form-control" value="" name="<?php echo $value[1];?>" id="<?php echo $value[1];?>" placeholder="ค้นหา">
+									<?php if(($value[1] != 'delete') && ($value[1] != 'edit')){ ?>
+										<input type="text" class="form-control" value="" name="<?php echo $value[1];?>" id="<?php echo $value[1];?>" placeholder="ค้นหา">
+									<?php } ?>
 								</th>
 						<?php }?>
 					</tr>
@@ -108,3 +110,16 @@
 		<div class="box-footer">
 		</div>
 	</div>
+
+
+<script>
+	$("input").keyup(function(){
+		let column_name = $(this).attr("name");
+		let val = $(this).val();
+
+		$.get( "security_cards/get_data_by_column", { value: val, column: column_name } )
+		.done(function( data ) {
+			console.log( "Data Loaded: " + data );
+		});
+	})
+</script>

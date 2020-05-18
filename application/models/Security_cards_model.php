@@ -95,4 +95,19 @@ class Security_cards_model extends CI_Model
         return $results;
     }
 
+
+    public function findByColumn($qstr=''){
+        if (isset($qstr) && !empty($qstr)){
+            $this->db->like($qstr[0], $qstr[1], 'after');
+        }
+        // print_r($qstr);
+        $query = $this->db->select($this->items)->from($this->table)->get();
+
+        $results['results'] = $query->result_array();
+
+        $results['rows'] = $query->num_rows();
+        $results['fields'] = $query->list_fields();
+        return $results;
+    }
+
 }
