@@ -74,8 +74,12 @@ class Vehicles_forget_key_model extends CI_Model
         ->get();
 
         $results['results'] = $query->result_array();
+<<<<<<< HEAD
         // echo '<pre>',print_r($results['results']); exit();
         $results['rows'] = $query->num_rows();
+=======
+        //  echo "<pre>", print_r($results); exit();
+>>>>>>> 7c7904768f54caeab7ca77442510c7d9ee3e43bd
         $results['fields'] = $query->list_fields();
 
         return $results;

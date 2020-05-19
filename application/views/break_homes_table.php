@@ -23,19 +23,24 @@
 
 			<br />
 
-			<table class="table table-bordered table-striped mydataTable">
+			<table class="table table-bordered table-striped">
 				<thead>
 					<tr>
+						<th>#</th>
 						<?php foreach ($header_columns as $key => $value) {?>
 						<th class="text-center">
-							<?php echo $value;?>
+							<?php echo $value[0];
+							if(($value[1]!="edit")&&($value[1]!="delete")){?>
+								<input type="text" class="form-control" value="" id="<?php echo $value[1]; ?>" name="<?php echo $value[1]; ?>" placeholder="ค้นหา">
+							<?php } ?>
 						</th>
 						<?php }?>
 					</tr>
 				</thead>
 				<tbody>
-					<?php foreach ($results as $key => $value) {?>
+					<?php $i=1; foreach ($results as $key => $value) {?>
 					<tr>
+						<td class="text-center"><?php echo $i++; ?></td>
 						<td class="text-center">
 							<?php if ($value['date_break'] !='' ) { echo $value['date_break']; }?>
 						</td>
@@ -75,3 +80,16 @@
 	</div>
 
 	<?php $this->load->view('dashboard_admin_bar_chart_monthly');?>
+<script>
+	$("input").keyup(function(){
+		let column_name = $(this).attr("name");
+		let column_value = $(this).val();
+		// console.log(column_value);
+
+		$.get("break_homes/get_data_by_column", {value: column_value, column: column_name})
+		.done(function(data){
+			console.log(data);
+			$("tbody").html(data);
+		});
+	});
+</script>

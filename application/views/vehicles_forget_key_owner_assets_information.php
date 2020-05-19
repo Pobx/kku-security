@@ -79,7 +79,7 @@
 			</select>
 		</div>
 		<label for="owner_assets_department" class="col-sm-4 control-label"></label>
-		<div class="col-sm-8 option-hide" id="owner_assets_department_staff">
+		<div class="col-sm-8 col-md-8 col-lg-8 option-hide" id="owner_assets_department_staff">
 			<select class="form-control" id="office_select" name="owner_assets_department_staff">
 				<option>1</option>
 				<option>2</option>

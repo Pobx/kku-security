@@ -14,7 +14,20 @@ class Security_cards extends CI_Controller
     private $head_topic_label           = 'ทะเบียนการจัดทําบัตรผ่านเข้า-ออก ';
     private $head_sub_topic_label_table = 'รายการ ทะเบียนการจัดทําบัตรผ่านเข้า-ออก ';
     private $head_sub_topic_label_form  = 'ฟอร์มบันทึกข้อมูล ทะเบียนการจัดทําบัตรผ่านเข้า-ออก ';
-    private $header_columns             = array('เลขที่บัตร', 'ชื่อ - สกุล', 'ตําแหน่ง', 'สังกัด', 'เบอร์ติดต่อ', 'ทะเบียน', 'จังหวัด', 'ยี่ห้อ', 'สี', 'วันออกบัตร', 'วันหมดอายุ', 'แก้ไข', 'ลบ');
+    private $header_columns             = array(
+        ['เลขที่บัตร', 'card_num'], 
+        ['ชื่อ - สกุล', 'name_lastname'],
+        ['ตําแหน่ง', 'position'],
+        ['สังกัด','unit'],
+        ['เบอร์ติดต่อ', 'phone'],
+        ['ทะเบียน', 'platenumber'], 
+        ['จังหวัด', 'province'],
+        ['ยี่ห้อ', 'brand'],
+        ['สี', 'color'],
+        ['วันออกบัตร', 'commit_date'],
+        ['วันหมดอายุ', 'expire_date'], 
+        ['แก้ไข','edit'],
+        ['ลบ', 'delete']);
     private $success_message            = 'บันทึกข้อมูลสำเร็จ';
     private $warning_message            = 'ไม่สามารถทำรายการ กรุณลองใหม่อีกครั้ง';
     private $danger_message             = 'ลบข้อมูลสำเร็จ';
@@ -28,7 +41,8 @@ class Security_cards extends CI_Controller
         $data['header_columns'] = $this->header_columns;
 
         $qstr = array('status !=' => 'disabled');
-        $results = $this->Security_cards_model->all($qstr);
+        $limit = 10;
+        $results = $this->Security_cards_model->all($qstr, $limit);
         $data['results'] = $results['results'];
         $data['fields'] = $results['fields'];
         $data['content'] = 'security_cards_table';

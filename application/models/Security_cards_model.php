@@ -29,16 +29,22 @@ class Security_cards_model extends CI_Model
     ) AS status_name,
     ';
 
-    public function all($qstr = '')
+    public function all($qstr = '', $limit = 0)
     {
         if (isset($qstr) && !empty($qstr))
         {
             $this->db->where($qstr);
         }
+        if(isset($limit) && $limit > 0){
+            echo 'limit= '.$limit;
+            $this->db->limit($limit);
+        }
 
         $query = $this->db->select($this->items)->from($this->table)->get();
 
         $results['results'] = $query->result_array();
+        // echo "<pre>", print_r($results['results']); exit();
+
         $results['rows'] = $query->num_rows();
         $results['fields'] = $query->list_fields();
 
