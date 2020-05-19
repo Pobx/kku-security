@@ -146,13 +146,13 @@ class Vehicles_forget_key_model extends CI_Model
       {
          $this->db->like($qstr[0],$qstr[1], 'after' );
       }
-      $query = $this->db->select($this->items)->from($this->table)->get();
+      $query = $this->db->select($this->items)->from($this->table)
+      ->join('vehicles_forget_key_place', 'vehicles_forget_key_place.id = vehicles_forget_key.vehicles_forget_key_place_id', 'left')
+      ->get();
       
       $results['results'] = $query->result_array();
       $results['rows'] = $query->num_rows();
-      $results['results'] = $query->first_rows();
       $results['fields'] = $query->list_fields();
-      print_r($results['results']);
 
       return $results;
 }

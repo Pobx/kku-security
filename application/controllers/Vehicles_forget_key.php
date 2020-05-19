@@ -284,6 +284,6 @@ class Vehicles_forget_key extends CI_Controller
 			$like_query_string = array($column,$value);
       $results = $this->Vehicles_forget_key_model->findByColumn($like_query_string);
       
-      return $results;
+       print_r($results);
     }
 }
