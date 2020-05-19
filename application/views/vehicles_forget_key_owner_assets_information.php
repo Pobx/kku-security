@@ -14,11 +14,11 @@
 
 		<div class="col-sm-8">
 			<label>
-				<input type="radio" name="period_time" class="flat-red" value="morning" <?php if ($period_time=='morning' ) { echo
+				<input type="radio" name="period_time"  value="morning" <?php if ($period_time=='morning' ) { echo
 				"checked" ;}?>>&nbsp;เช้า
-				<input type="radio" name="period_time" class="flat-red" value="afternoon" <?php if ($period_time=='afternoon' ) {
+				<input type="radio" name="period_time"  value="afternoon" <?php if ($period_time=='afternoon' ) {
 				echo "checked" ;}?>>&nbsp;บ่าย
-				<input type="radio" name="period_time" class="flat-red" value="night" <?php if ($period_time=='night' ) { echo
+				<input type="radio" name="period_time"  value="night" <?php if ($period_time=='night' ) { echo
 				"checked" ;}?>>&nbsp;ดึก
 			</label>
 		</div>
@@ -38,15 +38,15 @@
 		<label class="col-sm-3 control-label">ประเภท</label>
 			<div class="col-sm-9">
 				<label>
-					<input type="radio" id="student_option" name="people_type" class="flat-red" value="student" <?php if ($people_type=='student' ) { echo
+					<input type="radio" id="student_option" name="people_type"  value="student" <?php if ($people_type=='student' ) { echo
 					"checked" ;}?>>&nbsp;นักศึกษา
 				</label>
 				<label>
-					<input type="radio" id="staff_option" name="people_type" class="flat-red" value="staff" <?php if ($people_type=='staff' ) { echo
+					<input type="radio" id="staff_option" name="people_type"  value="staff" <?php if ($people_type=='staff' ) { echo
 					"checked" ;}?>>&nbsp;บุคลากร
 				</label>
 				<label>
-					<input type="radio" id="people_outside_option" name="people_type" class="flat-red" value="people_outside" <?php if ($people_type=='people_outside'
+					<input type="radio" id="people_outside_option" name="people_type"  value="people_outside" <?php if ($people_type=='people_outside'
 					) { echo "checked" ;}?>>&nbsp;คนภายนอก
 				</label>
 			</div>
@@ -72,7 +72,7 @@
 			value="<?php echo $owner_assets_department; ?>">
 		</div>
 		<label for="owner_assets_department" class="col-sm-4 control-label"></label>
-		<div class="col-sm-8 option-hide" id="owner_assets_department_student">
+		<div class="col-sm-8 col-md-8 col-lg-8 option-hide" id="owner_assets_department_student">
 			<select class="form-control" id="fac_select" name="owner_assets_department_student">
 				<option>1</option>
 				<option>2</option>

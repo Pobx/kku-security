@@ -60,19 +60,21 @@ class Vehicles_forget_key_model extends CI_Model
     ) AS status_name,
     ';
 
-    public function all($qstr = '')
+    public function all($qstr = '', $limit = 10)
     {
         if (isset($qstr) && !empty($qstr))
         {
-
             $this->db->where($qstr);
         }
-
+        if (isset($limit) && $limit > 0){
+          $this->db->limit($limit);
+        }
         $query = $this->db->select($this->items)->from($this->table)
         ->join('vehicles_forget_key_place', 'vehicles_forget_key_place.id = vehicles_forget_key.vehicles_forget_key_place_id', 'left')
         ->get();
 
         $results['results'] = $query->result_array();
+        // echo '<pre>',print_r($results['results']); exit();
         $results['rows'] = $query->num_rows();
         $results['fields'] = $query->list_fields();
 
@@ -139,4 +141,19 @@ class Vehicles_forget_key_model extends CI_Model
       return $results;
   }
 
+  public function findByColumn($qstr='') {
+      if (isset($qstr) && !empty($qstr))
+      {
+         $this->db->like($qstr[0],$qstr[1], 'after' );
+      }
+      $query = $this->db->select($this->items)->from($this->table)->get();
+      
+      $results['results'] = $query->result_array();
+      $results['rows'] = $query->num_rows();
+      $results['results'] = $query->first_rows();
+      $results['fields'] = $query->list_fields();
+      print_r($results['results']);
+
+      return $results;
+}
 }

@@ -23,23 +23,31 @@
 
 			<br />
 
-			<table class="table table-bordered table-striped mydataTable">
+			<table class="table table-bordered table-striped ">
 				<thead>
 					<tr>
+						<th>#</th>
 						<?php foreach ($header_columns as $key => $value)
 {
     ?>
 						<th class="text-center">
-							<?php echo $value; ?>
+							<?php echo $value[0]; ?>
+							<?php if(($value[1] != 'see_more') && ($value[1] != 'edit') && ($value[1] != 'delete')){ ?>
+								<input type="text" class="form-control" value="" name="<?php echo $value[1]?>" id="<?php echo $value[1]?>" placeholder="ค้นหา"> <?php }?> 
+							
+								<?php }?>
 						</th>
-						<?php }?>
+						
 					</tr>
 				</thead>
+						
 				<tbody>
+					<?php $i = 1; ?>
 					<?php foreach ($results as $key => $value)
 {
     ?>
 					<tr>
+						<td class="text-center"><?php echo $i++; ?>
 						<td class="text-center">
 							<?php echo $value['date_forget_key'];?>
 						</td>
@@ -124,5 +132,14 @@
 
 	//  $('#exampleModal').removeData('modal');
 	}
-</script>
 
+	$("input").keyup(function(){
+		let column_name = $(this).attr("name");
+		let val = $(this).val();
+		
+		$.get( "Vehicles_forget_key/get_data_by_column", {val: val, column: column_name })
+		.done(function(data){
+			console.log("Data Loaded: " + data);
+		});
+	})
+</script>

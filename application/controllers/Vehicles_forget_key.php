@@ -25,7 +25,17 @@ class Vehicles_forget_key extends CI_Controller
     private $header_sub_topic_label_owner_assets = 'ข้อมูลเจ้าของทรัพย์สิน';
     private $header_sub_topic_label_detective = 'ข้อมูลผู้ตรวจพบ';
     
-    private $header_columns             = array('วันที่', 'ชื่อ - สกุล', 'สังกัดหน่วยงาน', 'อายุ(ปี)', 'เบอร์ติดต่อ', 'สถานที่ลืมกุญแจ', 'สถานะ', 'ดูเพิ่มเติม', 'แก้ไข', 'ลบ');
+    private $header_columns = array(
+      ['วันที่','date_forget_key'], 
+      ['ชื่อ - สกุล','owner_assets_name'], 
+      ['สังกัดหน่วยงาน','owner_assets_department'], 
+      ['อายุ(ปี)','	owner_assets_age'], 
+      ['เบอร์ติดต่อ','owner_assets_phone'], 
+      ['สถานที่ลืมกุญแจ','owner_assets_forget_key_place'], 
+      ['สถานะ','status_name'], 
+      ['ดูเพิ่มเติม','see_more'], 
+      ['แก้ไข','edit'], 
+      ['ลบ','delete']);
     private $header_columns_detective   = array('ชื่อ - สกุล', 'สังกัดหน่วยงาน','หมายเหตุ', 'ลบ');
     private $success_message            = 'บันทึกข้อมูลสำเร็จ';
     private $warning_message            = 'ไม่สามารถทำรายการ กรุณลองใหม่อีกครั้ง';
@@ -43,8 +53,8 @@ class Vehicles_forget_key extends CI_Controller
           'YEAR(vehicles_forget_key.date_forget_key)'=>date('Y'),
           'vehicles_forget_key.status !=' => 'disabled'
         );
-        
-        $results = $this->Vehicles_forget_key_model->all($qstr);
+        $limit =10;
+        $results = $this->Vehicles_forget_key_model->all($qstr,$limit);
         $data['results'] = $results['results'];
 
         $data['bar_chart_data'] = $this->filterbarchartdata->filter($results['results'], 'date_forget_key_en');
@@ -265,5 +275,15 @@ class Vehicles_forget_key extends CI_Controller
       $value = $results['results'];
       // print_r($value);
       echo json_encode($value);
+    }
+
+    public function get_data_by_column(){
+      $value = $this->input->get('value');
+      $column = $this->input->get('column');
+			//ส่งค่าตัวแปรไปที่ model เพื่อทำการ select data และหาแบบ Like %ss%
+			$like_query_string = array($column,$value);
+      $results = $this->Vehicles_forget_key_model->findByColumn($like_query_string);
+      
+      return $results;
     }
 }
