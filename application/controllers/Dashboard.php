@@ -66,6 +66,7 @@ class Dashboard extends CI_Controller
         );
 
         $results_vehicles_forget_key = $this->Vehicles_forget_key_model->all($qstr_vehicles_forget_key);
+    
         $data['count_vehicles_forget_key'] = $results_vehicles_forget_key['rows'];
         $data['count_vehicles_forget_key_morning'] = $this->filterperiodtimes->filter($results_vehicles_forget_key['results'], 'morning', 'period_time');
         $data['count_vehicles_forget_key_afternoon'] = $this->filterperiodtimes->filter($results_vehicles_forget_key['results'], 'afternoon', 'period_time');

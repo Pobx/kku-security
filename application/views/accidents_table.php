@@ -13,7 +13,8 @@
 
 		<div class="box-body">
 			<div class="row">
-				<div class="col-md-12 text-right">
+			<div class="col-md-6">จำนวน <span id="numrow">10</span> แถว</div>
+				<div class="col-md-6 text-right">
 					<a href="<?php echo $link_go_to_form; ?>" class="btn btn-primary">
 						<i class="fa fa-plus-circle"></i>
 						เพิ่มข้อมูลใหม่

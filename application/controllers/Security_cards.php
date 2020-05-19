@@ -15,16 +15,16 @@ class Security_cards extends CI_Controller
     private $head_sub_topic_label_table = 'รายการ ทะเบียนการจัดทําบัตรผ่านเข้า-ออก ';
     private $head_sub_topic_label_form  = 'ฟอร์มบันทึกข้อมูล ทะเบียนการจัดทําบัตรผ่านเข้า-ออก ';
     private $header_columns             = array(
-        ['เลขที่บัตร', 'card_num'], 
-        ['ชื่อ - สกุล', 'name_lastname'],
-        ['ตําแหน่ง', 'position'],
-        ['สังกัด','unit'],
-        ['เบอร์ติดต่อ', 'phone'],
-        ['ทะเบียน', 'platenumber'], 
-        ['จังหวัด', 'province'],
-        ['ยี่ห้อ', 'brand'],
-        ['สี', 'color'],
-        ['วันออกบัตร', 'commit_date'],
+        ['เลขที่บัตร', 'numbers'], 
+        ['ชื่อ - สกุล', 'people_name'],
+        ['ตําแหน่ง', 'people_position'],
+        ['สังกัด','people_department_name'],
+        ['เบอร์ติดต่อ', 'people_phone'],
+        ['ทะเบียน', 'car_license_plate'], 
+        ['จังหวัด', 'car_province'],
+        ['ยี่ห้อ', 'car_brand'],
+        ['สี', 'car_color'],
+        ['วันออกบัตร', 'issue_date'],
         ['วันหมดอายุ', 'expire_date'], 
         ['แก้ไข','edit'],
         ['ลบ', 'delete']);
@@ -141,5 +141,80 @@ class Security_cards extends CI_Controller
             $file_name = 'not-file';
         }
         return $file_name;
+    }
+
+    public function get_data_by_column(){
+        $value = $this->input->get('value');
+        $column = $this->input->get('column');
+       //ส่งค่าตัวแปลไปที่ model เพือ ทำการ  select  data และ หา แบบ Like %ss%
+        $like_squey_string  = array($column, $value);
+        $limit = 10;
+        $results = $this->security_cards->findByColumn($like_squey_string, $limit);
+        
+        $text = "";
+        $i = 1;
+		foreach ($results['results'] as $val)
+				$text .= '
+				<tr>
+						<td class="text-center">'.$i++.'
+						<td class="text-center">
+							'.$val["numbers"] .'
+						</td>
+						<td class="text-center">
+							'.$val["people_name"] .'
+						</td>
+						<td class="text-center">
+							'.$val["people_position"] .'
+						</td>
+
+						<td class="text-center">
+							'.$val["people_department_name"] .'
+						</td>
+
+						<td class="text-center">
+							'.$val["people_phone"] .'
+						</td>
+
+						<td class="text-center">
+							'.$val["car_license_plate"] .'
+						</td>
+
+						<td class="text-center">
+							'.$val["car_province"] .'
+						</td>
+
+						<td class="text-center">
+							'.$val["car_brand"] .'
+						</td>
+
+						<td class="text-center">
+							'.$val["car_color"] .'
+						</td>
+
+						<td class="text-center">
+							'.$val["issue_date"] .'
+						</td>
+
+						<td class="text-center">
+							'.$val["expire_date"] .'
+						</td>
+						<td class="text-center">
+							<a href="'. site_url("security_cards/form_store/".$val["id"]).'" class="btn btn-warning">
+								<i class="fa fa-pencil"></i>
+							</a>
+						</td>
+						
+                        <td class="text-center">
+                            <a href="javascript:removeItem('. $val["id"].','. site_url("security_cards/remove") .')" class="btn btn-danger">
+                                <i class="fa fa-trash-o"></i>
+                            </a>
+                        </td>
+
+					</tr>
+				
+                ';
+                $aa = array('results' =>$text, 'rows' => $results['rows']);
+                echo json_encode($aa);
+        // return $results;
     }
 }

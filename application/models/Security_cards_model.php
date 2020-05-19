@@ -36,7 +36,6 @@ class Security_cards_model extends CI_Model
             $this->db->where($qstr);
         }
         if(isset($limit) && $limit > 0){
-            echo 'limit= '.$limit;
             $this->db->limit($limit);
         }
 
@@ -92,6 +91,23 @@ class Security_cards_model extends CI_Model
 
         $results['query'] = $this->db->where($this->id, $inputs['id'])->update($this->table, $inputs);
 
+        return $results;
+    }
+
+
+    public function findByColumn($qstr='', $limit = 0){
+        if (isset($qstr) && !empty($qstr)){
+            $this->db->like($qstr[0], $qstr[1], 'after');   //column,value
+        }
+        if(isset($limit) && $limit > 0){
+            $this->db->limit($limit);
+        }
+
+        $query = $this->db->select($this->items)->from($this->table)->get();
+
+        $results['results'] = $query->result_array();     
+        $results['rows'] = $query->num_rows();         //นับrow 
+        $results['fields'] = $query->list_fields();    //เอาชื่อ column มา
         return $results;
     }
 
