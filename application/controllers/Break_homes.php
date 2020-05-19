@@ -14,7 +14,7 @@ class Break_homes extends CI_Controller
     private $head_topic_label           = 'สถิติการงัดที่พักอาศัย';
     private $head_sub_topic_label_table = 'รายการสถิติการงัดที่พักอาศัย';
     private $head_sub_topic_label_form  = 'ฟอร์มบันทึกข้อมูล สถิติการงัดที่พักอาศัย';
-    private $header_columns             = array('วันที่', 'ชื่อ - สกุล', 'สถานที่เกิดเหตุ', 'ทรัพย์สินที่เสียหาย', 'หมายเหตุ', 'แก้ไข', 'ลบ');
+    private $header_columns             = array(['วันที่','date_break'], ['ชื่อ - สกุล','victim_name'] , ['สถานที่เกิดเหตุ','address'], ['ทรัพย์สินที่เสียหาย','assets_loses'], ['หมายเหตุ','remark'], ['แก้ไข','edit'], ['ลบ','delete']);
     private $success_message            = 'บันทึกข้อมูลสำเร็จ';
     private $warning_message            = 'ไม่สามารถทำรายการ กรุณลองใหม่อีกครั้ง';
     private $danger_message             = 'ลบข้อมูลสำเร็จ';
@@ -28,7 +28,8 @@ class Break_homes extends CI_Controller
         $data['header_columns'] = $this->header_columns;
 
         $qstr = array('status !=' => 'disabled');
-        $results = $this->Break_homes_model->all($qstr);
+        $limit = 10;
+        $results = $this->Break_homes_model->all($qstr, $limit);
         $data['results'] = $results['results'];
         $data['fields'] = $results['fields'];
         $data['content'] = 'break_homes_table';
@@ -105,5 +106,28 @@ class Break_homes extends CI_Controller
         $this->session->set_flashdata('alert_message', $alert_message);
 
         redirect('break_homes');
+    }
+
+    public function get_data_by_column(){
+        $value = $this->input->get("value");
+        $column =  $this->input->get("column");
+        $like_query_string = array($column, $value);
+        $results = $this->Break_homes_model->findByColumn($like_query_string);
+        
+        $text = '';
+        $i=1;
+        // foreach($results['results'] as $result){
+            $text .= "<tr>
+                <td>".$i++."</td>
+                <td>".$results['results']->date_break."</td>
+                <td>".$results['results']->victim_name."</td>
+                <td>".$results['results']->address."</td>
+                <td>".$results['results']->assets_loses."</td>
+                <td>".$results['results']->remark."</td>
+                
+            </tr>";
+        // }
+        echo $text;
+        // print_r($results['rows']);
     }
 }
