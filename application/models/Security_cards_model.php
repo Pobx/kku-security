@@ -36,7 +36,6 @@ class Security_cards_model extends CI_Model
             $this->db->where($qstr);
         }
         if(isset($limit) && $limit > 0){
-            echo 'limit= '.$limit;
             $this->db->limit($limit);
         }
 
@@ -96,15 +95,17 @@ class Security_cards_model extends CI_Model
     }
 
 
-    public function findByColumn($qstr=''){
+    public function findByColumn($qstr='', $limit = 0){
         if (isset($qstr) && !empty($qstr)){
             $this->db->like($qstr[0], $qstr[1], 'after');
         }
-        // print_r($qstr);
+        if(isset($limit) && $limit > 0){
+            $this->db->limit($limit);
+        }
+
         $query = $this->db->select($this->items)->from($this->table)->get();
 
         $results['results'] = $query->result_array();
-
         $results['rows'] = $query->num_rows();
         $results['fields'] = $query->list_fields();
         return $results;

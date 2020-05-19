@@ -1,3 +1,8 @@
+<style>
+	.round{
+		border-radius: 10px 10px
+	}
+</style>
 <section class="content">
 	<div class="box box-primary">
 		<div class="box-header with-border">
@@ -13,7 +18,8 @@
 
 		<div class="box-body">
 			<div class="row">
-				<div class="col-md-12 text-right">
+				<div class="col-md-6">จำนวน <span id="numrow">10</span> แถว</div>
+				<div class="col-md-6 text-right">
 					<a href="<?php echo $link_go_to_form; ?>" class="btn btn-primary">
 						<i class="fa fa-plus-circle"></i>
 						เพิ่มข้อมูลใหม่
@@ -33,7 +39,7 @@
 								<th class="text-center">
 									<?php echo $value[0]; ?>
 									<?php if(($value[1] != 'delete') && ($value[1] != 'edit')){ ?>
-										<input type="text" class="form-control" value="" name="<?php echo $value[1];?>" id="<?php echo $value[1];?>" placeholder="ค้นหา">
+										<input type="text" class="form-control round" value="" name="<?php echo $value[1];?>" id="<?php echo $value[1];?>" >
 									<?php } ?>
 								</th>
 						<?php }?>
@@ -119,7 +125,9 @@
 
 		$.get( "security_cards/get_data_by_column", { value: val, column: column_name } )
 		.done(function( data ) {
-			console.log( "Data Loaded: " + data );
+			let a =JSON.parse(data);
+			$('tbody').html(a.results);
+			$('#numrow').html(a.rows)
 		});
 	})
 </script>

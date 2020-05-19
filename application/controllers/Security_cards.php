@@ -148,9 +148,73 @@ class Security_cards extends CI_Controller
         $column = $this->input->get('column');
        //ส่งค่าตัวแปลไปที่ model เพือ ทำการ  select  data และ หา แบบ Like %ss%
         $like_squey_string  = array($column, $value);
+        $limit = 10;
+        $results = $this->Security_cards_model->findByColumn($like_squey_string, $limit);
+        
+        $text = "";
+        $i = 1;
+		foreach ($results['results'] as $val)
+				$text .= '
+				<tr>
+						<td class="text-center">'.$i++.'
+						<td class="text-center">
+							'.$val["numbers"] .'
+						</td>
+						<td class="text-center">
+							'.$val["people_name"] .'
+						</td>
+						<td class="text-center">
+							'.$val["people_position"] .'
+						</td>
 
-        $results = $this->Security_cards_model->findByColumn($like_squey_string);
-        print_r($results);
+						<td class="text-center">
+							'.$val["people_department_name"] .'
+						</td>
+
+						<td class="text-center">
+							'.$val["people_phone"] .'
+						</td>
+
+						<td class="text-center">
+							'.$val["car_license_plate"] .'
+						</td>
+
+						<td class="text-center">
+							'.$val["car_province"] .'
+						</td>
+
+						<td class="text-center">
+							'.$val["car_brand"] .'
+						</td>
+
+						<td class="text-center">
+							'.$val["car_color"] .'
+						</td>
+
+						<td class="text-center">
+							'.$val["issue_date"] .'
+						</td>
+
+						<td class="text-center">
+							'.$val["expire_date"] .'
+						</td>
+						<td class="text-center">
+							<a href="'. site_url("security_cards/form_store/".$val["id"]).'" class="btn btn-warning">
+								<i class="fa fa-pencil"></i>
+							</a>
+						</td>
+						
+                        <td class="text-center">
+                            <a href="javascript:removeItem('. $val["id"].','. site_url("security_cards/remove") .')" class="btn btn-danger">
+                                <i class="fa fa-trash-o"></i>
+                            </a>
+                        </td>
+
+					</tr>
+				
+                ';
+                $aa = array('results' =>$text, 'rows' => $results['rows']);
+                echo json_encode($aa);
         // return $results;
     }
 }
