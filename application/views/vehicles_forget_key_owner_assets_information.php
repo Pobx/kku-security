@@ -54,7 +54,6 @@
 	</div>
 </div>
 
-
 <div class="row">
 	<div class="form-group col-md-6">
 		<label for="owner_assets_name" class="col-sm-4 control-label">ชื่อ&nbsp;-&nbsp;สกุล</label>
@@ -64,7 +63,7 @@
 			value="<?php echo $owner_assets_name; ?>">
 		</div>
 	</div>
-
+	
 	<div class="form-group col-md-6" id="">
 		<label for="owner_assets_department" class="col-sm-4 control-label">สังกัดหน่วยงาน</label>
 

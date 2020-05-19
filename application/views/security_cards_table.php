@@ -23,23 +23,28 @@
 
 			<br />
 
-			<table class="table table-bordered table-striped mydataTable">
+			<table class="table table-bordered table-striped">
 				<thead>
 					<tr>
+								<th>#</th>
 						<?php foreach ($header_columns as $key => $value)
-{
-    ?>
-						<th class="text-center">
-							<?php echo $value; ?>
-						</th>
+							  {	
+    					?>
+								<th class="text-center">
+									<?php echo $value[0]; ?>
+									<input type="text" class="form-control" value="" name="<?php echo $value[1];?>" id="<?php echo $value[1];?>" placeholder="ค้นหา">
+								</th>
 						<?php }?>
 					</tr>
 				</thead>
 				<tbody>
-					<?php foreach ($results as $key => $value)
-{
-    ?>
+					<?php 
+						$i =1;
+						foreach ($results as $key => $value)
+						{
+    				?>
 					<tr>
+						<td class="text-center"><?php echo $i++; ?>
 						<td class="text-center">
 							<?php echo $value['numbers']; ?>
 						</td>

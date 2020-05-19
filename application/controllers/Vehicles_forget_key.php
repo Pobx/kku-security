@@ -252,8 +252,7 @@ class Vehicles_forget_key extends CI_Controller
         </div>
         ';
         echo $text;
-          
-
+        
     }
     public function get_faculty(){
       $results = $this->Faculty_model->all();
